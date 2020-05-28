@@ -12,7 +12,7 @@
 
 <P>  The time on the server is ${serverTime}. </P>
 
-<p><a href="/board/boardlist">게시판</a></p>
-
+<p><a href="/board/boardlist">게시판 목록</a></p>
+<p><a href="/board/boardwrite">게시판 글 작성하기</a>
 </body>
 </html>

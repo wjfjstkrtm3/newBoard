@@ -22,4 +22,10 @@ public class BoardServiceImpl implements BoardService {
 		return dao.list();
 	}
 
+	@Override
+	public void write(BoardVO vo) throws Exception {
+		dao.write(vo);
+		
+	}
+
 }

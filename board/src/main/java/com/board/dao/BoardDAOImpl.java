@@ -22,4 +22,9 @@ public class BoardDAOImpl implements BoardDAO{
 		
 	}
 
+	@Override
+	public void write(BoardVO vo) throws Exception {
+		sqlsession.insert("boardMapper.insert", vo);
+	}
+
 }

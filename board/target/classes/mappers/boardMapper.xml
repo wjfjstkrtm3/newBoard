@@ -11,6 +11,9 @@
  from tbl_board
 </select>
 
+<insert id="insert" parameterType="com.board.dto.BoardVO">
+	insert into tbl_board(title, content, writer) values(#{title}, #{content}, #{writer})
 
+</insert>
 
 </mapper>
