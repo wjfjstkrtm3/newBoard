@@ -10,7 +10,9 @@
 <body>
 
 <c:set var="detail" value="${one}"></c:set>
-
+<div>
+<%@include file="../include/nav.jsp"%>
+</div>
 <form action="" method="post">
 
 	제목 : <input type="text" name="title" value="${detail.title}">
@@ -18,9 +20,7 @@
 	글쓴이 : <input type="text" name="writer" value="${detail.writer}">
 	<input type="submit" value="전송하기">
 </form>
-	<a href="/board/boardUpdate?bno=${detail.bno}">수정하기</a>
-	<a href="/board/boardDelete?bno=${detail.bno}">삭제하기</a>
-	<a href="/">홈으로 </a>
+
 
 
 </body>

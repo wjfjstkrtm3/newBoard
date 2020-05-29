@@ -7,7 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<div>
+<%@include file="../include/nav.jsp"%>
+</div>
 <form action="" method="post">
 
 	제목 : <input type="text" name="title">
