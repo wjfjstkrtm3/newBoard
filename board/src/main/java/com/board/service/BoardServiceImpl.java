@@ -42,4 +42,14 @@ public class BoardServiceImpl implements BoardService {
 		dao.BoardDelete(bno);
 	}
 
+	@Override
+	public int BoardCount() throws Exception {
+		return dao.BoardCount();
+	}
+
+	@Override
+	public List<BoardVO> listPage(int displayPost, int postNum) throws Exception {
+		return dao.listPage(displayPost, postNum);
+	}
+
 }

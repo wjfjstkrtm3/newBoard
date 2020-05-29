@@ -47,7 +47,6 @@ public class BoardController {
 		vo.setContent(content);
 		vo.setWriter(writer);
 		
-		System.out.println("tostring : " +vo.toString());
 		try {
 			service.write(vo);
 		} catch (Exception e) {
@@ -99,4 +98,33 @@ public class BoardController {
 		
 		return "redirect:/board/boardList";
 	}
+	
+	
+	@RequestMapping(value="/boardListPage", method=RequestMethod.GET)
+	public void getListPage(Model model, @RequestParam(value="num") int num) {
+		try {
+			
+			System.out.println("num :" + num);
+			// 게시판 총 갯수
+			int count = service.BoardCount();
+			
+			// 한 페이지에 출력할 게시물 갯수
+			int postNum = 10;
+			
+			// 하단 페이지 번호 ([게시물 총 개수 / 한 페이지에 출력할 게시물 갯수])
+			int pageNum = (int)Math.ceil((double)count/postNum);
+			
+			// 페이지 번호에 따른 출력할 게시물
+			int displayPost = (num-1) * postNum;
+			 
+			
+			List<BoardVO> list = service.listPage(displayPost, postNum);
+			model.addAttribute("list", list);
+			model.addAttribute("pageNum", pageNum);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
 }

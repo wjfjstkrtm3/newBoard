@@ -9,6 +9,9 @@
 <body>
 <ul>
 	<li>
+	<a href="/board/boardListPage?num=1">게시물 페이징</a>
+	</li>
+	<li>
 	<a href="/">홈으로</a>
 	</li>
 	<li>

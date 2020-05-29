@@ -1,6 +1,8 @@
 package com.board.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +42,19 @@ public class BoardDAOImpl implements BoardDAO{
 	@Override
 	public void BoardDelete(int bno) throws Exception {
 		sqlsession.delete("boardMapper.boardDelete", bno);
+	}
+
+	@Override
+	public int BoardCount() throws Exception {
+		return sqlsession.selectOne("boardMapper.boardCount");
+	}
+
+	@Override
+	public List<BoardVO> listPage(int displayPost, int postNum) throws Exception {
+		Map<String, Integer> data = new HashMap<String, Integer>();
+		data.put("displayPost", displayPost);
+		data.put("postNum", postNum);
+		return sqlsession.selectList("boardMapper.listPage", data);
 	}
 
 }
