@@ -36,7 +36,6 @@
 <div>
 	<c:forEach begin="1" end="${pageNum}" var="num">
 		<a href="/board/boardListPage?num=${num}">[${num}]</a>
-	
 	</c:forEach>
 
 </div>
