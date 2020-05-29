@@ -16,4 +16,22 @@
 
 </insert>
 
+<select id="listone" resultType="com.board.dto.BoardVO">
+	select bno, title, content, writer, regDate, viewCnt
+	from tbl_board where bno=#{bno};
+</select>
+
+
+<update id="boardUpdate" parameterType="com.board.dto.BoardVO">
+	update tbl_board set 
+	title = #{title},
+	content = #{content},
+	writer = #{writer}
+	where bno = #{bno} 
+</update>
+
+<delete id="boardDelete">
+	delete from tbl_board 
+	where bno = #{bno}
+</delete>
 </mapper>

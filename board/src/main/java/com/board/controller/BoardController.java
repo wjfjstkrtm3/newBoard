@@ -20,7 +20,7 @@ public class BoardController {
 	@Autowired
 	private BoardService service;
 	
-	@RequestMapping(value="/boardlist", method=RequestMethod.GET)
+	@RequestMapping(value="/boardList", method=RequestMethod.GET)
 	public void getList(Model model) {
 		try {
 			List<BoardVO> list = service.list();
@@ -33,12 +33,12 @@ public class BoardController {
 		
 	}
 	
-	@RequestMapping(value="/boardwrite", method=RequestMethod.GET)
-	public String boardWriteForm() {
-		return "/board/boardwrite";
+	@RequestMapping(value="/boardWrite", method=RequestMethod.GET)
+	public void boardWrite() {
+		
 	}
 	
-	@RequestMapping(value="/boardwrite", method=RequestMethod.POST)
+	@RequestMapping(value="/boardWrite", method=RequestMethod.POST)
 	public String boardWrite(@RequestParam(value="title") String title,
 							 @RequestParam(value="content") String content,
 							 @RequestParam(value="writer") String writer) {
@@ -53,7 +53,50 @@ public class BoardController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "redirect:/board/boardlist";
+		return "redirect:/board/boardList";
 	}
 	
+	@RequestMapping(value="/boardDetail")
+	public void boardDetail(@RequestParam(value="bno") int bno, Model model) {
+		try {
+			BoardVO vo = service.listOne(bno);
+			model.addAttribute("one", vo);
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@RequestMapping(value="/boardUpdate", method=RequestMethod.GET)
+	public void boardUpdate(@RequestParam(value="bno")int bno, Model model) {
+		try {
+			BoardVO vo = service.listOne(bno);
+			model.addAttribute("one", vo);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	@RequestMapping(value="/boardUpdate", method=RequestMethod.POST)
+	public String boardUpdate(BoardVO vo) {
+		try {
+			service.BoardUpdate(vo);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return "redirect:/board/boardDetail?bno=" + vo.getBno();
+	}
+	
+	@RequestMapping(value="/boardDelete")
+	public String boardDelete(@RequestParam(value="bno") int bno) {
+		try {
+			service.BoardDelete(bno);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return "redirect:/board/boardList";
+	}
 }

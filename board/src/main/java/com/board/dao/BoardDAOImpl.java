@@ -27,4 +27,19 @@ public class BoardDAOImpl implements BoardDAO{
 		sqlsession.insert("boardMapper.insert", vo);
 	}
 
+	@Override
+	public BoardVO listOne(int bno) throws Exception {
+		return sqlsession.selectOne("boardMapper.listone", bno);
+	}
+
+	@Override
+	public void BoardUpdate(BoardVO vo) throws Exception {
+		sqlsession.update("boardMapper.boardUpdate", vo);
+	}
+
+	@Override
+	public void BoardDelete(int bno) throws Exception {
+		sqlsession.delete("boardMapper.boardDelete", bno);
+	}
+
 }

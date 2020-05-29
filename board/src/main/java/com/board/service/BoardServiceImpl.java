@@ -18,7 +18,6 @@ public class BoardServiceImpl implements BoardService {
 	
 	@Override
 	public List<BoardVO> list() throws Exception {
-		
 		return dao.list();
 	}
 
@@ -26,6 +25,21 @@ public class BoardServiceImpl implements BoardService {
 	public void write(BoardVO vo) throws Exception {
 		dao.write(vo);
 		
+	}
+
+	@Override
+	public BoardVO listOne(int bno) throws Exception {
+		return dao.listOne(bno);
+	}
+
+	@Override
+	public void BoardUpdate(BoardVO vo) throws Exception {
+		dao.BoardUpdate(vo);
+	}
+
+	@Override
+	public void BoardDelete(int bno) throws Exception {
+		dao.BoardDelete(bno);
 	}
 
 }
