@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.board.dto.BoardVO;
+import com.board.dto.Page;
 import com.board.service.BoardService;
 
 @Controller
@@ -104,7 +105,7 @@ public class BoardController {
 	public void getListPage(Model model, @RequestParam(value="num") int num) {
 		try {
 			
-			System.out.println("num :" + num);
+			/*
 			// 게시판 총 갯수
 			int count = service.BoardCount();
 			
@@ -117,10 +118,56 @@ public class BoardController {
 			// 페이지 번호에 따른 출력할 게시물
 			int displayPost = (num-1) * postNum;
 			 
+			// 한번에 표시할 페이징 번호의 갯수
+			int pageNum_cnt = 10;
 			
-			List<BoardVO> list = service.listPage(displayPost, postNum);
+			// 표시되는 페이지 번호 중 마지막 번호
+			int endPageNum = (int)Math.ceil((double)num/pageNum_cnt) * pageNum_cnt;
+			
+			// 표시되는 페이지 번호 중 첫번째 번호
+			int startPageNum = endPageNum - pageNum_cnt + 1;
+			
+			// 마지막 번호 재계산
+			// ex) 저기위는 단순히 마지막 페이지 번호가 10, 20, 30 .. 단순히 계속 이렇게 되는데
+			// ex) 만약에 총 게시물이 62개면 보통 1~7페이지까지 나와야하는데 위의 로직대로면 8,9,10페이지가 쓸데없이 나오기때문에 재계산이 필요하다
+			
+			int endPageNum_tmp = (int)Math.ceil((double)count / pageNum_cnt);
+			if(endPageNum > endPageNum_tmp) {
+				endPageNum = endPageNum_tmp;
+			}
+			
+			boolean prev = startPageNum == 1 ? false : true;
+			boolean next = endPageNum * pageNum_cnt >= count ? false : true;
+			
+			
+			*/
+			
+			Page page = new Page();
+			page.setNum(num);
+			page.setCount(service.BoardCount());
+			
+			List<BoardVO> list = service.listPage(page.getDisplaypost(), page.getPostNum());
 			model.addAttribute("list", list);
-			model.addAttribute("pageNum", pageNum);
+			
+			/*
+			model.addAttribute("pageNum", page.getPageNum());
+			
+			// 시작 밑 끝 번호
+			model.addAttribute("startPageNum", page.getStartPageNum());
+			model.addAttribute("endPageNum", page.getEndPageNum());
+			
+			// 이전 및 다음
+			model.addAttribute("prev", page.isPrev());
+			model.addAttribute("next", page.isNext());
+			
+			
+			*/
+			
+			model.addAttribute("page", page);
+			
+			// 현재 페이지
+			model.addAttribute("select", num);
+			
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
