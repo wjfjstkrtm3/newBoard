@@ -174,4 +174,28 @@ public class BoardController {
 	}
 	
 	
+	
+	@RequestMapping(value="/boardListPageSearch", method=RequestMethod.GET)
+	public void getListPageSearch(Model model, @RequestParam(value="num") int num,
+											   @RequestParam(value="searchType", required=false, defaultValue="title")String searchType,
+											   @RequestParam(value="keyword", required=false, defaultValue="")String keyword) {
+		try {
+			
+			Page page = new Page();
+			page.setNum(num);
+			page.setCount(service.BoardCount());
+			
+			List<BoardVO> list = service.listPageSearch(page.getDisplaypost(), page.getPostNum(), searchType, keyword);
+			model.addAttribute("list", list);
+			
+			model.addAttribute("page", page);
+			
+			// 현재 페이지
+			model.addAttribute("select", num);
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 }

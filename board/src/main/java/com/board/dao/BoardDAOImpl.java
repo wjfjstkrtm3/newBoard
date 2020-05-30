@@ -57,4 +57,15 @@ public class BoardDAOImpl implements BoardDAO{
 		return sqlsession.selectList("boardMapper.listPage", data);
 	}
 
+	@Override
+	public List<BoardVO> listPageSearch(int displayPost, int postNum, String searchType, String keyword)
+			throws Exception {
+		Map<String, Object> data = new HashMap<String, Object>();
+		data.put("displayPost", displayPost);
+		data.put("postNum", postNum);
+		data.put("searchType", searchType);
+		data.put("keyword", keyword);
+		return sqlsession.selectList("boardMapper.listPageSearch", data);
+	}
+
 }
