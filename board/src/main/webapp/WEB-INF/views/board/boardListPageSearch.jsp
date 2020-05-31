@@ -7,17 +7,16 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
-
+<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
 <script type="text/javascript">
 
 	$(document).ready(function() {
 	
 			$("#search_btn").click(function() {
-			console.log($("#searchType").val());
+			var searchType = $("#searchType").val();
+			var keyword = $("#keyword").val();
+			location.href = "/board/boardListPageSearch?num=1&searchType=" + searchType + "&keyword=" + keyword; 
 				})
-
-		
 		})
 		
 
