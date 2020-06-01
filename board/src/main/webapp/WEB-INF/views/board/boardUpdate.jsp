@@ -9,9 +9,6 @@
 </head>
 <body>
 
-<div>
-<%@include file="../include/nav.jsp"%>
-</div>
 <c:set var="detail" value="${one}"></c:set>
 
 <form action="" method="post">

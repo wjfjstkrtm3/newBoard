@@ -15,7 +15,7 @@
 	<a href="/">홈으로</a>
 	</li>
 	<li>
-	<a href="/board/boardList">게시판 목록</a>
+	<a href="#" id="list_btn">게시판 목록</a>
 	</li>
 	<li>
 	<a href="/board/boardWrite">글 작성</a>

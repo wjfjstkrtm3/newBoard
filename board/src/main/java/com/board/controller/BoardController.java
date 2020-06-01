@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.board.dto.BoardVO;
 import com.board.dto.Page;
+import com.board.dto.SearchCriteria;
 import com.board.service.BoardService;
 
 @Controller
@@ -53,14 +54,18 @@ public class BoardController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "redirect:/board/boardList";
+		return "redirect:/board/boardListPageSearch";
 	}
 	
 	@RequestMapping(value="/boardDetail")
-	public void boardDetail(@RequestParam(value="bno") int bno, Model model) {
-		try {
+	public void boardDetail(@RequestParam(value="bno") int bno, Model model, SearchCriteria sc,
+							@RequestParam(value="num") int num) {
+		try { 
+			
 			BoardVO vo = service.listOne(bno);
 			model.addAttribute("one", vo);
+			model.addAttribute("num", num);
+			model.addAttribute("sc", sc);
 			
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -80,13 +85,16 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value="/boardUpdate", method=RequestMethod.POST)
-	public String boardUpdate(BoardVO vo) {
-		try {
+	public String boardUpdate(@RequestParam(value="num") int num, BoardVO vo, 
+						      @RequestParam(value="searchType", required=false, defaultValue="")String searchType,
+			                  @RequestParam(value="keyword", required=false, defaultValue="")String keyword) {
+		try { 
 			service.BoardUpdate(vo);
+			System.out.println("keyword : " + keyword);
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
-		return "redirect:/board/boardDetail?bno=" + vo.getBno();
+		return "redirect:/board/boardDetail?bno=" + vo.getBno() + "&num=" + num + "&searchType=" + searchType + "&keyword=" + keyword;
 	}
 	
 	@RequestMapping(value="/boardDelete")
@@ -101,10 +109,11 @@ public class BoardController {
 	}
 	
 	
+	
+	// 게시판 + 페이징
 	@RequestMapping(value="/boardListPage", method=RequestMethod.GET)
 	public void getListPage(Model model, @RequestParam(value="num") int num) {
 		try {
-			
 			/*
 			// 게시판 총 갯수
 			int count = service.BoardCount();
@@ -175,23 +184,37 @@ public class BoardController {
 	
 	
 	
+	// 게시판 + 페이징 + 검색
 	@RequestMapping(value="/boardListPageSearch", method=RequestMethod.GET)
-	public void getListPageSearch(Model model, @RequestParam(value="num") int num,
-											   @RequestParam(value="searchType", required=false, defaultValue="title")String searchType,
+	public void getListPageSearch(Model model, @RequestParam(value="num", defaultValue="1") int num,
+											   @RequestParam(value="searchType", required=false, defaultValue="")String searchType,
 											   @RequestParam(value="keyword", required=false, defaultValue="")String keyword) {
+		
+		// 2페이지를 눌렀을떄 초기화가 검색이 초기화가 되버려
+		// 
 		try {
 			
 			Page page = new Page();
 			page.setNum(num);
 			page.setCount(service.BoardCount());
 			
+			SearchCriteria sc = new SearchCriteria();
+			sc.setSearchType(searchType);
+			sc.setKeyword(keyword);
+			
+			
+			
 			List<BoardVO> list = service.listPageSearch(page.getDisplaypost(), page.getPostNum(), searchType, keyword);
+			
 			model.addAttribute("list", list);
 			
 			model.addAttribute("page", page);
 			
 			// 현재 페이지
 			model.addAttribute("select", num);
+			
+			
+			model.addAttribute("sc", sc);
 			
 		}catch(Exception e) {
 			e.printStackTrace();
