@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="boardReplyMapper">
+    <!-- 댓글 조회 -->
+	<select id="readReply" resultType="com.board.dto.BoardReplyVO">
+		select bno, rno, content, writer, regDate
+		from tbl_board_reply
+		where bno = #{bno}
+	</select>
+
+	<!-- 댓글 생성 -->
+	<insert id="insertReply" parameterType="com.board.dto.BoardReplyVO">
+		insert into tbl_board_reply(bno, rno, content, writer)
+		values(#{bno}, nextval(tbl_board_reply_seq), #{content}, #{writer})
+				
+	</insert>
+
+	<!-- 댓글 수정 -->
+	<update id="updateReply" parameterType="com.board.dto.BoardReplyVO">
+		update tbl_board_reply
+		set content = #{content}
+		where rno=#{rno} 	
+	</update>
+
+	<!-- 내가 누른 댓글 하나 가져오기 -->
+	<select id="selectOneReply" resultType="com.board.dto.BoardReplyVO">
+		select bno, rno, content, writer, regDate
+		from tbl_board_reply
+		where rno=#{rno}
+	
+	</select> 
+
+	<!-- 댓글 삭제 -->
+	<delete id="deleteReply" parameterType="int">
+		delete from tbl_board_reply
+		where rno=#{rno}
+	</delete>
+</mapper>

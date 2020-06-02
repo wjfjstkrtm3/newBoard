@@ -51,10 +51,6 @@ public class Page {
 		displaypost = (num-1) * postNum;
 	}
 	
-	
-	
-	
-	
 	public int getNum() {
 		return num;
 	}

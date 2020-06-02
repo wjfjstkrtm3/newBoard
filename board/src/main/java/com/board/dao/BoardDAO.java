@@ -29,4 +29,6 @@ public interface BoardDAO {
 	
 	// 게시물 목록 + 페이징 + 검색
 	 public List<BoardVO> listPageSearch(int displayPost, int postNum, String searchType, String keyword) throws Exception;
+	 
+	 
 }

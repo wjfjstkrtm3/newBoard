@@ -5,14 +5,15 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.board.dto.BoardReplyVO;
 import com.board.dto.BoardVO;
 import com.board.dto.Page;
 import com.board.dto.SearchCriteria;
+import com.board.service.BoardReplyService;
 import com.board.service.BoardService;
 
 @Controller
@@ -21,13 +22,15 @@ public class BoardController {
 
 	@Autowired
 	private BoardService service;
-	
+
+	@Autowired
+	private BoardReplyService replyService;
+
 	@RequestMapping(value="/boardList", method=RequestMethod.GET)
 	public void getList(Model model) {
 		try {
 			List<BoardVO> list = service.list();
 			model.addAttribute("list", list);
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -63,10 +66,14 @@ public class BoardController {
 		try { 
 			
 			BoardVO vo = service.listOne(bno);
+			
+			List<BoardReplyVO> getReplyList = replyService.getListReply(vo.getBno());
+			
 			model.addAttribute("one", vo);
 			model.addAttribute("num", num);
 			model.addAttribute("sc", sc);
-			
+
+			model.addAttribute("reply", getReplyList);
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -201,9 +208,7 @@ public class BoardController {
 			SearchCriteria sc = new SearchCriteria();
 			sc.setSearchType(searchType);
 			sc.setKeyword(keyword);
-			
-			
-			
+				
 			List<BoardVO> list = service.listPageSearch(page.getDisplaypost(), page.getPostNum(), searchType, keyword);
 			
 			model.addAttribute("list", list);
@@ -220,5 +225,55 @@ public class BoardController {
 			e.printStackTrace();
 		}
 	}
+	
+	@RequestMapping(value="/boardReplyWrite", method=RequestMethod.GET)
+	public String writeReply(BoardReplyVO replyVO, SearchCriteria sc, Page page, BoardVO vo, Model model) {
+		// 댓글을 작성하면 다시 그 게시물로 이동하는데 bno, num, searchType, keyword
+		try {
+			replyService.writeReply(replyVO);
+		}catch(Exception e) {
+				e.printStackTrace();
+		}
+		return "redirect:/board/boardDetail?bno=" + vo.getBno() + "&num=" + page.getNum() + 
+				       "&searchType=" + sc.getSearchType() + "&keyword=" + sc.getKeyword();
+	}
+	
+	
+	@RequestMapping(value="/reply/boardReplyUpdate", method=RequestMethod.GET)
+	public void updateReply(@RequestParam(value="rno") int rno, Model model) {
+		try {
+			BoardReplyVO replyVo = replyService.getReplyOne(rno);
+			model.addAttribute("replyVo", replyVo);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@RequestMapping(value="/reply/boardReplyUpdate", method=RequestMethod.POST)
+	public String updateReply(BoardReplyVO replyVO, SearchCriteria sc, Page page, BoardVO vo, Model model) {
+		try {
+			replyService.updateReply(replyVO);
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return "redirect:/board/boardDetail?bno=" + vo.getBno() + "&num=" + page.getNum() + 
+			       "&searchType=" + sc.getSearchType() + "&keyword=" + sc.getKeyword();
+	}
+	
+
+	
+	@RequestMapping(value="/reply/boardReplyDelete", method=RequestMethod.GET)
+	public String deleteReply(BoardReplyVO replyVO, SearchCriteria sc, Page page, BoardVO vo, Model model) {
+		try {
+			replyService.deleteReply(replyVO.getRno());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "redirect:/board/boardDetail?bno=" + vo.getBno() + "&num=" + page.getNum() + 
+			       "&searchType=" + sc.getSearchType() + "&keyword=" + sc.getKeyword();
+	}
+	
 	
 }
