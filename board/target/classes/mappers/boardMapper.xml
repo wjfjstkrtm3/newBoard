@@ -14,7 +14,7 @@
 <!-- 게시물 작성 -->
 <insert id="insert" parameterType="hashMap" useGeneratedKeys="true" keyProperty="bno">
 	<selectKey keyProperty="bno" resultType="String" order="BEFORE">
-		select max(bno) + 1 from tbl_board;
+		select nextval(tbl_board_seq)
 	</selectKey>
 
 	insert into tbl_board(bno, title, content, writer) 
