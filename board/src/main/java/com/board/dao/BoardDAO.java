@@ -1,6 +1,9 @@
 package com.board.dao;
 
 import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 
 import com.board.dto.BoardVO;
 
@@ -10,7 +13,7 @@ public interface BoardDAO {
 	public List<BoardVO> list() throws Exception;
 	
 	// 게시물 쓰기
-	public void write(BoardVO vo) throws Exception;
+	public void write(Map<String, String> mapVO) throws Exception;
 	
 	// 게시물 조회
 	public BoardVO listOne(int bno) throws Exception;
@@ -28,7 +31,9 @@ public interface BoardDAO {
 	public List<BoardVO> listPage(int displayPost, int postNum) throws Exception;
 	
 	// 게시물 목록 + 페이징 + 검색
-	 public List<BoardVO> listPageSearch(int displayPost, int postNum, String searchType, String keyword) throws Exception;
+	public List<BoardVO> listPageSearch(int displayPost, int postNum, String searchType, String keyword) throws Exception;
 	 
+	// 파일 추가
+	public void insertFile(Map<String, Object> map) throws Exception;
 	 
 }

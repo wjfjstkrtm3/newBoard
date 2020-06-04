@@ -59,7 +59,7 @@
 		</ol>
 </div>
 <div>
-	<form action="" method="GET" id="reply_form">
+	<form action="" method="GET" id="reply_form" enctype="multipart/form-data">
 		<input type="hidden" name="bno" value="${detail.bno }">
 		<input type="hidden" name="num" value="${num}">
 		<input type="hidden" name="searchType" value="${sc.searchType}">
@@ -68,6 +68,7 @@
 		작성자 : <input type="text" name="writer">
 		내용 : <input type="text" name="content">
 		<input type="submit" value="댓글작성" id="reply_btn">
+		
 	</form>
 
 

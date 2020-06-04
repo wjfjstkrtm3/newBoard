@@ -1,6 +1,11 @@
 package com.board.controller;
 
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,6 +13,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.board.dto.BoardReplyVO;
 import com.board.dto.BoardVO;
@@ -46,14 +53,36 @@ public class BoardController {
 	@RequestMapping(value="/boardWrite", method=RequestMethod.POST)
 	public String boardWrite(@RequestParam(value="title") String title,
 							 @RequestParam(value="content") String content,
-							 @RequestParam(value="writer") String writer) {
+							 @RequestParam(value="writer") String writer,
+							 HttpServletRequest request, Map<String, Object> map
+							 ) {
 		BoardVO vo = new BoardVO();
 		vo.setTitle(title);
 		vo.setContent(content);
 		vo.setWriter(writer);
 		
+		Map<String, String> mapVO = new HashMap<String, String>();
+		mapVO.put("title", title);
+		mapVO.put("content", content);
+		mapVO.put("writer", writer);
+		
+	
+		MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest)request;
+		Iterator<String> iterator = multipartHttpServletRequest.getFileNames();
+		MultipartFile multilpartFile = null;
+		
+		
 		try {
-			service.write(vo);
+			service.write(mapVO, request);
+			while(iterator.hasNext()) {
+				multilpartFile = multipartHttpServletRequest.getFile(iterator.next());
+				if(multilpartFile.isEmpty() == false) {
+					System.out.println("name : " + multilpartFile.getName());
+					System.out.println("filename : " + multilpartFile.getOriginalFilename());
+					System.out.println("size : " + multilpartFile.getSize());
+				}
+			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -97,7 +126,6 @@ public class BoardController {
 			                  @RequestParam(value="keyword", required=false, defaultValue="")String keyword) {
 		try { 
 			service.BoardUpdate(vo);
-			System.out.println("keyword : " + keyword);
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -275,5 +303,7 @@ public class BoardController {
 			       "&searchType=" + sc.getSearchType() + "&keyword=" + sc.getKeyword();
 	}
 	
-	
+	@RequestMapping(value="/test", method=RequestMethod.GET)
+	public void test() {
+	}
 }

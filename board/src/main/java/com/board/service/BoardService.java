@@ -1,6 +1,9 @@
 package com.board.service;
 
 import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 
 import com.board.dto.BoardVO;
 
@@ -10,7 +13,7 @@ public interface BoardService {
 	public List<BoardVO> list() throws Exception;
 
 	// 게시물 쓰기
-	public void write(BoardVO vo) throws Exception;
+	public void write(Map<String, String> mapVO, HttpServletRequest request) throws Exception;
 
 	// 게시물 조회
 	public BoardVO listOne(int bno) throws Exception;
@@ -29,4 +32,5 @@ public interface BoardService {
 	
 	// 게시물 목록 + 페이징 + 검색
 	public List<BoardVO> listPageSearch(int displayPost, int postNum, String searchType, String keyword) throws Exception;
+	
 }

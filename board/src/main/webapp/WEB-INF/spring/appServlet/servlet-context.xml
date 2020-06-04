@@ -23,7 +23,12 @@
 	
 	<context:component-scan base-package="com.board.controller" />
 	<context:component-scan base-package="com.board.dao"/>
-	<context:component-scan base-package="com.board.service"></context:component-scan>
+	<context:component-scan base-package="com.board.service"/>
+	<context:component-scan base-package="com.board.utils"/>
+	
+	<!-- MultipartResolver 설정 --> 
+
+	
 	
 	
 </beans:beans>

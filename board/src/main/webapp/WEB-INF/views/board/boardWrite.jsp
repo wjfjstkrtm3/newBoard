@@ -10,12 +10,13 @@
 <div>
 <%@include file="../include/nav.jsp"%>
 </div>
-<form action="" method="post">
-
+<form action="" method="post" enctype="multipart/form-data">
+	<input type="hidden" name="bno" value="${bno}">
 	제목 : <input type="text" name="title">
 	내용 : <input type="text" name="content">
 	글쓴이 : <input type="text" name="writer">
-	<input type="submit" value="전송하기">
+	<input type="file" name="file">
+	<input type="submit" name="전송하기">
 </form>
 
 
