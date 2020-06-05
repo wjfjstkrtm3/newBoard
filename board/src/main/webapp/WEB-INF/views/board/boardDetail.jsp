@@ -19,10 +19,16 @@
 					$("#reply_form").attr("action", "/board/boardReplyWrite");
 					$("#reply_form").submit();
 				})		
-
+			$("#fileDown").on("click", function() {
+					console.log($("#f_bno").val());
+					var f_bno = $("#f_bno").val();
+					
+					location.href="/board/fileDown?f_bno=" + f_bno;
+				
+				})
 				
 		})
-		
+	
 		
 
 </script>
@@ -38,6 +44,13 @@
 	제목 : <input type="text" name="title" value="${detail.title}" readonly="readonly">
 	내용 : <input type="text" name="content" value="${detail.content}" readonly="readonly">
 	글쓴이 : <input type="text" name="writer" value="${detail.writer}" readonly="readonly">
+	
+	<c:forEach var="fileList" items="${fileMap}">
+		<a href="#" id="fileDown">${fileList.original_file_name}</a>
+		${fileList.file_size}
+		<input type="hidden" value="${fileList.f_bno}" id="f_bno"><br>
+	</c:forEach>
+	
 <div>
 	<a href="/board/boardUpdate?bno=${detail.bno}&num=${num}&searchType=${sc.searchType}&keyword=${sc.keyword}">수정페이지 이동</a>
 
@@ -57,6 +70,7 @@
 			
 	</c:forEach>
 		</ol>
+		
 </div>
 <div>
 	<form action="" method="GET" id="reply_form" enctype="multipart/form-data">

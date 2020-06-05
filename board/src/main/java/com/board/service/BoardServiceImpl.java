@@ -29,11 +29,9 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public void write(Map<String, String> mapVO, HttpServletRequest request) throws Exception {
-		dao.write(mapVO);
-		System.out.println("여기까진 탄거야?");
-		List<Map<String, Object>> list = fileUtils.parseInsertFileInfo(mapVO, request);
-		System.out.println("map : " + mapVO.toString());
+	public void write(BoardVO vo, HttpServletRequest request) throws Exception {
+		dao.write(vo);
+		List<Map<String, Object>> list = fileUtils.parseInsertFileInfo(vo, request);
 		int size=list.size();
 		for(int i = 0;  i < size; i++) {
 			dao.insertFile(list.get(i));
@@ -70,6 +68,16 @@ public class BoardServiceImpl implements BoardService {
 	public List<BoardVO> listPageSearch(int displayPost, int postNum, String searchType, String keyword)
 			throws Exception {
 		return dao.listPageSearch(displayPost, postNum, searchType, keyword);
+	}
+
+	@Override
+	public List<Map<String, Object>> selectFileList(int bno) throws Exception {
+		return dao.selectFileList(bno);
+	}
+
+	@Override
+	public Map<String, Object> selectFileInfo(Map<String, Object> map) throws Exception {
+		return dao.selectFileInfo(map);
 	}
 
 	

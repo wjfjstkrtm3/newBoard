@@ -13,7 +13,7 @@ public interface BoardService {
 	public List<BoardVO> list() throws Exception;
 
 	// 게시물 쓰기
-	public void write(Map<String, String> mapVO, HttpServletRequest request) throws Exception;
+	public void write(BoardVO vo, HttpServletRequest request) throws Exception;
 
 	// 게시물 조회
 	public BoardVO listOne(int bno) throws Exception;
@@ -33,4 +33,9 @@ public interface BoardService {
 	// 게시물 목록 + 페이징 + 검색
 	public List<BoardVO> listPageSearch(int displayPost, int postNum, String searchType, String keyword) throws Exception;
 	
+	// 파일 다운
+	public List<Map<String, Object>> selectFileList(int bno) throws Exception;
+	
+	// 파일 다운
+	public Map<String, Object> selectFileInfo(Map<String, Object> map) throws Exception;
 }

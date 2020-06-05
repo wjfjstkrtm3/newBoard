@@ -13,12 +13,14 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.board.dto.BoardVO;
+
 @Component
 public class FileUtils {
 
 	private static final String filePath = "C:\\dev\\file\\";
 	
-	public List<Map<String, Object>> parseInsertFileInfo(Map<String, String> mapVO, HttpServletRequest request) throws Exception {
+	public List<Map<String, Object>> parseInsertFileInfo(BoardVO vo, HttpServletRequest request) throws Exception {
 		MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest)request;
 		Iterator<String> iterator = multipartHttpServletRequest.getFileNames();
 		
@@ -30,7 +32,7 @@ public class FileUtils {
 		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
 		Map<String, Object> listMap = null;
 		
-		String boardBno = (String)mapVO.get("bno");
+		String boardBno = Integer.toString(vo.getBno());
 		System.out.println("boardBno : " + boardBno);
 		File file = new File(filePath);
 		if(file.exists() == false) {

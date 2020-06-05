@@ -4,8 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -27,9 +25,8 @@ public class BoardDAOImpl implements BoardDAO{
 	}
 
 	@Override
-	public void write(Map<String, String> mapVO) throws Exception {
-		sqlsession.insert("boardMapper.insert", mapVO);
-		System.out.println("Map : " + mapVO.toString());
+	public void write(BoardVO vo) throws Exception {
+		sqlsession.insert("boardMapper.insert", vo);
 	}
 
 	@Override
@@ -76,6 +73,13 @@ public class BoardDAOImpl implements BoardDAO{
 		sqlsession.insert("boardMapper.insertFile", map);		
 	}
 
-	
+	@Override
+	public List<Map<String, Object>> selectFileList(int bno) throws Exception {
+		return sqlsession.selectList("boardMapper.selectFileList", bno);
+	}
 
+	@Override
+	public Map<String, Object> selectFileInfo(Map<String, Object> map) throws Exception {
+		return sqlsession.selectOne("boardMapper.selectFileInfo", map);
+	}
 }

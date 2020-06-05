@@ -1,20 +1,21 @@
 package com.board.controller;
 
+import java.io.File;
+import java.net.URLEncoder;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.board.dto.BoardReplyVO;
 import com.board.dto.BoardVO;
@@ -56,32 +57,21 @@ public class BoardController {
 							 @RequestParam(value="writer") String writer,
 							 HttpServletRequest request, Map<String, Object> map
 							 ) {
+		
 		BoardVO vo = new BoardVO();
 		vo.setTitle(title);
 		vo.setContent(content);
 		vo.setWriter(writer);
+		
 		
 		Map<String, String> mapVO = new HashMap<String, String>();
 		mapVO.put("title", title);
 		mapVO.put("content", content);
 		mapVO.put("writer", writer);
 		
-	
-		MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest)request;
-		Iterator<String> iterator = multipartHttpServletRequest.getFileNames();
-		MultipartFile multilpartFile = null;
-		
 		
 		try {
-			service.write(mapVO, request);
-			while(iterator.hasNext()) {
-				multilpartFile = multipartHttpServletRequest.getFile(iterator.next());
-				if(multilpartFile.isEmpty() == false) {
-					System.out.println("name : " + multilpartFile.getName());
-					System.out.println("filename : " + multilpartFile.getOriginalFilename());
-					System.out.println("size : " + multilpartFile.getSize());
-				}
-			}
+			service.write(vo, request);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -95,6 +85,7 @@ public class BoardController {
 		try { 
 			
 			BoardVO vo = service.listOne(bno);
+			List<Map<String, Object>> map = service.selectFileList(bno);
 			
 			List<BoardReplyVO> getReplyList = replyService.getListReply(vo.getBno());
 			
@@ -103,6 +94,8 @@ public class BoardController {
 			model.addAttribute("sc", sc);
 
 			model.addAttribute("reply", getReplyList);
+			model.addAttribute("fileMap", map);
+			
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -303,7 +296,42 @@ public class BoardController {
 			       "&searchType=" + sc.getSearchType() + "&keyword=" + sc.getKeyword();
 	}
 	
+	
+	@RequestMapping(value="/fileDown")
+	public void downloadFile(@RequestParam(value="f_bno") int f_bno, HttpServletResponse response) {
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("f_bno", f_bno);
+		try {
+			Map<String, Object> fileMap = service.selectFileInfo(map);
+			String storedFileName = (String)fileMap.get("stored_file_name");
+			String originalFileName = (String)fileMap.get("original_file_name");
+			System.out.println("stored : " + storedFileName);
+			System.out.println("original : " + originalFileName);
+			
+			byte fileByte[] = FileUtils.readFileToByteArray(new File("C:\\dev\\file\\"+storedFileName));
+			
+			response.setContentType("application/octet-stream");
+			response.setContentLength(fileByte.length);
+			response.setHeader("Content-Disposition", "attachment; fileName=\"" + URLEncoder.encode(originalFileName,"UTF-8")+"\";");
+			response.setHeader("Content-Transfer-Encoding", "binary");
+			response.getOutputStream().write(fileByte);
+			
+			response.getOutputStream().flush();
+			response.getOutputStream().close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	
+	}
+	
+	
+	
+	
 	@RequestMapping(value="/test", method=RequestMethod.GET)
 	public void test() {
 	}
+	
+	
+	
+	
 }

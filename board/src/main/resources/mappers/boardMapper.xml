@@ -12,8 +12,8 @@
 </select>
 
 <!-- 게시물 작성 -->
-<insert id="insert" parameterType="hashMap" useGeneratedKeys="true" keyProperty="bno">
-	<selectKey keyProperty="bno" resultType="String" order="BEFORE">
+<insert id="insert" parameterType="com.board.dto.BoardVO" useGeneratedKeys="true" keyProperty="bno">
+	<selectKey keyProperty="bno" resultType="int" order="BEFORE">
 		select nextval(tbl_board_seq)
 	</selectKey>
 
@@ -84,7 +84,7 @@
   limit #{displayPost}, #{postNum}
 </select> 
 
-<!-- 파일 추가 -->
+<!-- 파일 업로드 -->
 <insert id="insertFile" parameterType="hashMap">
 	<![CDATA[
 	insert into tb_file 
@@ -107,7 +107,25 @@
 	]]>
 	</insert>
 	
-
-
+<!-- 파일 다운 -->
+	<select id="selectFileList" parameterType="int" resultType="hashMap">
+		<![CDATA[
+		
+		select f_bno,
+			   original_file_name,
+			   round(file_size/1024,1) as file_size
+			   
+		from tb_file
+		where board_bno = #{bno}
+	    and del_gb = 'N'
+		]]>
+	</select>
+	
+	<select id="selectFileInfo" parameterType="hashMap" resultType="hashMap">
+		select stored_file_name, original_file_name
+		from tb_file
+		where f_bno = #{f_bno}
+	</select>
+	
 
 </mapper>
