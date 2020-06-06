@@ -11,16 +11,16 @@
 		var file_index = 1;
 		$("#fileAdd").on("click", function(event) {
 			event.preventDefault();
-			var fileInput = document.createElement("input");
-			fileInput.setAttribute("type", "file");
-			fileInput.setAttribute("name", "file_" + ++file_index);
+			$("#file_div").append("<div><input type='file' name='file_"+(file_index++)+"'>"+"</button>"+"<button type='button' id='fileDelBtn'>"+"삭제"+"</button></div>");
+			});
 
-			$("#file_div").append(fileInput);
+		$(document).on("click", "#fileDelBtn", function() {
+					$(this).parent().remove();
 			
-			})
-
-		
+				});
 		})
+		
+			
 
 </script>
 </head>
@@ -36,7 +36,7 @@
 	<br>
 	<br>
 	<div id="file_div">
-	<input type="file" name="file_1"><br>
+	<input type="file" name="file_1">
 	</div>
 	<input type="submit" value="전송하기">
 </form>

@@ -19,16 +19,15 @@
 					$("#reply_form").attr("action", "/board/boardReplyWrite");
 					$("#reply_form").submit();
 				})		
-			$("#fileDown").on("click", function() {
-					console.log($("#f_bno").val());
-					var f_bno = $("#f_bno").val();
-					
-					location.href="/board/fileDown?f_bno=" + f_bno;
-				
-				})
-				
+			
+ 
+			
 		})
 	
+		function fn_fileDown(f_bno) {
+			location.href="/board/fileDown?f_bno=" + f_bno;
+		}
+		
 		
 
 </script>
@@ -46,7 +45,7 @@
 	글쓴이 : <input type="text" name="writer" value="${detail.writer}" readonly="readonly">
 	
 	<c:forEach var="fileList" items="${fileMap}">
-		<a href="#" id="fileDown">${fileList.original_file_name}</a>
+		<a href="#" onclick="fn_fileDown('${fileList.f_bno}') return false;">${fileList.original_file_name}</a>
 		${fileList.file_size}
 		<input type="hidden" value="${fileList.f_bno}" id="f_bno"><br>
 	</c:forEach>

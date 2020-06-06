@@ -33,7 +33,6 @@ public class FileUtils {
 		Map<String, Object> listMap = null;
 		
 		String boardBno = Integer.toString(vo.getBno());
-		System.out.println("boardBno : " + boardBno);
 		File file = new File(filePath);
 		if(file.exists() == false) {
 			file.mkdir();
