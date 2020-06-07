@@ -6,8 +6,8 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.board.dao.BoardDAO;
 import com.board.dto.BoardVO;
@@ -45,8 +45,24 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public void BoardUpdate(BoardVO vo) throws Exception {
+	public void BoardUpdate(BoardVO vo, MultipartHttpServletRequest mpRequest, String[] files, String[] fileNames) throws Exception {
 		dao.BoardUpdate(vo);
+		List<Map<String, Object>> list = fileUtils.parseUpdateFileInfo(vo, files, fileNames, mpRequest);
+		Map<String, Object> tempMap = null;
+		int size = list.size();
+		System.out.println("size : "+ size);
+		for(int i = 0; i < size; i++) {
+			tempMap = list.get(i);
+			System.out.println("tempMap : " + tempMap.toString());
+			if(tempMap.get("IS_NEW").equals("Y")) {
+				System.out.println("새로운 파일 넣었을때");
+				dao.insertFile(tempMap);
+			} else {
+				System.out.println("파일 원래대로 넣었을때");
+				dao.updateFileList(tempMap);
+			}
+			
+		}
 	}
 
 	@Override

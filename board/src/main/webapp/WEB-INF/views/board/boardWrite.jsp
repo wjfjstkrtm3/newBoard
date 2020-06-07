@@ -11,7 +11,7 @@
 		var file_index = 1;
 		$("#fileAdd").on("click", function(event) {
 			event.preventDefault();
-			$("#file_div").append("<div><input type='file' name='file_"+(file_index++)+"'>"+"</button>"+"<button type='button' id='fileDelBtn'>"+"삭제"+"</button></div>");
+			$("#file_div").append("<div><input type='file' name='file_"+(++file_index)+"'>"+"</button>"+"<button type='button' id='fileDelBtn'>"+"삭제"+"</button></div>");
 			});
 
 		$(document).on("click", "#fileDelBtn", function() {

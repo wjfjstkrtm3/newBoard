@@ -5,6 +5,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+
 import com.board.dto.BoardVO;
 
 public interface BoardService {
@@ -19,7 +21,7 @@ public interface BoardService {
 	public BoardVO listOne(int bno) throws Exception;
 
 	// 게시물 수정
-	public void BoardUpdate(BoardVO vo) throws Exception;
+	public void BoardUpdate(BoardVO vo, MultipartHttpServletRequest request, String[] files, String[] fileNames) throws Exception;
 	
 	// 게시물 삭제
 	public void BoardDelete(int bno) throws Exception;
@@ -33,7 +35,7 @@ public interface BoardService {
 	// 게시물 목록 + 페이징 + 검색
 	public List<BoardVO> listPageSearch(int displayPost, int postNum, String searchType, String keyword) throws Exception;
 	
-	// 파일 다운
+	// 파일 가져오기
 	public List<Map<String, Object>> selectFileList(int bno) throws Exception;
 	
 	// 파일 다운

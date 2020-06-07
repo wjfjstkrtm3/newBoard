@@ -16,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.board.dto.BoardReplyVO;
 import com.board.dto.BoardVO;
@@ -105,9 +106,11 @@ public class BoardController {
 	public void boardUpdate(@RequestParam(value="bno")int bno, Model model) {
 		try {
 			BoardVO vo = service.listOne(bno);
+			List<Map<String, Object>> fileList = service.selectFileList(bno);
+			
 			model.addAttribute("one", vo);
+			model.addAttribute("fileList", fileList);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -116,9 +119,13 @@ public class BoardController {
 	@RequestMapping(value="/boardUpdate", method=RequestMethod.POST)
 	public String boardUpdate(@RequestParam(value="num") int num, BoardVO vo, 
 						      @RequestParam(value="searchType", required=false, defaultValue="")String searchType,
-			                  @RequestParam(value="keyword", required=false, defaultValue="")String keyword) {
+			                  @RequestParam(value="keyword", required=false, defaultValue="")String keyword,
+			                  @RequestParam(value="bno") int bno,
+			                  @RequestParam(value="fileNoDel[]") String[] files,
+			                  @RequestParam(value="fileNameDel[]") String[] fileNames,
+			                  MultipartHttpServletRequest request) {
 		try { 
-			service.BoardUpdate(vo);
+			service.BoardUpdate(vo, request, files, fileNames);
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -305,8 +312,6 @@ public class BoardController {
 			Map<String, Object> fileMap = service.selectFileInfo(map);
 			String storedFileName = (String)fileMap.get("stored_file_name");
 			String originalFileName = (String)fileMap.get("original_file_name");
-			System.out.println("stored : " + storedFileName);
-			System.out.println("original : " + originalFileName);
 			
 			byte fileByte[] = FileUtils.readFileToByteArray(new File("C:\\dev\\file\\"+storedFileName));
 			

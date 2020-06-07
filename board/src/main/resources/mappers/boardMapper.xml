@@ -126,6 +126,14 @@
 		from tb_file
 		where f_bno = #{f_bno}
 	</select>
-	
 
+	<!--  파일 수정 -->
+	<update id="updateFileList" parameterType="hashMap">
+		<![CDATA[
+			update tb_file
+			set del_gb = 'Y'
+			where f_bno = #{f_bno}
+		]]>
+	
+	</update>
 </mapper>

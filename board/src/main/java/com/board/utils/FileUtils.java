@@ -23,7 +23,7 @@ public class FileUtils {
 	public List<Map<String, Object>> parseInsertFileInfo(BoardVO vo, HttpServletRequest request) throws Exception {
 		MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest)request;
 		Iterator<String> iterator = multipartHttpServletRequest.getFileNames();
-		
+	
 		MultipartFile multipartFile = null;
 		String originalFileName = null;
 		String originalFileExtension = null;
@@ -63,4 +63,43 @@ public class FileUtils {
 		
 	}
 	
+	public List<Map<String, Object>> parseUpdateFileInfo(BoardVO boardVO, String[] files, String[] fileNames, MultipartHttpServletRequest mpRequest) throws Exception{ 
+		Iterator<String> iterator = mpRequest.getFileNames();
+		MultipartFile multipartFile = null; 
+		String originalFileName = null; 
+		String originalFileExtension = null; 
+		String storedFileName = null; 
+		List<Map<String,Object>> list = new ArrayList<Map<String,Object>>();
+		Map<String, Object> listMap = null; 
+		int bno = boardVO.getBno();
+		while(iterator.hasNext()){ 
+			multipartFile = mpRequest.getFile(iterator.next()); 
+			if(multipartFile.isEmpty() == false){ 
+				originalFileName = multipartFile.getOriginalFilename(); 
+				originalFileExtension = originalFileName.substring(originalFileName.lastIndexOf(".")); 
+				storedFileName = CommonUtils.getRandomString() + originalFileExtension; 
+				multipartFile.transferTo(new File(filePath + storedFileName)); 
+				listMap = new HashMap<String,Object>();
+				listMap.put("IS_NEW", "Y");
+				listMap.put("board_bno", bno); 
+				listMap.put("original_file_name", originalFileName);
+				listMap.put("stored_file_name", storedFileName); 
+				listMap.put("file_size", multipartFile.getSize()); 
+				list.add(listMap); 
+			} 
+		}
+		if(files != null && fileNames != null){ 
+			for(int i = 0; i<fileNames.length; i++) {
+					listMap = new HashMap<String,Object>();
+                    listMap.put("IS_NEW", "N");
+					listMap.put("f_bno", files[i]); 
+					list.add(listMap); 
+			}
+		}
+		return list; 
+	}
 }
+
+
+
+

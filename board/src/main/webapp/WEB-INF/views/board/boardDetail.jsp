@@ -45,7 +45,7 @@
 	글쓴이 : <input type="text" name="writer" value="${detail.writer}" readonly="readonly">
 	
 	<c:forEach var="fileList" items="${fileMap}">
-		<a href="#" onclick="fn_fileDown('${fileList.f_bno}') return false;">${fileList.original_file_name}</a>
+		<a href="#" onclick="fn_fileDown('${fileList.f_bno}'); return false;">${fileList.original_file_name}</a>
 		${fileList.file_size}
 		<input type="hidden" value="${fileList.f_bno}" id="f_bno"><br>
 	</c:forEach>
