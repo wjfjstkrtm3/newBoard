@@ -13,20 +13,22 @@
 		var file_index = "${fn:length(fileList)}";
 		$("#fileAdd").on("click", function(event) {
 			event.preventDefault();
-			$("#file_div").append("<div><input type='file' name='file_"+(++file_index)+"'>"+"</button>"+"<button type='button' id='fileDelBtn'>"+"삭제"+"</button></div>");
+			$("#file_div").append("<div><input type='file' name='file_"+(++file_index)+"'>"+"<button type='button' id='fileDelBtn'>"+"삭제"+"</button></div>");
 			});
 
 		$(document).on("click", "#fileDelBtn", function() {
 					$(this).parent().remove();
 			
 				});
-		});
 		
 		$(document).on("click","#fileDel", function(){
 				$(this).parent().remove();
 				console.log(fileNoArry);
 				console.log(fileNameArry);
 		});
+		
+	});
+		
 		
 		var fileNoArry = new Array();
 		var fileNameArry = new Array();
@@ -36,8 +38,7 @@
 			$("#fileNoDel").attr("value", fileNoArry);
 			$("#fileNameDel").attr("value", fileNameArry);
 			}
-			
-
+		
 </script>
 </head>
 <body>
@@ -61,6 +62,8 @@
 	<input type="file" id="file_${var.index}" name="file_${var.index}"> 
 	(${file.file_size }kb)
 <button id="fileDel" onclick="fn_del('${file.f_bno}','FILE_NO_${var.index}');" type="button">삭제</button><br>
+
+
 	</p>
 	</c:forEach>
 	<div id="file_div">

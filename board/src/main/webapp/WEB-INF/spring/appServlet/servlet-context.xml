@@ -26,7 +26,6 @@
 	<context:component-scan base-package="com.board.service"/>
 	<context:component-scan base-package="com.board.utils"/>
 	
-	<!-- MultipartResolver 설정 --> 
 
 	
 	

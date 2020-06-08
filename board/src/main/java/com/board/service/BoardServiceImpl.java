@@ -45,24 +45,26 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public void BoardUpdate(BoardVO vo, MultipartHttpServletRequest mpRequest, String[] files, String[] fileNames) throws Exception {
+	public void BoardUpdate(BoardVO vo, MultipartHttpServletRequest request, String[] files, String[] fileNames) throws Exception {
 		dao.BoardUpdate(vo);
-		List<Map<String, Object>> list = fileUtils.parseUpdateFileInfo(vo, files, fileNames, mpRequest);
+		// List<Map<String, Object>> 인 이유는 파일 하나씩 map에 파일들이 key, value로 저장되어있고 파일을 여러개를 담기위해서 List를 사용
+		// -> 즉 Map에는 파일들의 정보가 하나씩 들어있고, List에는 그 파일들을 보관하기위해서 사용
+		List<Map<String, Object>> list = fileUtils.parseUpdateFileInfo(vo, request, files, fileNames);
+		
 		Map<String, Object> tempMap = null;
 		int size = list.size();
-		System.out.println("size : "+ size);
 		for(int i = 0; i < size; i++) {
 			tempMap = list.get(i);
-			System.out.println("tempMap : " + tempMap.toString());
+			
+			// 새로운 파일일때
 			if(tempMap.get("IS_NEW").equals("Y")) {
-				System.out.println("새로운 파일 넣었을때");
 				dao.insertFile(tempMap);
 			} else {
-				System.out.println("파일 원래대로 넣었을때");
+				// 파일을 삭제했을때
 				dao.updateFileList(tempMap);
 			}
-			
 		}
+		
 	}
 
 	@Override
@@ -94,6 +96,11 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public Map<String, Object> selectFileInfo(Map<String, Object> map) throws Exception {
 		return dao.selectFileInfo(map);
+	}
+
+	@Override
+	public void boardHit(int bno) throws Exception {
+		dao.boardHit(bno);
 	}
 
 	

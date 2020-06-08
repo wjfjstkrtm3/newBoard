@@ -136,4 +136,13 @@
 		]]>
 	
 	</update>
+	
+	<update id="boardHit" parameterType="int">
+		update tbl_board
+		set viewCnt = viewCnt+1
+		where bno = #{bno}
+	
+	</update>
+	
+	
 </mapper>

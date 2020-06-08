@@ -52,7 +52,7 @@
 	
 <div>
 	<a href="/board/boardUpdate?bno=${detail.bno}&num=${num}&searchType=${sc.searchType}&keyword=${sc.keyword}">수정페이지 이동</a>
-
+	<a href="/board/boardDelete?bno=${detail.bno}&num=${num}&searchType=${sc.searchType}&keyword=${sc.keyword}">게시글 삭제</a>
 </div>
 
 <div>

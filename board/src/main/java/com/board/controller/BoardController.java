@@ -86,6 +86,7 @@ public class BoardController {
 		try { 
 			
 			BoardVO vo = service.listOne(bno);
+			service.boardHit(bno);
 			List<Map<String, Object>> map = service.selectFileList(bno);
 			
 			List<BoardReplyVO> getReplyList = replyService.getListReply(vo.getBno());
@@ -140,7 +141,7 @@ public class BoardController {
 			e.printStackTrace();
 		}
 		
-		return "redirect:/board/boardList";
+		return "redirect:/board/boardListPageSearch";
 	}
 	
 	
