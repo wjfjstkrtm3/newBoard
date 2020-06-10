@@ -3,18 +3,24 @@ package com.board.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.board.utils.CommonUtils;
+
 @Controller
-@RequestMapping(value="/login")
 public class LoginController {
 	
-	@RequestMapping(value="/loginPage")
-	public String loginPage() {
+	@RequestMapping(value= {"/", "/login/loginPage"})
+	public String login() {
 		return "login";
 	}
 	
-	@RequestMapping(value="/home")
+	@RequestMapping(value="/login/home")
 	public String home() {
 		return "home";
+	}
+	
+	@RequestMapping(value="/access_denied_page")
+	public String deniedPage() {
+		return "deniedPage";
 	}
 	
 }

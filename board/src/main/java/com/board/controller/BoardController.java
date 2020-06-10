@@ -18,17 +18,21 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.board.dao.UserAuthDAO;
 import com.board.dto.BoardReplyVO;
 import com.board.dto.BoardVO;
 import com.board.dto.Page;
 import com.board.dto.SearchCriteria;
+import com.board.dto.UserDetail;
 import com.board.service.BoardReplyService;
 import com.board.service.BoardService;
+import com.board.utils.CommonUtils;
 
 @Controller
 @RequestMapping(value="/board")
 public class BoardController {
 
+	
 	@Autowired
 	private BoardService service;
 
@@ -49,7 +53,6 @@ public class BoardController {
 	
 	@RequestMapping(value="/boardWrite", method=RequestMethod.GET)
 	public void boardWrite() {
-		
 	}
 	
 	@RequestMapping(value="/boardWrite", method=RequestMethod.POST)
