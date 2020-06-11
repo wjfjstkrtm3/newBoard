@@ -47,6 +47,7 @@
 	<bean id="userService" class="com.board.service.UserDetailService"/>
 	<bean id="userAuthProvider" class="com.board.service.UserAuthenticationProvider"/>
 	
+	<bean id ="bcryptPasswordEncoder" class = "org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
 	
 	
 </beans>

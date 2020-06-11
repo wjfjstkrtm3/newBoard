@@ -5,8 +5,10 @@ import org.springframework.security.authentication.AuthenticationCredentialsNotF
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.authentication.encoding.PasswordEncoder;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.board.dto.UserDetail;
 
@@ -18,6 +20,9 @@ public class UserAuthenticationProvider implements AuthenticationProvider{
 	@Autowired
     private UserDetailService userDeSer;
  
+	@Autowired
+	private BCryptPasswordEncoder bcryptPasswordEncoder;
+	
     @SuppressWarnings("unchecked")
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
@@ -28,9 +33,16 @@ public class UserAuthenticationProvider implements AuthenticationProvider{
         
         
         // 여기서의 password는 내가 입력한 password, user.getPassword()는 DB에서 가져온 password
-        if(!matchPassword(password, user.getPassword())) {
+        
+        /*if(!matchPassword(password, user.getPassword())) {
             throw new BadCredentialsException(username);
         }
+        */
+        
+        if(!bcryptPasswordEncoder.matches(password, user.getPassword())) {
+        	throw new BadCredentialsException(username);
+        }
+        
  
         if(!user.isEnabled()) {
             throw new BadCredentialsException(username);
