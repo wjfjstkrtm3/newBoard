@@ -11,18 +11,22 @@
 	<context:component-scan base-package="com.board.dao"/>			
 							
 	<security:http use-expressions="true">
-		<security:intercept-url pattern="/board/**" access="hasAnyRole('ROLE_ADMIN', 'ROLE_USER')"></security:intercept-url>
-		<security:intercept-url pattern="/**" access="permitAll()"></security:intercept-url>	
+		<security:intercept-url pattern="/board/**" access="hasAnyRole('ROLE_ADMIN', 'ROLE_USER')"/>
+		<security:intercept-url pattern="/**" access="permitAll()"/>	
 		<security:form-login
 			username-parameter="user_id"
 			password-parameter="user_pwd"
 			login-page="/login/loginPage"
 			default-target-url="/login/home"
+			
 		/>
+		
 		
 		<security:logout
 			logout-success-url="/"
 		/>		
+		
+		<!-- 로그인했을때 권한이 없는 페이지를 요청했을때 발생 -->
 		<security:access-denied-handler
 			error-page="/access_denied_page"
 		/>
@@ -42,4 +46,7 @@
 
 	<bean id="userService" class="com.board.service.UserDetailService"/>
 	<bean id="userAuthProvider" class="com.board.service.UserAuthenticationProvider"/>
+	
+	
+	
 </beans>

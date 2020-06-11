@@ -8,6 +8,10 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+
+// 사용자의 정보를 저장할 수 있는 DTO, DOMAIN, VO 클래스
+// 오버라이드 된거 이외에 추가할거있으면 추가..
+// enabled는 사용하니까 return에 enabled 리턴
 @SuppressWarnings("serial")
 public class UserDetail implements UserDetails {
 
