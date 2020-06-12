@@ -16,5 +16,12 @@
 	values(#{id}, #{password}, #{name}, #{email}, #{phoneNumber})
 	</insert>
 	
+	<select id="idCheck" resultType="int">
+		select count(*)
+		from user
+		where id = #{id}
+	
+	</select>
+	
 </mapper>
 

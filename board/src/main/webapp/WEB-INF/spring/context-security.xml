@@ -10,7 +10,8 @@
 				
 	<context:component-scan base-package="com.board.dao"/>			
 							
-	<security:http use-expressions="true">
+	<security:http use-expressions="true" >
+	<security:csrf disabled="true"/>
 		<security:intercept-url pattern="/board/**" access="hasAnyRole('ROLE_ADMIN', 'ROLE_USER')"/>
 		<security:intercept-url pattern="/**" access="permitAll()"/>	
 		<security:form-login
@@ -42,6 +43,7 @@
 		<security:authentication-provider ref="userAuthProvider"/>
 		<security:authentication-provider user-service-ref="userService"/>
 		<!-- <security:authentication-provider user-service-ref="userService2"/> -->
+		
 	</security:authentication-manager>
 
 	<bean id="userService" class="com.board.service.UserDetailService"/>

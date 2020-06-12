@@ -5,6 +5,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.board.dto.UserDetail;
 import com.board.service.UserService;
@@ -36,6 +38,19 @@ public class UserController {
 		
 		return "redirect:/";
 		
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/idCheck", method=RequestMethod.POST)
+	public int idCheck(@RequestParam(value="id") String id) {
+		System.out.println("idCheck Controller");
+		int result = 0;
+		try {
+			result = service.idCheck(id);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return result;
 	}
 	
 }
