@@ -1,8 +1,12 @@
 package com.board.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -43,7 +47,6 @@ public class UserController {
 	@ResponseBody
 	@RequestMapping(value="/idCheck", method=RequestMethod.POST)
 	public int idCheck(@RequestParam(value="id") String id) {
-		System.out.println("idCheck Controller");
 		int result = 0;
 		try {
 			result = service.idCheck(id);
@@ -52,5 +55,16 @@ public class UserController {
 		}
 		return result;
 	}
+	
+	@ResponseBody
+	@RequestMapping(value="/test", method=RequestMethod.POST)
+	public HashMap<String, Object> test(@RequestBody Map<String, Object> map) {
+		for(Map.Entry<String, Object> entry : map.entrySet()) {
+			System.out.println("key : " + entry.getKey() + "value : " + entry.getValue());
+		}
+		return (HashMap)map;
+	}
+	
+	
 	
 }

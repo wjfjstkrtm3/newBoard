@@ -32,12 +32,41 @@
 						console.log(xhr.status);
 						}
 					
-				})
+				});
 
 				
 			
 			});
-		})
+
+			$("#test_btn").on("click", function() {
+				var test={"name":"kim", "phoneNumer":0104577};
+				$.ajax({
+					url:"/user/test",
+					dataType:"JSON",
+					type:"POST",
+					data:JSON.stringify(test),
+					contentType:"application/json",
+					success: function(data) {
+						console.log(data);
+						for(var key in data) {
+							console.log("key : " + key + "||" + "value : " + data[key]);
+							
+							}
+						},
+					error:function(xhr) {
+						console.log(xhr.status);
+						}
+
+					
+					});
+
+					
+				
+				});
+
+
+		
+		});
 
 </script>
 
@@ -52,6 +81,8 @@
 	<input type="submit" value="회원가입" id="submit_btn">
 	<input type="hidden" 	name="${_csrf.parameterName}" value="${_csrf.token}" />
 	</form>
+	
+	<input type="button" value="실험" id="test_btn">
 
 
 </body>
