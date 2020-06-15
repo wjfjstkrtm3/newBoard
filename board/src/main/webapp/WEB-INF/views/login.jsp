@@ -96,6 +96,31 @@ html, body {
 
 		});
 
+		$.ajax({
+			url:"/login/news",
+			type:"POST",
+			success: function(data) {
+				var news = JSON.parse(data);
+				console.log(data);
+				$.each(news, function(key, element) {
+						console.log("key : "+ key + "|| element : " + element);	
+						if(element instanceof(Object)) {
+							for(var index in element) {
+								console.log(element[index]);
+								var link = element[index].originallink;
+								$("#news").append(link);
+								}
+							}
+					});
+				
+				},
+			error : function(xhr) {
+				console.log(xhr.status + "||" + xhr.statusText);
+				}
+
+			})
+
+		
 	};
 </script>
 </head>
@@ -155,6 +180,9 @@ html, body {
 
 
 	</div>
+	
+	<div id="news"></div>
+	
 </div>
 
 </body>

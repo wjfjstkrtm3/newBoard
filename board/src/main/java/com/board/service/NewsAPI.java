@@ -9,7 +9,9 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
 
-public class newsAPI {
+import org.springframework.stereotype.Service;
+
+public class NewsAPI {
 	
 	 public String getNews() {
 		    // API 접속을 위한 ID와 비밀번호
