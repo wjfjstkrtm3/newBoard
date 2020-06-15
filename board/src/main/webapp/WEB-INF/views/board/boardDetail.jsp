@@ -10,6 +10,9 @@
 <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
+		var cleanText = $("#board_content").val().replace(/<\/?[^>]+(>|$)/g, "");
+		$("#board_content").val(cleanText);
+		
 			$("#list_btn").click(function() {
 					location.href="/board/boardListPageSearch?num=${num}&searchType=${sc.searchType}&keyword=${sc.keyword}";
 				});
@@ -86,7 +89,7 @@
 </div>
 	
 	제목 : <input type="text" name="title" value="${detail.title}" readonly="readonly">
-	내용 : <input type="text" name="content" value="${detail.content}" readonly="readonly">
+	내용 : <input type="text" name="content" id="board_content" value="${detail.content}" readonly="readonly">
 	글쓴이 : <input type="text" name="writer" value="${detail.writer}" readonly="readonly">
 	
 	<c:forEach var="fileList" items="${fileMap}">

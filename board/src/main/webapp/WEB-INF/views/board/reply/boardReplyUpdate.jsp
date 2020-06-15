@@ -11,16 +11,7 @@
 <title>Insert title here</title>
 <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
 <script type="text/javascript">
-	$(document).ready(function() {
-			$("#reply_btn").click(function() {
-				var replyTitle = $("#replyTitle").val();
-				var replyContent = $("#replyContent").val();
-				console.log(replyTitle);
-				console.log(replyContent);
-				
-				});
-		
-		});
+	
 
 
 </script>
