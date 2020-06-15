@@ -13,15 +13,18 @@ import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.board.dto.BoardReplyVO;
 import com.board.dto.BoardVO;
 import com.board.dto.Page;
 import com.board.dto.SearchCriteria;
+import com.board.dto.WriteBoardVO;
 import com.board.service.BoardReplyService;
 import com.board.service.BoardService;
 
@@ -254,17 +257,22 @@ public class BoardController {
 			e.printStackTrace();
 		}
 	}
-	
-	@RequestMapping(value="/boardReplyWrite", method=RequestMethod.GET)
-	public String writeReply(BoardReplyVO replyVO, SearchCriteria sc, Page page, BoardVO vo, Model model) {
+
+	@RequestMapping(value="/boardReplyWrite", method=RequestMethod.POST)
+	public String writeReply(@RequestBody WriteBoardVO vo) {
+		System.out.println(vo.toString());
 		// 댓글을 작성하면 다시 그 게시물로 이동하는데 bno, num, searchType, keyword
+		BoardReplyVO replyVo = new BoardReplyVO();
+		replyVo.setBno(vo.getBno());
+		replyVo.setWriter(vo.getWriter());
+		replyVo.setContent(vo.getContent());
 		try {
-			replyService.writeReply(replyVO);
+			replyService.writeReply(replyVo);
 		}catch(Exception e) {
 				e.printStackTrace();
 		}
-		return "redirect:/board/boardDetail?bno=" + vo.getBno() + "&num=" + page.getNum() + 
-				       "&searchType=" + sc.getSearchType() + "&keyword=" + sc.getKeyword();
+		return "redirect:/board/boardDetail?bno=" + vo.getBno() + "&num=" + vo.getNum() + 
+				       "&searchType=" + vo.getSearchType() + "&keyword=" + vo.getKeyword();
 	}
 	
 	
@@ -337,7 +345,12 @@ public class BoardController {
 	public void test() {
 	}
 	
-	
+	@ResponseBody
+	@RequestMapping(value="/test2", method=RequestMethod.POST)
+	public Map<String, Object> test2(@RequestBody Map<String, Object> map) {
+		System.out.println(map.toString());
+		return map;
+	}
 	
 	
 }

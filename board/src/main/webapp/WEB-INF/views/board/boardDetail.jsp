@@ -12,23 +12,68 @@
 	$(document).ready(function() {
 			$("#list_btn").click(function() {
 					location.href="/board/boardListPageSearch?num=${num}&searchType=${sc.searchType}&keyword=${sc.keyword}";
-				})
+				});
 
-			$("#reply_btn").on("click", function(event) {
+			/* $("#reply_btn").on("click", function(event) {
 					event.preventDefault();
 					$("#reply_form").attr("action", "/board/boardReplyWrite");
 					$("#reply_form").submit();
-				})		
+				});	 */
 			
- 
-			
-		})
+			$("#reply_btn").click(function(event) {
+					var replyWriter = $("#replyWriter").val();
+					var replyContent = $("#replyContent").val();
+					console.log($("#reply_form").serializeObject());
+					var dataForm = JSON.stringify({
+						"replyWriter":replyWriter,
+						"replyContent":replyContent
+						});
+					var dataForm3 = JSON.stringify($("#reply_form").serializeObject());
+					
+					$.ajax({
+						url : "/board/boardReplyWrite",
+						type : "POST",
+						data : dataForm3,
+						contentType : "application/json; charset=UTF-8",
+						success :  function(data) {
+						},
+						error : function(xhr) {
+							console.log(xhr.status + "||" + xhr.statusText);
+						}
+
+
+						
+						});
+
+					
+				});
+		});
 	
 		function fn_fileDown(f_bno) {
 			location.href="/board/fileDown?f_bno=" + f_bno;
 		}
 		
-		
+		jQuery.fn.serializeObject = function() {
+		    var obj = null;
+		    try {
+		        if (this[0].tagName && this[0].tagName.toUpperCase() == "FORM") {
+		            var arr = this.serializeArray();
+		            if (arr) {
+		                obj = {};
+		                jQuery.each(arr, function() {
+		                    obj[this.name] = this.value;
+		                });
+		            }//if ( arr ) {
+		        }
+		    } catch (e) {
+		        alert(e.message);
+		    } finally {
+		    }
+		 
+		    return obj;
+		};
+
+
 
 </script>
 </head>
@@ -72,16 +117,15 @@
 		
 </div>
 <div>
-	<form action="" method="GET" id="reply_form" enctype="multipart/form-data">
-		<input type="hidden" name="bno" value="${detail.bno }">
-		<input type="hidden" name="num" value="${num}">
-		<input type="hidden" name="searchType" value="${sc.searchType}">
-		<input type="hidden" name="keyword" value="${sc.keyword}">
+	<form method="POST" id="reply_form">
+		<input type="hidden" name="bno" id="bno" value="${detail.bno }">
+		<input type="hidden" name="num" id="num" value="${num}">
+		<input type="hidden" name="searchType" id="searchType" value="${sc.searchType}">
+		<input type="hidden" name="keyword" id="keyword" value="${sc.keyword}">
 	
-		작성자 : <input type="text" name="writer">
-		내용 : <input type="text" name="content">
+		작성자 : <input type="text" name="writer" id="replyWriter">
+		내용 : <input type="text" name="content" id="replyContent">
 		<input type="submit" value="댓글작성" id="reply_btn">
-		
 	</form>
 
 

@@ -18,7 +18,17 @@
 					$(this).parent().remove();
 			
 				});
-		})
+		$("#write_btn").click(function(event) {
+			var title = $("#board_title").val();			
+			if(title == null || title == "") {
+				event.preventDefault();
+				alert("글 제목을 입력해주세요");
+				
+				} 
+
+			
+			});
+		});
 		
 			
 
@@ -29,7 +39,7 @@
 <%@include file="../include/nav.jsp"%>
 </div>
 <form action="" method="post" enctype="multipart/form-data">
-	제목 : <input type="text" name="title">
+	제목 : <input type="text" name="title" id="board_title">
 	내용 : <input type="text" name="content">
 	글쓴이 : <input type="text" name="writer">
 	<button id="fileAdd">파일추가하기</button>
@@ -38,7 +48,7 @@
 	<div id="file_div">
 	<input type="file" name="file_1">
 	</div>
-	<input type="submit" value="전송하기">
+	<input type="submit" value="전송하기" id="write_btn">
 </form>
 
 
