@@ -6,45 +6,68 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-#flex_container {
+
+html, body {
+	height: 100%;
+	width: 100%;
+
+}
+
+#flex-container {
 	display:flex;
+	flex-direction:row;
+	border: 2px solid black;
+	width: 80%;
+	height: 80%;
+	align-items: center;
+	justify-content : center;
 }
 
-#flex_logo {
-	background-color : green;
-	flex:1;
+#left-square {
+	border: 2px solid black;
+	width:20%;
+	height: 20%;
 }
 
-#flex_search {
-	background-color : lime;
-	flex:1;
+#right-container {
+	display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 26%;
+    margin-left: 100px;
 }
 
-#flex_gnb {
-	background-color : blue;
-	flex:2;  /* grow, shrink, basis */
+#left-item {
+	margin-top : 20px;
+	border: 2px solid red;
+
+}
+
+#zz, #xx, #yy {
+	border : 1px solid red;
+	width: 100px;
 }
 </style>
 
 
 </head>
 <body>
-		<div id="flex_container">
-			<div id="flex_logo">
-					<span id="logo">logo</span>
-			</div>
-			
-			<div id="flex_search">
-					<span id="search">search</span>
-			</div>
-			
-			<div id="flex_gnb">
-					<span id="gnb">gnbz</span>
+		<div id="flex-container">
+		
+			<div id="left-square">
 			</div>
 		
+			<div id="right-container">
+				<div id="zz">1</div>	
+				<div id="xx">2</div>	
+				<div id="yy">3</div>	
+			
+			</div>
+		
+		
+		
+		
 		</div>
-
-
 
 </body>
 </html>
