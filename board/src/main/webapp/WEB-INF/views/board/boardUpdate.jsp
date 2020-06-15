@@ -18,6 +18,7 @@
 <script src="/resources/js/summernote-ko-KR.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
+		
 		var file_index = "${fn:length(fileList)}";
 		$("#fileAdd").on("click", function(event) {
 			event.preventDefault();
