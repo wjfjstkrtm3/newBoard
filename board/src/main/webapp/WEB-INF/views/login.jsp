@@ -49,6 +49,45 @@ html, body {
     /* flex-direction: column; */
     justify-content: space-around;
 }
+
+#flex-news-container {
+	display:flex;
+	flex-direction:row;
+	width: 70%;
+	
+}
+
+#newsContent {
+	width: 200px;
+    /* padding: 0 5px; */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+#flex-news {
+	border: 2px solid black;
+	margin-top : 20px;
+	
+}
+
+#newsInfo {
+	width: 100px;
+	overflow:hidden;
+	text-overflow : ellipsis;
+}
+
+.dot1, .dot2, .dot3 {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
 </style>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
@@ -106,9 +145,20 @@ html, body {
 						console.log("key : "+ key + "|| element : " + element);	
 						if(element instanceof(Object)) {
 							for(var index in element) {
-								console.log(element[index]);
-								var link = element[index].originallink;
-								$("#news").append(link);
+								console.log(index);
+								if(index < 5) {
+									var link = element[index].originallink;
+									var title = element[index].title;
+									var content = element[index].description;
+									console.log(content);
+									console.log(title);
+									var newsHTML = "<div id='flex-news'><a href='" + link + "' id='newsInfo'>" + title + "</a>" +
+									"<div id='newsContent'>" + content+ "</div></div>";
+									$("#flex-news-container").append(newsHTML);
+									}
+								
+								
+								
 								}
 							}
 					});
@@ -119,6 +169,99 @@ html, body {
 				}
 
 			})
+		$("#dot1").on("click", function() {
+			$("#flex-news-container").empty();
+			$.ajax({
+				url:"/login/news",
+				type:"POST",
+				success: function(data) {
+					var news = JSON.parse(data);
+					$.each(news, function(key, element) {
+							if(element instanceof(Object)) {
+								for(var index in element) {
+									if(index < 5) {
+										var link = element[index].originallink;
+										var title = element[index].title;
+										var content = element[index].description;
+										var newsHTML = "<div id='flex-news'><a href='" + link + "' id='newsInfo'>" + title + "</a>" +
+										"<div id='newsContent'>" + content+ "</div></div>";
+										$("#flex-news-container").append(newsHTML);
+										}
+									}
+								}
+						});
+					
+					},
+				error : function(xhr) {
+					console.log(xhr.status + "||" + xhr.statusText);
+					}
+
+				})
+			
+			});
+
+
+		$("#dot2").on("click", function() {
+			$("#flex-news-container").empty();
+			$.ajax({
+				url:"/login/news",
+				type:"POST",
+				success: function(data) {
+					var news = JSON.parse(data);
+					$.each(news, function(key, element) {
+							if(element instanceof(Object)) {
+								for(var index in element) {
+									if(index > 4 && index < 10) {
+										var link = element[index].originallink;
+										var title = element[index].title;
+										var content = element[index].description;
+										var newsHTML = "<div id='flex-news'><a href='" + link + "' id='newsInfo'>" + title + "</a>" +
+										"<div id='newsContent'>" + content+ "</div></div>";
+										$("#flex-news-container").append(newsHTML);
+										}
+									}
+								}
+						});
+					
+					},
+				error : function(xhr) {
+					console.log(xhr.status + "||" + xhr.statusText);
+					}
+
+				})
+			
+			});
+
+		$("#dot3").on("click", function() {
+			$("#flex-news-container").empty();
+			$.ajax({
+				url:"/login/news",
+				type:"POST",
+				success: function(data) {
+					var news = JSON.parse(data);
+					$.each(news, function(key, element) {
+							if(element instanceof(Object)) {
+								for(var index in element) {
+									if(index > 9 && index < 15) {
+										var link = element[index].originallink;
+										var title = element[index].title;
+										var content = element[index].description;
+										var newsHTML = "<div id='flex-news'><a href='" + link + "' id='newsInfo'>" + title + "</a>" +
+										"<div id='newsContent'>" + content+ "</div></div>";
+										$("#flex-news-container").append(newsHTML);
+										}
+									}
+								}
+						});
+					
+					},
+				error : function(xhr) {
+					console.log(xhr.status + "||" + xhr.statusText);
+					}
+
+				})
+			
+			});
 
 		
 	};
@@ -181,8 +324,14 @@ html, body {
 
 	</div>
 	
-	<div id="news"></div>
+	<div id="flex-news-container">
 	
+	</div>
+	<div style="text-align:center">
+  <span class="dot1" id="dot1"></span> 
+  <span class="dot2" id="dot2"></span> 
+  <span class="dot3" id="dot3"></span> 
+</div>
 </div>
 
 </body>

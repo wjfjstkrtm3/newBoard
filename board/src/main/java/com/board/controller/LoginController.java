@@ -27,13 +27,13 @@ public class LoginController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value="/login/news", method=RequestMethod.POST)
+	@RequestMapping(value="/login/news", method=RequestMethod.POST, produces="text/plain;charset=UTF-8")
 	public String getNews() {
 		NewsAPI newsAPI = new NewsAPI();
 		String result = newsAPI.getNews();
 		return result;
+		
 	}
-	
-	
-	
+
+
 }
