@@ -47,7 +47,6 @@ public class NewsAPI {
 		    } catch (MalformedURLException e) {
 		    } catch (IOException e) {
 		    }
-		    System.out.println(resp.toString());
 		    return resp.toString();
 		  }
 }

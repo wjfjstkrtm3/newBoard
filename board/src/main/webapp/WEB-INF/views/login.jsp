@@ -10,83 +10,9 @@
 <title>Insert title here</title>
 <link href="<c:url value="/resources/css/weather-icons.min.css" />" rel="stylesheet">
 <link href="<c:url value="/resources/css/weather-icons-wind.css" />" rel="stylesheet">
-
+<link rel="stylesheet" href="/resources/css/newsWeather.css"/> 
 
 <style type="text/css">
-html, body {
-	width: 100%;
-	height: 100%;
-}
-#flex_container {
-	display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: 100%;
-    justify-content: center;
-    align-items: center;
-}
-
-
-#flex_container_child {
-	font-weight : bold;
-    border-radius: 10px;
-    border: 2px solid black;
-}
-
-
-#flex_top {
-	display: flex;
-    flex-direction: row;
-    
-}
-
-#weather_info {
-	margin-left: auto;
-}
-
-#flex_bottom {
-	display: flex;
-    /* flex-direction: column; */
-    justify-content: space-around;
-}
-
-#flex-news-container {
-	display:flex;
-	flex-direction:row;
-	width: 70%;
-	
-}
-
-#newsContent {
-	width: 200px;
-    /* padding: 0 5px; */
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-
-#flex-news {
-	border: 2px solid black;
-	margin-top : 20px;
-	
-}
-
-#newsInfo {
-	width: 100px;
-	overflow:hidden;
-	text-overflow : ellipsis;
-}
-
-.dot1, .dot2, .dot3 {
-  cursor: pointer;
-  height: 15px;
-  width: 15px;
-  margin: 0 2px;
-  background-color: #bbb;
-  border-radius: 50%;
-  display: inline-block;
-  transition: background-color 0.6s ease;
-}
 
 </style>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>

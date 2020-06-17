@@ -23,6 +23,14 @@
 	<li>
 	<a href="/board/boardWrite">글 작성</a>
 	</li>
+	<sec:authorize access="hasRole('ROLE_ADMIN')" >
+	<li>
+	<a href="/admin/home">관리자 페이지</a>
+	</li>	
+	</sec:authorize>
+	
+	
+	
 </ul>
 
 <%
