@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
 <style type="text/css">
 #memberInfo {
@@ -19,15 +20,68 @@ input[type=checkbox] {
 
 
 input[type=checkbox] + label {
-	color : #a6a6a6;
+	color : red;
 }
 
 input[type=checkbox]:checked+label {
-	color : #c62917;
+	color : green;
 }
+
+table {
+	border-collapse : collapse;
+
+}
+
+td{
+	border: 2px solid black;	
+}
+
 </style>
 
 <script type="text/javascript">
+
+	window.onload = function() {
+		$.ajax({
+			url:"/admin/chart",
+			type:"POST",
+			success:function(data) {
+				var enabled = data.enabled;
+				var disEnabled = data.disEnabled;
+				console.log(enabled);
+				
+				var ctx = document.getElementById("myChart");
+				var chart = new Chart(ctx, {
+					type: "pie",
+					data: {
+						datasets: [{
+							data: [enabled,disEnabled],
+							backgroundColor: ["red", "green"],
+							borderAlign : "center",
+							borderWidth: 2,
+							weight: 10
+							}],
+						labels: ["비활성화", "활성화"],
+						
+						},
+					options: {
+						responsive: false
+						}
+					
+					});
+
+				},
+			error:function(xhr) {
+				console.log(xhr.status + "||" + xhr.statusText);
+				}
+
+
+			
+			});
+		}
+	
+
+
+
 	$(document).ready(function() {
 			
 			$("input[type=checkbox]").change(function(event) {
@@ -48,6 +102,12 @@ input[type=checkbox]:checked+label {
 					
 					});
 					
+					// 여기까지가 활성화 / 비활성화 비동기
+
+					
+						
+
+
 				
 				});
 		
@@ -67,7 +127,7 @@ input[type=checkbox]:checked+label {
 			<td>NAME</td>
 			<td>EMAIL</td>
 			<td>PHONENUMBER</td>
-			<td>ENABLEDM</td>
+			<td>ENABLED</td>
 			</tr>
 			
 			<c:forEach var="memberList" items="${memberList}" varStatus="status">
@@ -86,5 +146,8 @@ input[type=checkbox]:checked+label {
 			</c:forEach>
 		</table>
 		</fieldset>
+		
+		<canvas id="myChart" width="400" height="400"></canvas>
+		
 </body>
 </html>

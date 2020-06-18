@@ -19,14 +19,27 @@ public class AdminServiceImpl implements AdminService {
 	
 	// 회원 비활성화
 	@Override
-	public void memberDisEnabled(HashMap<String, Object> map) {
+	public void memberDisEnabled(HashMap<String, Object> map) throws Exception {
 		dao.memberDisEnabled(map);
 	}
 
 	// 회원목록 다 가져오기
 	@Override
-	public List<UserDetail> getMemberList() {
+	public List<UserDetail> getMemberList() throws Exception {
 		return dao.getMemberList();
+	}
+
+	// 회원의 활성화 인원수 가져오기
+	@Override
+	public int countEnabled() throws Exception {
+		// TODO Auto-generated method stub
+		return dao.countEnabled();
+	}
+
+	// 회원의 비활성화 인원수 가져오기
+	@Override
+	public int countDisEnabled() throws Exception {
+		return dao.countDisEnabled();
 	}
 
 	

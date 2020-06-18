@@ -19,4 +19,23 @@
 		enabled = #{enabled}
 		where id = #{id}
 	</update>
+	
+	<!-- 회원의 활성화 인원수 가져오기 -->
+	<select id="countEnabled" resultType="int">
+		SELECT count(*)
+		FROM USER
+		WHERE enabled = 1 AND authority = 'ROLE_USER'
+	</select>
+	
+	<!-- 회원의 비활성화 인원수 가져오기 -->
+	<select id="countDisEnabled" resultType="int">
+		SELECT count(*)
+		FROM USER
+		WHERE enabled = 0 AND authority = 'ROLE_USER'
+	</select>
+	
+	
+	
+	
+	
 </mapper>
