@@ -33,13 +33,13 @@ public class ReplyPage {
 	public void dataCalc() {
 		// 마지막 번호
 		endPageNum = (int)Math.ceil((double)num / pageNum_cnt) * pageNum_cnt;
-		
+
 		// 시작 번호
 		startPageNum = endPageNum - pageNum_cnt + 1;
 		
 		// 다시 마지막 번호 계산
 		int endPageNum_tmp = (int)Math.ceil((double)count / pageNum_cnt);
-	 
+
 		if(endPageNum > endPageNum_tmp) {
 			endPageNum = endPageNum_tmp;
 		}
