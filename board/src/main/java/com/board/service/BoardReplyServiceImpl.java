@@ -1,6 +1,7 @@
 package com.board.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,6 +21,13 @@ public class BoardReplyServiceImpl implements BoardReplyService {
 		return dao.getReplyList(bno);
 	}
 	
+	
+	// 댓글 페이징
+	@Override
+	public List<BoardReplyVO> boardReplyPage(int displayPost, int postNum, int bno) throws Exception {
+		return dao.boardReplyPage(displayPost, postNum, bno);
+	}
+
 	// 댓글 쓰기
 	@Override
 	public void writeReply(BoardReplyVO replyVO) throws Exception {
@@ -39,9 +47,16 @@ public class BoardReplyServiceImpl implements BoardReplyService {
 		dao.updateReply(replyVO);
 	}
 
+	// 댓글 삭제
 	@Override
 	public void deleteReply(int rno) throws Exception {
 		dao.deleteReply(rno);
+	}
+
+	// 댓글 개수
+	@Override
+	public int getBoardReplyCount(int bno) throws Exception {
+		return dao.getBoardReplyCount(bno);
 	}
 
 	

@@ -68,8 +68,6 @@ public class AdminController {
 			int enabled = service.countDisEnabled();
 			int disEnabled = service.countEnabled();
 			
-			System.out.println("활성화 : " + enabled);
-			System.out.println("비활성화 : " + disEnabled);
 			map = new HashMap<String, Object>();
 			map.put("enabled", enabled);
 			map.put("disEnabled", disEnabled);

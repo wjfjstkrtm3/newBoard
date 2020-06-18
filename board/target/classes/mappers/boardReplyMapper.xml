@@ -37,4 +37,22 @@
 		delete from tbl_board_reply
 		where rno=#{rno}
 	</delete>
+	
+	<!-- 댓글 페이징 -->
+	<select id="boardReplyPage" parameterType="hashMap" resultType="com.board.dto.BoardReplyVO">
+	SELECT bno, rno, content, writer, regDate
+	FROM tbl_board_reply
+	WHERE bno=#{bno}
+	ORDER BY rno desc
+	LIMIT #{displayPost}, #{postNum};
+	</select>
+	
+	<!-- 전체 댓글수 -->
+	<select id="boardReplyCount" resultType="int">
+	SELECT count(rno)
+	FROM tbl_board_reply
+	WHERE bno=#{bno}
+	
+	</select>
+	
 </mapper>

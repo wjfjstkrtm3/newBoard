@@ -56,10 +56,10 @@
 		<span>[<a href="/board/boardListPageSearch?num=${page.startPageNum-1}&searchType=${sc.searchType}&keyword=${sc.keyword}">이전</a>]</span>
 	</c:if>
 	<c:forEach begin="${page.startPageNum}" end="${page.endPageNum}" var="num">
-		<c:if test="${select==num}">
+		<c:if test="${page.num ==num}">
 		<a href="/board/boardListPageSearch?num=${num}&searchType=${sc.searchType}&keyword=${sc.keyword}"><b>${num}</b></a>
 		</c:if>
-		<c:if test="${select!=num}">
+		<c:if test="${page.num !=num}">
 		<a href="/board/boardListPageSearch?num=${num}&searchType=${sc.searchType}&keyword=${sc.keyword}">${num}</a>
 		</c:if>
 	</c:forEach>

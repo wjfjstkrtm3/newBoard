@@ -104,6 +104,8 @@
 </div>
 
 <div>
+
+	
 		<ol>
 	<c:forEach var="reply" items="${reply}">
 			<li>
@@ -118,6 +120,24 @@
 	</c:forEach>
 		</ol>
 		
+		<c:set var="page" value="${replyPage}"/>
+		
+		<c:if test="${page.prev}">
+			<a href="/board/boardDetail?replyPageNum=${page.startPageNum-1}&bno=${detail.bno}&num=${num}">[이전]</a>
+		</c:if>
+		<c:forEach begin="${page.startPageNum}" end="${page.endPageNum}" var="replyPageNum">
+			<%-- <a href="/board/boardDetail?replyPageNum=${replyPageNum}&bno=${detail.bno}&num=${num}">[${replyPageNum}]</a> --%>
+			<c:if test="${replyPageNum == page.num}">
+			<b><a href="/board/boardDetail?replyPageNum=${replyPageNum}&bno=${detail.bno}&num=${num}">[${replyPageNum}]</a></b>
+			</c:if>
+			<c:if test="${replyPageNum != page.num}">
+			<a href="/board/boardDetail?replyPageNum=${replyPageNum}&bno=${detail.bno}&num=${num}">[${replyPageNum}]</a>
+			</c:if>
+		</c:forEach>
+		<c:if test="${page.next}">
+			<a href="/board/boardDetail?replyPageNum=${page.endPageNum+1}&bno=${detail.bno}&num=${num}">[다음]</a>
+		</c:if>
+		 
 </div>
 <div>
 	<form method="POST" id="reply_form">

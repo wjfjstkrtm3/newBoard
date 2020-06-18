@@ -23,6 +23,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.board.dto.BoardReplyVO;
 import com.board.dto.BoardVO;
 import com.board.dto.Page;
+import com.board.dto.ReplyPage;
 import com.board.dto.SearchCriteria;
 import com.board.dto.WriteBoardVO;
 import com.board.service.BoardReplyService;
@@ -85,20 +86,30 @@ public class BoardController {
 	
 	@RequestMapping(value="/boardDetail")
 	public void boardDetail(@RequestParam(value="bno") int bno, Model model, SearchCriteria sc,
-							@RequestParam(value="num") int num) {
-		try { 
+							@RequestParam(value="num") int num,
+							@RequestParam(value="replyPageNum", defaultValue="1")int replyPageNum) {
+		try {  
 			
 			BoardVO vo = service.listOne(bno);
 			service.boardHit(bno);
 			List<Map<String, Object>> map = service.selectFileList(bno);
 			
-			List<BoardReplyVO> getReplyList = replyService.getListReply(vo.getBno());
+			// List<BoardReplyVO> getReplyList = replyService.getListReply(vo.getBno());
+			ReplyPage replyPage = new ReplyPage();
+			replyPage.setNum(replyPageNum);
+			replyPage.setCount(replyService.getBoardReplyCount(bno));
+			List<BoardReplyVO> list = replyService.boardReplyPage(replyPage.getDisplaypost(), replyPage.getPostNum(), bno);
 			
 			model.addAttribute("one", vo);
-			model.addAttribute("num", num);
-			model.addAttribute("sc", sc);
-
-			model.addAttribute("reply", getReplyList);
+			model.addAttribute("num", num); // 현재 페이지 번호
+			model.addAttribute("sc", sc); // searchType, keyword
+			
+			// 페이지 처리
+			model.addAttribute("replyPage", replyPage);
+			model.addAttribute("reply", list);
+			
+			
+			// model.addAttribute("reply", getReplyList);
 			model.addAttribute("fileMap", map);
 			
 		}catch(Exception e) {
