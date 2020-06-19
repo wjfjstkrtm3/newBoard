@@ -147,7 +147,7 @@ td{
 		</table>
 		</fieldset>
 		
-		<canvas id="myChart" width="400" height="400"></canvas>
+		<canvas id="myChart" width="200" height="200"></canvas>
 		
 </body>
 </html>

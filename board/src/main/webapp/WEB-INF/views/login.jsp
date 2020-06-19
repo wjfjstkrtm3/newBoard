@@ -201,6 +201,8 @@
 				type="submit" name="submit" value="로그인"> <input
 				name="${_csrf.parameterName}" type="hidden" value="${_csrf.token}">
 			<a href="/user/userSignUp">회원가입</a>
+			<a href="/user/userFindId">아이디 찾기</a>
+			<a href="/user/userFindPassword">비밀번호 찾기</a>
 		</form>
 	</sec:authorize>
 

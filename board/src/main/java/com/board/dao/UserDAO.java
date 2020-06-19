@@ -9,4 +9,8 @@ public interface UserDAO {
 	
 	// 아이디 체크
 	public int idCheck(String id) throws Exception;
+	
+	// 아이디 찾기
+	public UserDetail userFindId(String email) throws Exception;
+	
 }

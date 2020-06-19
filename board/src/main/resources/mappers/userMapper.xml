@@ -11,15 +11,25 @@
 	where id=#{user_id}
 	</select>
 	
+	<!-- 회원가입 -->
 	<insert id="userSignUp" parameterType="com.board.dto.UserDetail">
 	insert into user(id, password, name, email, phonenumber)
 	values(#{id}, #{password}, #{name}, #{email}, #{phoneNumber})
 	</insert>
 	
+	<!-- 아이디 중복확인 -->
 	<select id="idCheck" resultType="int">
 		select count(*)
 		from user
 		where id = #{id}
+	
+	</select>
+	
+	<!-- 아이디 찾기 -->
+	<select id="userFindId" resultType="com.board.dto.UserDetail">
+		SELECT id, password, name, email, phoneNumber
+		FROM user
+		WHERE email = #{email} 
 	
 	</select>
 	

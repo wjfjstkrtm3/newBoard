@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -63,6 +64,36 @@ public class UserController {
 			System.out.println("key : " + entry.getKey() + "value : " + entry.getValue());
 		}
 		return (HashMap)map;
+	}
+	
+	@RequestMapping(value="/userFindId", method=RequestMethod.GET)
+	public void userFindId() {
+		
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/userFindId", method=RequestMethod.POST)
+	public HashMap<String, Object> userFindId(Model model, @RequestParam(value="email") String email) {
+		UserDetail userDetail = null;
+		HashMap<String, Object> map = null;
+		try {
+			userDetail = service.userFindId(email);
+			map = new HashMap<String, Object>();
+			if(userDetail == null) {
+				map.put("msg", "존재하지않는 이메일 입니다");
+				
+			} else {
+				map.put("id", userDetail.getId());
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return map;
+	}
+	
+	@RequestMapping(value="/userFindPassword", method=RequestMethod.GET)
+	public void userFindPassword() {
+		
 	}
 	
 	
