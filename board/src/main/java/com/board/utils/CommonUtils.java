@@ -10,6 +10,8 @@ public class CommonUtils {
 	public static String getRandomString() {
 		return UUID.randomUUID().toString().replaceAll("-", "");
 	}
+		
+	
 	
 	public static String getUserName() {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();

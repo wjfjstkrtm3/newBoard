@@ -55,6 +55,12 @@
 			<artifactId>spring-webmvc</artifactId>
 			<version>${org.springframework-version}</version>
 		</dependency>
+		
+		<dependency>
+    <groupId>org.springframework</groupId>
+    <artifactId>spring-context-support</artifactId>
+    <version>${org.springframework-version}</version>
+		</dependency>
 				
 		<!-- AspectJ -->
 		<dependency>
@@ -228,6 +234,13 @@
         <artifactId>jackson-mapper-asl</artifactId>
         <version>1.9.13</version>
 </dependency>
+
+<!-- 이메일 Library -->
+    <dependency>
+            <groupId>javax.mail</groupId>
+            <artifactId>mail</artifactId>
+            <version>1.4.7</version>
+        </dependency>
 
 	</dependencies>
     <build>

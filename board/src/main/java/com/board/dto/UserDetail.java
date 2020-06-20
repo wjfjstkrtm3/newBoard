@@ -22,7 +22,16 @@ public class UserDetail implements UserDetails {
 	private String name;
 	private String email;
 	private String phoneNumber;
+	private String temporaryPassword;
 	
+	public String getTemporaryPassword() {
+		return temporaryPassword;
+	}
+
+	public void setTemporaryPassword(String temporaryPassword) {
+		this.temporaryPassword = temporaryPassword;
+	}
+
 	public String getId() {
 		return id;
 	}
@@ -93,10 +102,13 @@ public class UserDetail implements UserDetails {
 		return true;
 	}
 
+
+
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", password=" + password + ", authority=" + authority + ", enabled=" + enabled
-				+ ", name=" + name + ", email=" + email + ", phoneNumber=" + phoneNumber + "]";
+		return "UserDetail [id=" + id + ", password=" + password + ", authority=" + authority + ", enabled=" + enabled
+				+ ", name=" + name + ", email=" + email + ", phoneNumber=" + phoneNumber + ", temporaryPassword="
+				+ temporaryPassword + "]";
 	}
 
 	@Override

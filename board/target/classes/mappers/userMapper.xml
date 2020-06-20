@@ -6,7 +6,7 @@
 
 	<!-- 아이디로 user정보 얻어오기 UserDetailService에서 사용 -->
 	<select id="getUserById" resultType="com.board.dto.UserDetail">
-	select id, password, name, email, phoneNumber, authority, enabled
+	select id, password, name, email, phoneNumber, authority, enabled, temporaryPassword
 	from user
 	where id=#{user_id}
 	</select>
@@ -32,6 +32,35 @@
 		WHERE email = #{email} 
 	
 	</select>
+	
+	<!-- 비밀번호 찾기(아이디, 이메일 검증) -->
+	<select id="userFindPassword" parameterType="hashMap" resultType="int">
+		SELECT count(*)
+		FROM user
+		WHERE id = #{id} and email = #{email}
+	
+	</select>
+	
+	<!-- 임시 비밀번호 넣기 -->
+	<update id="temporaryPasswordUpdate" parameterType="hashMap">
+	UPDATE USER
+	SET temporaryPassword = #{temporaryPassword}
+	WHERE id = #{id}	
+	</update>
+	
+	<!-- 임시 비밀번호 가져오기  -->
+	<select id="temporaryPasswordSelect" resultType="com.board.dto.UserDetail">
+	SELECT temporaryPassword
+	FROM user
+	WHERE id = #{id}
+	</select>
+	
+	<!-- 비밀번호 바꾸기 -->
+	<update id="userChangePwd" parameterType="hashMap">
+	UPDATE USER
+	SET password = #{password}
+	WHERE id = #{id}
+	</update>
 	
 </mapper>
 

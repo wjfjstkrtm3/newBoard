@@ -1,5 +1,7 @@
 package com.board.dao;
 
+import java.util.Map;
+
 import com.board.dto.UserDetail;
 
 public interface UserDAO {
@@ -13,4 +15,15 @@ public interface UserDAO {
 	// 아이디 찾기
 	public UserDetail userFindId(String email) throws Exception;
 	
+	// 비밀번호 찾기(아이디, 이메일 검증)
+	public int userFindPassword(Map<String, Object> map) throws Exception;
+	
+	// 임시 비밀번호 넣기
+	public void temporaryPasswordInsert(Map<String, Object> map) throws Exception;
+	
+	// 임시 비밀번호 가져오기
+	public UserDetail temporaryPasswordSelect(String id) throws Exception;
+	
+	// 비밀번호 바꾸기
+	public int userChangePwd(Map<String, Object> map) throws Exception;
 }
