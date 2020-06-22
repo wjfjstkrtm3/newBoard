@@ -80,7 +80,9 @@
 						html += "<div><input type='password' id='newPassword'></div>";
 						html += "<span>새로운 비밀번호 확인</span>";
 						html += "<div><input type='password' id='newPasswordCheck'></div>";
+						html += "<div id='passwordCheck'></div>";
 						html += "<div><button id='changePwdBtn'>변경</button><button id='changePwdCancelBtn'>취소</button></div>";
+						
 						$("#findId-container").append(html);
 
 						
@@ -98,11 +100,22 @@
 		$(document).on("click", "#cancel_btn", function() {
 			history.go(-1);
 			});
+
+		$(document).on("click", "#changePwdCancelBtn", function() {
+			history.go(-1);
+			});
+		
 		});
 
+	
+	
 		$(document).on("click", "#changePwdBtn", function() {
-
-			if($("#newPassword").val() == $("#newPasswordCheck").val()) {
+			var newPassword = $("#newPassword").val();
+			var newPasswordCheck = $("#newPasswordCheck").val(); 
+			
+			
+		
+			if(newPassword == newPasswordCheck) {
 			$.ajax({
 				url:"/user/changePwd",
 				type:"POST",

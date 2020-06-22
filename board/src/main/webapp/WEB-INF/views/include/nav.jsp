@@ -28,7 +28,9 @@
 	<a href="/admin/home">관리자 페이지</a>
 	</li>	
 	</sec:authorize>
-	
+	<li>
+	<a href="/user/toDoList">to-Do-List</a>
+	</li>
 	
 	
 </ul>

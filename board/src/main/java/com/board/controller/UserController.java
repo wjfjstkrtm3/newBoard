@@ -179,5 +179,9 @@ public class UserController {
 		return result;
 	}
 	
+	@RequestMapping(value="/toDoList", method=RequestMethod.GET)
+	public void toDoList() {
+	}
+	
 	
 }
