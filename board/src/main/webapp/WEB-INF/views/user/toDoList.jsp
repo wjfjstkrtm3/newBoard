@@ -5,83 +5,126 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-<style type="text/css">
-ul {
-	list-style:none;
-	padding:0;
-	margin:0;
-	width:500px;
+<script src="/resources/js/toDoList.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Gamja+Flower"
+	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic"
+	rel="stylesheet">
+<style>
+html, body, input {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'Gamja Flower', cursive;
 }
 
-ul li {
-border: 1px solid #ccc;
-background: #eee;
-padding: 5px 10px;
+button {
+	font-family: 'Gamja Flower', cursive;
+	background: #a369af;
+	color: #fff;
+	font-size: 18px;
+	cursor: pointer;
 }
 
-.checked {
-	text-decoration: line-through;
-	color: #c00;
-	font-weight:bold;
+.list-box {
+	width: 500px;
+	margin: 100px auto;
+	border: 1px solid #eee;
+	padding: 20px 30px 50px;
+	background: #333;
 }
 
-ul li span {
-	padding-left: 10px;
+.list-box h1 {
+	padding-bottom: 10px;
+	text-align: center;
+	color: #9fd6c2;
+	border-bottom: 1px solid #87898f;
 }
 
-#doneList li {
-	border-bottom: 1px dashed #ccc;
-	margin-bottom:4px;
-	width:30em;
-	height:2.5em;
-	padding: 5px 10px;
+.write-box {
+	width: 100%;
+	height: 35px;
+	font-size: 0;
 }
 
-#doneList li span {
-	font-size:1.3em;
-	font-weight:200;
-	padding-left:10px;
-	vertical-align:middle;
-	text-decoration:line-through;
-	color:red;
+.write-box input {
+	width: 400px;
+	font-size: 20px;
+	border: none;
+	padding: 0 10px;
+	height: 100%;
 }
+
+.write-box button {
+	width: 100px;
+	border: none;
+	height: 100%;
+}
+
+.list-table {
+	border-spacing: 0px;
+	border-collapse: collapse;
+	width: 100%;
+	margin: 20px 0;
+}
+
+th, td {
+	border: 1px solid #ddd;
+	padding: 10px 20px;
+	font-size: 20px;
+}
+
+th {
+	background: #9fd6c2;
+}
+
+td {
+	color: #fff;
+}
+
+tbody td:first-child {
+	text-align: center;
+}
+
+.btn-area {
+	text-align: center;
+}
+
+.btn-area button {
+	height: 35px;
+	padding: 0 10px;
+	border: none;
+}`
 </style>
 </head>
 <body>
-<div class="container">
-
-
-	<div class="row"> 
-		<a href="#"><h1>To Do List</h1></a>
-	</div>
-	
-	<div class="row">
-		<div class="col-sm-6">
-			<hr>
-			<p id="enter">Write what to do and Press Enter!</p>
-			
-			<p class="inputarea">
-				<input type="text" id="inputText" placeholder="what to do">
-				<ul id="todoList"></ul>
-			</p>
+	<div class="list-box">
+		<h1>To Do List</h1>
+		<div class="write-box">
+			<input type="text" class="text-basic" id="text-basic">
+			<button type="button" id="btnAdd">추가</button>
 		</div>
-	
-		<div class="col-sm-6">
-			<hr>
-			<p id="enter">Done</p>
+		<table class="list-table">
+			<colgroup>
+				<col width="10%">
+				<col width="90%">
+			</colgroup>
+			<thead>
+				<tr>
+					<th>check</th>
+					<th>To do List</th>
+				</tr>
+			</thead>
+			<tbody id="listBody">
 			
-			<ul id="doneList"></ul>
-		
-		</div>		
-	
+			</tbody>
+		</table>
+		<div class="btn-area">
+			<button type="button" id="deleteSel">선택 삭제</button>
+			<button type="button" id="btnDelLast">마지막 삭제</button>
+			<button type="button" id="btnDelAll">전체 삭제</button>
+		</div>
 	</div>
-
-
-
-
-</div>
-
 </body>
-<script src="/resources/js/toDoList.js"></script>
 </html>
+

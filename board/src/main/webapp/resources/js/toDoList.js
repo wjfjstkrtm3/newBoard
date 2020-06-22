@@ -1,81 +1,71 @@
-/*var btnNew = document.getElementById("btnAdd");*/
-/*var totalItems = 0;*/
-var inputText = document.getElementById("inputText");
-inputText.focus();
-
-var doneList = document.getElementById("doneList");
-
-function moveItem() {
-	var listItem = document.getElementById(this.id);
-	doneList.appendChild(listItem);
-}
-
-function addNewItem(list, itemText) {
-	var date = new Date();
-	var id = "" + date.getHours() + date.getMinutes() + date.getSeconds() + date.getMilliseconds();
-	
-	var listItem = document.createElement("li");
-	listItem.id = 'li_' + id;	
-	listItem.ondblclick = moveItem;
-	
-	var checkBox = document.createElement("input");
-	checkBox.type = "checkBox";
-	checkBox.id = 'cb_' + id;
-	checkBox.onclick = updateItemStatus;
-	
-	var span = document.createElement("span");
-	span.id = 'item_' + id;
-	span.innerText = itemText;
-	span.onclick = renameItem;
-
-	listItem.appendChild(checkBox);
-	listItem.appendChild(span);
-	list.appendChild(listItem);
-}
-
-function updateItemStatus() {
-	console.log(this);
-	var chId = this.id.replace("cb_", "");
-	var itemText = document.getElementById("item_" + chId);
-	
-	if(this.checked) {
-		itemText.className = "checked";
-	} else {
-		itemText.className = "";
-	}
-}
-
-function renameItem() {
-	var newText = prompt("다시 지을 이름을 작성하세요");
-	
-	if(newText === "" || newText === " ") {
-		return false;
-	}
-	this.innerText = newText;
-	
-}
-
-function removeItem() {
-	var listItemId = this.id.replace("li_", "");
-	document.getElementById(this.id).style.display="none";
-	/*document.getElementById("li_" + listItemId).style.display="none";*/
+window.onload = function() {
+	/*var deleteSel = document.getElementById("DeleteSel");*/
+	document.getElementById("deleteSel").addEventListener("click", deleteSeleted);
+	var btnDelLast = document.getElementById("btnDelLast");
+	var btnDelAll = document.getElementById("btnDelAll");
+	var text = document.getElementById("text-basic");
+	var list = document.getElementById("listBody");
+	var id = 0;
 	
 	
-}
-
-inputText.onkeyup = function(event) {
-/*	console.log(event.which);
-	console.log(event.keyCode);*/
-	if(event.which == 13) {
-		var itemText = inputText.value.trim();
-		if(itemText === "") {
-			return false;
+	
+	
+	text.onkeyup = function(event) {
+		if(event.which == 13) {
+			if(text.value.trim() == "") {
+				text.focus();
+			} else {
+				// 글쓰기
+				id++;
+				var tr = document.createElement("tr");
+				var td01 = document.createElement("td");
+				
+				var inputBox = document.createElement("input");
+				inputBox.setAttribute("type", "checkbox");
+				inputBox.setAttribute("class", "btn-chk");
+				td01.appendChild(inputBox);
+				
+				var td02 = document.createElement("td");
+				td02.innerText = text.value;
+				
+				tr.appendChild(td01);
+				tr.appendChild(td02);
+				
+				list.appendChild(tr);
+				
+				text.value = "";
+				text.focus();
+			}
+			
 		}
-		addNewItem(document.getElementById("todoList"), itemText);
-		inputText.focus();
-		inputText.value = "";
+		
 	}
 	
+	// 선택 삭제 
+	function deleteSeleted(event) {
+		var body = document.getElementById("listBody");
+		var checkBoxState = document.querySelectorAll(".btn-chk");
+		/*
+		nodeType
+		요소 노드(element node)	    1
+		속성 노드(attribute node)  2
+		텍스트 노드(text node)	    3
+		주석 노드(comment node)	    8
+		문서 노드(document node)   9*/
+		
+		
+		for(var index in checkBoxState) {
+			if(checkBoxState[index].nodeType == 1 && checkBoxState[index].checked == true) {
+				body.removeChild(checkBoxState[index].parentNode.parentNode);
+			}
+			
+		}
+	}
+	
+	
+	
+	
+	
+	
 }
-
 
