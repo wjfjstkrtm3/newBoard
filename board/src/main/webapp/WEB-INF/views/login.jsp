@@ -189,7 +189,65 @@
 			
 			});
 
-		
+
+		/* 아이디 저장하기 (Cookie) */
+	// 맨처음에 쿠키를 가져와서 id text박스에 cookie값을 넣는다
+	// 없는 경우에는 빈문자가 들어감
+	var userInputId = getCookie("userInputId");
+	$("#user_id").val(userInputId);
+
+	// 쿠키가 적용이되서 아이디값이 적혀있으면 체크박스를 체크한상태로 적용
+	if($("#user_id").val() != "") {
+			$("#idSaveCheck").attr("checked", true);
+		}
+
+	// 체크박스 상태가 바뀌면 Cookie 저장
+	$("#idSaveCheck").change(function() {
+		 if($("#idSaveCheck").is(":checked")) {
+			var userInputId = $("#user_id").val();
+			console.log(userInputId);
+			setCookie("userInputId", userInputId, 7);
+			 } else {
+			deleteCookie("userInputId");
+				 }
+		});
+
+	// ID 저장하기를 체크한 상태에서 ID를 입력하는경우에도 Cookie 저장
+	$("#user_id").keyup(function() {
+		if($("#idSaveCheck").is(":checked")) {
+			var userInputId = $("#user_id").val();
+			setCookie("userInputId", userInputId, 7);
+			}
+		});
+
+	function setCookie(cookieName, value, exdays) {
+		var exdate = new Date();
+		exdate.setDate(exdate.getDate() + exdays);
+		var cookieValue = escape(value) + ((exdays==null) ? "" : "; expires="+exdate.toGMTString());
+		document.cookie = cookieName + "=" + cookieValue;
+				
+		}
+
+	function deleteCookie(cookieName) {
+		var expireDate = new Date();
+		expireDate.setDate(expireDate.getDate() -1);
+		document.cookie = cookieName + "=" + "; expires=" + expireDate.toGMTString();
+		}
+	function getCookie(cookieName) {
+	    cookieName = cookieName + '=';
+	    var cookieData = document.cookie;
+	    var start = cookieData.indexOf(cookieName);
+	    var cookieValue = '';
+	    if(start != -1){
+	        start += cookieName.length;
+	        var end = cookieData.indexOf(';', start);
+	        if(end == -1)end = cookieData.length;
+	        cookieValue = cookieData.substring(start, end);
+	    }
+	    return unescape(cookieValue);
+
+	};
+	
 	};
 </script>
 </head>
@@ -197,8 +255,10 @@
 	<sec:authorize access="isAnonymous()">
 		<form action="/login" method="POST">
 			아이디 : <input type="text" name="user_id" id="user_id"> 비밀번호 :
-			<input type="password" name="user_pwd" id="user_pwd"> <input
-				type="submit" name="submit" value="로그인"> <input
+			<input type="password" name="user_pwd" id="user_pwd"> 
+			<input type="checkbox" id="idSaveCheck">아이디 기억하기
+			<input
+				type="submit" name="submit" value="로그인" id="loginBtn"> <input
 				name="${_csrf.parameterName}" type="hidden" value="${_csrf.token}">
 			<a href="/user/userSignUp">회원가입</a>
 			<a href="/user/userFindId">아이디 찾기</a>
