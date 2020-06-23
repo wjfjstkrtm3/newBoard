@@ -2,7 +2,7 @@ window.onload = function() {
 	/*var deleteSel = document.getElementById("DeleteSel");*/
 	document.getElementById("deleteSel").addEventListener("click", deleteSeleted);
 	var btnDelLast = document.getElementById("btnDelLast");
-	var btnDelAll = document.getElementById("btnDelAll");
+	document.getElementById("btnDelAll").addEventListener("click", deleteAll);
 	var text = document.getElementById("text-basic");
 	var list = document.getElementById("listBody");
 	var id = 0;
@@ -62,8 +62,21 @@ window.onload = function() {
 		}
 	}
 	
+	// 마지막 삭제
+	btnDelLast.onclick = function() {
+		var body = document.getElementById("listBody");
+		body.lastChild.remove();
+	}
 	
 	
+	// 전체 삭제
+	function deleteAll() {
+		var body = document.getElementById("listBody");
+		while(body.hasChildNodes) {
+			body.removeChild(body.firstChild);
+		}
+		
+	}
 	
 	
 	
