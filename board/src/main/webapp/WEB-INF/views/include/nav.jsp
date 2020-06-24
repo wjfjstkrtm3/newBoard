@@ -32,6 +32,10 @@
 	<a href="/user/toDoList">to-Do-List</a>
 	</li>
 	
+	<li>
+	<a href="/user/chat">채팅</a>
+	</li>
+	
 	
 </ul>
 

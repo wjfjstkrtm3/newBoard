@@ -196,6 +196,8 @@
 	var userInputId = getCookie("userInputId");
 	$("#user_id").val(userInputId);
 
+
+	
 	// 쿠키가 적용이되서 아이디값이 적혀있으면 체크박스를 체크한상태로 적용
 	if($("#user_id").val() != "") {
 			$("#idSaveCheck").attr("checked", true);
@@ -205,8 +207,8 @@
 	$("#idSaveCheck").change(function() {
 		 if($("#idSaveCheck").is(":checked")) {
 			var userInputId = $("#user_id").val();
-			console.log(userInputId);
 			setCookie("userInputId", userInputId, 7);
+			setCookie("test", "value", 7);
 			 } else {
 			deleteCookie("userInputId");
 				 }
@@ -225,7 +227,6 @@
 		exdate.setDate(exdate.getDate() + exdays);
 		var cookieValue = escape(value) + ((exdays==null) ? "" : "; expires="+exdate.toGMTString());
 		document.cookie = cookieName + "=" + cookieValue;
-				
 		}
 
 	function deleteCookie(cookieName) {
@@ -240,9 +241,11 @@
 	    var cookieValue = '';
 	    if(start != -1){
 	        start += cookieName.length;
+	        // userInputId=admin;expires=zzz
 	        var end = cookieData.indexOf(';', start);
 	        if(end == -1)end = cookieData.length;
 	        cookieValue = cookieData.substring(start, end);
+	        // 12, 17 12 16  25 29
 	    }
 	    return unescape(cookieValue);
 
