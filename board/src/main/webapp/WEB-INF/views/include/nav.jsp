@@ -36,6 +36,10 @@
 	<a href="/user/chat">채팅</a>
 	</li>
 	
+	<li>
+	<a href="/user/chat2">채팅2</a>
+	</li>
+	
 	
 </ul>
 

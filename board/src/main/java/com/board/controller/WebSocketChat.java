@@ -17,12 +17,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @ServerEndpoint(value="/websocket")
 // 웹소켓 요청을 받는 endPoint
 // WEB 소켓으로 접속 가능한 URL 정보를 명시하여 소켓 서버를 생성해주며 프로퍼티를 통해 decoder나 encoder를 명시할 수 있다
-public class WebSocketChat{
+public class WebSocketChat {
 
 	private static final List<Session> sessionList = new ArrayList<Session>();
-	
 	public WebSocketChat() {
-		System.out.println("웹 소켓(서버) 객체 생성입니다.");
 	}
 	
 	@RequestMapping(value="/user/chat")
