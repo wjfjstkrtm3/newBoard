@@ -322,6 +322,10 @@
   <span class="dot1" id="dot1"></span> 
   <span class="dot2" id="dot2"></span> 
   <span class="dot3" id="dot3"></span> 
+  <form action="/user/test">
+  	<input type="hidden" value="12saldk3" id="abcd" name="abcd">
+  	<input type="submit" value="실험">
+  </form>
 </div>
 </div>
 

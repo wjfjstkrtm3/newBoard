@@ -1,5 +1,8 @@
 var stompClient = null;
 
+
+
+
 function setConnected(connected) {
   $("#connect").prop("disabled", connected);
   $("#disconnect").prop("disabled", !connected);
@@ -27,6 +30,8 @@ function connect() {
     });
     
     stompClient.subscribe("/topic/chat", function(data) {
+    	console.log("data : " + data);
+    	console.log("data.body : " + data.body)
     	showChat(JSON.parse(data.body));
     });
   });
