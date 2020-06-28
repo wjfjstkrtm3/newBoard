@@ -32,14 +32,24 @@ public class WebSocketController {
 	}
 	
 	// /app/send 요청오면
+	// 클라이언트가 서버에게 /send/{roomId}로 메시지를 보내고 여기에 mapping이되고 @SendTo에서 roomId의 자원을 사용가능한거고
+	// 함수에서 사용할 시에는 @DestinationVariable을 사용하면 그 값을 사용할수있다
 	@MessageMapping("/send/{roomId}")
 	@SendTo("/topic/chat/{roomId}")
-	public Message sendMessage(Message message){
-		return new Message(message.getContent(), message.getRandomId() + "님 입장하셨습니다.", message.getRoomId());
+	public Message EnterMessage(Message message /*@DestinationVariable String roomId*/){
+		message.setContent(message.getRandomId() + "님 환영합니다 ^^");
+		return message;
 		/* template.convertAndSend("/topic/chat/" + message.getRoomId(), message); */
 		
 	}
 	
+	@MessageMapping("/message/{roomId}")
+	@SendTo("/topic/chat/{roomId}")
+	public Message sendMessage(Message message) {
+		System.out.println("message : " + message.toString());
+		message.setRandomId("손님" + message.getRandomId() + ":");
+		return message;
+	}
 	
 	
 }
