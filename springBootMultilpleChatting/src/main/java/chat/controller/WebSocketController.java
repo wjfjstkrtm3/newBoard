@@ -1,5 +1,7 @@
 package chat.controller;
 
+import javax.websocket.Session;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
@@ -9,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.socket.WebSocketSession;
 
 import chat.dto.Message;
 
@@ -16,6 +19,7 @@ import chat.dto.Message;
 public class WebSocketController {
 		
 	private SimpMessagingTemplate template;
+
 
     @Autowired
     public WebSocketController(SimpMessagingTemplate template) {
@@ -46,7 +50,6 @@ public class WebSocketController {
 	@MessageMapping("/message/{roomId}")
 	@SendTo("/topic/chat/{roomId}")
 	public Message sendMessage(Message message) {
-		System.out.println("message : " + message.toString());
 		message.setRandomId("손님" + message.getRandomId() + ":");
 		return message;
 	}

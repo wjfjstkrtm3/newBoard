@@ -1,10 +1,17 @@
 package chat.dto;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.web.socket.WebSocketSession;
+
 public class Message {
 
 	private String roomId;
 	private String content;
 	private String randomId;
+	
+	
 	
 	public Message() {
 		
