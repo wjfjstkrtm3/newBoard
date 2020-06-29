@@ -3,26 +3,28 @@ package chat.dto;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.web.socket.WebSocketSession;
-
 public class Message {
 
 	private String roomId;
 	private String content;
 	private String randomId;
 	private String senderSessionId;
+	private List<String> sessionId = new ArrayList<String>();
 	
 	
 	
-	public String getSenderSessionId() {
-		return senderSessionId;
+	public List<String> getSessionId() {
+		return sessionId;
 	}
-	public void setSenderSessionId(String senderSessionId) {
-		this.senderSessionId = senderSessionId;
+
+	public void setSessionId(List<String> sessionId) {
+		this.sessionId = sessionId;
 	}
+
 	public Message() {
 		
 	}
+	
 	public Message(String roomId, String content, String randomId) {
 		this.roomId = roomId;
 		this.content = content;
@@ -46,10 +48,22 @@ public class Message {
 	public void setRandomId(String randomId) {
 		this.randomId = randomId;
 	}
+	
+	public String getSenderSessionId() {
+		return senderSessionId;
+	}
+
+	public void setSenderSessionId(String senderSessionId) {
+		this.senderSessionId = senderSessionId;
+	}
+
 	@Override
 	public String toString() {
-		return "Message [roomId=" + roomId + ", content=" + content + ", randomId=" + randomId + "]";
+		return "Message [roomId=" + roomId + ", content=" + content + ", randomId=" + randomId + ", senderSessionId="
+				+ senderSessionId + "]";
 	}
+
+
 	
 	
 }

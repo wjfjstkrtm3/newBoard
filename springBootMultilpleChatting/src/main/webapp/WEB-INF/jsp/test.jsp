@@ -115,7 +115,7 @@ html, body {
 
 		$("#outRoom").on("click", function() {
 			if(client != null) {
-				client.send("/app/outRoom/" + roomId, {}, JSON.stringify({"roomId":roomId, "randomId":randomId}));
+				client.send("/app/outRoom/" + roomId, {}, JSON.stringify({"roomId":roomId, "randomId":randomId, "senderSessionId":$("#sessionId").val()}));
 				client.disconnect();
 				}
 			
