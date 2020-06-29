@@ -44,6 +44,10 @@ html, body {
 	overflow:auto;
 	overflow-x:hidden;
 }
+
+#outGuest {
+	color:red;
+}
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.3.0/sockjs.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
@@ -59,11 +63,10 @@ html, body {
 		client = Stomp.over(socket);
 
 		client.connect({}, function(frame) {
-			console.log("frame : " + frame);
 		client.send("/app/send/" + ${roomId}, {}, JSON.stringify({"roomId":roomId, "randomId":randomId}));
 		client.subscribe("/topic/chat/" + roomId, function(data) {
 			message = JSON.parse(data.body);
-
+			console.log("message : " + message.content);
 			if(message.content.indexOf("님 환영합니다") != -1) {
 			inputMessage = "<div><span>" + message.content + "</span></div>";
 			$("#guest_enter_message").append(inputMessage);
@@ -71,30 +74,43 @@ html, body {
 			// 채팅방이 append되면 실행
 			// 스크롤 계속 아래로 내리기 
 			$("#guest_form").scrollTop($("#guest_form")[0].scrollHeight);
-				} else {
+			} else if(message.content.indexOf("퇴장") != -1) {
+				inputMessage = "<div><span id='outGuest'>" + message.content + "</span></div>";
+				$("#guest_enter_message").append(inputMessage);
+				}
+
+
+			else {
 			inputMessage = "<div><span>" + message.randomId + "</span>" + "<span>" + message.content + "</span></div>";
 			$("#guest_send_message").append(inputMessage);
 
 			// 채팅방이 append되면 실행
 			// 스크롤 계속 아래로 내리기 
 			$("#messageSend").scrollTop($("#messageSend")[0].scrollHeight);
-					}
+			}
 			
 			
 			});
+			});
 
 
-			$("#inputMessage").on("keyup", function(event) {
-				if(event.which == 13) {
-					var inputMessage = $("#inputMessage").val();
-					client.send("/app/message/" + ${roomId}, {}, JSON.stringify({"roomId":roomId, "randomId":randomId, "content":inputMessage}));
-					$("#inputMessage").val("");
-					$("#inputMessage").focus();
-					}
-				});
+		$("#inputMessage").on("keyup", function(event) {
+			if(event.which == 13) {
+				var inputMessage = $("#inputMessage").val();
+				client.send("/app/message/" + roomId, {}, JSON.stringify({"roomId":roomId, "randomId":randomId, "content":inputMessage}));
+				$("#inputMessage").val("");
+				$("#inputMessage").focus();
+				}
+			});
 
+		$("#outRoom").on("click", function() {
+			if(client != null) {
+				client.send("/app/outRoom/" + roomId, {}, JSON.stringify({"roomId":roomId, "randomId":randomId}));
+				client.disconnect();
+				}
+			
+			});
 		
-			});
 		}
 		
 
@@ -115,6 +131,8 @@ html, body {
 		<div id="guest_send_message"></div>
 		<div id="messageForm">
 		<input type="text" id="inputMessage" placeholder="메시지 입력">
+		<button id="outRoom">나가기</button>
+		
 		</div>
 	</div>
 </div>
