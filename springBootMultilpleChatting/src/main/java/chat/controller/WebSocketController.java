@@ -58,7 +58,6 @@ public class WebSocketController {
 	@SendTo("/topic/chat/{roomId}")
 	public Message outRoom(Message message) {
 		message.setContent(message.getRandomId() + "님이 퇴장하셨습니다.");
-		System.out.println("outroom : " + message.toString());
 		return message;
 		
 	}

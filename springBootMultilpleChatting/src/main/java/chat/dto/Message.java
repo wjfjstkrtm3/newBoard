@@ -10,9 +10,16 @@ public class Message {
 	private String roomId;
 	private String content;
 	private String randomId;
+	private String senderSessionId;
 	
 	
 	
+	public String getSenderSessionId() {
+		return senderSessionId;
+	}
+	public void setSenderSessionId(String senderSessionId) {
+		this.senderSessionId = senderSessionId;
+	}
 	public Message() {
 		
 	}

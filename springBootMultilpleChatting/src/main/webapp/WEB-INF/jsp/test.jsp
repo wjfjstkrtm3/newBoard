@@ -63,12 +63,22 @@ html, body {
 		client = Stomp.over(socket);
 
 		client.connect({}, function(frame) {
-		client.send("/app/send/" + ${roomId}, {}, JSON.stringify({"roomId":roomId, "randomId":randomId}));
+			console.log(socket._transport.url.split("/")[5]);
+			var senderSessionId = socket._transport.url.split("/")[5];
+			$("#sessionId").val(senderSessionId);
+		client.send("/app/send/" + ${roomId}, {}, JSON.stringify({"roomId":roomId, "randomId":randomId, "senderSessionId":senderSessionId}));
 		client.subscribe("/topic/chat/" + roomId, function(data) {
 			message = JSON.parse(data.body);
-			console.log("message : " + message.content);
+
+			var type = null;
+			if(message.senderSessionId == senderSessionId) {
+				type = "[me]";
+				} else {
+				type = "";
+					}
+			
 			if(message.content.indexOf("님 환영합니다") != -1) {
-			inputMessage = "<div><span>" + message.content + "</span></div>";
+			inputMessage = "<div><span>" + message.content + type + "</span></div>";
 			$("#guest_enter_message").append(inputMessage);
 
 			// 채팅방이 append되면 실행
@@ -79,9 +89,9 @@ html, body {
 				$("#guest_enter_message").append(inputMessage);
 				}
 
-
+			// 메시지 작성
 			else {
-			inputMessage = "<div><span>" + message.randomId + "</span>" + "<span>" + message.content + "</span></div>";
+			inputMessage = "<div><span>" + type + message.randomId + "</span>" + "<span>" + message.content + "</span></div>";
 			$("#guest_send_message").append(inputMessage);
 
 			// 채팅방이 append되면 실행
@@ -97,7 +107,7 @@ html, body {
 		$("#inputMessage").on("keyup", function(event) {
 			if(event.which == 13) {
 				var inputMessage = $("#inputMessage").val();
-				client.send("/app/message/" + roomId, {}, JSON.stringify({"roomId":roomId, "randomId":randomId, "content":inputMessage}));
+				client.send("/app/message/" + roomId, {}, JSON.stringify({"roomId":roomId, "randomId":randomId, "content":inputMessage, "senderSessionId":$("#sessionId").val()}));
 				$("#inputMessage").val("");
 				$("#inputMessage").focus();
 				}
@@ -120,6 +130,7 @@ html, body {
 </head>
 <body>
 <input type="hidden" value="${id}" id="roomId">
+<input type="hidden" id="sessionId">
 <div id="flex-container">
 
 	<div id="guest_form">
