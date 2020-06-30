@@ -21,14 +21,42 @@
 		
 
 </script>
+<style type="text/css">
+body, html {
+	width:100%;
+	height:100%;
+}
 
+#userTable {
+	margin: auto;
+    margin-top: 50px;
+    border: 2px solid orange;
+    border-radius: 10px;
+    width: 50%;
+    height: 50%;
+}
+
+#total {
+	height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#search-form {
+	flex:1;
+}
+</style>
 
 </head>
 <body>
 	<div>
 	<%@ include file="../include/nav.jsp" %>
 	</div>
-	<table>
+	
+	<div id="total">
+	<table id="userTable">
 		<tr>
 			<th>번호</th>
 			<th>제목</th>
@@ -51,7 +79,7 @@
 		
 	</table>
 
-<div>
+<div id="search-form">
 	<c:if test="${page.prev}">
 		<span>[<a href="/board/boardListPageSearch?num=${page.startPageNum-1}&searchType=${sc.searchType}&keyword=${sc.keyword}">이전</a>]</span>
 	</c:if>
@@ -86,6 +114,8 @@
 </div>	
 	
 </div>
+</div>
+
 
 
 

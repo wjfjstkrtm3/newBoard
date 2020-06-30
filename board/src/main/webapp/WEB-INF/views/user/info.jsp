@@ -46,6 +46,8 @@ html, body {
 </head>
 <body>
 	<c:set var="user" value="${user}"></c:set>
+<%@include file="../include/nav.jsp" %>
+
 
 <div id="flex-container">
 	<div id="user-container">
