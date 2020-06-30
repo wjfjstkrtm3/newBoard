@@ -12,13 +12,13 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.board.dao.UserAuthDAO;
 import com.board.dto.UserDetail;
 import com.board.service.UserService;
 import com.board.utils.CommonUtils;
@@ -35,6 +35,9 @@ public class UserController {
 	
 	@Autowired
 	private JavaMailSender mailSender;
+	
+	@Autowired
+	private UserAuthDAO userAuthDAO;
 	
 	@RequestMapping(value="/userSignUp", method=RequestMethod.GET)
 	public void UserSignUp() {
@@ -183,6 +186,14 @@ public class UserController {
 	@RequestMapping(value="/toDoList", method=RequestMethod.GET)
 	public void toDoList() {
 	}
+	
+	@RequestMapping(value="/info", method=RequestMethod.GET)
+	public void userInfo(Model model) {
+		String getUserName = CommonUtils.getUserName();
+		UserDetail user = userAuthDAO.getUserById(getUserName);
+		model.addAttribute("user", user);
+	}
+	
 	
 	
 }
