@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
 <script type="text/javascript">
 	$(document).ready(function() {
 		var cleanText = $("#board_content").val().replace(/<\/?[^>]+(>|$)/g, "");
@@ -50,6 +51,76 @@
 
 					
 				});
+
+			// 북마크했는지 상태체크
+			$.ajax({
+				url:"/user/scrapCheck",
+				type:"POST",
+				data:{"bno":$("#board_bno").val()},
+				success:function(data) {
+					// 북마크 된 게시물이면
+					if(data >=1) {
+						
+						$("#scrap-icon").attr("id", "scrap-noIcon");
+						
+						// 만약 다시 클릭했을경우 해당 북마크를 없애버려야함
+						$(document).on("click", "#scrap-noIcon", function() {
+							$.ajax({
+								url:"/user/scrapBoardDelete",
+								type:"POST",
+								data:{"bno":$("#board_bno").val()},
+								success:function(data) {
+									console.log(data);
+									alert("북마크가 취소되었습니다");
+									$("#scrap-noIcon").attr("id", "scrap-icon");
+									},
+								error:function(xhr) {
+									console.log(xhr.status + "||" + xhr.statusText);
+									}
+
+								});
+							});
+						
+					} else {
+
+						// 북마크 된 게시물아닌걸 눌렀을때
+						// 북마크 한 상태로 바꿔주기
+						$(document).on("click", "#scrap-icon", function() {
+							$.ajax({
+								url:"/user/scrapBoard",
+								type:"POST",
+								data:{"bno":$("#board_bno").val()},
+								success:function(data) {
+									console.log(data);
+									alert("북마크 되었습니다");
+									$("#scrap-icon").attr("id", "scrap-noIcon");
+									},
+								error:function(xhr) {
+									console.log(xhr.status + "||" + xhr.statusText);
+									}
+
+								});
+							
+							});
+						
+
+						}
+					},
+				error:function(xhr) {
+					console.log(xhr.status + "||" + xhr.statusText);
+					}
+				});
+				
+				
+				
+			
+
+
+			
+
+
+
+			
 		});
 	
 		function fn_fileDown(f_bno) {
@@ -79,39 +150,99 @@
 
 
 </script>
+<style type="text/css">
+html, body {
+	width:100%;
+	height:100%;
+}
+
+#detail-container {
+	display:flex;
+	flex-direction:column;
+	border: 2px solid orange;
+	border-radius:10px;
+	width:50%;
+	height:50%;
+	justify-content:space-around;
+	align-items:center;
+	position: relative;
+}
+#flex-box {
+	display: flex;
+	flex-direction:column;
+    width: 100%;
+    height: 100%;
+    align-items:center;
+    margin-top: 100px;
+}
+
+.scrap {
+	position: absolute;
+    left: 100;
+    right: 130px;
+    bottom: 270px;
+ 	padding: 5px;
+ 	cursor: pointer;
+}
+
+.scrap:hover {
+	opacity:0.2;
+}
+
+#scrap-noIcon {
+	color:orange;
+}
+
+
+.fa-bookmark {
+	color:green;
+	font-size:50px;
+}
+</style>
 </head>
 <body>
 
 <c:set var="detail" value="${one}"></c:set>
+<input type="hidden" value="${detail.bno}" id="board_bno">
+<input type="hidden" id="scrap-check-value">
+
 <div>
 <%@include file="../include/nav.jsp"%>
 
 </div>
+<div id="flex-box">
+
+	<div id="detail-container">
+	<i class="fas fa-bookmark scrap" id="scrap-icon"></i>
 	
-	제목 : <input type="text" name="title" value="${detail.title}" readonly="readonly">
-	내용 : <input type="text" name="content" id="board_content" value="${detail.content}" readonly="readonly">
-	글쓴이 : <input type="text" name="writer" value="${detail.writer}" readonly="readonly">
 	
+	<div><span>제목</span> <input type="text" name="title" value="${detail.title}" readonly="readonly"></div>
+	<div>내용 <input type="text" name="content" id="board_content" value="${detail.content}" readonly="readonly"></div>
+	<div>글쓴이 <input type="text" name="writer" value="${detail.writer}" readonly="readonly"></div>
 	<c:forEach var="fileList" items="${fileMap}">
 		<a href="#" onclick="fn_fileDown('${fileList.f_bno}'); return false;">${fileList.original_file_name}</a>
 		${fileList.file_size}
 		<input type="hidden" value="${fileList.f_bno}" id="f_bno"><br>
 	</c:forEach>
 	
-<div>
-	<a href="/board/boardUpdate?bno=${detail.bno}&num=${num}&searchType=${sc.searchType}&keyword=${sc.keyword}">수정페이지 이동</a>
-	<a href="/board/boardDelete?bno=${detail.bno}&num=${num}&searchType=${sc.searchType}&keyword=${sc.keyword}">게시글 삭제</a>
+	<div>
+		<a href="/board/boardUpdate?bno=${detail.bno}&num=${num}&searchType=${sc.searchType}&keyword=${sc.keyword}">수정페이지 이동</a>
+		<a href="/board/boardDelete?bno=${detail.bno}&num=${num}&searchType=${sc.searchType}&keyword=${sc.keyword}">게시글 삭제</a>
+	</div>
 </div>
 
-<div>
+<div id="reply-form">
 
 	
 		<ol>
 	<c:forEach var="reply" items="${reply}">
+	
 			<li>
+				<div>
 				작성자 : ${reply.writer} <br>
 				날짜 : <fmt:formatDate value="${reply.regDate}" pattern="yyyy-MM-dd"/> <br>
 				내용 :  ${reply.content}
+				</div>
 			</li>
 			
 			<a href="/board/reply/boardReplyUpdate?rno=${reply.rno}&bno=${detail.bno}&num=${num}&searchType=${sc.searchType}&keyword=${sc.keyword}">수정</a>
@@ -119,7 +250,8 @@
 			
 	</c:forEach>
 		</ol>
-		
+	
+	</div>
 		<c:set var="page" value="${replyPage}"/>
 		
 		<c:if test="${page.prev}">
@@ -138,7 +270,7 @@
 			<a href="/board/boardDetail?replyPageNum=${page.endPageNum+1}&bno=${detail.bno}&num=${num}">[다음]</a>
 		</c:if>
 		 
-</div>
+
 <div>
 	<form method="POST" id="reply_form">
 		<input type="hidden" name="bno" id="bno" value="${detail.bno }">
@@ -153,6 +285,10 @@
 
 
 </div>
+
+</div>
+
+
 
 </body>
 </html>

@@ -1,6 +1,8 @@
 package com.board.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.mail.internet.InternetAddress;
@@ -19,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.board.dao.UserAuthDAO;
+import com.board.dto.BoardVO;
 import com.board.dto.UserDetail;
 import com.board.service.UserService;
 import com.board.utils.CommonUtils;
@@ -195,5 +198,72 @@ public class UserController {
 	}
 	
 	
+	@ResponseBody
+	@RequestMapping(value="/scrapBoard", method=RequestMethod.POST)
+	public int scrapBoard(@RequestParam(value="bno") int bno) {
+		Map<String, Object> map = null;
+		int result = 0;
+		String id = CommonUtils.getUserName();
+		try {
+			map = new HashMap<String, Object>();
+			map.put("id", id);
+			map.put("bno", bno);
+			result = service.scrapBoard(map);
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+		
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/scrapCheck", method=RequestMethod.POST)
+	public int scrapCheck(@RequestParam(value="bno") int bno) {
+		Map<String, Object> map = null;
+		int result = 0;
+		String id = CommonUtils.getUserName();
+		try {
+			map = new HashMap<String, Object>();
+			map.put("id", id);
+			map.put("bno", bno);
+			result = service.scrapCheck(map);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+		
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/scrapBoardDelete", method=RequestMethod.POST)
+	public void scrapBoardDelete(@RequestParam(value="bno") int bno) {
+		Map<String, Object> map = null;
+		String id = CommonUtils.getUserName();
+		try {
+			map = new HashMap<String, Object>();
+			map.put("id", id);
+			map.put("bno", bno);
+			service.scrapBoardDelete(map);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	@RequestMapping(value="/scrap", method=RequestMethod.GET)
+	public void getScrap(Model model) {
+		String id = CommonUtils.getUserName();
+		List<BoardVO> boardList = null;
+		try {
+			boardList = new ArrayList<BoardVO>();
+			boardList = service.getScrap(id);
+			model.addAttribute("boardList", boardList);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+	
+	}
 	
 }

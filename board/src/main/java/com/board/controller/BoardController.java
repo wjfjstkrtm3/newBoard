@@ -86,7 +86,7 @@ public class BoardController {
 	
 	@RequestMapping(value="/boardDetail")
 	public void boardDetail(@RequestParam(value="bno") int bno, Model model, SearchCriteria sc,
-							@RequestParam(value="num") int num,
+							@RequestParam(value="num", defaultValue="1") int num,
 							@RequestParam(value="replyPageNum", defaultValue="1")int replyPageNum) {
 		try {  
 			

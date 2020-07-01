@@ -1,7 +1,9 @@
 package com.board.dao;
 
+import java.util.List;
 import java.util.Map;
 
+import com.board.dto.BoardVO;
 import com.board.dto.UserDetail;
 
 public interface UserDAO {
@@ -26,4 +28,16 @@ public interface UserDAO {
 	
 	// 비밀번호 바꾸기
 	public int userChangePwd(Map<String, Object> map) throws Exception;
+	
+	// 북마크 버튼을 누르면 DB에 해당 글을 저장
+	public int scrapBoard(Map<String, Object> map) throws Exception;
+	
+	// boardDetail에 들어갔을때 북마크 체크 여부
+	public int scrapCheck(Map<String, Object> map) throws Exception;
+	
+	// 북마크 된 글 지우기 
+	public void scrapBoardDelete(Map<String, Object> map) throws Exception;
+	
+	// 북마크 한 글 가져오기
+	public List<BoardVO> getScrap(String id) throws Exception;
 }

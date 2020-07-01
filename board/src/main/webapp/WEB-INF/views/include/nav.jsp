@@ -43,7 +43,7 @@
 	
 	<a href="/board/boardListPageSearch?num=1">게시물 페이징</a>
 	<a href="/login/home">홈으로</a>
-	<a href="#" id="list_btn">게시판 목록</a>
+	<a href="/user/scrap">북마크</a>
 	<a href="/board/boardWrite">글 작성</a>
 	<a href="/user/toDoList">to-Do-List</a>
 	<a href="/user/info">내 정보</a>

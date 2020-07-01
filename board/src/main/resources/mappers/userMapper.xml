@@ -6,61 +6,95 @@
 
 	<!-- 아이디로 user정보 얻어오기 UserDetailService에서 사용 -->
 	<select id="getUserById" resultType="com.board.dto.UserDetail">
-	select id, password, name, email, phoneNumber, authority, enabled, temporaryPassword
-	from user
-	where id=#{user_id}
+		select id, password, name, email, phoneNumber, authority, enabled,
+		temporaryPassword
+		from user
+		where id=#{user_id}
 	</select>
-	
+
 	<!-- 회원가입 -->
 	<insert id="userSignUp" parameterType="com.board.dto.UserDetail">
-	insert into user(id, password, name, email, phonenumber)
-	values(#{id}, #{password}, #{name}, #{email}, #{phoneNumber})
+		insert into user(id, password, name, email, phonenumber)
+		values(#{id}, #{password}, #{name}, #{email}, #{phoneNumber})
 	</insert>
-	
+
 	<!-- 아이디 중복확인 -->
 	<select id="idCheck" resultType="int">
 		select count(*)
 		from user
-		where id = #{id}
-	
+		where id
+		= #{id}
+
 	</select>
-	
+
 	<!-- 아이디 찾기 -->
 	<select id="userFindId" resultType="com.board.dto.UserDetail">
-		SELECT id, password, name, email, phoneNumber
+		SELECT id, password, name,
+		email, phoneNumber
 		FROM user
-		WHERE email = #{email} 
-	
+		WHERE email = #{email}
+
 	</select>
-	
+
 	<!-- 비밀번호 찾기(아이디, 이메일 검증) -->
-	<select id="userFindPassword" parameterType="hashMap" resultType="int">
+	<select id="userFindPassword" parameterType="hashMap"
+		resultType="int">
 		SELECT count(*)
 		FROM user
-		WHERE id = #{id} and email = #{email}
-	
+		WHERE id = #{id} and email =
+		#{email}
+
 	</select>
-	
+
 	<!-- 임시 비밀번호 넣기 -->
 	<update id="temporaryPasswordUpdate" parameterType="hashMap">
-	UPDATE USER
-	SET temporaryPassword = #{temporaryPassword}
-	WHERE id = #{id}	
+		UPDATE USER
+		SET temporaryPassword = #{temporaryPassword}
+		WHERE id = #{id}
 	</update>
-	
-	<!-- 임시 비밀번호 가져오기  -->
-	<select id="temporaryPasswordSelect" resultType="com.board.dto.UserDetail">
-	SELECT temporaryPassword
-	FROM user
-	WHERE id = #{id}
+
+	<!-- 임시 비밀번호 가져오기 -->
+	<select id="temporaryPasswordSelect"
+		resultType="com.board.dto.UserDetail">
+		SELECT temporaryPassword
+		FROM user
+		WHERE id = #{id}
 	</select>
-	
+
 	<!-- 비밀번호 바꾸기 -->
 	<update id="userChangePwd" parameterType="hashMap">
-	UPDATE USER
-	SET password = #{password}
-	WHERE id = #{id}
+		UPDATE USER
+		SET password = #{password}
+		WHERE id = #{id}
 	</update>
-	
+
+	<!-- 북마크 버튼을 누르면 DB에 해당 글을 저장 -->
+	<insert id="scrapBoard" parameterType="hashMap">
+		INSERT into scrap(id, bno)
+		VALUES(#{id}, #{bno})
+	</insert>
+
+	<!-- boardDetail에 들어갔을때 북마크 체크 여부 -->
+	<select id="scrapCheck" parameterType="hashMap" resultType="int">
+		SELECT COUNT(*)
+		FROM scrap
+		WHERE id = #{id} AND bno = #{bno}
+	</select>
+
+	<!-- 북마크 된 글 지우기 -->
+	<delete id="scrapBoardDelete" parameterType="hashMap">
+		DELETE from scrap
+		WHERE id = #{id} AND bno = #{bno}
+	</delete>
+
+	<!-- 북마크 한 글 가져오기 -->
+	<select id="getScrap" resultType="com.board.dto.BoardVO">
+		SELECT u.id, t.bno, t.title, t.content, t.writer, t.regDate, t.viewCnt
+		FROM scrap s inner JOIN tbl_board t ON s.bno = t.bno
+		inner JOIN user u ON s.id = u.id
+		WHERE u.id= #{id}
+	</select>
+
+
 </mapper>
 

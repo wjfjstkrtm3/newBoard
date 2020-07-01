@@ -1,11 +1,13 @@
 package com.board.dao;
 
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.board.dto.BoardVO;
 import com.board.dto.UserDetail;
 
 @Repository
@@ -22,10 +24,33 @@ public class UserDAOImpl implements UserDAO{
 		sqlsession.insert("userMapper.userSignUp", vo);
 	}
 	
+	// boardDetail에 들어갔을때 북마크 체크 여부
+	@Override
+	public int scrapCheck(Map<String, Object> map) throws Exception {
+		return sqlsession.selectOne("userMapper.scrapCheck", map);
+	}
+
 	// 아이디 찾기
 	@Override
 	public UserDetail userFindId(String email) throws Exception {
 		return sqlsession.selectOne("userMapper.userFindId", email);
+	}
+
+	@Override
+	public void scrapBoardDelete(Map<String, Object> map) throws Exception {
+		sqlsession.delete("userMapper.scrapBoardDelete", map);
+	}
+
+	// 북마크 한 글 가져오기
+	@Override
+	public List<BoardVO> getScrap(String id) throws Exception {
+		return sqlsession.selectList("userMapper.getScrap", id);
+	}
+
+	// 북마크 버튼을 누르면 DB에 해당 글을 저장
+	@Override
+	public int scrapBoard(Map<String, Object> map) throws Exception {
+		return sqlsession.insert("userMapper.scrapBoard", map);
 	}
 
 	// 비밀번호 찾기(아이디, 이메일 검증)
