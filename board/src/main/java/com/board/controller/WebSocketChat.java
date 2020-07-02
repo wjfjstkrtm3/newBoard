@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class WebSocketChat {
 
 	private static final List<Session> sessionList = new ArrayList<Session>();
+	
 	public WebSocketChat() {
 	}
 	

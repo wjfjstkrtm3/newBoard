@@ -16,6 +16,12 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.js"></script>
 <!-- include summernote-ko-KR -->
 <script src="/resources/js/summernote-ko-KR.js"></script>
+<style type="text/css">
+input[type=file] {
+	display:inline-block;
+}
+
+</style>
 <script type="text/javascript">
 	$(document).ready(function() {
 		
@@ -63,7 +69,7 @@
 </script>
 </head>
 <body>
-
+<%@include file="../include/nav.jsp"  %>
 <c:set var="detail" value="${one}"></c:set>
 
 <form action="" method="post" enctype="multipart/form-data">

@@ -12,6 +12,7 @@
 	<security:http use-expressions="true" >
 	<security:csrf disabled="true"/>
 		<security:intercept-url pattern="/board/**" access="hasAnyRole('ROLE_ADMIN', 'ROLE_USER')"/>
+		<security:intercept-url pattern="/user/**" access="hasAnyRole('ROLE_ADMIN', 'ROLE_USER')"/>
 		<security:intercept-url pattern="/**" access="permitAll()"/>	
 		<security:form-login
 			username-parameter="user_id"

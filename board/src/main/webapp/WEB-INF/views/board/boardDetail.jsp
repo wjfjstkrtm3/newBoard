@@ -198,6 +198,18 @@ html, body {
 	color:green;
 	font-size:50px;
 }
+
+#board-title, #board-content, #board-writer {
+	border:2px solid orange;
+	border-radius:10px;
+	padding:3px;
+	
+	
+}
+
+#board-content p {
+	display:inline-block;
+}
 </style>
 </head>
 <body>
@@ -216,9 +228,11 @@ html, body {
 	<i class="fas fa-bookmark scrap" id="scrap-icon"></i>
 	
 	
-	<div><span>제목</span> <input type="text" name="title" value="${detail.title}" readonly="readonly"></div>
-	<div>내용 <input type="text" name="content" id="board_content" value="${detail.content}" readonly="readonly"></div>
-	<div>글쓴이 <input type="text" name="writer" value="${detail.writer}" readonly="readonly"></div>
+	
+	
+	<div><span>제목</span><span id="board-title">${detail.title}</span></div>
+	<div><span>내용</span><span id="board-content">${detail.content}</span></div>
+	<div><span>글쓴이</span><span id="board-writer">${detail.writer}</span></div>
 	<c:forEach var="fileList" items="${fileMap}">
 		<a href="#" onclick="fn_fileDown('${fileList.f_bno}'); return false;">${fileList.original_file_name}</a>
 		${fileList.file_size}
