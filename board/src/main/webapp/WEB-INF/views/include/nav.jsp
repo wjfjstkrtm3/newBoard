@@ -47,7 +47,7 @@
 	<a href="/board/boardWrite">글 작성</a>
 	<a href="/user/toDoList">to-Do-List</a>
 	<a href="/user/info">내 정보</a>
-	
+	<a href="/crawler/news">크롤링</a>
 	
 	<form action="/logout" method="POST" id="logout_form">
        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
