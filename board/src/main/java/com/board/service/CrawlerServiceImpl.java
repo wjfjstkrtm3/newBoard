@@ -11,11 +11,49 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.stereotype.Service;
 
+import com.board.dto.MovieVO;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 @Service
 public class CrawlerServiceImpl implements CrawlerService{
 
 	
-	
+	// 영화 크롤링
+	@Override
+	public List<MovieVO> getMovie() throws Exception {
+		Document doc = Jsoup.connect("http://www.cgv.co.kr/movies/").get();
+		Elements ranks = doc.select(".rank");		
+		Elements images = doc.select(".thumb-image > img");
+		Elements ages = doc.select(".ico-grade");
+		Elements titles = doc.select("div.box-contents strong.title");
+		Elements rates = doc.select("div.egg-gage span.percent");
+		Elements openDates = doc.select("span.txt-info strong");
+		String result = "";
+		ObjectMapper objectMapper = new ObjectMapper();
+		List<MovieVO> movieList = new ArrayList<MovieVO>();
+		/*
+		System.out.println(ranks.text());
+		System.out.println(images.attr("src"));
+		System.out.println(ages.text());
+		System.out.println(titles.text());
+		System.out.println(rates.text());
+		System.out.println(openDates.text());
+		*/
+		for(int i = 0; i < ranks.size(); i++) {
+			String rank = ranks.get(i).text();
+			String image = images.get(i).attr("src");
+			String age = ages.get(i).text();
+			String title = titles.get(i).text();
+			String rate = rates.get(i).text();
+			String openDate = openDates.get(i).text();
+			MovieVO vo = new MovieVO(rank, image, age, title, rate, openDate);
+			movieList.add(vo);
+			// result = objectMapper.writeValueAsString(movieList);
+		}
+		return movieList;
+		
+	}
+
 	// 뉴스 크롤링
 	@Override
 	public List<HashMap<String,String>> getNews() throws Exception{
