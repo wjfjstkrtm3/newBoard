@@ -28,6 +28,8 @@ public class CrawlerServiceImpl implements CrawlerService{
 		Elements titles = doc.select("div.box-contents strong.title");
 		Elements rates = doc.select("div.egg-gage span.percent");
 		Elements openDates = doc.select("span.txt-info strong");
+		Elements reserveRates = doc.select("div.score > strong.percent > span");
+		
 		String result = "";
 		ObjectMapper objectMapper = new ObjectMapper();
 		List<MovieVO> movieList = new ArrayList<MovieVO>();
@@ -46,7 +48,8 @@ public class CrawlerServiceImpl implements CrawlerService{
 			String title = titles.get(i).text();
 			String rate = rates.get(i).text();
 			String openDate = openDates.get(i).text();
-			MovieVO vo = new MovieVO(rank, image, age, title, rate, openDate);
+			String reserveRate = reserveRates.get(i).text();
+			MovieVO vo = new MovieVO(rank, image, age, title, rate, openDate, reserveRate);
 			movieList.add(vo);
 			// result = objectMapper.writeValueAsString(movieList);
 		}

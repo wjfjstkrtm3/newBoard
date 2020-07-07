@@ -7,11 +7,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
 <script type="text/javascript">
 	$(document).ready(function() {
-		var cleanText = $("#board_content").val().replace(/<\/?[^>]+(>|$)/g, "");
+		var cleanText = $("#board-content").val().replace(/<\/?[^>]+(>|$)/g, "");
 		$("#board_content").val(cleanText);
 		
 			$("#list_btn").click(function() {
