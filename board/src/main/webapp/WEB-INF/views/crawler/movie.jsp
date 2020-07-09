@@ -29,7 +29,6 @@ html, body {
     flex-wrap: wrap;
     border: 2px solid black;
     border-radius: 3px;
-    height: 30%;
     margin: 50px 20px;
 	
 }
@@ -50,6 +49,8 @@ html, body {
 <body>
 <div id="movieContents">
 <c:forEach var="movie" items="${movieList}" varStatus="status">
+	
+	
 	
 		<div id="moviePoster">
 			<div id="movieImg">

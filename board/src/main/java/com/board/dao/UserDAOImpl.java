@@ -24,6 +24,18 @@ public class UserDAOImpl implements UserDAO{
 		sqlsession.insert("userMapper.userSignUp", vo);
 	}
 	
+	// 내용 펼치기 (내가 쓴글) 
+	@Override
+	public List<BoardVO> getWroteBoard(String id) throws Exception {
+		return sqlsession.selectList("userMapper.getWroteBoard", id);
+	}
+
+	// 내용 펼치기 (내가 북마크 한 글)
+	@Override
+	public List<BoardVO> getBookMark(String id) throws Exception {
+		return sqlsession.selectList("userMapper.getBookMark", id);
+	}
+
 	// boardDetail에 들어갔을때 북마크 체크 여부
 	@Override
 	public int scrapCheck(Map<String, Object> map) throws Exception {

@@ -28,6 +28,7 @@ import com.board.dto.SearchCriteria;
 import com.board.dto.WriteBoardVO;
 import com.board.service.BoardReplyService;
 import com.board.service.BoardService;
+import com.board.utils.CommonUtils;
 
 @Controller
 @RequestMapping(value="/board")
@@ -59,10 +60,9 @@ public class BoardController {
 	@RequestMapping(value="/boardWrite", method=RequestMethod.POST)
 	public String boardWrite(@RequestParam(value="title") String title,
 							 @RequestParam(value="content") String content,
-							 @RequestParam(value="writer") String writer,
 							 HttpServletRequest request, Map<String, Object> map
 							 ) {
-		
+		String writer = CommonUtils.getUserName();
 		BoardVO vo = new BoardVO();
 		vo.setTitle(title);
 		vo.setContent(content);

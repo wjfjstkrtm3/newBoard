@@ -50,6 +50,7 @@ html,body {
 }
 
 </style>
+
 <script type="text/javascript">
 	window.onload = function() {
 			let bookParent = document.querySelector("#bookParent");

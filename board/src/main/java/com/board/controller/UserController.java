@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.board.dao.UserAuthDAO;
 import com.board.dto.BoardVO;
 import com.board.dto.UserDetail;
+import com.board.service.BoardService;
 import com.board.service.UserService;
 import com.board.utils.CommonUtils;
 
@@ -41,6 +42,9 @@ public class UserController {
 	
 	@Autowired
 	private UserAuthDAO userAuthDAO;
+	
+	@Autowired
+	private BoardService boardService;
 	
 	@RequestMapping(value="/userSignUp", method=RequestMethod.GET)
 	public void UserSignUp() {
@@ -262,8 +266,35 @@ public class UserController {
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
-		
+	}
 	
+	@RequestMapping(value="/list", method=RequestMethod.GET)
+	public void getList(Model model) {
+		String id = CommonUtils.getUserName();
+		List<BoardVO> boardList = new ArrayList<BoardVO>();
+		
+		List<BoardVO> bookMarkList = new ArrayList<BoardVO>();
+		try {
+			boardList = service.getWroteBoard(id);
+			bookMarkList = service.getBookMark(id);
+			model.addAttribute("boardList", boardList);
+			model.addAttribute("bookMarkList", bookMarkList);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/getBoardContent", method=RequestMethod.POST)
+	public BoardVO returnBoardContent(@RequestParam(value="bno") int bno, Model model) {
+		BoardVO vo = new BoardVO();
+		try {
+			vo = boardService.listOne(bno);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return vo;
 	}
 	
 }

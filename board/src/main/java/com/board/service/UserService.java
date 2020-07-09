@@ -40,4 +40,10 @@ public interface UserService {
 	
 	// 북마크 한 글 가져오기
 	public List<BoardVO> getScrap(String id) throws Exception;
+	
+	// 내용 펼치기 (내가 쓴글) 
+	public List<BoardVO> getWroteBoard(String id) throws Exception;
+		
+	// 내용 펼치기 (내가 북마크 한 글)
+	public List<BoardVO> getBookMark(String id) throws Exception;
 }

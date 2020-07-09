@@ -63,7 +63,6 @@
 </div>
 <form action="" method="post" enctype="multipart/form-data">
 	제목 : <input type="text" name="title" id="board_title">
-	글쓴이 : <input type="text" name="writer">
     <textarea id="summernote" name="content"></textarea>
 	<button id="fileAdd">파일추가하기</button>
 	<br>

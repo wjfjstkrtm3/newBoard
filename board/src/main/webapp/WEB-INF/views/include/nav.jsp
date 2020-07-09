@@ -49,7 +49,7 @@
 	<a href="/user/info">내 정보</a>
 	<a href="/crawler/news">뉴스 크롤링</a>
 	<a href="/crawler/movie">영화 크롤링</a>
-	
+	<a href="/user/list">리스트 보기</a>
 	<form action="/logout" method="POST" id="logout_form">
        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
        <a href="#" onclick="document.getElementById('logout_form').submit();">로그아웃</a>

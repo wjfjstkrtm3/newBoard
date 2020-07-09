@@ -95,6 +95,18 @@
 		WHERE u.id= #{id}
 	</select>
 
+	<!-- 내용 펼치기 (내가 쓴글) -->
+	<select id="getWroteBoard" resultType="com.board.dto.BoardVO">
+	SELECT bno, title, content, writer, regDate, viewCnt
+	FROM tbl_board
+	WHERE writer = #{id}
+	</select>
 
+	<!-- 내용 펼치기 (북마크) -->	
+	<select id="getBookMark" resultType="com.board.dto.BoardVO">
+	SELECT b.bno, b.title, b.content, b.writer, b.regDate, b.viewCnt
+	FROM scrap s INNER JOIN tbl_board b ON s.bno = b.bno
+    WHERE s.id=#{id}
+	</select>
 </mapper>
 

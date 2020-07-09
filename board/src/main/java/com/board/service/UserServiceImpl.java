@@ -30,6 +30,18 @@ public class UserServiceImpl implements UserService {
 		return result;
 	}
 
+	// 내용 펼치기 (내가 쓴글) 
+	@Override
+	public List<BoardVO> getWroteBoard(String id) throws Exception {
+		return dao.getWroteBoard(id);
+	}
+
+	// 내용 펼치기 (내가 북마크 한 글)
+	@Override
+	public List<BoardVO> getBookMark(String id) throws Exception {
+		return dao.getBookMark(id);
+	}
+
 	// 북마크 버튼을 누르면 DB에 해당 글을 저장
 	@Override
 	public int scrapBoard(Map<String, Object> map) throws Exception {
