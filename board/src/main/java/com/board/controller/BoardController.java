@@ -363,5 +363,8 @@ public class BoardController {
 		return map;
 	}
 	
+	@RequestMapping(value="/test3", method=RequestMethod.GET)
+	public void test3() {
+	}
 	
 }

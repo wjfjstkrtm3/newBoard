@@ -85,6 +85,10 @@ html, body {
 .fa-pen-square {
 	color:#5AC18E;
 }
+
+#preView {
+	font-weight:bold;
+}
 </style>
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.1/css/all.css" integrity="sha384-xxzQGERXS00kBmZW/6qxqJPyxW3UR0BPsL4c8ILaIWXva5kFi7TxkIIaMiKtqV1Q" crossorigin="anonymous">
@@ -112,6 +116,8 @@ html, body {
 					var content = $(this).parent().next();
 					var contentId = $(this).parent().next().prop('id');
 					var contentStatus = $(this).parent().next();
+
+					// 해당 게시물이 contentClicked라는 class를 가지고있을때 게시물을 숨기고, class를 없애줌
 					if(contentStatus.prop('class') === "contentClicked") {
 						content.hide();
 						contentStatus.attr("class", "");
@@ -138,11 +144,13 @@ html, body {
 								var date = regDate.getDate();
 								date = (date < 10) ? "0" + date : date;
 								var resultRegDate = year + "-" + month + "-" + date;
-							var html = "<div id='content'>" + data.content + "</div>";
+							var html = "<div id='preView'>미리보기</div>";
+							    html += "<div id='content'>" + data.content + "</div>";
 								html += "<span id='regDate'>" + resultRegDate + "</span>";
 								html += "<span id='viewCnt'>" + "조회수" + data.viewCnt + "</span>";
 								content.html(html);	
 
+								// 해당 게시물을 클릭했을때 class 부여
 								contentStatus.attr("class", "contentClicked");
 								
 								
