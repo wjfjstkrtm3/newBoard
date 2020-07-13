@@ -364,7 +364,37 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value="/test3", method=RequestMethod.GET)
-	public void test3() {
+	public void test3(Model model, @RequestParam(value="num", defaultValue="1") int num,
+											   @RequestParam(value="searchType", required=false, defaultValue="")String searchType,
+											   @RequestParam(value="keyword", required=false, defaultValue="")String keyword) {
+		
+		// 2페이지를 눌렀을떄 초기화가 검색이 초기화가 되버려
+		// 
+		try {
+			
+			Page page = new Page();
+			page.setNum(num);
+			page.setCount(service.BoardCount());
+			
+			SearchCriteria sc = new SearchCriteria();
+			sc.setSearchType(searchType);
+			sc.setKeyword(keyword);
+				
+			List<BoardVO> list = service.listPageSearch(page.getDisplaypost(), page.getPostNum(), searchType, keyword);
+			
+			model.addAttribute("list", list);
+			
+			model.addAttribute("page", page);
+			
+			// 현재 페이지
+			model.addAttribute("select", num);
+			
+			
+			model.addAttribute("sc", sc);
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 }

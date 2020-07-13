@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,34 +13,53 @@ html, body {
 	height:100%;
 }
 
-.grid-container {
-	display:grid;
-	background-color:yellow;
-	grid-auto-rows:minmax(100px, auto);
-	grid-template-columns:repeat(auto-fill, minmax(30%, auto));
+.table_container {
+	
 }
 
-.grid-container > span {
+.table_tr {
+	display:grid;	
+	grid-template-columns:repeat(auto-fill, minmax(20%, auto));
 	background-color:orange;
+	
 }
 
+.testa {
+	display:grid;
+}
+.testa >span:nth-child(1) {
+	background-color:red;
+}
 
 </style>
 </head>
 <body>
-
-	<div class="grid-container">
-		<span>A</span>
-		<span>B</span>
-		<span>C</span>
-		<span>D</span>
-		<span>E</span>
-		<span>F</span>
-		<span>G</span>
-		<span>H</span>
-		<span>I</span>
+	<div class="table_container">
+		<div class="table_tr">  
+		<span>번호</span>
+		<span>제목</span>
+		<span>작성일</span>
+		<span>작성자</span>
+		<span>조회수</span>
+		
+		<c:forEach var="list" items="${list}">
+		<span>${list.bno}</span>
+		<span>${list.title}</span>
+		<span>${list.regDate}</span>
+		<span>${list.writer }</span>
+		<span>${list.viewCnt }</span>
+		</c:forEach>
+		</div>
+		
+		
 	</div>
-	
+		<div class="testa">
+		<span>a</span>
+		<span>b</span>
+		<span>c</span>
+		<span>d</span>
+		
+	</div>
 
 </body>
 </html>
