@@ -396,5 +396,10 @@ public class BoardController {
 			e.printStackTrace();
 		}
 	}
+	@RequestMapping(value="/test4", method=RequestMethod.GET)
+	public void test4() {
+		
+	}
+	
 	
 }
