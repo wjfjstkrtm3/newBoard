@@ -21,8 +21,11 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<context:component-scan base-package="com.movie.cgv" />
-	
+	<context:component-scan base-package="com.movie.controller" />
+	<context:component-scan base-package="com.movie.dao"/>
+	<context:component-scan base-package="com.movie.dto"/>
+	<context:component-scan base-package="com.movie.service"/>
+	<context:component-scan base-package="com.movie.utils"/>
 	
 	
 </beans:beans>
