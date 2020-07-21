@@ -8,12 +8,25 @@
 	<!-- Root Context: defines shared resources visible to all other web components -->
 		
 		<context:property-placeholder location="classpath:/config/database.properties"/>
-		<bean class="org.springframework.jdbc.datasource.DriverManagerDataSource" id="dataSource">
+		<bean id="realDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
  <property name="driverClassName" value="${db.driverClass}" />
  <property name="url" value="${db.url}" />
  <property name="username" value="${db.username}" />
  <property name="password" value="${db.password}" />
 </bean>
+
+<!-- 데이터베이스에도 log를 찍기위한 컨피그 -->
+    <bean id="dataSource" class="net.sf.log4jdbc.Log4jdbcProxyDataSource">
+        <constructor-arg ref="realDataSource"/>
+        <property name="logFormatter">
+            <bean class="net.sf.log4jdbc.tools.Log4JdbcCustomFormatter">
+                <property name="loggingType" value="MULTI_LINE"/>
+                <property name="sqlPrefix" value="[SQL]"/>
+            </bean>
+        </property>
+    </bean>
+
+
 
 <bean id="sqlSessionFactory"
  class="org.mybatis.spring.SqlSessionFactoryBean">

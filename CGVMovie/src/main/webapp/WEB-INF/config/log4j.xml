@@ -20,6 +20,13 @@
         </layout>
     </appender>
     
+    <!-- 디비에 로그 찍기 -->
+    <appender name="sqlLogger" class="org.apache.log4j.ConsoleAppender">
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[%d{yyyy-MM-dd HH:mm:ss}] %-5p:%m%n"/>
+        </layout>
+    </appender>
+    
 	<!-- Application Loggers -->
 	<logger name="com.movie.controller" additivity="false">
 		<level value="debug" />
@@ -32,6 +39,16 @@
 		<append-ref ref="console"/>
 	</logger>
 
+
+	<!-- SQL (첫번째는 SQL문만, 두번째는 그 SQL로 리턴되는 값을 출력) -->
+	<logger name="jdbc.sqlonly" additivity="false">
+        <level value="info"/>
+        <appender-ref ref="sqlLogger"/>
+    </logger>
+    <logger name="jdbc.resultsettable" additivity="false">
+        <level value="info"/>
+        <appender-ref ref="sqlLogger"/>
+    </logger>
 
 	<!-- Root Logger -->
 	<root>

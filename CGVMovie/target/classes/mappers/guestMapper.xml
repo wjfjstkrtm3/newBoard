@@ -5,9 +5,25 @@
   
 <mapper namespace="guestMapper">
 
+<!-- 게스트 로그인 -->
+<select id="guestLogin" parameterType="com.movie.dto.Guest" resultType="int">
+	SELECT COUNT(*) 
+	FROM USER
+	WHERE ID = #{id} AND PASSWORD = #{password} 
+</select>
 
+<!-- 게스트 회원가입 -->
+<insert id="guestSignUp" parameterType="com.movie.dto.Guest">
+	INSERT INTO USER(ID, PASSWORD, EMAIL, PHONENUMBER)
+	VALUES(#{id}, #{password}, #{email}, #{phoneNumber})
+</insert>
 
-
+<!-- 게스트 비밀번호 찾기 -->
+<select id="guestFindPassword">
+	SELECT COUNT(*)
+	FROM USER
+	WHERE ID = #{id} AND EMAIL = #{email}
+</select>
 
 
 </mapper>

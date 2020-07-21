@@ -6,18 +6,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@RequestMapping(value="/movie")
 public class MovieController {
 
 	private Logger log = LoggerFactory.getLogger(MovieController.class);
-	@RequestMapping(value="/")
-	public String homePage() {
-		log.debug("home debug");
-		return "login";
-	}
 	
-	@RequestMapping(value="/test10")
+	@RequestMapping(value="/test")
 	public String test() {
-		log.debug("test10 debug");
+		log.debug("test");
 		return "test";
 		
 	}
