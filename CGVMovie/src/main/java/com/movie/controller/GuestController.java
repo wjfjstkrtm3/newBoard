@@ -32,7 +32,7 @@ public class GuestController {
 			e.printStackTrace();
 		}
 		
-		return "/movie/test";
+		return "/movie/main";
 		
 	}
 	

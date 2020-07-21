@@ -11,10 +11,8 @@ public class MovieController {
 
 	private Logger log = LoggerFactory.getLogger(MovieController.class);
 	
-	@RequestMapping(value="/test")
-	public String test() {
-		log.debug("test");
-		return "test";
-		
+	@RequestMapping(value="/main")
+	public void test() {
+		log.debug("main");
 	}
 }

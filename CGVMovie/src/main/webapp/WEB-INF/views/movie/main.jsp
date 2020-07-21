@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-gg
+영화 메인 사이트
 
 </body>
 </html>

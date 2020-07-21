@@ -10,7 +10,7 @@ public class HomeController {
 
 	private Logger log = LoggerFactory.getLogger(this.getClass());
 	
-	@RequestMapping(value="/")
+	@RequestMapping(value= "/")
 	public String homePage() {
 		log.debug("home");
 		return "login";
