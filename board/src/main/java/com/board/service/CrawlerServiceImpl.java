@@ -89,13 +89,11 @@ public class CrawlerServiceImpl implements CrawlerService{
 		Document doc = Jsoup.connect("http://news.naver.com/").get();
 		Element newsParent = doc.select("ul.mlist2").get(num);
 		Elements news = newsParent.select("li");
-		System.out.println(news.toString());
 		for(Element e : news) {
 			newsTitle = e.text();
-			newsUrl = e.getElementsByAttribute("href").attr("href");
 			newsMap.put(newsTitle, newsUrl);
 		}
-		
+		System.out.println(newsMap.toString());
 		return newsMap;
 	}
 	

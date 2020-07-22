@@ -8,14 +8,15 @@ html,body {
 .grid-container {
 	display:grid;
 	grid-template-columns: 50% 50%;
-	width: 100%;
+	width: 50%;
 	height:50%;
-
+	margin: auto;
 }
 
 .movie-image {
     grid-column: 1;
-    background-color:yellow;
+    /* height: 10px; */
+    display: grid;
 }
 
 .login-form {
@@ -27,7 +28,7 @@ html,body {
 }
 
 .grid-container-form {
-    width:70%;
+    width: 100%;
     height:100%;
     display:grid;
     align-items:center;
@@ -68,4 +69,15 @@ input[type=button] {
 
 .image-form {
 	margin:auto;
+}
+
+.image-size {
+	
+display: felx;
+	
+/* display: flex; */
+	
+width: 100%;
+	
+height: 100%;
 }

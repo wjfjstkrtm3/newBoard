@@ -2,12 +2,12 @@ package com.movie.service;
 
 import java.util.List;
 
-import com.movie.dto.Movie;
+import com.movie.dto.CGVInfo;
 
 public interface MovieService {
 
 	// 영화 크롤링
-	public List<Movie> getCrawlingMovie() throws Exception;
+	public List<CGVInfo> getCrawlingMovie() throws Exception;
 	
 	
 }
