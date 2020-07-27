@@ -9,6 +9,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link href="${path}/resources/css/login.css" rel="stylesheet">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css">
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -23,6 +24,7 @@
 					});
 				console.log(imgArray.length);
 				const randomNumber = Math.round((Math.random() * imgArray.length));
+				console.log("number : " + randomNumber);
 				$("#movie_image_form").attr("src", imgArray[randomNumber]);
 				
 				},
@@ -154,15 +156,27 @@
 				<div><input type="text" name="id" placeholder="아이디" id="guest_id" class="guest-border"></div>
 				<div><input type="password" name="password" id="guest_password" placeholder="비밀번호" class="guest-border"></div>
 			</form>
-			<div><input type="checkbox" name="idCheck" id="idCheck"><span>아이디 저장</span></div>
+			
+			<div>
+			<input type="checkbox" name="idCheck" id="idCheck">
+			<span>아이디 저장</span>
+			</div>
 			<div><input type="button" value="로그인" id="login_btn"></div>
 			<div><input type="button" value="회원가입" id="guest_sign_up"></div>
 		</div>
 	</sec:authorize>
+	<!-- 인증된 사용자라면 logout 버튼을.. -->
 	<sec:authorize access="isAuthenticated()">
-	<form action="/logout" method="POST" id="logout-form">
-		<a href="#" onclick="document.getElementById('logout-form').submit()">로그아웃</a>
-	</form>
+	<div class="logout-image-form">
+		<div class="logout-image"><img src="${path}/resources/imgs/cgv.jpg"></div>
+	</div> 
+	<div class="logout-form">
+		<div class="logout-form-data">
+		<form action="/logout" method="POST" id="logout-form">
+			<a href="#" onclick="document.getElementById('logout-form').submit()">로그아웃</a>
+		</form>
+		</div>
+	</div>
 	</sec:authorize>
 	</div>
 	
