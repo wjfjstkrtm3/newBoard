@@ -10,4 +10,5 @@ public interface MovieService {
 	public List<CGVInfo> getCrawlingMovie() throws Exception;
 	
 	
+	
 }

@@ -18,4 +18,24 @@ public class GuestDaoImpl implements GuestDao {
 		return sqlsession.selectOne("guestMapper.guestLogin", guest);
 	}
 
+	// 회원 비밀번호 조회
+	@Override
+	public String guestPassword(String id) throws Exception {
+		return sqlsession.selectOne("guestMapper.findPassword", id);
+	}
+
+	// 아이디 중복 확인
+	@Override
+	public int guestIdCheck(String id) throws Exception {
+		return sqlsession.selectOne("guestMapper.idCheck", id);
+	}
+
+	// 회원가입 처리
+	@Override
+	public void guestSignUp(Guest guest) throws Exception {
+		sqlsession.insert("guestMapper.guestSignUp", guest);
+	}
+	
+	
+
 }

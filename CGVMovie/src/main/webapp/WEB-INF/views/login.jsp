@@ -154,6 +154,7 @@
 			<div class="image-form"><img src="${path}/resources/imgs/cgv.jpg" class="cgv-image"><span class="login-span">로그인</span></div>
 			<form action="/login" method="POST" name="login_action_form" id="login_action_form">
 				<div><input type="text" name="id" placeholder="아이디" id="guest_id" class="guest-border"></div>
+				<span class="notEquals"><c:if test="${error}">아이디 또는 비밀번호가 맞지않습니다</c:if></span>
 				<div><input type="password" name="password" id="guest_password" placeholder="비밀번호" class="guest-border"></div>
 			</form>
 			
