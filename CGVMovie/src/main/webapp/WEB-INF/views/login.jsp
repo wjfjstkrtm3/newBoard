@@ -177,6 +177,10 @@
 			<a href="#" onclick="document.getElementById('logout-form').submit()">로그아웃</a>
 		</form>
 		</div>
+		
+	</div>
+	<div class="go-main">
+			<a href="/movie/main">메인화면으로</a>
 	</div>
 	</sec:authorize>
 	</div>

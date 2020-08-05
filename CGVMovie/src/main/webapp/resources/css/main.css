@@ -87,3 +87,96 @@ html, body {
 .movie-search-form {
 	position:relative;
 }
+
+.content-flex-container {
+	display:flex;
+	flex-direction:column;
+	margin-left: auto;
+}
+
+.list-movie-img {
+	width:200px;
+	height: 233px;
+	border: 6px solid #000000;
+}
+.cgv-main-content {
+	 display:grid;
+	 grid-template-columns:20% 20% 20% 20%;
+	 justify-items:center;
+	 margin-left: 200px;
+	 margin-top: auto;
+}
+
+.list-rank {
+	background: #e71a0f;
+	border: 6px solid #000000;
+	color: #ffffff;
+    font-size: 19px;
+    text-align: center;
+    line-height: 28px;
+    margin-bottom: 4px;
+}
+
+.list-img {
+	width:100%;
+}
+
+.list-content-form {
+	margin-bottom:10px;
+	font-weight: 500;
+}
+
+.list-content-form > * {
+	padding:6px;
+}
+
+.reserve-btn {
+	background-color: red;
+	border: none;
+	padding: 3px;
+	width: 44%;
+	font-weight: bold;
+	border-radius:8px;
+	color: white;
+}
+
+.reserve-btn-form {
+	position:relative;
+}
+
+
+.fa-clipboard-check {
+	position:absolute;
+	left:17px;
+	top:10px;
+	color:white;
+}
+
+.fa-egg {
+	color:#ECA62E;
+}
+
+.reserve-btn:hover {
+	cursor:pointer;
+}
+
+.reserve-btn:active {
+ background-color: #d61d1d;
+
+}
+.reserve-btn:focus {
+	 outline:none;
+}
+
+.list-percent, .list-openingDates {
+	color:#666666;
+}
+
+.cgv-nav-form a {
+	text-decoration:none;
+	color:black;
+}
+
+.cgv-nav-form a:hover {
+	opacity:0.5;
+}
