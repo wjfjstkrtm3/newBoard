@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Guest Sign Up</title>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <link href="${path}/resources/css/login.css" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>

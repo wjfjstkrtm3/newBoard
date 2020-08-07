@@ -9,6 +9,8 @@ public interface MovieService {
 	// 영화 크롤링
 	public List<CGVInfo> getCrawlingMovie() throws Exception;
 	
+	// 영화 예약 크롤링
+	public List<String> getReserveInfo() throws Exception; 
 	
 	
 }

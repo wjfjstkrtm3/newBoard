@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.stereotype.Service;
 
@@ -13,9 +14,6 @@ import com.movie.dto.CGVInfo;
 
 @Service
 public class MovieServiceImpl implements MovieService {
-
-	
-	
 	
 	// 영화 크롤링
 	@Override
@@ -56,4 +54,27 @@ public class MovieServiceImpl implements MovieService {
 		return movieList;
 	}
 
+	// 영화 예약 크롤링
+	public List<String> getReserveInfo() {
+		List<String> movieList = new ArrayList<String>();
+		try {
+			Document doc = Jsoup.connect("http://www.cgv.co.kr/common/showtimes/iframeTheater.aspx?").get();
+			Elements movies = doc.select(".info-movie strong");
+			
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		
+		
+		
+		return movieList;
+	}
+	
+	
+	
+	
+	
+	
 }

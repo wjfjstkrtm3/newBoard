@@ -1,0 +1,133 @@
+@charset "UTF-8";
+
+.reserve-grid-container {
+	width:100%;
+	height:100%;
+	display:grid;
+	grid-template-rows:20% 80%;
+}
+
+.reserve-container {
+	display:grid;
+	grid-template-columns:20% 20% 10% 50%;
+	width:100%;
+}
+
+.reserve-movie,
+.reserve-theater,
+.reserve-date,
+.reserve-time {
+
+border-right: 2px solid #D4D3C9;
+}
+
+.reserve-movie-title-form,
+.reserve-theater-title-form,
+.reserve-date-title-form,
+.reserve-time-title-form
+ {
+	  background-color: #333333;
+	  display:flex;
+}
+
+.reserve-movie-title,
+.reserve-theater-title,
+.reserve-date-title,
+.reserve-time-title {
+	color:#B5B5B5;
+	margin:auto;
+	
+}
+
+.reserve-movie-selector {
+	border-bottom: 1px solid #B5B5B5;
+	width:94%;
+	margin: 10px;
+}
+
+.reserve-movie-selector > *:hover {
+	cursor:pointer;
+
+}
+
+.reserve-movie-selector > *:active {
+	color:red;
+}
+
+.reserve-theater-kind {
+	display:grid;
+	grid-template-columns:50% 50%;
+	height:100%;
+	text-align: center;
+}
+
+.reserve-theater-kind-value {
+	display:grid;
+	grid-template-rows:repeat(auto-fill, minmax(5%, auto));
+}
+
+.reserve-theater-kind-value-city {
+	display:grid;
+	grid-template-rows:repeat(auto-fill, minmax(5%, auto));
+}
+
+.reserve-movie-selector-value-title {
+    color: #333;
+    font-weight: bold;
+    cursor:pointer;
+    margin:30px 10px;
+
+    padding:3px;
+}
+
+
+.reserve-theater {
+
+    
+}
+
+
+
+.reserve-date {
+   
+}
+
+.reserve-time {
+   
+}
+
+
+.fifteen {
+    color: white;
+    background-color: #CA4D10;
+    border-radius:20px;
+    font-size:16px;
+    margin-left:7px;
+}
+
+.youthNot {
+     color: white;
+     border-radius:4px;
+     font-size:12px;
+     background-color:#C7002A;
+}
+
+.twelve {
+     color: white;
+     border-radius:20px;
+     font-size:16px;
+     background-color:#006CC7;
+      margin-left:7px;
+}
+
+.total {
+     color: white;
+     border-radius:4px;
+     background-color:#52AE35;
+     font-size:12px;
+     
+}
+
+.reserve-movie-selector-form {
+	margin:20px;
+}
