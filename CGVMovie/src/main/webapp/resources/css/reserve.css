@@ -63,7 +63,15 @@ border-right: 2px solid #D4D3C9;
 
 .reserve-theater-kind-value {
 	display:grid;
+	background-color:#F2F0E5;
 	grid-template-rows:repeat(auto-fill, minmax(5%, auto));
+	/* cursor: pointer; */
+}
+
+.reserve-theater-kind-value > * {
+    margin: 1px 0px;
+    background-color: #FDFCF0;
+    cursor:pointer;
 }
 
 .reserve-theater-kind-value-city {
@@ -71,12 +79,11 @@ border-right: 2px solid #D4D3C9;
 	grid-template-rows:repeat(auto-fill, minmax(5%, auto));
 }
 
-.reserve-movie-selector-value-title {
-    color: #333;
+[class^='reserve-movie-selector-value-title'] {
+    /* color: #333; */
     font-weight: bold;
     cursor:pointer;
     margin:30px 10px;
-
     padding:3px;
 }
 
@@ -128,6 +135,85 @@ border-right: 2px solid #D4D3C9;
      
 }
 
+
 .reserve-movie-selector-form {
 	margin:20px;
+	padding: 6px;
+}
+
+.selected {
+	background-color:#333333;
+	color:white;
+	
+}
+
+.reserve-theater-kind-value-city > * {
+	cursor:pointer;
+}
+
+.reserve-time-data {
+    display:grid;
+    grid-template-rows:repeat(auto-fill, minmax(5%, auto));
+    text-align:center;
+    justify-items:center;
+
+}
+
+.reserve-time-data {
+    margin-bottom:10px;
+}
+
+
+.movie-date-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 2px;
+}
+
+.movie-week-of-day {
+    margin-left: 5px;
+    font-size: 10px;
+    width: 12px;
+    height: 22px;
+    line-height: 22px;
+}
+
+.movie-day {
+    text-align: center;
+    width: 34px;
+    height: 22px;
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.saturday {
+    color: #31597E;
+    font-weight: bold;
+}
+
+.sunday {
+    color: #AF2D2D;
+    font-weight: bold;
+}
+
+.movie-date-wrapper-active {
+    background-color: #333333;
+}
+
+.movie-date-wrapper-active>* {
+    color: white;
+}
+
+.movie-date-wrapper {
+    margin-bottom:10px;
+    width:40%;	
+}
+
+..movie-date-wrapper-active {
+    background-color: #333333;
+}
+
+.movie-date-wrapper-active>* {
+    color: white;
 }
