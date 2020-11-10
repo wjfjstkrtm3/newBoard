@@ -10,6 +10,7 @@ Servers/.settings/org.eclipse.wst.server.core.prefs
 # Created by https://www.toptal.com/developers/gitignore/api/java,windows
 # Edit at https://www.toptal.com/developers/gitignore?templates=java,windows
 *.properties
+*MANIFEST.MF
 ### Java ###
 # Compiled class file
 *.class
