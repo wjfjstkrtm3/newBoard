@@ -23,7 +23,7 @@ public class boardController {
 	private boardService service;
 
 /*	
-    // 게시판 목록 조회
+    // 寃뚯떆�뙋 紐⑸줉 議고쉶
 	@RequestMapping(value="/main", method=RequestMethod.GET)
 	public List<boardDTO> boardList(Model model) {
 		List<boardDTO> list = new ArrayList<boardDTO>();
@@ -41,25 +41,25 @@ public class boardController {
 	
 	*/
 	
-	// 게시판 목록 + 페이징(끝이 없는 페이징)
+	// 寃뚯떆�뙋 紐⑸줉 + �럹�씠吏�(�걹�씠 �뾾�뒗 �럹�씠吏�)
 	@RequestMapping(value="/main", method=RequestMethod.GET)
 	public List<boardDTO> listPage(@RequestParam(value="num", defaultValue = "0") int num, Model model) {
 			List<boardDTO> list = new ArrayList<boardDTO>();
 			Map<String, Integer> map = new HashMap<String, Integer>();
 			
 		try {
-			// 게시물 총 개수
+			// 寃뚯떆臾� 珥� 媛쒖닔
 			int count = service.count();
 			
-			// 한 페이지에 출력할 게시물 개수
+			// �븳 �럹�씠吏��뿉 異쒕젰�븷 寃뚯떆臾� 媛쒖닔
 			int postNum = 10;
 			
-			// 하단 페이징 번호
+			// �븯�떒 �럹�씠吏� 踰덊샇
 			int pageNum = (int)Math.ceil((double)count/postNum);
 			
-			// 페이지 번호에 따른 출력할 index구하기
-			// ex) 1페이지면 0
-			// ex) 2페이지면 10
+			// �럹�씠吏� 踰덊샇�뿉 �뵲瑜� 異쒕젰�븷 index援ы븯湲�
+			// ex) 1�럹�씠吏�硫� 0
+			// ex) 2�럹�씠吏�硫� 10
 			
 			int displayPost = (num-1) * postNum;
 			
