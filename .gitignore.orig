@@ -6,7 +6,20 @@ Servers/Tomcat v9.0 Server at localhost-config/context.xml
 Servers/Tomcat v9.0 Server at localhost-config/catalina.properties
 Servers/Tomcat v9.0 Server at localhost-config/catalina.policy
 Servers/.settings/org.eclipse.wst.server.core.prefs
-
+<<<<<<< HEAD
+Servers/Tomcat v9.0 Server at localhost (3)-config/web.xml
+Servers/Tomcat v9.0 Server at localhost (3)-config/tomcat-users.xml
+Servers/Tomcat v9.0 Server at localhost (3)-config/server.xml
+Servers/Tomcat v9.0 Server at localhost (3)-config/context.xml
+Servers/Tomcat v9.0 Server at localhost (3)-config/catalina.properties
+Servers/Tomcat v9.0 Server at localhost (3)-config/catalina.policy
+Servers/Tomcat v9.0 Server at localhost (2)-config/web.xml
+Servers/Tomcat v9.0 Server at localhost (2)-config/tomcat-users.xml
+Servers/Tomcat v9.0 Server at localhost (2)-config/server.xml
+Servers/Tomcat v9.0 Server at localhost (2)-config/context.xml
+Servers/Tomcat v9.0 Server at localhost (2)-config/catalina.properties
+Servers/Tomcat v9.0 Server at localhost (2)-config/catalina.policy
+=======
 
 # Created by https://www.toptal.com/developers/gitignore/api/java,windows
 # Edit at https://www.toptal.com/developers/gitignore?templates=java,windows
