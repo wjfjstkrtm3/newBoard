@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="boardMapper">
+
+
+  <!-- 게시물 목록 -->
+  <select id="list" resultType="com.remind.board.dto.BoardDto">
+  SELECT bno, title, writer, content, regDate, viewCnt
+  FROM board
+  </select>
+  
+  <!-- 총 게시물 수  -->
+  <select id="count" resultType="int">
+  SELECT count(bno) FROM board   
+  </select>
+  
+  <select id="listPage" resultType="com.remind.board.dto.BoardDto" parameterType="hashMap">
+  SELECT bno, title, writer, content, regDate, viewCnt
+  FROM board
+  ORDER BY bno desc
+  LIMIT #{displayPost}, #{postNum}
+  </select>
+  
+  
+  
+  
+  
+  
+</mapper>
