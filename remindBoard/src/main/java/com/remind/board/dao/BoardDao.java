@@ -15,4 +15,16 @@ public interface BoardDao {
 	
 	// 게시물 목록 + 페이징
 	public List<BoardDto> listPage(Map<String, Integer> map) throws Exception;
+	
+	// 게시물 조회
+	public BoardDto boardDetail(int bno) throws Exception;
+		
+	// 게시물 생성
+	public int boardWrite(BoardDto boardDto) throws Exception;	
+		
+	// 게시물 수정
+	public int boardUpdate(BoardDto boardDto) throws Exception;
+		
+	// 게시물 삭제
+	public int boardDelete(int bno) throws Exception;
 }

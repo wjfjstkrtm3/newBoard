@@ -1,11 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="path" value="${pageContext.request.contextPath}"/>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="${path}/resources/css/board/list.css">
 <style type="text/css">
 #currentNum {
 	font-weight: bold;
@@ -14,8 +17,92 @@
 
 </style>
 </head>
-<body>
+	
+	<div class="flex-container">
+	
+		<div class="top-container">
+			<div class="board-count-form">
+				<span class="board-count">
+					총 <span class="">${count}건</span>의 게시물
+				</span>
+			</div>
+			<div class="search-form">
+				<select class="search-title">
+					<option value="none">== 선택 ==</option>
+					<option value="title">제목</option>
+					<option value="content">내용</option>
+					<option value="title-content">제목 + 내용</option>
+					<option value="writer">글쓴이</option>
+					
+				
+				
+				</select>
+				<input type="text" class="text-box" id="text-box">
+				<input type="button" class="search-btn" value="검색">
+			
+			</div>
+			
+		
+		
+		</div>
+	
+		<div class="main-container">
+			
+				<div>번호</div>
+				<div>제목</div>
+				<div>작성자</div>
+				<div>작성일</div>
+				<div>조회수</div>
+			<c:forEach var="list" items="${list}">
+				<div class="board-bno"><span class="board-bno-text">${list.bno}</span></div>
+				<div class="board-title">
+				
+				<span class="board-title-text"><a href="/board/detail?bno=${list.bno}">${list.title}</a></span>
+				
+				</div>
+				<div class="board-writer"><span class="board-writer-text">${list.writer}</span></div>
+				<div class="board-regDate"><span class="board-regDate-text">${list.regDate}</span></div>
+				<div class="board-viewCnt"><span class="board-viewCnt-text">${list.viewCnt}</span></div>
+			
+			
+			</c:forEach>
+			
+			
+			
+		
+		
+		
+		</div>
+	
+		<div class="bottom-container">
+			
+		
+		
+		</div>
+	
+	
+	</div>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<body>
+<!-- 
 	<table>
 		<tr>
 			<th>번호</th>
@@ -53,7 +140,7 @@
 
 
 
-
+ -->
 
 
 

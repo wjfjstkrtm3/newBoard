@@ -16,6 +16,7 @@
   SELECT count(bno) FROM board   
   </select>
   
+  <!-- 게시물 목록 + 페이징 -->
   <select id="listPage" resultType="com.remind.board.dto.BoardDto" parameterType="hashMap">
   SELECT bno, title, writer, content, regDate, viewCnt
   FROM board
@@ -23,6 +24,35 @@
   LIMIT #{displayPost}, #{postNum}
   </select>
   
+  <!-- 게시물 조회 -->
+  <select id="boardDetail" parameterType="int" resultType="com.remind.board.dto.BoardDto">
+  SELECT bno, title, writer, content, regDate, viewCnt
+  FROM board
+  where bno = #{bno}
+  </select>
+    
+  <!-- 게시물 생성 -->
+  <insert id="boardWrite" parameterType="com.remind.board.dto.BoardDto">
+  INSERT INTO board(title, writer, content)
+  VALUES(#{title}, #{writer}, #{content})
+  </insert>
+  
+  
+  <!-- 게시물 수정 -->
+  <update id="boardUpdate" parameterType="hashMap">
+  UPDATE board
+  SET title = #{title},
+  	  content = #{content}
+  WHERE bno = #{bno}
+  </update>
+  
+  
+  <!-- 게시물 삭제 -->
+  <delete id="boardDelete" parameterType="int">
+  DELETE
+  FROM board
+  where bno = #{bno}
+  </delete>
   
   
   
