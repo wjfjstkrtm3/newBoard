@@ -38,6 +38,34 @@ public class BoardDaoImpl implements BoardDao {
 	public List<BoardDto> listPage(Map<String, Integer> map) throws Exception {
 		return sqlsession.selectList("boardMapper.listPage", map);
 	}
+
+	// 게시물 조회
+	@Override
+	public BoardDto boardDetail(int bno) throws Exception {
+		return sqlsession.selectOne("boardMapper.boardDetail", bno);
+		
+	}
+
+	// 게시물 생성
+	@Override
+	public int boardWrite(BoardDto boardDto) throws Exception {
+		return sqlsession.insert("boardMapper.boardWrite", boardDto);
+	}
+
+	// 게시물 수정
+	@Override
+	public int boardUpdate(BoardDto boardDto) throws Exception {
+		return sqlsession.update("boardMapper.boardUpdate", boardDto);
+	}
+
+	// 게시물 삭제
+	@Override
+	public int boardDelete(int bno) throws Exception {
+		System.out.println("bno2 : " + bno);
+		return sqlsession.delete("boardMapper.boardDelete", bno);
+		
+		
+	}
 	
 	
 

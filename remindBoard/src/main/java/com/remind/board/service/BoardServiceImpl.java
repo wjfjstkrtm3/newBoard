@@ -34,6 +34,34 @@ public class BoardServiceImpl implements BoardService {
 		return dao.listPage(map);
 	}
 
+	// 게시물 조회
+	@Override
+	public BoardDto boardDetail(int bno) throws Exception {
+		return dao.boardDetail(bno);
+		
+	}
+
+	// 게시물 생성
+	@Override
+	public int boardWrite(BoardDto boardDto) throws Exception {
+		return dao.boardWrite(boardDto);
+		
+	}
+	
+	// 게시물 수정
+	@Override
+	public int boardUpdate(BoardDto boardDto) throws Exception {
+		return dao.boardUpdate(boardDto);
+		
+	}
+
+	// 게시물 삭제
+	@Override
+	public int boardDelete(int bno) throws Exception {
+		return dao.boardDelete(bno);
+		
+	}
+
 	
 
 	
