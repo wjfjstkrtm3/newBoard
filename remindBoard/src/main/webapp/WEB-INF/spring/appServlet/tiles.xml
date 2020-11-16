@@ -8,7 +8,7 @@
        <put-attribute name="title" value="" />  
        <put-attribute name="header" value="/WEB-INF/views/tiles/template/header.jsp" />  
        <put-attribute name="menu" value="/WEB-INF/views/tiles/template/menu.jsp" />  
-       <put-attribute name="body" value="" />  
+       <put-attribute name="content" value="" />  
        <put-attribute name="footer" value="/WEB-INF/views/tiles/template/footer.jsp" /> 
        <put-attribute name="css" value="/resources/css/{1}/{2}.css"/>  
    </definition>  
@@ -21,7 +21,7 @@
 
    <definition name="/*/*" extends="default-template">
    		<put-attribute name="title" value="boardList"/>
-   		<put-attribute name="body" value="/WEB-INF/views/{1}/{2}.jsp"/>
+   		<put-attribute name="content" value="/WEB-INF/views/{1}/{2}.jsp"/>
    		
    		
    </definition>
