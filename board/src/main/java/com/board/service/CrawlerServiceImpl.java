@@ -17,7 +17,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @Service
 public class CrawlerServiceImpl implements CrawlerService{
 
-	
+	  
 	// 영화 크롤링
 	@Override
 	public List<MovieVO> getMovie() throws Exception {

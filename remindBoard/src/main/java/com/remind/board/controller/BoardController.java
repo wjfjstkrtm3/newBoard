@@ -41,7 +41,7 @@ public class BoardController {
 	
 	// 게시물 목록 + 페이징
 	@RequestMapping(value="/list", method=RequestMethod.GET)
-	public void listPage(Model model, @RequestParam(value="num", defaultValue="1") int num){
+	public String listPage(Model model, @RequestParam(value="num", defaultValue="1") int num){
 			List<BoardDto> listPage = new ArrayList<BoardDto>();
 			Map<String, Integer> map = null;
 		try {
@@ -75,7 +75,7 @@ public class BoardController {
 		}finally {
 			
 		}
-		
+		return "/board/list";
 	}
 	
 	// 게시물 조회
@@ -162,6 +162,7 @@ public class BoardController {
 		}
 		return "redirect:/board/list";
 	}
+	
 	
 	
 	
