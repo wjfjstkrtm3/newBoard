@@ -10,7 +10,7 @@ html, body {
     display:grid;
     width: 90%;
     height: 70%;
-    grid-template-rows: 10% 90%;
+    grid-template-rows: 10% 80% 10%;
     margin: 10px 0px 0px 60px;
 }
 
@@ -28,7 +28,7 @@ html, body {
 }
 
 .bottom-container {
-	display:grid;
+	display:flex;
 }
 
 .search-form {
@@ -61,4 +61,12 @@ html, body {
 
 .board-title-text:hover {
 	opacity:0.5;
+}
+
+.currentNum-bold {
+	font-weight:bold;
+}
+
+.page-number {
+	margin:auto;
 }

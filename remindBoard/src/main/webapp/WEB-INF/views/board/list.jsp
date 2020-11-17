@@ -75,8 +75,48 @@
 		</div>
 	
 		<div class="bottom-container">
+			<%-- 
+			<div class="page-number">
+				<c:forEach var="pageNum" begin="1" end="${pageNum}">
+					<c:choose>
+						<c:when test="${currentNum == pageNum}">
+							<a class="currentNum-bold" href="/board/list?num=${pageNum}">[${pageNum}]</a>
+						</c:when>
+						<c:otherwise>
+							<a href="/board/list?num=${pageNum}">[${pageNum}]</a>
+						</c:otherwise>					
+					
+					</c:choose>
+				</c:forEach>
+			</div> 
+			--%>
+			<div class="page-number">
+				<!-- 이전 버튼 -->
+				<c:if test="${prev}">
+					<a href="/board/list?num=${startPageNum-1}">[이전]</a>
+				</c:if>
+				
+				
+				<c:forEach var="pageNumber" begin="${startPageNum}" end="${endPageNum}">
+					<c:choose>
+						<c:when test="${pageNumber == currentNum}">					
+							<a class="currentNum-bold" href="/board/list?num=${pageNumber}">[${pageNumber}]</a>
+						</c:when>
+						<c:otherwise>
+							<a href="/board/list?num=${pageNumber}">[${pageNumber}]</a>
+						</c:otherwise>
+						
 			
-		
+					</c:choose>
+						
+				</c:forEach>
+			
+			
+				<c:if test="${next}">
+					<a href="/board/list?num=${endPageNum+1}">[다음]</a>
+				</c:if>			
+			
+			</div>
 		
 		</div>
 	

@@ -38,22 +38,8 @@
 	
 	
 	</div>
-	
 
 
-
-
-    <%-- <header id="header">
-        <tiles:insertAttribute name="header" />
-    </header>
-
-    <section id="sidemenu">
-        <tiles:insertAttribute name="menu" />
-    </section>
-	             
-    <section id="siteContent">
-        <tiles:insertAttribute name="body" />
-    </section> --%>
 
 </body>
 </html>
