@@ -92,12 +92,12 @@
 			--%>
 			<div class="page-number">
 				<!-- 이전 버튼 -->
-				<c:if test="${prev}">
-					<a href="/board/list?num=${startPageNum-1}">[이전]</a>
+				<c:if test="${page.prev}">
+					<a href="/board/list?num=${page.startPageNum-1}">[이전]</a>
 				</c:if>
 				
 				
-				<c:forEach var="pageNumber" begin="${startPageNum}" end="${endPageNum}">
+				<c:forEach var="pageNumber" begin="${page.startPageNum}" end="${page.endPageNum}">
 					<c:choose>
 						<c:when test="${pageNumber == currentNum}">					
 							<a class="currentNum-bold" href="/board/list?num=${pageNumber}">[${pageNumber}]</a>
@@ -105,15 +105,11 @@
 						<c:otherwise>
 							<a href="/board/list?num=${pageNumber}">[${pageNumber}]</a>
 						</c:otherwise>
-						
-			
 					</c:choose>
-						
 				</c:forEach>
-			
-			
-				<c:if test="${next}">
-					<a href="/board/list?num=${endPageNum+1}">[다음]</a>
+				<!-- 다음 버튼 -->
+				<c:if test="${page.next}">
+					<a href="/board/list?num=${page.endPageNum+1}">[다음]</a>
 				</c:if>			
 			
 			</div>

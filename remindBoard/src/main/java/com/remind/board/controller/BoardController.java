@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.remind.board.dto.BoardDto;
+import com.remind.board.dto.PageDto;
 import com.remind.board.service.BoardService;
 
 @Controller
@@ -46,6 +47,10 @@ public class BoardController {
 			List<BoardDto> listPage = new ArrayList<BoardDto>();
 			Map<String, Integer> map = null;
 		try {
+			// 페이지 클래스 분리
+			PageDto page = new PageDto(num, service.count());
+			
+			/*
 			// 게시물 총 개수
 			int count = service.count();
 			
@@ -64,11 +69,9 @@ public class BoardController {
 			
 			// 표시되는 페이지 번호 중 마지막 번호
 			int endPageNum = (int)Math.ceil((double)num / (double)pageNum_cnt) * pageNum_cnt;
-			System.out.println("endPageNum : " + endPageNum);
 			
 			// 표시되는 페이지 번호 중 첫번째 번호                      // 여기는 무조건 9
 			int startPageNum = endPageNum - (pageNum_cnt - 1); // 1, 11, 21, 31, 41 ..
-			System.out.println("startPageNum : " + startPageNum);
 			// int startPageNum = endPageNum - pageNum_cnt + 1; 위방법이나 아래방법 둘중에
 			
 			// -----------------------------------------------------------------------
@@ -81,7 +84,7 @@ public class BoardController {
 			if(endPageNum > endPageNum_tmp) {
 				endPageNum = endPageNum_tmp;
 			}
-			/*
+			---------------------------------------------------------------------------------------------------------
 			  만약 전체 게시물 수가 52개, 현재 페이지 번호가 3이라면..
 			 int endPageNum = Math.ceil(3 / 10) * 10 --> 10
 			 int endPageNum_cnt = Math.ceil(52 / 10) --> 6
@@ -94,32 +97,39 @@ public class BoardController {
 			 if(10 > 50) { --> false
 			 	endPageNum = endPageNum_cnt; 
 			 } --> endPageNum은 10페이지가됨
-			 */
-
-			boolean prev = (startPageNum == 1) ? false : true;
+			 
+			---------------------------------------------------------------------------------------------------------
+			 
+			boolean prev = (page.getStartPageNum() == 1) ? false : true;
 							// 시작페이지가 1이면 이전버튼이 없게 false return
-			boolean next = (endPageNum * pageNum_cnt) >= count ? false: true;
+			boolean next = (page.getEndPageNum() * page.getPageNum_cnt()) >= page.getCount() ? false: true;
 			// 10 * 10 >= 100(10페이지) --> false --> 총 게시물이 100개니까 10페이지
 			// next버튼 없음
 			// 10 * 10 >= 101(11페이지) --> true --> 총 게시물이 101개니까 11페이지
 			// next버튼 생김
 			
+			*/
 			
 			map = new HashMap<String, Integer>();
 			
-			map.put("displayPost", displayPost); // 페이지 번호에따른 limit 시작값
-			map.put("postNum", postNum); // 한 페이지에 보여줄 게시물 수  
+			map.put("displayPost", page.getDisplayPost()); // 페이지 번호에따른 limit 시작값
+			map.put("postNum", page.getPostNum()); // 한 페이지에 보여줄 게시물 수  
 			
 			listPage = service.listPage(map);
 			
 			model.addAttribute("list", listPage); // 게시물 목록
 			// model.addAttribute("pageNum", pageNum); // 하단 페이징 번호
 			model.addAttribute("currentNum", num); // 현재 페이지 번호
-			model.addAttribute("count", count); // 총 게시물 수 (몇건의 게시물 할때 사용)
-			model.addAttribute("startPageNum", startPageNum); // 표시되는 페이지 번호 중 첫번째 번호
-			model.addAttribute("endPageNum", endPageNum); // 표시되는 페이지 번호 충 마지막 번호
-			model.addAttribute("prev", prev); // 이전 버튼
-			model.addAttribute("next", next); // 다음 버튼
+			model.addAttribute("page", page);
+			
+			/*
+			PageDto 클래스 전체를 보내면 아래내용 생략가능
+			model.addAttribute("count", page.getCount()); // 총 게시물 수 (몇건의 게시물 할때 사용)
+			model.addAttribute("startPageNum", page.getStartPageNum()); // 표시되는 페이지 번호 중 첫번째 번호
+			model.addAttribute("endPageNum", page.getEndPageNum()); // 표시되는 페이지 번호 충 마지막 번호
+			model.addAttribute("prev", page.isPrev()); // 이전 버튼
+			model.addAttribute("next", page.isNext()); // 다음 버튼
+			*/
 		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {
