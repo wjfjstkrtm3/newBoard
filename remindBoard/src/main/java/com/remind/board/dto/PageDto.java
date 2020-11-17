@@ -57,8 +57,11 @@ public class PageDto {
 		// startPageNum = endPageNum - pageNum_cnt + 1;
 		
 		// 마지막 번호 조건 추가
-		endPageNum_tmp = (int)Math.ceil(count / pageNum_cnt);
+		endPageNum_tmp = (int)(Math.ceil((double)count / (double)pageNum_cnt));
 		
+		if(endPageNum > endPageNum_tmp) {
+			this.endPageNum = endPageNum_tmp;
+		}
 		// 이전 버튼
 		prev = (startPageNum ==1) ? false : true;
 		

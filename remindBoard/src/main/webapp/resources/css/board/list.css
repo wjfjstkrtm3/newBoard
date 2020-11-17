@@ -29,6 +29,7 @@ html, body {
 
 .bottom-container {
 	display:flex;
+	justify-content:center;
 }
 
 .search-form {
@@ -68,5 +69,16 @@ html, body {
 }
 
 .page-number {
-	margin:auto;
+	display: grid;
+	grid-template-columns: repeat(12, 34px);
+	margin-top:20px;
+	align-items: center;
+
 }
+
+.page-number * {
+	border:2px solid #EFEFEF;
+	padding:5px;
+	text-align:center;
+}
+

@@ -63,7 +63,7 @@ html, body {
 
 
 .header-container {
-	background-color:#1565C0;
+	background-color: #fb8500;
 	display:grid;
 	grid-template-columns: 10% 50% 30% 10%;
 }
@@ -145,11 +145,12 @@ html, body {
 }
 
 .main-content-menu-category {
-	background-color:#2D3E50;
+	background-color: #023047;
 	display:grid;
 	grid-template-rows:repeat(10, 10%);
-    align-items: center;
-    justify-items:center;
+	align-items: center;
+	justify-items:center;
+	border-right: 2px solid black;
 }
 
 .fa-user-circle {
@@ -170,6 +171,7 @@ html, body {
     grid-auto-rows:10%;
     align-items: center;
     justify-items:center;
+    background-color: #023047;
 }
 
 .main-content-menu-category >:nth-child(n+1) {

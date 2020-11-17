@@ -23,7 +23,7 @@
 		<div class="top-container">
 			<div class="board-count-form">
 				<span class="board-count">
-					총 <span class="">${count}건</span>의 게시물
+					총 <span class="">${page.count}건</span>의 게시물
 				</span>
 			</div>
 			<div class="search-form">
@@ -93,23 +93,23 @@
 			<div class="page-number">
 				<!-- 이전 버튼 -->
 				<c:if test="${page.prev}">
-					<a href="/board/list?num=${page.startPageNum-1}">[이전]</a>
+					<a href="/board/list?num=${page.startPageNum-1}">《</a>
 				</c:if>
 				
 				
 				<c:forEach var="pageNumber" begin="${page.startPageNum}" end="${page.endPageNum}">
 					<c:choose>
 						<c:when test="${pageNumber == currentNum}">					
-							<a class="currentNum-bold" href="/board/list?num=${pageNumber}">[${pageNumber}]</a>
+							<a class="currentNum-bold" href="/board/list?num=${pageNumber}">${pageNumber}</a>
 						</c:when>
 						<c:otherwise>
-							<a href="/board/list?num=${pageNumber}">[${pageNumber}]</a>
+							<a href="/board/list?num=${pageNumber}">${pageNumber}</a>
 						</c:otherwise>
 					</c:choose>
 				</c:forEach>
-				<!-- 다음 버튼 -->
+				<!-- 다음버튼 -->
 				<c:if test="${page.next}">
-					<a href="/board/list?num=${page.endPageNum+1}">[다음]</a>
+					<a href="/board/list?num=${page.endPageNum+1}">》</a>
 				</c:if>			
 			
 			</div>
