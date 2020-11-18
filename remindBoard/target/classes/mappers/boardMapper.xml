@@ -55,6 +55,38 @@
   </delete>
   
   <!-- 게시물 검색 -->
+  <select id="listPageSearch" parameterType="hashMap" resultType="com.remind.board.dto.BoardDto">
+  SELECT bno, title, writer, content, regDate, viewCnt
+  From board
+  
+   
+  <choose>
+<!--<when test="searchType eq 'title'.toStrig()" 와 동일함-->
+    <when test="searchType.equals('title')">
+	  where title like concat('%', #{title}, '%')
+		  <!-- concat 함수는 문자열을 합쳐주는 함수
+	 		 ex) where title like concat('%', '게시판', '%'); -> %게시판% 이렇게되는데 
+	 		  들어갈때는 문자열이니까 '%게시판%' 이렇게들어감
+	      -->
+    </when>
+    
+    <when test="searchType.equals('title')">
+	  where title content concat('%', #{content}, '%')
+    </when>
+    
+    <when test="searchType.equals('title_content')">
+      where title like concat('%', #{title}, '%') or
+            content like concat('%', #{content}, '%')    
+    </when>
+  
+  	<when test="searchType.equals('writer')">
+  	  where writer like concat('%' #{writer}, '%')
+  	</when>
+  </choose>
+  
+  
+  
+  </select>
   
   
   

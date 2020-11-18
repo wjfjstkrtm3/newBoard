@@ -129,6 +129,7 @@ public class BoardController {
 			model.addAttribute("prev", page.isPrev()); // 이전 버튼
 			model.addAttribute("next", page.isNext()); // 다음 버튼
 			*/
+			
 		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {
@@ -139,8 +140,10 @@ public class BoardController {
 	
 	
 	// 게시물 목록 + 페이징 + 검색
-		@RequestMapping(value="/list", method=RequestMethod.GET)
-		public String listPageSearch(Model model, @RequestParam(value="num", defaultValue="1") int num){
+		@RequestMapping(value="/listPageSearch", method=RequestMethod.GET)
+		public String listPageSearch(Model model, @RequestParam(value="num", defaultValue="1") int num,
+											      @RequestParam(value="searchType", defaultValue="") String searchType,
+											      @RequestParam(value="keyword", defaultValue="") String keyword){
 				List<BoardDto> listPage = new ArrayList<BoardDto>();
 				Map<String, Integer> map = null;
 			try {
@@ -159,14 +162,7 @@ public class BoardController {
 				model.addAttribute("currentNum", num); // 현재 페이지 번호
 				model.addAttribute("page", page);
 				
-				/*
-				PageDto 클래스 전체를 보내면 아래내용 생략가능
-				model.addAttribute("count", page.getCount()); // 총 게시물 수 (몇건의 게시물 할때 사용)
-				model.addAttribute("startPageNum", page.getStartPageNum()); // 표시되는 페이지 번호 중 첫번째 번호
-				model.addAttribute("endPageNum", page.getEndPageNum()); // 표시되는 페이지 번호 충 마지막 번호
-				model.addAttribute("prev", page.isPrev()); // 이전 버튼
-				model.addAttribute("next", page.isNext()); // 다음 버튼
-				*/
+				
 			}catch(Exception e) {
 				e.printStackTrace();
 			}finally {

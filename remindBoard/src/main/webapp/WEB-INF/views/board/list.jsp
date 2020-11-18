@@ -9,13 +9,17 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="${path}/resources/css/board/list.css">
-<style type="text/css">
-#currentNum {
-	font-weight: bold;
-}
+<script type="text/javascript">
+	$(document).ready(function() {
+				$(".submitBtn").click(callback);
 
+			function callback() {
+					alert("ㅎㅇㅎㅇ");
+				};
+		
+		});
 
-</style>
+</script>
 </head>
 	
 	<div class="flex-container">
@@ -119,7 +123,7 @@
 	
 	</div>
 
-
+<input type="button" class="submitBtn" value="테스트">
 
 
 
