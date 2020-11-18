@@ -54,6 +54,8 @@
   where bno = #{bno}
   </delete>
   
+  <!-- 게시물 검색 -->
+  
   
   
   

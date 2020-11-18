@@ -49,7 +49,6 @@ public class BoardController {
 		try {
 			// 페이지 클래스 분리
 			PageDto page = new PageDto(num, service.count());
-			
 			/*
 			// 게시물 총 개수
 			int count = service.count();
@@ -79,7 +78,7 @@ public class BoardController {
 			// 만약 게시물의 총 수로 인해서 endPageNum이 13일때는 14 ~ 20 페이지까지는 빈 페이지가 된다
 			// 그래서 아래 조건을 추가한다
 			
-			int endPageNum_tmp = (int)Math.ceil(count / pageNum_cnt); // 112 / 10 --> 12
+			int endPageNum_tmp = (int)(Math.ceil((double)count / (double)pageNum_cnt)); // 112 / 10 --> 12
 			
 			if(endPageNum > endPageNum_tmp) {
 				endPageNum = endPageNum_tmp;
@@ -100,9 +99,9 @@ public class BoardController {
 			 
 			---------------------------------------------------------------------------------------------------------
 			 
-			boolean prev = (page.getStartPageNum() == 1) ? false : true;
+			boolean prev = (startPageNum() == 1) ? false : true;
 							// 시작페이지가 1이면 이전버튼이 없게 false return
-			boolean next = (page.getEndPageNum() * page.getPageNum_cnt()) >= page.getCount() ? false: true;
+			boolean next = (endPageNum() * pageNum_cnt()) >= count() ? false: true;
 			// 10 * 10 >= 100(10페이지) --> false --> 총 게시물이 100개니까 10페이지
 			// next버튼 없음
 			// 10 * 10 >= 101(11페이지) --> true --> 총 게시물이 101개니까 11페이지
@@ -138,6 +137,44 @@ public class BoardController {
 		return "/board/list";
 	}
 	
+	
+	// 게시물 목록 + 페이징 + 검색
+		@RequestMapping(value="/list", method=RequestMethod.GET)
+		public String listPageSearch(Model model, @RequestParam(value="num", defaultValue="1") int num){
+				List<BoardDto> listPage = new ArrayList<BoardDto>();
+				Map<String, Integer> map = null;
+			try {
+				// 페이지 클래스 분리
+				PageDto page = new PageDto(num, service.count());
+				
+				map = new HashMap<String, Integer>();
+				
+				map.put("displayPost", page.getDisplayPost()); // 페이지 번호에따른 limit 시작값
+				map.put("postNum", page.getPostNum()); // 한 페이지에 보여줄 게시물 수  
+				
+				listPage = service.listPage(map);
+				
+				model.addAttribute("list", listPage); // 게시물 목록
+				// model.addAttribute("pageNum", pageNum); // 하단 페이징 번호
+				model.addAttribute("currentNum", num); // 현재 페이지 번호
+				model.addAttribute("page", page);
+				
+				/*
+				PageDto 클래스 전체를 보내면 아래내용 생략가능
+				model.addAttribute("count", page.getCount()); // 총 게시물 수 (몇건의 게시물 할때 사용)
+				model.addAttribute("startPageNum", page.getStartPageNum()); // 표시되는 페이지 번호 중 첫번째 번호
+				model.addAttribute("endPageNum", page.getEndPageNum()); // 표시되는 페이지 번호 충 마지막 번호
+				model.addAttribute("prev", page.isPrev()); // 이전 버튼
+				model.addAttribute("next", page.isNext()); // 다음 버튼
+				*/
+			}catch(Exception e) {
+				e.printStackTrace();
+			}finally {
+				
+			}
+			return "/board/list";
+		}
+		
 
 	
 	
