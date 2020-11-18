@@ -8,12 +8,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="${path}/resources/css/board/list.css">
+<%-- <link rel="stylesheet" href="${path}/resources/css/board/list.css"> --%>
+<%-- <script type="text/javascript" src="${path}/resources/js/board/list.js"></script> --%>
 <script type="text/javascript">
-	$(document).ready(function() {
-	
-			
-		});
+
 
 </script>
 </head>
