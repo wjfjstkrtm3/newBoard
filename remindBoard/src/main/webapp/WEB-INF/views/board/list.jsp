@@ -11,12 +11,8 @@
 <link rel="stylesheet" href="${path}/resources/css/board/list.css">
 <script type="text/javascript">
 	$(document).ready(function() {
-				$(".submitBtn").click(callback);
-
-			function callback() {
-					alert("ㅎㅇㅎㅇ");
-				};
-		
+	
+			
 		});
 
 </script>
