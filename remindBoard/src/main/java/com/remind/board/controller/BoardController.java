@@ -144,23 +144,40 @@ public class BoardController {
 		public String listPageSearch(Model model, @RequestParam(value="num", defaultValue="1") int num,
 											      @RequestParam(value="searchType", defaultValue="") String searchType,
 											      @RequestParam(value="keyword", defaultValue="") String keyword){
-				List<BoardDto> listPage = new ArrayList<BoardDto>();
-				Map<String, Integer> map = null;
+			
+				List<BoardDto> listPageSearch = new ArrayList<BoardDto>();
+				Map<String, Object> map = null;
+				
 			try {
 				// 페이지 클래스 분리
-				PageDto page = new PageDto(num, service.count());
+				// PageDto page = new PageDto(num, service.count());
+				PageDto page = new PageDto(num, service.searchCount(searchType, keyword));
 				
-				map = new HashMap<String, Integer>();
+				// 검색 타입과 검색어
+				// page.setSearchWord(searchType, keyword); // 문자열 return
+				page.setSearchType(searchType);
+				page.setKeyword(keyword);
+				
+				map = new HashMap<String, Object>();
 				
 				map.put("displayPost", page.getDisplayPost()); // 페이지 번호에따른 limit 시작값
 				map.put("postNum", page.getPostNum()); // 한 페이지에 보여줄 게시물 수  
 				
-				listPage = service.listPage(map);
+				map.put("searchType", searchType);
+				map.put("keyword", keyword);
 				
-				model.addAttribute("list", listPage); // 게시물 목록
+				// listPage = service.listPage(map);
+				listPageSearch = service.listPageSearch(map);
+				
+				model.addAttribute("list", listPageSearch); // 게시물 목록
 				// model.addAttribute("pageNum", pageNum); // 하단 페이징 번호
 				model.addAttribute("currentNum", num); // 현재 페이지 번호
 				model.addAttribute("page", page);
+				
+				
+				
+				// model.addAttribute("searchType", searchType);
+				// model.addAttribute("keyword", keyword);
 				
 				
 			}catch(Exception e) {

@@ -70,6 +70,61 @@ public class PageDto {
 		
 	}
 	
+	
+	/*
+	// 검색 타입과 검색어
+	// Controller에서 searchType, keyword PageDto타입에 넣어두기전
+	private String searchWord;
+	
+	public void setSearchWord(String searchType, String keyword) {
+		if(searchType == "" || keyword =="") {
+			searchWord = "";
+		} else {
+			searchWord = "&searchType=" + searchType + "&keyword=" + keyword;
+		}
+	}
+	
+	public String getSearchWord() {
+		return searchWord;
+	}
+
+	*/
+	
+	// 검색 타입과 검색어 
+	// 1페이지는 검색적용이 되지만, 2페이지부터는 url이 /board/listPageSearch?num=2 이렇게 밖에안되기때문에 검색조건이 적용안된 게시물이나옴
+	// 그래서 검색이 적용된 게시물을 불러오기위해서 String으로 url뒤에 붙여줄거임
+	
+	public String getSearchWord() {
+		if(searchType.equals("") || keyword == "") {
+			return "";
+		} else {
+			return "&searchType=" + searchType + "&keyword=" + keyword;
+		}
+	}
+	
+	private String searchType;
+	private String keyword;
+	
+	
+	public void setSearchType(String searchType) {
+		this.searchType = searchType;
+	}
+	
+	public String getSearchType() {
+		return searchType;
+	}
+	
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
+	
+	public String getKeyword() {
+		return keyword;
+	}
+	
+	
+	
+	
 	public int getNum() {
 		return num;
 	}

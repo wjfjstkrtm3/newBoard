@@ -11,13 +11,33 @@
 <%-- <link rel="stylesheet" href="${path}/resources/css/board/list.css"> --%>
 <%-- <script type="text/javascript" src="${path}/resources/js/board/list.js"></script> --%>
 <script type="text/javascript">
+	$(document).ready(function() {
+			$(".search-btn").on("click", function() {
+						var searchType = $("select[name=search-title]").val();
+						var keyword = $(".text-box").val();
+						var searchData = {
+									"searchType":searchType,
+									"keyword":keyword
+								};
+						console.log(searchData);
+					location.href="/board/listPageSearch?num=1&searchType=" + searchType + "&keyword=" + keyword;	
+						
+				});
+
+		
+		});
+
+
+
+
 
 
 </script>
 </head>
-	
+<body>
 	<div class="flex-container">
 	
+		<!-- 게시물 검색 -->	
 		<div class="top-container">
 			<div class="board-count-form">
 				<span class="board-count">
@@ -25,17 +45,17 @@
 				</span>
 			</div>
 			<div class="search-form">
-				<select class="search-title">
+				<select class="search-title" name="search-title">
 					<option value="none">== 선택 ==</option>
-					<option value="title">제목</option>
-					<option value="content">내용</option>
-					<option value="title-content">제목 + 내용</option>
-					<option value="writer">글쓴이</option>
-					
-				
-				
+											<!-- 검색했을때 검색조건이 남게 -->
+					<option value="title" <c:if test="${page.searchType == 'title'}">selected</c:if>>제목</option>
+					<option value="content" <c:if test="${page.searchType == 'content'}">selected</c:if>>내용</option>
+					<option value="title-content" <c:if test="${page.searchType == 'title-content'}">selected</c:if>>제목 + 내용</option>
+					<option value="writer" <c:if test="${page.searchType == 'writer'}">selected</c:if>>글쓴이</option>
 				</select>
-				<input type="text" class="text-box" id="text-box">
+				
+																		<!-- 검색했을때 검색어가 남게 -->
+				<input type="text" class="text-box" id="text-box" value="${page.keyword}">
 				<input type="button" class="search-btn" value="검색">
 			
 			</div>
@@ -44,6 +64,7 @@
 		
 		</div>
 	
+		<!-- 게시물 리스트 -->
 		<div class="main-container">
 			
 				<div>번호</div>
@@ -64,14 +85,12 @@
 			
 			
 			</c:forEach>
-			
-			
-			
-		
 		
 		
 		</div>
 	
+	
+		<!-- 페이징 부분 -->
 		<div class="bottom-container">
 			<%-- 
 			<div class="page-number">
@@ -91,23 +110,23 @@
 			<div class="page-number">
 				<!-- 이전 버튼 -->
 				<c:if test="${page.prev}">
-					<a href="/board/list?num=${page.startPageNum-1}">《</a>
+					<a href="/board/listPageSearch?num=${page.startPageNum-1}c">《</a>
 				</c:if>
 				
 				
 				<c:forEach var="pageNumber" begin="${page.startPageNum}" end="${page.endPageNum}">
 					<c:choose>
 						<c:when test="${pageNumber == currentNum}">					
-							<a class="currentNum-bold" href="/board/list?num=${pageNumber}">${pageNumber}</a>
+							<a class="currentNum-bold" href="/board/listPageSearch?num=${pageNumber}${page.searchWord}">${pageNumber}</a>
 						</c:when>
 						<c:otherwise>
-							<a href="/board/list?num=${pageNumber}">${pageNumber}</a>
+							<a href="/board/listPageSearch?num=${pageNumber}${page.searchWord}">${pageNumber}</a>
 						</c:otherwise>
 					</c:choose>
 				</c:forEach>
 				<!-- 다음버튼 -->
 				<c:if test="${page.next}">
-					<a href="/board/list?num=${page.endPageNum+1}">》</a>
+					<a href="/board/listPageSearch?num=${page.endPageNum+1}${page.searchWord}">》</a>
 				</c:if>			
 			
 			</div>
@@ -117,25 +136,10 @@
 	
 	</div>
 
-<input type="button" class="submitBtn" value="테스트">
+
+</body>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<body>
 <!-- 
 	<table>
 		<tr>
@@ -180,5 +184,5 @@
 
 
 
-</body>
+
 </html>

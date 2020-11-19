@@ -17,7 +17,7 @@
 			<div class="">&nbsp</div>
 			<div class="normal-board">
 			<span class="etc1-board-text">
-			<a href="/board/list">일반 게시판</a>
+			<a href="/board/listPageSearch">일반 게시판</a>
 			</span>
 			&nbsp&nbsp&nbsp|</div>
 			<div class="video-board"><span class="video-board-text">동영상 게시판</span>&nbsp&nbsp&nbsp|</div>

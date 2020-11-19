@@ -13,8 +13,14 @@ public interface BoardDao {
 	// 총 게시물 수
 	public int count() throws Exception;
 	
+	// 게시물 총 개수 + 검색 적용
+	public int searchCount(String searchType, String keyword) throws Exception;
+	
 	// 게시물 목록 + 페이징
 	public List<BoardDto> listPage(Map<String, Integer> map) throws Exception;
+	
+	// 게시물 목록 + 페이징 + 검색
+	public List<BoardDto> listPageSearch(Map<String, Object> map) throws Exception;
 	
 	// 게시물 조회
 	public BoardDto boardDetail(int bno) throws Exception;

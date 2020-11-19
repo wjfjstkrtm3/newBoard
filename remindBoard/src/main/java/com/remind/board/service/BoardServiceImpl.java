@@ -28,10 +28,22 @@ public class BoardServiceImpl implements BoardService {
 		return dao.count();
 	}
 
+	// 게시물 총 개수 + 검색 적용
+	@Override
+	public int searchCount(String searchType, String keyword) throws Exception {
+		return dao.searchCount(searchType, keyword);
+	}
+
 	// 게시물 목록 + 페이징
 	@Override
 	public List<BoardDto> listPage(Map<String, Integer> map) throws Exception {
 		return dao.listPage(map);
+	}
+
+	// 게시물 목록 + 페이징 + 검색
+	@Override
+	public List<BoardDto> listPageSearch(Map<String, Object> map) throws Exception {
+		return dao.listPageSearch(map);
 	}
 
 	// 게시물 조회

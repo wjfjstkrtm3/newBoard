@@ -22,9 +22,9 @@ html, body {
 
 .main-container {
     display:grid;
-    grid-template-rows: repeat(11, auto);
-    grid-template-columns: 10% 40% 20% 20% 10%;  
-    border:2px solid #EFEFEF;
+    grid-template-rows: repeat(11, 9%);
+    grid-template-columns: 10% 40% 20% 20% 10%;
+    /* border:2px solid #EFEFEF; */
 }
 
 .bottom-container {
@@ -37,7 +37,7 @@ html, body {
 }
 
 .main-container > * {
-    border:1px solid #EFEFEF;	
+    border: 1px solid #EFEFEF;
 }
 
 .main-container >:nth-child(-n+5) {
@@ -45,9 +45,16 @@ html, body {
 	text-align:center;
 }
 
-.board-bno, .board-writer, .board-viewCnt, .board-regDate {
-	text-align:center;
+.board-bno, .board-writer, .board-viewCnt, .board-regDate, .board-title{
+	display:flex;
 }
+
+.board-bno, .board-writer, .board-viewCnt, .board-regDate, .board-title > span{
+	justify-content:center;
+	align-items:center;
+}
+
+
 
 .board-title-text {
 	margin:10px;

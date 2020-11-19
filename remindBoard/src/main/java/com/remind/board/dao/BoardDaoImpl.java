@@ -1,5 +1,6 @@
 package com.remind.board.dao;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -20,7 +21,7 @@ public class BoardDaoImpl implements BoardDao {
 		this.sqlsession = sqlsseion;
 	}
 	
-	
+	 
 	// 게시물 목록
 	@Override
 	public List<BoardDto> list() throws Exception {
@@ -32,12 +33,30 @@ public class BoardDaoImpl implements BoardDao {
 	public int count() throws Exception {
 		return sqlsession.selectOne("boardMapper.count");
 	}
+	
+	// 게시물 총 개수 + 검색 적용
+	@Override
+	public int searchCount(String searchType, String keyword) throws Exception {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("searchType", searchType);
+		map.put("keyword", keyword);
+		return sqlsession.selectOne("boardMapper.searchCount", map);
+	}
+
 
 	// 게시물 목록 + 페이징
 	@Override
 	public List<BoardDto> listPage(Map<String, Integer> map) throws Exception {
 		return sqlsession.selectList("boardMapper.listPage", map);
 	}
+
+	
+	// 게시물 목록 + 페이징 + 검색
+	@Override
+	public List<BoardDto> listPageSearch(Map<String, Object> map) throws Exception {
+		return sqlsession.selectList("boardMapper.listPageSearch", map);
+	}
+
 
 	// 게시물 조회
 	@Override
@@ -61,11 +80,10 @@ public class BoardDaoImpl implements BoardDao {
 	// 게시물 삭제
 	@Override
 	public int boardDelete(int bno) throws Exception {
-		System.out.println("bno2 : " + bno);
 		return sqlsession.delete("boardMapper.boardDelete", bno);
-		
-		
 	}
+	
+	
 	
 	
 
