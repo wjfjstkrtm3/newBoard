@@ -3,6 +3,8 @@ package com.remind.board.service;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+
 import com.remind.board.dto.BoardDto;
 
 public interface BoardService {
@@ -26,7 +28,7 @@ public interface BoardService {
 	public BoardDto boardDetail(int bno) throws Exception;
 	
 	// 게시물 생성
-	public int boardWrite(BoardDto boardDto) throws Exception;	
+	public void boardWrite(BoardDto boardDto, MultipartHttpServletRequest request) throws Exception;	
 	
 	// 게시물 수정
 	public int boardUpdate(BoardDto boardDto) throws Exception;

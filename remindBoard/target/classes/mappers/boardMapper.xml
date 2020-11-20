@@ -33,6 +33,14 @@
     
   <!-- 게시물 생성 -->
   <insert id="boardWrite" parameterType="com.remind.board.dto.BoardDto">
+  	<!-- 
+  		resultType : 반환되는 타입 
+  	    keyProperty : 아래 구문에서 select의 return값을 bno에 set 
+  	    order : insert구문하기 전에 실행 
+  	-->
+  	<selectKey resultType="int" keyProperty="bno" order="BEFORE">
+  		SELECT max(bno)+1 FROM board
+  	</selectKey>
   INSERT INTO board(title, writer, content)
   VALUES(#{title}, #{writer}, #{content})
   </insert>
@@ -112,6 +120,12 @@
   	</choose>
   </select>
   
+  
+  <!-- 첨부파일 업로드  -->
+  <insert id="insertFile" parameterType="hashMap">
+  		INSERT into file(bno, org_file_name, stored_file_name, file_size)
+  		VALUES (#{bno}, #{org_file_name}, #{stored_file_name}, #{file_size})
+  </insert>
   
   
 </mapper>

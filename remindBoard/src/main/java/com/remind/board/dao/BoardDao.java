@@ -33,4 +33,7 @@ public interface BoardDao {
 		
 	// 게시물 삭제
 	public int boardDelete(int bno) throws Exception;
+	
+	// 첨부파일 업로드
+	public int insertFile(Map<String, Object> map) throws Exception;
 }

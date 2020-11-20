@@ -82,8 +82,12 @@ public class BoardDaoImpl implements BoardDao {
 	public int boardDelete(int bno) throws Exception {
 		return sqlsession.delete("boardMapper.boardDelete", bno);
 	}
-	
-	
+
+	// 첨부파일 업로드
+	@Override
+	public int insertFile(Map<String, Object> map) throws Exception {
+		return sqlsession.insert("boardMapper.insertFile", map);
+	}
 	
 	
 

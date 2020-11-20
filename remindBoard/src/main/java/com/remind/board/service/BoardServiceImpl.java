@@ -5,9 +5,11 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.remind.board.dao.BoardDao;
 import com.remind.board.dto.BoardDto;
+import com.remind.board.utils.FileUtils;
 
 
 @Service
@@ -15,6 +17,9 @@ public class BoardServiceImpl implements BoardService {
 
 	@Autowired
 	private BoardDao dao;
+	
+	@Autowired
+	private FileUtils fileUtils;
 	
 	// 게시물 목록
 	@Override
@@ -50,13 +55,20 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public BoardDto boardDetail(int bno) throws Exception {
 		return dao.boardDetail(bno);
-		
 	}
 
 	// 게시물 생성
 	@Override
-	public int boardWrite(BoardDto boardDto) throws Exception {
-		return dao.boardWrite(boardDto);
+	public void boardWrite(BoardDto boardDto, MultipartHttpServletRequest request) throws Exception {
+		dao.boardWrite(boardDto);
+		List<Map<String, Object>> list = fileUtils.parseInsertFileInfo(boardDto, request);
+		
+		int size = list.size();
+		
+		for(int i = 0; i < size; i++) {
+			dao.insertFile(list.get(i));
+		}
+		
 		
 	}
 	
@@ -64,7 +76,6 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public int boardUpdate(BoardDto boardDto) throws Exception {
 		return dao.boardUpdate(boardDto);
-		
 	}
 
 	// 게시물 삭제

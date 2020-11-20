@@ -5,12 +5,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.remind.board.dto.BoardDto;
 import com.remind.board.dto.PageDto;
@@ -216,11 +219,10 @@ public class BoardController {
 	
 	// 게시물 생성 (Back)
 	@RequestMapping(value="/write", method=RequestMethod.POST)
-	public String boardWrite(Model model, BoardDto boardDto) {
-		int result = 0;
+	public String boardWrite(Model model, BoardDto boardDto, MultipartHttpServletRequest request) {
 		try {
 			boardDto.setWriter("스프링 시큐리티 추가해야함..");
-			result = service.boardWrite(boardDto);
+			service.boardWrite(boardDto, request);
 			
 			
 			
@@ -229,7 +231,7 @@ public class BoardController {
 		}finally {
 			
 		}
-		return "redirect:/board/list";
+		return "redirect:/board/listPageSearch";
 	}
 	
 	// 게시물 수정 (View)
