@@ -57,6 +57,7 @@ public class FileUtils {
 			file.mkdir();
 		}
 		
+		
 		while(iterator.hasNext()) {
 			// request.getFile() return -> String
 			// 위에서 name의 값을 확실히 알고있다면 request.getFileNames()가 아니라 request.getFile을 쓰기도하지만
@@ -88,7 +89,7 @@ public class FileUtils {
 			storedFileName = Etc.getRandomString() + originalFileExtension;
 			
 			// File(String filePath);
-			// filePath에 해당되는 파일의 File 객체를 생성
+			// filePath에 해당되는 파일의 File 객체를 생성 (껍데기 생성) (디렉터리 생성)
 			// D:\\바탕 화면\\JavaAll\\file\\test.txt 이러한 객체를 생성
 			file = new File(filePath + storedFileName);
 			
