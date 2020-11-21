@@ -25,14 +25,18 @@
 					location.href="/board/listPageSearch?num=1&searchType=" + searchType + "&keyword=" + keyword;	
 						
 				});
-
-		
+			$(".board-write-btn").on("click", function() {
+				location.href="/board/write";
+				});
 		});
 
 
 </script>
 </head>
 <body>
+	<div class="board-category">
+		일반게시판
+	</div>
 	<div class="flex-container">
 	
 		<!-- 게시물 검색 -->	
@@ -128,6 +132,8 @@
 				</c:if>			
 			
 			</div>
+				<input type="button" class="board-write-btn" value="글쓰기">
+		
 		
 		</div>
 		

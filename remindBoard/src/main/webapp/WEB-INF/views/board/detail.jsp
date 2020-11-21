@@ -21,6 +21,11 @@
 </head>
 <body>
 <c:set var="board" value="${boardDto}"/>
+	<div class="boardDetail-container">
+			
+	
+	
+
 
 ${board.bno}
 ${board.title}
@@ -36,15 +41,10 @@ ${board.viewCnt}
 
 </c:forEach>
 
-<!--  
-<form action="#" type="GET">
-	<input type="hidden" id="file_no" value="">
 
-</form>
--->
 <a href="/board/delete?bno=${board.bno}">삭제</a> 
 <a href="/board/update?bno=${board.bno}">수정</a> 
 
-
+</div>
 </body>
 </html>

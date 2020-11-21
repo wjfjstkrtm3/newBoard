@@ -30,6 +30,7 @@ html, body {
 .bottom-container {
 	display:flex;
 	justify-content:center;
+	position: relative;
 }
 
 .search-form {
@@ -45,6 +46,9 @@ html, body {
 .main-container >:nth-child(-n+5) {
 	font-weight:bold;
 	text-align:center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .board-bno, .board-writer, .board-viewCnt, .board-regDate, .board-title{
@@ -119,5 +123,20 @@ input.text-box {
 	bottom: 1px;
 
 }
+.board-write-btn {
+	position:absolute;
+	top:20px;
+	height:30px;
+	right:0px;
+    width:100px;
+    background-color:#fb8500;
+    color:white;
+    border:none;
+    border-radius:5px;
+}
 
 
+.board-category {
+	font-size:40px;
+	margin:20px 0 0 30px;
+}

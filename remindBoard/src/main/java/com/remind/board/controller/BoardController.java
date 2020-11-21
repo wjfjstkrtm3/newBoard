@@ -294,7 +294,7 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value="/fileDown", method=RequestMethod.GET)
-	public String FileDown(HttpServletResponse response, @RequestParam(value="file_no") int file_no ) {
+	public void FileDown(HttpServletResponse response, @RequestParam(value="file_no") int file_no ) {
 			String originalFileName = "";
 			String storedFileName = "";
 		
@@ -313,7 +313,7 @@ public class BoardController {
 			// 출력 스트림으로부터 주어진 바이트 배열 b의 모든 바이트를 보낸다
 			response.getOutputStream().write(fileByte);
 			
-			// 버퍼에 잔류하는 모든 바이트를 출력한다
+			// f버퍼에 잔류하는 모든 바이트를 출력한다
 			response.getOutputStream().flush();
 			
 			// 사용한 시스템 자원을 반납하고 출력 스트림을 닫는다
@@ -325,7 +325,6 @@ public class BoardController {
 			e.printStackTrace();
 		}
 		
-		return "/board/detail";
 		
 	}
 	

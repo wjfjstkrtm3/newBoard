@@ -134,6 +134,7 @@
   		FROM file
   		WHERE bno = #{bno}
   		  AND del_dv = 'N'
+  		ORDER BY file_no desc
   </select>
   
   <!-- 첨부파일   다운 -->
@@ -143,5 +144,12 @@
   		WHERE file_no = #{file_no}
   </select>  
   
+  <!-- 첨부파일 수정 -->
+  <update id="updateFile" parameterType="hashMap">
+  		UPDATE file
+  		SET del_dv = 'Y'
+  		WHERE file_no = #{file_no}
+  </update>
   
+ 
 </mapper>
