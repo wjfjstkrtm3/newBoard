@@ -127,5 +127,21 @@
   		VALUES (#{bno}, #{org_file_name}, #{stored_file_name}, #{file_size})
   </insert>
   
+  <!-- 첨부파일 조회 -->
+  <select id="selectFileList" parameterType="int" resultType="hashMap">
+  		SELECT file_no, org_file_name, 
+  		       ROUND(file_size/1024, 1) as file_size
+  		FROM file
+  		WHERE bno = #{bno}
+  		  AND del_dv = 'N'
+  </select>
+  
+  <!-- 첨부파일   다운 -->
+  <select id="selectFileInfo" parameterType="int" resultType="hashMap">
+  		SELECT org_file_name, stored_file_name
+  		FROM file
+  		WHERE file_no = #{file_no}
+  </select>  
+  
   
 </mapper>

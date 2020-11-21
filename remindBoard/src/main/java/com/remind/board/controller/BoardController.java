@@ -1,12 +1,15 @@
 package com.remind.board.controller;
 
+import java.io.File;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -149,6 +152,7 @@ public class BoardController {
 											      @RequestParam(value="keyword", defaultValue="") String keyword){
 			
 				List<BoardDto> listPageSearch = new ArrayList<BoardDto>();
+				
 				Map<String, Object> map = null;
 				
 			try {
@@ -171,7 +175,6 @@ public class BoardController {
 				
 				// listPage = service.listPage(map);
 				listPageSearch = service.listPageSearch(map);
-				
 				model.addAttribute("list", listPageSearch); // 게시물 목록
 				// model.addAttribute("pageNum", pageNum); // 하단 페이징 번호
 				model.addAttribute("currentNum", num); // 현재 페이지 번호
@@ -197,9 +200,21 @@ public class BoardController {
 	// 게시물 조회
 	@RequestMapping(value="/detail", method=RequestMethod.GET)
 	public String boarDetail(Model model, @RequestParam(value="bno") int bno) {
+		
+		List<Map<String, Object>> selectFileList = null;
+		
+		
+		
 		try {
 			BoardDto boardDto = service.boardDetail(bno);
 			model.addAttribute("boardDto", boardDto);
+			
+			// 첨부파일 조회
+			selectFileList = service.selectFileList(bno);
+			model.addAttribute("selectFileList", selectFileList);
+			
+			
+			
 		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {
@@ -278,7 +293,41 @@ public class BoardController {
 		return "redirect:/board/list";
 	}
 	
-	
+	@RequestMapping(value="/fileDown", method=RequestMethod.GET)
+	public String FileDown(HttpServletResponse response, @RequestParam(value="file_no") int file_no ) {
+			String originalFileName = "";
+			String storedFileName = "";
+		
+		try {
+			Map<String, Object> resultMap = service.selectFileInfo(file_no);
+			originalFileName = (String)resultMap.get("org_file_name");
+			storedFileName = (String)resultMap.get("stored_file_name");
+			
+			// 파일을 저장했던 위치에서 첨부파일을 읽어 byte[]형식으로 변환한다
+			byte fileByte[] = FileUtils.readFileToByteArray(new File("D:\\바탕 화면\\JavaAll\\file\\" + storedFileName));
+			
+			response.setContentType("application/octet-stream");
+			response.setContentLength(fileByte.length);
+			response.setHeader("Content-Disposition", "attachment; fileName=\"" + URLEncoder.encode(originalFileName, "UTF-8") + "\";");
+			
+			// 출력 스트림으로부터 주어진 바이트 배열 b의 모든 바이트를 보낸다
+			response.getOutputStream().write(fileByte);
+			
+			// 버퍼에 잔류하는 모든 바이트를 출력한다
+			response.getOutputStream().flush();
+			
+			// 사용한 시스템 자원을 반납하고 출력 스트림을 닫는다
+			response.getOutputStream().close();
+			
+			
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return "/board/detail";
+		
+	}
 	
 	
 }

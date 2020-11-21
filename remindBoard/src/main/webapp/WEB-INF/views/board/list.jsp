@@ -12,6 +12,8 @@
 <%-- <script type="text/javascript" src="${path}/resources/js/board/list.js"></script> --%>
 <script type="text/javascript">
 	$(document).ready(function() {
+
+			/* 게시물 검색 .. */
 			$(".search-btn").on("click", function() {
 						var searchType = $("select[name=search-title]").val();
 						var keyword = $(".text-box").val();
@@ -26,10 +28,6 @@
 
 		
 		});
-
-
-
-
 
 
 </script>

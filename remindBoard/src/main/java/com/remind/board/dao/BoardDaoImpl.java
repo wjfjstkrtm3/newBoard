@@ -88,6 +88,21 @@ public class BoardDaoImpl implements BoardDao {
 	public int insertFile(Map<String, Object> map) throws Exception {
 		return sqlsession.insert("boardMapper.insertFile", map);
 	}
+
+	// 첨부파일 조회
+	@Override
+	public List<Map<String, Object>> selectFileList(int bno) throws Exception {
+		return sqlsession.selectList("boardMapper.selectFileList", bno);
+	}
+
+	// 첨부파일 다운
+	@Override
+	public Map<String, Object> selectFileInfo(int file_no) throws Exception {
+		return sqlsession.selectOne("boardMapper.selectFileInfo", file_no);
+	}
+	
+	
+	
 	
 	
 

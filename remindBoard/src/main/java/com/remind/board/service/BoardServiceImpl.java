@@ -61,13 +61,17 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public void boardWrite(BoardDto boardDto, MultipartHttpServletRequest request) throws Exception {
 		dao.boardWrite(boardDto);
-		List<Map<String, Object>> list = fileUtils.parseInsertFileInfo(boardDto, request);
 		
-		int size = list.size();
-		
-		for(int i = 0; i < size; i++) {
-			dao.insertFile(list.get(i));
+		if(request != null) {
+			List<Map<String, Object>> list = fileUtils.parseInsertFileInfo(boardDto, request);
+			
+			int size = list.size();
+			
+			for(int i = 0; i < size; i++) {
+				dao.insertFile(list.get(i));
+			}
 		}
+		
 		
 		
 	}
@@ -85,6 +89,19 @@ public class BoardServiceImpl implements BoardService {
 		
 	}
 
+	// 첨부파일 조회
+	@Override
+	public List<Map<String, Object>> selectFileList(int bno) throws Exception {
+		return dao.selectFileList(bno);
+	}
+
+	// 첨부파일 다운
+	@Override
+	public Map<String, Object> selectFileInfo(int file_no) throws Exception {
+		return dao.selectFileInfo(file_no);
+	}
+
+	
 	
 
 	
