@@ -3,6 +3,7 @@ package com.remind.board.service;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.remind.board.dto.BoardDto;
@@ -31,7 +32,7 @@ public interface BoardService {
 	public void boardWrite(BoardDto boardDto, MultipartHttpServletRequest request) throws Exception;	
 	
 	// 게시물 수정
-	public int boardUpdate(BoardDto boardDto) throws Exception;
+	public void boardUpdate(BoardDto boardDto, MultipartHttpServletRequest request, String filesNo[], String filesName[]) throws Exception;
 	
 	// 게시물 삭제
 	public int boardDelete(int bno) throws Exception;

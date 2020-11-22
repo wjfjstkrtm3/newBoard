@@ -4,6 +4,7 @@ import java.io.File;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -236,7 +237,7 @@ public class BoardController {
 	@RequestMapping(value="/write", method=RequestMethod.POST)
 	public String boardWrite(Model model, BoardDto boardDto, MultipartHttpServletRequest request) {
 		try {
-			boardDto.setWriter("스프링 시큐리티 추가해야함..");
+			boardDto.setWriter("user");
 			service.boardWrite(boardDto, request);
 			
 			
@@ -252,10 +253,14 @@ public class BoardController {
 	// 게시물 수정 (View)
 	@RequestMapping(value="/update", method=RequestMethod.GET)
 	public String boardUpdate(Model model, @RequestParam(value="bno") int bno) {
+		List<Map<String, Object>> selectFileList = new ArrayList<Map<String, Object>>();
 		try {
 			BoardDto boardDto = service.boardDetail(bno);
 			model.addAttribute("boardDto", boardDto);
 			
+			// 첨부파일 조회
+			selectFileList = service.selectFileList(bno);
+			model.addAttribute("selectFileList", selectFileList);
 		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {
@@ -266,10 +271,11 @@ public class BoardController {
 	
 	// 게시물 수정 (Back)
 	@RequestMapping(value="/update", method=RequestMethod.POST)
-	public String boardUpate(BoardDto boardDto) {
-		int result = 0;
+	public String boardUpate(BoardDto boardDto, MultipartHttpServletRequest request, 
+							@RequestParam(value="filesNo") String filesNo[], 
+							@RequestParam(value="filesName") String filesName[]) {
 		try {
-			result = service.boardUpdate(boardDto);
+			 service.boardUpdate(boardDto, request, filesNo, filesName);
 		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {
@@ -290,7 +296,7 @@ public class BoardController {
 		}finally {
 			
 		}
-		return "redirect:/board/list";
+		return "redirect:/board/listPageSearch";
 	}
 	
 	@RequestMapping(value="/fileDown", method=RequestMethod.GET)

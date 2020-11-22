@@ -63,7 +63,7 @@ html, body {
 
 
 .header-container {
-	background-color: #fb8500;
+	background-color: #023047;
 	display:grid;
 	grid-template-columns: 10% 50% 30% 10%;
 }
@@ -195,4 +195,12 @@ html, body {
 
 .main-content-menu-category > div i{
 	margin:auto;
+}
+
+.btn-primary {
+	background-color:#fb8500;
+    color:white;
+    border:none;
+    border-radius:5px;
+    height:30px;
 }

@@ -62,15 +62,13 @@ public class BoardServiceImpl implements BoardService {
 	public void boardWrite(BoardDto boardDto, MultipartHttpServletRequest request) throws Exception {
 		dao.boardWrite(boardDto);
 		
-		if(request != null) {
 			List<Map<String, Object>> list = fileUtils.parseInsertFileInfo(boardDto, request);
 			
 			int size = list.size();
-			
 			for(int i = 0; i < size; i++) {
 				dao.insertFile(list.get(i));
 			}
-		}
+		
 		
 		
 		
@@ -78,8 +76,21 @@ public class BoardServiceImpl implements BoardService {
 	
 	// 게시물 수정
 	@Override
-	public int boardUpdate(BoardDto boardDto) throws Exception {
-		return dao.boardUpdate(boardDto);
+	public void boardUpdate(BoardDto boardDto, MultipartHttpServletRequest request, String filesNo[], String filesName[]) throws Exception {
+		dao.boardUpdate(boardDto);
+		List<Map<String, Object>> list = fileUtils.parseUpdateFileInfo(boardDto, request, filesNo, filesName);
+		Map<String, Object> tempMap = null;
+		for(int i = 0; i < list.size(); i++) {
+			tempMap = list.get(i);
+			if(tempMap.get("IS_NEW").equals("Y")) {
+				// list에 저장되어있는 map을 하나씩(파일 한개가 map하나에 들어있는거임) 꺼내서 새로들어온 파일이면 insertFile 
+				dao.insertFile(tempMap);
+			} else {
+				// map을 꺼냈을때 IS_NEW값이 N이라면 updateFile     (filesNo, filesName 값이 존재하기때문에)
+				dao.updateFile(tempMap);
+			}
+		}
+		
 	}
 
 	// 게시물 삭제

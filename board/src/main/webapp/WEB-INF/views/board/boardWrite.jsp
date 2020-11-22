@@ -69,6 +69,7 @@
 	<br>
 	<div id="file_div">
 	<input type="file" name="file_1">
+	<input type="file" name="file_100">
 	</div>
 	<input type="submit" value="전송하기" id="write_btn">
 </form>

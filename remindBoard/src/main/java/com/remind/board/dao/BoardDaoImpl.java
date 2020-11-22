@@ -100,6 +100,12 @@ public class BoardDaoImpl implements BoardDao {
 	public Map<String, Object> selectFileInfo(int file_no) throws Exception {
 		return sqlsession.selectOne("boardMapper.selectFileInfo", file_no);
 	}
+
+	// 첨부파일 수정
+	@Override
+	public void updateFile(Map<String, Object> map) throws Exception {
+		sqlsession.update("boardMapper.updateFile", map);
+	}
 	
 	
 	

@@ -57,12 +57,72 @@ html, body {
 .boardDetail-container {
     display:grid;
     width: 90%;
-    height: 70%;
-    grid-template-rows: 10% 80% 10%;
+    height: 100%;
+    grid-template-rows: 60% 10% 30%;
     margin: 30px 0px 0px 90px;
-    background-color:green;
 }
 
 
+.boardDetail-form {
+	display:grid;
+	grid-template-rows: 30% 70%;
+	border:8px solid #F4F4F4;
+	border-radius: 7px;
+}
 
+.boardDetail-title-text {
+	font-size: 30px;
+	font-weight:bold;
+	margin-left: 20px;
+	margin-to: 10px;
+	margin-top: 20px;
+}
 
+.boarDetail-title {
+	display:grid;
+	grid-template-rows:40% 40% 20%;
+}
+
+.boardDetail-board-info {
+	display:flex;
+	align-items: center;
+}
+
+.boardDetail-board-info > div {
+	margin-left:20px;
+}
+
+.boardDetail-content-text {
+	margin-left:20px;
+}
+
+.boardDetail-button-form {
+	display:flex;
+	margin-left:auto;
+	margin-top:10px;
+}
+
+.boardDetail-button-form > * {
+	margin-right:10px;
+}
+
+.boardDetail-updateBtn, .boardDetail-deleteBtn {
+	width: 50px;
+}
+
+.boardDetail-file-form {
+	border-bottom: 3px solid #F4F4F4;
+	display: flex;
+}
+
+.boardDetail-file {
+	margin-left:auto;
+}
+
+[class^=fileList_] {
+	padding-right:25px;
+}
+
+[class^=fileList_] > a {
+	color:#87AEFF;
+}
