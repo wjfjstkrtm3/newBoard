@@ -10,10 +10,12 @@
 	<version>1.0.0-BUILD-SNAPSHOT</version>
 	<properties>
 		<java-version>1.8</java-version>
-		<org.springframework-version>4.3.4.RELEASE</org.springframework-version>
+		<org.springframework-version>5.1.3.RELEASE</org.springframework-version>
 		<org.aspectj-version>1.6.10</org.aspectj-version>
 		<org.slf4j-version>1.6.6</org.slf4j-version>
 		<org.apache.tiles-version>3.0.5</org.apache.tiles-version>
+		<spring.security.version>5.1.2.RELEASE</spring.security.version>
+
 	</properties>
 	<dependencies>
 		<!-- Spring -->
@@ -208,6 +210,31 @@
 		 </dependency>
 		
 		<!-- 첨부파일 END -->
+
+		<!-- Spring Security START -->
+	    <dependency>
+	        <groupId>org.springframework.security</groupId>
+	        <artifactId>spring-security-core</artifactId>
+	        <version>${spring.security.version}</version>
+	    </dependency>
+	    <dependency>
+	        <groupId>org.springframework.security</groupId>
+	        <artifactId>spring-security-web</artifactId>
+	        <version>${spring.security.version}</version>
+	    </dependency>
+	    <dependency>
+	        <groupId>org.springframework.security</groupId>
+	        <artifactId>spring-security-config</artifactId>
+	        <version>${spring.security.version}</version>
+	    </dependency>
+	    <dependency>
+	        <groupId>org.springframework.security</groupId>
+	        <artifactId>spring-security-taglibs</artifactId>
+	        <version>${spring.security.version}</version>
+	    </dependency>
+	   <!-- Spring Security END -->
+
+
 
 
 	</dependencies>

@@ -67,16 +67,29 @@ public class FileUtils {
 			// 다중파일 업로드를 사용하기때문에 getFileNames()를 사용을하고 저장된 parameter 이름들을 iterator로 읽어들인다
 			multipartFile = request.getFile(iterator.next());
 			
-			// 하나씩 읽었을때 만약에 <input type="file" name="file_01">
-			// 이렇게 날아온 file_01이름을 가지고 있는 file객체가 비었으면..
-			// 그러니까 만약에 내가 input태그 두개만들고 input태그 하나만 사용해서 파일하나만 작성하면
-			// 나머지 하나 파일은 name만 가지고있는 빈 객체가 되기때문에
-			// 아래 검사를 해줘야한다.. 해주지않으면 하나는 읽고, 하나는 밑에서 indexOf할떄 못찾아서 오류가남
-			
 			/*
-			 처음에 저거 위에있는 거를 if문안에다가 넣고, 파일을 하나만 막 넣었는데도 안됬다..
-			 왜냐하면 request.getFile(iterator.next())를 사용해서 multipartFile에 담지않고
-			 아래 조건문을 사용했기때문에 당연히 비어있으니까 true라서 안타고, 파일이 계속 안넣어진거지
+				두가지 경우가 발생을했어
+				1. if(multipartFile.isEmpty() ==false) {
+					multipartFile = request.getFile(iterator.next());
+				}
+				해당 multipartFile객체가 비어있지않으면  getFile해서 불러오는건데
+				순서가 잘못됬음
+				request.getFile()로 먼저 받고, multipartFile에 저장해야하는데
+				이렇게 짜면 파일을 몇개를 보내든 multipartFile객체가 비어있으니까 
+				오류가 남
+				
+				2. if(multipartFile.isEmpty() ==false) {
+					
+				}
+				if문이 아예없을때 발생하는 문제는
+				만약에 <input type="file" name="file_0">
+					<input type="file" name="file_1">
+				두개가 있고, 파일을 하나만 넣어서 보내면
+				파일 하나는 객체가있고, 파일 하나는 객체가 없다
+				multipartFile = request.getFile(iterator.next()); 해서
+				읽어주면 하나는 multipartFile객체에 들어가있고, ,하나는 multipartFile 빈객체가 들어감
+				그래서 아래에서 indexOf나 여러가지 작업할때 오류가 터지니까 파일을 하나만 넣을때는 들어가지않는거임
+				차라리 두개를 넣었으면 빈객체가 만들어지지않으니까 오류가 나지않음..
 			 */
 			
 			
@@ -195,7 +208,6 @@ public class FileUtils {
 		     IS_NEW 값이 N이면 service.updateFile()를 실행한다
 		
 		 */
-		 System.out.println("list : " + list.toString());
 		return list;
 		
 	}

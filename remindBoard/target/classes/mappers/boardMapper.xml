@@ -134,7 +134,7 @@
   		FROM file
   		WHERE bno = #{bno}
   		  AND del_dv = 'N'
-  		ORDER BY file_no desc
+  		ORDER BY file_no asc
   </select>
   
   <!-- 첨부파일   다운 -->
