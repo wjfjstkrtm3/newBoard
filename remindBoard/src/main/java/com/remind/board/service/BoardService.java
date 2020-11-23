@@ -42,6 +42,9 @@ public interface BoardService {
 	
 	// 첨부파일 다운
 	public Map<String, Object> selectFileInfo(int file_no) throws Exception;
+	
+	// 첨부파일 제한
+	public int fileCount(int bno) throws Exception;
 }
 
 

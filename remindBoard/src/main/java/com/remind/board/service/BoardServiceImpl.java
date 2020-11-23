@@ -112,6 +112,12 @@ public class BoardServiceImpl implements BoardService {
 		return dao.selectFileInfo(file_no);
 	}
 
+	// 첨부파일 제한
+	@Override
+	public int fileCount(int bno) throws Exception {
+		return dao.fileCount(bno);
+	}
+
 	
 	
 

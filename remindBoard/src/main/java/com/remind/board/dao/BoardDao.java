@@ -46,4 +46,7 @@ public interface BoardDao {
 	// 첨부파일 수정
 	public void updateFile(Map<String, Object> map) throws Exception;
 	
+	// 첨부파일 제한
+	public int fileCount(int bno) throws Exception;
+	
 }

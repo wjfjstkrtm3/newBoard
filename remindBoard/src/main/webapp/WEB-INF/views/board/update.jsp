@@ -59,8 +59,15 @@
 			</div>
 			
 			<div class="boardUpdate-file-form">
+			
+			
+				<!-- 업로드한 파일이 5개 미만이면 -->				 
+				<c:if test="${fileCount < 5}">
 				<i class="far fa-save fa-1x"></i><input type="file" name="file_0">
 				<i class="far fa-save fa-1x"></i><input type="file" name="file_1">
+				</c:if>
+				
+				
 				<c:forEach var="fileList" items="${selectFileList}" varStatus="status">
 							<span class="fileList_${status.index}">
 							

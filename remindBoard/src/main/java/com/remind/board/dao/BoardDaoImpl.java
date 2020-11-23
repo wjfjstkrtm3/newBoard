@@ -106,6 +106,12 @@ public class BoardDaoImpl implements BoardDao {
 	public void updateFile(Map<String, Object> map) throws Exception {
 		sqlsession.update("boardMapper.updateFile", map);
 	}
+
+	// 첨부파일 제한
+	@Override
+	public int fileCount(int bno) throws Exception {
+		return sqlsession.selectOne("boardMapper.fileCount", bno);
+	}
 	
 	
 	

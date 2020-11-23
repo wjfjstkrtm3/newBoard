@@ -151,5 +151,12 @@
   		WHERE file_no = #{file_no}
   </update>
   
+  <!-- 첨부파일 제한 -->
+  <select id="fileCount" resultType="int" parameterType="int">
+  		SELECT count(file_no)
+  		FROM file
+  		WHERE bno = #{bno}
+  		  AND del_dv = 'N'
+  </select>
  
 </mapper>

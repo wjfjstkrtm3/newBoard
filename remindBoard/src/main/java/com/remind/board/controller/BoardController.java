@@ -262,6 +262,9 @@ public class BoardController {
 			// 첨부파일 조회
 			selectFileList = service.selectFileList(bno);
 			model.addAttribute("selectFileList", selectFileList);
+			
+			// 첨부파일 제한
+			model.addAttribute("fileCount", service.fileCount(bno));
 		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {
