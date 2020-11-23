@@ -33,6 +33,9 @@
 					filesNo.push(file_no);
 					filesName.push(file_name);
 
+					console.log(Array.toString(filesNo));
+					console.log(Array.toString(filesName));
+					
 					$(".filesNo").val(filesNo);
 					$(".filesName").val(filesName);
 

@@ -74,7 +74,7 @@ public class FileUtils {
 			// 아래 검사를 해줘야한다.. 해주지않으면 하나는 읽고, 하나는 밑에서 indexOf할떄 못찾아서 오류가남
 			
 			/*
-			 처음에 저거 위아래 두개를 자리를 바꿔서 써놓고 , 파일을 하나만 막 넣었는데도 안됬다..
+			 처음에 저거 위에있는 거를 if문안에다가 넣고, 파일을 하나만 막 넣었는데도 안됬다..
 			 왜냐하면 request.getFile(iterator.next())를 사용해서 multipartFile에 담지않고
 			 아래 조건문을 사용했기때문에 당연히 비어있으니까 true라서 안타고, 파일이 계속 안넣어진거지
 			 */
@@ -177,9 +177,9 @@ public class FileUtils {
 					
 					// 삭제한 파일일때.. (파일옆에있는 삭제버튼을 누르면 fileNo와 filesName이 날라오기때문에 null이 아님)
 					if(filesNo != null || filesName != null) {
-						listMap = new HashMap<String, Object>();
-						listMap.put("IS_NEW", "N");
 						for(int i = 0; i < filesNo.length; i++) {
+							listMap = new HashMap<String, Object>();
+							listMap.put("IS_NEW", "N");
 							listMap.put("file_no", filesNo[i]);
 							list.add(listMap);
 						}
@@ -195,7 +195,7 @@ public class FileUtils {
 		     IS_NEW 값이 N이면 service.updateFile()를 실행한다
 		
 		 */
-		 
+		 System.out.println("list : " + list.toString());
 		return list;
 		
 	}
