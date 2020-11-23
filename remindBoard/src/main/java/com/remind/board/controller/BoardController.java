@@ -13,6 +13,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,7 +25,9 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.remind.board.dto.BoardDto;
 import com.remind.board.dto.PageDto;
+import com.remind.board.dto.UserDto;
 import com.remind.board.service.BoardService;
+import com.remind.board.utils.Etc;
 
 @Controller
 @RequestMapping(value="/board")
@@ -182,11 +187,11 @@ public class BoardController {
 				model.addAttribute("currentNum", num); // 현재 페이지 번호
 				model.addAttribute("page", page);
 				
-				
-				
 				// model.addAttribute("searchType", searchType);
 				// model.addAttribute("keyword", keyword);
 				
+				
+				System.out.println("user : " + Etc.getUser());
 				
 			}catch(Exception e) {
 				e.printStackTrace();
@@ -238,7 +243,7 @@ public class BoardController {
 	@RequestMapping(value="/write", method=RequestMethod.POST)
 	public String boardWrite(Model model, BoardDto boardDto, MultipartHttpServletRequest request) {
 		try {
-			boardDto.setWriter("user");
+			boardDto.setWriter(Etc.getUser());
 			service.boardWrite(boardDto, request);
 			
 			

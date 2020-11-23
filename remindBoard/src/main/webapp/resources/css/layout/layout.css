@@ -203,4 +203,13 @@ html, body {
     border:none;
     border-radius:5px;
     height:30px;
+    cursor:pointer;
+}
+
+.header-mypage-btnForm {
+	display: grid;
+}
+
+.header-mypage-btn {
+	margin:auto;
 }

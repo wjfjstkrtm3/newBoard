@@ -139,7 +139,7 @@
 				</c:if>			
 			
 			</div>
-				<input type="button" class="board-write-btn" value="글쓰기">
+				<input type="button" class="board-write-btn btn-primary" value="글쓰기">
 		
 		
 		</div>

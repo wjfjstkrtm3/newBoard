@@ -1,5 +1,6 @@
 <%@ page pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <div class="header-menu-title">
 		띵동
 </div>
@@ -9,10 +10,15 @@
 		<div class="header-alarm">알림</div>
 		<div class="header-mypage">내정보</div>
 		<div class="header-profile">프로필</div>
-		<div class="header-mypage">로그아웃</div>
+		
+		
 </div>
-		<div class="header-image">사진</div>
-
+		<sec:authorize access="isAuthenticated()">
+		<form action="/logout" method="POST" class="header-mypage-btnForm">
+		<input type="submit" value="로그아웃" class="header-mypage-btn btn-primary">
+		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+		</form>
+		</sec:authorize>
 <div class="header-lower-menu">
 			<div class="">&nbsp</div>
 			<div class="normal-board">
