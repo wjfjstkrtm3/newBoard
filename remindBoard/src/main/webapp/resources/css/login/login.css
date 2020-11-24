@@ -61,7 +61,7 @@ html, body {
 	display:grid;
 	align-items:center;
 	justify-items:center;
-	background-color: #F5F2F0;
+	background-color: #ED6D5C;
 }
 
 .login-form {
@@ -76,6 +76,11 @@ html, body {
 input[type=text], input[type=password] {
 	width:80%;
 	height:30px;
+}
+
+input[type=text]:focus, input[type=password]:focus {
+	outline:none;
+	box-shadow: 0 0 3pt 2pt yellow;
 }
 
 .login-userIdPwd-form {
@@ -109,6 +114,14 @@ input[type=text], input[type=password] {
 	cursor:pointer;
 }
 
+.login-btn:hover {
+	box-shadow: 0 0 3pt 2pt yellow;
+}
+
+.login-btn:focus {
+	outline:none;
+}
+
 .login-image-form {
 	display:flex;
 	justify-content:center;
@@ -134,8 +147,10 @@ input[type=text], input[type=password] {
 	margin: auto;
 }
 
+.user-signUp:hover {
+	opacity:0.5;
+}
 
-
-
-
-
+.user-signUp:active {
+	color:yellow;
+}

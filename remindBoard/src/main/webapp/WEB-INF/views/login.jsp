@@ -27,7 +27,10 @@
 			<input type="password" name="userPwd" class="login-userPwd" placeholder="비밀번호">
 			<div class="etc-form">
 				<div class="checkbox-form">
-					<input type="checkbox" class="remember_me">아이디 기억하기
+					
+					<input type="checkbox" id="remember_me_label" class="remember_me" name="remember-me">
+					<label for="remember_me_label">아이디 기억하기</label>
+					
 				</div>
 				<a href="#" class="user-signUp">회원가입</a>
 			</div>
@@ -38,9 +41,7 @@
 			
 			<c:if test="${not empty SPRING_SECURITY_LAST_EXCEPTION}">
 			<div class="login-errorMessage">
-			    <font color="red">
 			        ${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}
-			    </font>
 		    </div>
 		        <c:remove var="SPRING_SECURITY_LAST_EXCEPTION" scope="session"/>
 		</c:if>

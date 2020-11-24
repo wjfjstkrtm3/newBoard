@@ -191,8 +191,6 @@ public class BoardController {
 				// model.addAttribute("keyword", keyword);
 				
 				
-				System.out.println("user : " + Etc.getUser());
-				
 			}catch(Exception e) {
 				e.printStackTrace();
 			}finally {

@@ -19,7 +19,7 @@ xsi:scemaLocation 에있는 버전을 4.2버전으로 수정하면됨
 	
 	 -->
 	<security:http auto-config="true" use-expressions="true">
-			<!--  <security:intercept-url pattern="/board/*" access="hasRole('ROLE_USER')"/>-->
+			<security:intercept-url pattern="/board/*" access="hasRole('ROLE_USER')"/>
 			
 		<!-- 로그인 설정 -->
 		<!--
@@ -42,6 +42,18 @@ xsi:scemaLocation 에있는 버전을 4.2버전으로 수정하면됨
 			authentication-failure-url="/"
 		/>
 		
+		 <!-- 
+	      Remember-me 기능을 이용한 자동 로그인 기능
+	
+	      key: 키의 이름
+	      token-validity-seconds: 쿠키의 유효 시간(초 단위)
+	      remember-me-parameter: 자동 로그인을 선택할 input 태그의 name 값 ex) input type='checkbox' name="remember-me"
+	      remember-me-cookie: 자동 로그인 쿠키의 이름
+    	 -->
+		
+		<security:remember-me key="autoLoginKey" token-validity-seconds="604800" remember-me-parameter="remember-me" remember-me-cookie="remember_cookie" />
+		
+		
 		<!-- 로그아웃 설정 -->
 		<!-- 
 			logout-url : 로그아웃 처리에 대한 URL. form태그의 action 속성에 지정한 값. (default: POST /logout)
@@ -50,7 +62,7 @@ xsi:scemaLocation 에있는 버전을 4.2버전으로 수정하면됨
 			delete-cookies : 로그아웃 성공시, 삭제할 쿠키 이름 지정
 			success-handler-ref : 로그아웃 성공시, logout-success-url 이 아닌 핸들러로 리다이렉트
 		 -->
-		<security:logout
+		<security:logout delete-cookies="remember_cookie" invalidate-session="true"
 			logout-url="/logout"
 			logout-success-url="/"
 		/>
