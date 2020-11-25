@@ -175,7 +175,7 @@
     <version>${org.springframework-version}</version>
 </dependency>      
 
-<!-- common fileupload -->
+<!-- common fileupload START -->
 
 <dependency>
          <groupId>commons-fileupload</groupId>
@@ -188,8 +188,10 @@
          <artifactId>commons-io</artifactId>
          <version>1.4</version>
 </dependency>
+
+<!-- common fileupload END -->
  
-  <!-- Spring Security -->
+  <!-- Spring Security START -->
     <dependency>
         <groupId>org.springframework.security</groupId>
         <artifactId>spring-security-core</artifactId>
@@ -211,45 +213,7 @@
         <version>${spring.security.version}</version>
     </dependency>
 
-
-
-   <dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-core</artifactId>
-			<version>2.9.3</version>
-		</dependency>
-		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-annotations</artifactId>
-			<version>2.9.3</version>
-		</dependency>
-		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-databind</artifactId>
-			<version>2.9.3</version>
-		</dependency>
-
-<!-- Jackson JSON Mapper -->
-<dependency>
-        <groupId>org.codehaus.jackson</groupId>
-        <artifactId>jackson-mapper-asl</artifactId>
-        <version>1.9.13</version>
-</dependency>
-
-<!-- 이메일 Library -->
-    <dependency>
-            <groupId>javax.mail</groupId>
-            <artifactId>mail</artifactId>
-            <version>1.4.7</version>
-        </dependency>
-
-<!-- 웹 소켓 -->
-<dependency>
-            <groupId>javax.websocket</groupId>
-            <artifactId>javax.websocket-api</artifactId>
-            <version>1.1</version>
-</dependency>
-
+  <!-- Spring Security END -->
 
 <dependency>
   <groupId>org.webjars</groupId>
@@ -268,12 +232,6 @@
 	<version>${org.springframework-version}</version>
 </dependency>
 
-<!-- https://mvnrepository.com/artifact/org.jsoup/jsoup -->
-<dependency>
-    <groupId>org.jsoup</groupId>
-    <artifactId>jsoup</artifactId>
-    <version>1.10.2</version>
-</dependency>
 
 <!-- Tiles -->
 		<dependency>
@@ -312,6 +270,13 @@
 		    <groupId>org.webjars</groupId>
 		    <artifactId>jquery</artifactId>
 		    <version>3.5.1</version>
+		</dependency>
+
+		<!-- Path contains invalid character: 바 -->
+		<dependency>
+			<groupId>xerces</groupId>
+			<artifactId>xercesImpl</artifactId>
+			<version>2.9.1</version>
 		</dependency>
 
 	</dependencies>

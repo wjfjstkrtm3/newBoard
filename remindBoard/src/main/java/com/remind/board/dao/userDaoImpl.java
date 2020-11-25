@@ -13,10 +13,19 @@ public class userDaoImpl implements UserDao {
 	@Autowired
 	private SqlSession sqlsession;
 	
+	// 회원가입
 	@Override
 	public void userSignUp(UserDto userDto) throws Exception {
 		sqlsession.insert("userMapper.userSignUp", userDto);
 	}
+
+	// id로 user 조회
+	@Override
+	public UserDto getUserById(String id) throws Exception {
+		return sqlsession.selectOne("userMapper.getUserById", id);
+	}
+	
+	
 
 	
 }
