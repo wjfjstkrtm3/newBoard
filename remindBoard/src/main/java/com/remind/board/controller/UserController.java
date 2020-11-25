@@ -1,5 +1,7 @@
 package com.remind.board.controller;
 
+import java.io.File;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,6 +11,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.remind.board.dto.UserDto;
 import com.remind.board.service.UserService;
+import com.remind.board.utils.Etc;
 
 @Controller
 @RequestMapping(value="/user")
@@ -27,22 +30,41 @@ public class UserController {
 		
 		MultipartFile multipartFile = null;
 		
+		String originalFileName = null;
+		String originalFileExtension = null;
+		String storedFileName = null;
+		
+		final String filePath = "D:\\바탕 화면\\JavaAll\\file-images\\";
 		
 		try {
 			multipartFile = request.getFile("file01");
-			userDto.setImage(multipartFile.getOriginalFilename());
+			
+			// 회원가입을 했을때 파일이 있을경우
+			if(multipartFile.isEmpty() == false) {
+				originalFileName = multipartFile.getOriginalFilename();
+				originalFileExtension = originalFileName.substring(originalFileName.indexOf("."));
+				storedFileName = Etc.getRandomString() + originalFileExtension;
+				
+				File file = new File(filePath + storedFileName);
+				multipartFile.transferTo(file);
+				
+				userDto.setImage(storedFileName);
+				
+				//회원가입을 했을때 파일이 없을경우
+			}else {
+				
+				// DB에서는 image를 default로 "default.png"로 설정을 해두었지만, 
+				// Mapper에서는 #{image}로 받게되어있다
+				// 그래서 값을 설정안해주면 null값이 들어가기때문에 설정을 해줘야한다
+				userDto.setImage("default.png");
+			}
+			
+			
 			service.userSignUp(userDto);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		// db에 id칼럼 추가하고
-		
-		
-		
-		System.out.println(multipartFile.getOriginalFilename());
-		
-		System.out.println("미쳣냐?");
 		return "/login";
 	}
 	

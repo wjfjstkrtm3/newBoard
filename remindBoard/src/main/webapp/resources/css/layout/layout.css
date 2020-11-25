@@ -186,12 +186,14 @@ html, body {
 	color:black;
 }
 
+/*
 [class^=category-image]:active {
 	width:100%;
 	height:100%;
 	background-color:white;
 	display:flex;
 }
+*/
 
 .main-content-menu-category > div i{
 	margin:auto;
@@ -211,5 +213,13 @@ html, body {
 }
 
 .header-mypage-btn {
+	margin:auto;
+}
+
+.category-image02 {
+	display:flex;
+}
+
+.user-image {
 	margin:auto;
 }

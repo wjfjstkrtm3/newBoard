@@ -3,9 +3,7 @@ package com.remind.board.controller;
 import java.io.File;
 import java.net.URLEncoder;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -13,9 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,6 +22,7 @@ import com.remind.board.dto.BoardDto;
 import com.remind.board.dto.PageDto;
 import com.remind.board.dto.UserDto;
 import com.remind.board.service.BoardService;
+import com.remind.board.service.UserService;
 import com.remind.board.utils.Etc;
 
 @Controller
@@ -35,6 +31,9 @@ public class BoardController {
 
 	@Autowired
 	private BoardService service;
+	
+	@Autowired
+	private UserService userService;
 	
 	/*
 	// 게시물 목록
@@ -190,6 +189,9 @@ public class BoardController {
 				// model.addAttribute("searchType", searchType);
 				// model.addAttribute("keyword", keyword);
 				
+				// user 이미지
+				UserDto userDto = userService.getUserById(Etc.getUser());
+				model.addAttribute("userDto", userDto);
 				
 			}catch(Exception e) {
 				e.printStackTrace();
