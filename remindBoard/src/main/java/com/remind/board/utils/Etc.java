@@ -31,14 +31,4 @@ public class Etc {
 	}
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }
