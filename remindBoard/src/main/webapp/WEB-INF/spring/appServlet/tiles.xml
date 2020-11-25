@@ -19,6 +19,9 @@
        <put-attribute name="title" value="Welcome" />  
        <put-attribute name="body" value="/WEB-INF/views/board/list.jsp" />  
    </definition>  
+   
+    <definition name="/user/signUp" template="/WEB-INF/views/user/signUp.jsp">  
+   </definition>  
 
    <definition name="/*/*" extends="default-template">
    		<put-attribute name="css" value="/resources/css/{1}/{2}.css"/>

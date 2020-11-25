@@ -32,7 +32,7 @@
 					<label for="remember_me_label">아이디 기억하기</label>
 					
 				</div>
-				<a href="#" class="user-signUp">회원가입</a>
+				<a href="/user/signUp" class="user-signUp">회원가입</a>
 			</div>
 		</div>
 		
