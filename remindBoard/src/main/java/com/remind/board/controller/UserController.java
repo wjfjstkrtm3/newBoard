@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
@@ -67,5 +69,22 @@ public class UserController {
 		
 		return "/login";
 	}
+	
+	@ResponseBody
+	@RequestMapping(value="userIdCheck", method=RequestMethod.GET)
+	public int userIdCheck(@RequestParam(value="id") String id) {
+		int result = 0;
+		try {
+			result = service.userIdCheck(id);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			
+		}
+		return result;
+	}
+	
+	
+	
 	
 }

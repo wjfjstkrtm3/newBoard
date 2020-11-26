@@ -25,5 +25,14 @@ public class UserServiceImpl implements UserService {
 	}
 
 	
+	// user id 중복체크 
+	@Override
+	public int userIdCheck(String id) throws Exception {
+		return dao.userIdCheck(id);
+	}
+	
+	
+
+	
 	
 }

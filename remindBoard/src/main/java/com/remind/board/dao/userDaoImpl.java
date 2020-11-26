@@ -24,6 +24,13 @@ public class userDaoImpl implements UserDao {
 	public UserDto getUserById(String id) throws Exception {
 		return sqlsession.selectOne("userMapper.getUserById", id);
 	}
+
+	// user id 중복체크
+	@Override
+	public int userIdCheck(String id) throws Exception {
+		return sqlsession.selectOne("userMapper.userIdCheck", id);
+	}
+	
 	
 	
 

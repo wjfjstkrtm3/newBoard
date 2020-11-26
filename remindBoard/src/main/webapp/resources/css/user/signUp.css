@@ -76,7 +76,7 @@ html, body {
 }
 
 input[type=text], input[type=password] {
-	width:70%;
+	width: 62%;
 	height:30px;
 }
 
@@ -86,6 +86,7 @@ input[type=text], input[type=password] {
 
 .signUp-id, .signUp-pwd, .signUp-email, .signUp-phoneNumber, .signUp-gender > * {
 	justify-content:center;
+	position: relative;
 }
 input[type=text]:focus, input[type=password]:focus {
 	outline:none;
@@ -108,7 +109,12 @@ input[type=text], input[type=password] {
 	border-radius: 10px;
 	color:white;
 	cursor:pointer;
-
+	position: absolute;
+	right: 6px;
+	font-size:12px;
+	width:55px;
+	top:14px;
+	
 }
 
 .signUpBtn {
@@ -155,5 +161,4 @@ input[type=text], input[type=password] {
 	height:70px;
 	margin:auto;
 }
-
 

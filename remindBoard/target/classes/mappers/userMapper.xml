@@ -16,5 +16,12 @@
  		FROM user
  		where id = #{id}
  	</select>
+ 	
+ 	<!-- user id 중복체크 -->
+ 	<select id="userIdCheck" parameterType="String" resultType="int">
+ 		SELECT count(id)
+ 		FROM user
+ 		WHERE id = #{id}
+ 	</select>
  
 </mapper>
