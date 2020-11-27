@@ -123,7 +123,7 @@
 			<div class="page-number">
 				<!-- 이전 버튼 -->
 				<c:if test="${page.prev}">
-					<a href="/board/listPageSearch?num=${page.startPageNum-1}c">《</a>
+					<a href="/board/listPageSearch?num=${page.startPageNum-1}">《</a>
 				</c:if>
 				
 				

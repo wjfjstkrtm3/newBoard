@@ -140,3 +140,7 @@ input.text-box {
 	font-size:40px;
 	margin:20px 0 0 30px;
 }
+
+.ajax-pageNumber {
+	cursor:pointer;
+}

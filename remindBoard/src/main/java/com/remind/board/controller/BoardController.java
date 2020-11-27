@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.remind.board.dto.BoardDto;
 import com.remind.board.dto.PageDto;
@@ -366,36 +365,63 @@ public class BoardController {
 	
 	@ResponseBody
 	@RequestMapping(value="/ajaxBoardList", method=RequestMethod.GET)
-	public List<BoardDto> ajaxBoardList(Model model, @RequestParam(value="num", defaultValue="1") int num,
+	public Map<String, Object> ajaxBoardList(Model model, @RequestParam(value="num", defaultValue="1") int num,
 										      @RequestParam(value="searchType", defaultValue="") String searchType,
 										      @RequestParam(value="keyword", defaultValue="") String keyword){
 		
 		List<BoardDto> list = new ArrayList<BoardDto>();
 		Map<String, Object> map = new HashMap<String, Object>();
 		
+		Map<String, Object> multiMap = new HashMap<String, Object>();
+		PageDto page = null;
+		
+		System.out.println("num : " + num);
 		
 		map.put("searchType", searchType);
 		map.put("keyword", keyword);
 		
 		
 		try {
-				PageDto page = new PageDto(num, service.searchCount(searchType, keyword));
+			page = new PageDto(num, service.searchCount(searchType, keyword));
+			page.setSearchType(searchType);
+			page.setKeyword(keyword);
 				
 				map.put("displayPost", page.getDisplayPost());
 				map.put("postNum", page.getPostNum());
 				
-				
-				
-				
 				list = service.listPageSearch(map);
+				
+				multiMap.put("list",  list);
+				multiMap.put("page", page);
+				
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			
+		}
+		return multiMap;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/ajaxPaging", method=RequestMethod.GET)
+	public PageDto ajaxPaging(@RequestParam(value="num", defaultValue="1") int num,
+							 @RequestParam(value="searchType", defaultValue="") String searchType,
+							 @RequestParam(value="keyword", defaultValue="") String keyword){
+		PageDto page = null;
+		try {
+			System.out.println("num : " + num);
+			page = new PageDto(num, service.searchCount(searchType, keyword));
+			page.setSearchType(searchType);
+			page.setKeyword(keyword);
 			
 		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {
 			
 		}
-		return list;
+		
+		return page;
+		
 	}
-	
 	
 }
