@@ -16,7 +16,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.remind.board.dto.BoardDto;
 import com.remind.board.dto.PageDto;
@@ -193,6 +195,9 @@ public class BoardController {
 				UserDto userDto = userService.getUserById(Etc.getUser());
 				model.addAttribute("userDto", userDto);
 				
+				// 이미지
+				
+				
 			}catch(Exception e) {
 				e.printStackTrace();
 			}finally {
@@ -341,6 +346,55 @@ public class BoardController {
 		}
 		
 		
+	}
+	
+	@RequestMapping(value="/ajaxList", method=RequestMethod.GET)
+	public String ajaxList(Model model) {
+		
+		// user 이미지
+		UserDto userDto;
+		try {
+			userDto = userService.getUserById(Etc.getUser());
+			model.addAttribute("userDto", userDto);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "/board/ajaxList";
+	}
+	
+	
+	
+	@ResponseBody
+	@RequestMapping(value="/ajaxBoardList", method=RequestMethod.GET)
+	public List<BoardDto> ajaxBoardList(Model model, @RequestParam(value="num", defaultValue="1") int num,
+										      @RequestParam(value="searchType", defaultValue="") String searchType,
+										      @RequestParam(value="keyword", defaultValue="") String keyword){
+		
+		List<BoardDto> list = new ArrayList<BoardDto>();
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		
+		map.put("searchType", searchType);
+		map.put("keyword", keyword);
+		
+		
+		try {
+				PageDto page = new PageDto(num, service.searchCount(searchType, keyword));
+				
+				map.put("displayPost", page.getDisplayPost());
+				map.put("postNum", page.getPostNum());
+				
+				
+				
+				
+				list = service.listPageSearch(map);
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			
+		}
+		return list;
 	}
 	
 	
