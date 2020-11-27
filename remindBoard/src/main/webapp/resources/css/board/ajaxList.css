@@ -144,3 +144,8 @@ input.text-box {
 .ajax-pageNumber {
 	cursor:pointer;
 }
+
+.next_btn, .prev_btn {
+    cursor:pointer;
+}
+

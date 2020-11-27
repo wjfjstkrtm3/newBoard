@@ -8,7 +8,11 @@
 <meta charset="UTF-8">
 <title>비동기 게시판</title>
 <script type="text/javascript">
+
 	$(document).ready(function() {
+
+	
+		
 			var inputHtml = "<div>번호</div><div>제목</div><div>작성자</div><div>작성일</div><div>조회수</div>";
 			var btnHtml = "";
 			$(".main-container").append(inputHtml);	
@@ -21,8 +25,6 @@
 			var nextBtn = "";
 
 
-			
-			
 			// 동적으로 만들어진 page버튼에 대해서 event
 			$(document).on("click", "#ajax-pageNumberId", function(event) {
 						$(".main-container").empty();
@@ -38,16 +40,30 @@
 						
 				});
 
-			$(document).on("click", ".next_btn", function() {
-						
 
-				
-				});
+			$(document).on("click", ".next_btn", function(event) {
+				var endPageNum = $(".hidden_next_val").val();
+				endPageNum = parseInt(endPageNum) + parseInt(1);
+				addBoardList(endPageNum);
+
+			});
+
+			$(document).on("click", ".prev_btn", function(event) {
+				var startPageNum = $(".hidden_prev_val").val();
+				startPageNum = parseInt(startPageNum) + parseInt(-1);
+				addBoardList(startPageNum);
+
+			});
 
 	
 			
 		
 	function addBoardList(currentNum) {
+		$(".main-container").empty();
+		$(".page-number").empty();
+		inputHtml = "<div>번호</div><div>제목</div><div>작성자</div><div>작성일</div><div>조회수</div>";
+		$(".main-container").append(inputHtml);	
+		
 			// 게시물 List 불러오기
 				$.ajax({
 					url:"/board/ajaxBoardList?num=" + currentNum,
@@ -62,34 +78,31 @@
 						prevBtn = pageDto.prev;
 						nextBtn = pageDto.next;
 						
-						
-						// 이전 버튼
+						var aa = 1;
+						// 이전 버튼 생성
 						if(pageDto.prev == true) {
 							pageHtml += "<div class='prev_btn'>" + "《" + "</div>";
+							pageHtml += "<input type='hidden' class='hidden_prev_val' value='" + pageDto.startPageNum + "'>";
 						}
 
 
 						// 페이지 버튼 생성 함수
-						for(var i = 1; i <= pageDto.endPageNum; i++) {
+						for(var i = pageDto.startPageNum; i <= pageDto.endPageNum; i++) {
 							pageHtml += "<div class='ajax-pageNumber' id='ajax-pageNumberId'>" + i +"</div>";
-								
+							
+								 
 							}
 						
 
-						// 다음 버튼
+						// 다음 버튼 생성
 						if(pageDto.next == true) {
+							// pageHtml += "<div class='next_btn' onclick='nextFunction(" + pageDto.endPageNum +")';" + ">" + "》" + "</div>";
 							pageHtml += "<div class='next_btn'>" + "》" + "</div>";
+							pageHtml += "<input type='hidden' class='hidden_next_val' value='" + pageDto.endPageNum + "'>";
+						
 						}
 
-						$(document).on("click", ".next_btn", function() {
-							addBoardList(currentNum+1);
-							listHtml.empty();
-							pageHtml.empty();
-							});
-
-						$(document).on("click", ".prev_btn", function() {
-							addBoardList(currentNum-1);
-							});
+					
 						
 						
 						$.each(boardList, function(index, element) {
@@ -120,9 +133,11 @@
 				// 게시물 불러오기 끝
 
 		
-		}
+		};
 
 	// 함수 끝
+			
+			
 			
 			
 			
@@ -222,7 +237,6 @@
 		</div>
 	
 	</div>
-
 
 
 
