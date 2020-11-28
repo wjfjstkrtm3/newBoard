@@ -91,10 +91,12 @@ xsi:scemaLocation 에있는 버전을 4.2버전으로 수정하면됨
 	
 	<security:authentication-manager>
 		<security:authentication-provider user-service-ref="userService">
+			<security:password-encoder hash="bcrypt"/>
 		</security:authentication-provider>
 	</security:authentication-manager>
 	
-	
+	<!-- 비밀번호 암호화 -->
+	<bean id ="bcryptPasswordEncoder" class = "org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
 	<!--
 	 인증과 관련된 정보를 설정
 	<security:authentication-manager>

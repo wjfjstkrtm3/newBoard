@@ -3,6 +3,7 @@ package com.remind.board.controller;
 import java.io.File;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -22,6 +23,9 @@ public class UserController {
 	@Autowired
 	private UserService service;
 	
+	@Autowired
+	private BCryptPasswordEncoder bCryptPasswordEncoder;
+	
 	@RequestMapping(value="/signUp", method=RequestMethod.GET)
 	public String signUp() {
 		return "/user/signUp";
@@ -39,6 +43,9 @@ public class UserController {
 		final String filePath = "D:\\바탕 화면\\JavaAll\\file-images\\";
 		
 		try {
+			// 비밀번호 암호화
+			userDto.setPassword(bCryptPasswordEncoder.encode(userDto.getPassword()));
+			
 			multipartFile = request.getFile("file01");
 			
 			// 회원가입을 했을때 파일이 있을경우

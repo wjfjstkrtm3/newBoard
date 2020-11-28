@@ -11,6 +11,12 @@
 
 	$(document).ready(function() {
 
+		var obj = {"name":"jj", "age":5};
+
+		for(var key in obj) {
+				console.log(obj[key]);
+			}
+
 	
 		
 			var inputHtml = "<div>번호</div><div>제목</div><div>작성자</div><div>작성일</div><div>조회수</div>";
