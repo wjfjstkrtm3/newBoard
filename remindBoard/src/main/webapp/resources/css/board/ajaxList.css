@@ -149,3 +149,7 @@ input.text-box {
     cursor:pointer;
 }
 
+.number-bold {
+	font-weight:bold;
+}
+

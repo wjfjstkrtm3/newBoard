@@ -88,9 +88,12 @@
 
 						// 페이지 버튼 생성 함수
 						for(var i = pageDto.startPageNum; i <= pageDto.endPageNum; i++) {
-							pageHtml += "<div class='ajax-pageNumber' id='ajax-pageNumberId'>" + i +"</div>";
-							
-								 
+							if(currentNum == i) {
+							pageHtml += "<div class='ajax-pageNumber number-bold' id='ajax-pageNumberId'>" + i +"</div>";
+								
+								}else {
+									pageHtml += "<div class='ajax-pageNumber' id='ajax-pageNumberId'>" + i +"</div>";
+									}
 							}
 						
 
