@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="videoMapper">
+
+<!-- 동영상 게시물 생성 -->
+  <insert id="videoWrite" parameterType="com.remind.board.dto.BoardDto">
+  	INSERT INTO videoBoard(title, writer, content, regDate, viewCnt, url) 
+  	VALUES(#{title}, #{writer}, #{content}, #{regDate}, #{viewCnt}, #{url})
+  </insert>
+  
+  
+  <!-- 동영상 게시물 목록 -->
+  <select id="videoList" resultType="com.remind.board.dto.BoardDto">
+  	SELECT bno, title, writer, content, regDate, viewCnt, url
+  	FROM videoBoard
+  </select>
+  
+  <!-- 동영상 게시물 조회 -->
+  <select id="videoDetail" resultType="com.remind.board.dto.BoardDto" parameterType="int">
+  	SELECT bno, title, writer, content, regDate, viewCnt, url
+  	FROM videoBoard
+  	WHERE bno = #{bno}
+  </select>
+  
+  
+  <!-- 동영상 게시물 수정 -->
+  <update id="videoUpdate" parameterType="com.remind.board.dto.BoardDto">
+  	UPDATE videoBoard
+  	SET title = #{title}, 
+  		url = #{url}
+  	WHERE bno = #{bno}
+  </update>
+  
+  
+  <!-- 동영상 게시물 삭제 -->
+  <delete id="videoDelete" parameterType="int">
+  	DELETE FROM
+  	videoBoard
+  	where bno = #{bno}
+  </delete>
+
+
+
+</mapper>

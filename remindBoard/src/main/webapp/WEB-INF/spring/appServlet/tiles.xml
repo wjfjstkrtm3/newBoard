@@ -23,11 +23,11 @@
     <definition name="/user/signUp" template="/WEB-INF/views/user/signUp.jsp">  
    </definition>  
 
-   <definition name="/*/*" extends="default-template">
-   		<put-attribute name="css" value="/resources/css/{1}/{2}.css"/>
+   <definition name="/board/*/*" extends="default-template">
+   		<put-attribute name="css" value="/resources/css/board/{1}/{2}.css"/>
 	    <!-- <put-attribute name="js" value="/resources/js/{1}/{2}.js"/> -->
    		<put-attribute name="title" value="boardList"/>
-   		<put-attribute name="content" value="/WEB-INF/views/{1}/{2}.jsp"/>
+   		<put-attribute name="content" value="/WEB-INF/views/board/{1}/{2}.jsp"/>
    </definition>
 	
    <definition name="/denied/deniedPage" template="/WEB-INF/views/denied/deniedPage.jsp">

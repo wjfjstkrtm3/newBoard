@@ -10,11 +10,14 @@ import com.remind.board.dto.UserDto;
 @Controller
 public class LoginController {
 
+	
+	// 로그인 페이지
 	@RequestMapping(value= {"/", "/login"})
 	public String login() {
 		return "login";
 	}
 	
+	// 권한이 없는 페이지에 접근했을떄
 	@RequestMapping(value="/access_denied_page")
 	public String accessDeniedPage() {
 		return "/denied/deniedPage";

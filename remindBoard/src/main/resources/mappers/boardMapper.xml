@@ -158,5 +158,8 @@
   		WHERE bno = #{bno}
   		  AND del_dv = 'N'
   </select>
+  
+  
+  
  
 </mapper>

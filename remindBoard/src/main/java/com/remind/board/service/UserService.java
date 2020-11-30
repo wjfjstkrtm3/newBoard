@@ -15,4 +15,7 @@ public interface UserService {
 	
 	// user id 중복체크 
 	public int userIdCheck(String id) throws Exception;
+	
+	
+	
 }

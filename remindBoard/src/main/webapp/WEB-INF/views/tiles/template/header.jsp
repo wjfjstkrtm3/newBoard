@@ -32,7 +32,12 @@
 			</span>
 			&nbsp&nbsp&nbsp|
 			</div>
-			<div class="image-board"><span class="image-board-text">이미지 게시판</span>&nbsp&nbsp&nbsp|</div>
+			<div class="image-board">
+			<span class="image-board-text">
+			<a href="/video/videoList">동영상 게시판</a>
+			</span>
+			&nbsp&nbsp&nbsp|
+			</div>
 			<div class="faq-board"><span class="faq-board-text">FAQ 게시판</span>&nbsp&nbsp&nbsp|</div>
 			<div class="etc01"><span class="etc2-board-text">추후 늘릴계획</span></div>
 		

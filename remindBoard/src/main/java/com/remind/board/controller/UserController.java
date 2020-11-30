@@ -23,6 +23,7 @@ public class UserController {
 	@Autowired
 	private UserService service;
 	
+	// 암호화 의존 설정
 	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
 	
@@ -31,6 +32,8 @@ public class UserController {
 		return "/user/signUp";
 	}
 	
+	
+	// 회원가입 (파일처리 포함)
 	@RequestMapping(value="/signUp", method=RequestMethod.POST)
 	public String signUp(UserDto userDto, MultipartHttpServletRequest request) {
 		
@@ -81,6 +84,7 @@ public class UserController {
 	// ResponseBody를 붙이지 않으면 오류가난다 (return 타입에는 int를 쓸 수가 없다)
 	// ResponseBoyd를 붙일 경우 return 값을 그대로 반환해주기때문에 result값이 들어가게된다
 	
+	// 회원가입 ID 중복확인
 	@ResponseBody
 	@RequestMapping(value="userIdCheck", method=RequestMethod.GET)
 	public int userIdCheck(@RequestParam(value="id") String id) {

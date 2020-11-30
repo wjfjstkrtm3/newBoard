@@ -49,4 +49,7 @@ public interface BoardDao {
 	// 첨부파일 제한
 	public int fileCount(int bno) throws Exception;
 	
+
+		
+	
 }

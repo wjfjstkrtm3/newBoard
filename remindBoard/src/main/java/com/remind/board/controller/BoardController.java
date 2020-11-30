@@ -148,7 +148,7 @@ public class BoardController {
 		}finally {
 			
 		}
-		return "/board/list";
+		return "/board/general/list";
 	}
 	
 	
@@ -202,7 +202,7 @@ public class BoardController {
 			}finally {
 				
 			}
-			return "/board/list";
+			return "/board/general/list";
 		}
 		
 
@@ -232,7 +232,7 @@ public class BoardController {
 			
 		}
 		
-	return "/board/detail";
+	return "/board/general/detail";
 	
 	}
 	
@@ -240,7 +240,7 @@ public class BoardController {
 	// 게시물 생성 (View)
 	@RequestMapping(value="/write", method=RequestMethod.GET)
 	public String boardWrite() {
-		return "/board/write";
+		return "/board/general/write";
 	}
 	
 	// 게시물 생성 (Back)
@@ -279,7 +279,7 @@ public class BoardController {
 		}finally {
 			
 		}
-		return "/board/update";
+		return "/board/general/update";
 	}
 	
 	// 게시물 수정 (Back)
@@ -301,9 +301,8 @@ public class BoardController {
 	// 게시물 삭제
 	@RequestMapping(value="/delete", method=RequestMethod.GET)
 	public String boardDelete(@RequestParam(value="bno") int bno) {
-		int result = 0;
 		try {
-			result = service.boardDelete(bno);
+			service.boardDelete(bno);
 		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {
@@ -312,6 +311,8 @@ public class BoardController {
 		return "redirect:/board/listPageSearch";
 	}
 	
+	
+	// 파일 다운로드
 	@RequestMapping(value="/fileDown", method=RequestMethod.GET)
 	public void FileDown(HttpServletResponse response, @RequestParam(value="file_no") int file_no ) {
 			String originalFileName = "";
@@ -347,6 +348,8 @@ public class BoardController {
 		
 	}
 	
+	
+	// 비동기 게시판 View
 	@RequestMapping(value="/ajaxList", method=RequestMethod.GET)
 	public String ajaxList(Model model) {
 		
@@ -358,11 +361,11 @@ public class BoardController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "/board/ajaxList";
+		return "/board/ajaxGeneral/ajaxList";
 	}
 	
 	
-	
+	// 비동기 게시판 List
 	@ResponseBody
 	@RequestMapping(value="/ajaxBoardList", method=RequestMethod.GET)
 	public Map<String, Object> ajaxBoardList(Model model, @RequestParam(value="num", defaultValue="1") int num,
@@ -375,7 +378,6 @@ public class BoardController {
 		Map<String, Object> multiMap = new HashMap<String, Object>();
 		PageDto page = null;
 		
-		System.out.println("num : " + num);
 		
 		map.put("searchType", searchType);
 		map.put("keyword", keyword);
@@ -402,6 +404,7 @@ public class BoardController {
 		return multiMap;
 	}
 	
+	// 비동기 게시판 페이징 처리
 	@ResponseBody
 	@RequestMapping(value="/ajaxPaging", method=RequestMethod.GET)
 	public PageDto ajaxPaging(@RequestParam(value="num", defaultValue="1") int num,
@@ -423,5 +426,7 @@ public class BoardController {
 		return page;
 		
 	}
+	
+	
 	
 }
