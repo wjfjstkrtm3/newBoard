@@ -10,6 +10,13 @@
 
 
 $(document).ready(function() {
+
+	$(window).scroll(function() {
+	    if ($(window).scrollTop() == $(document).height() - $(window).height()) {
+	      
+	    }
+	});
+	
 	
 
 		$(".video-searchBtn").on("click", function() {
@@ -24,9 +31,9 @@ $(document).ready(function() {
 
 
 		function searchVideo(searchText) {
-
+                         var keyValue = "";
 			$.ajax({
-				url:"https://www.googleapis.com/youtube/v3/search?key=AIzaSyCkJiZsGkuJkQ4yT8m_abjslAjEPeCHisE&part=snippet&q=" + searchText + "&order=date",
+				url:"https://www.googleapis.com/youtube/v3/search?key=" + keyValue + "&part=snippet&q=" + searchText + "&order=date&maxResults=10",
 				type:"GET",
 				dataType:"JSON",
 				success:function(data) {
