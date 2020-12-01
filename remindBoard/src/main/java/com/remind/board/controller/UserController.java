@@ -5,6 +5,8 @@ import java.io.File;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -97,6 +99,17 @@ public class UserController {
 			
 		}
 		return result;
+	}
+	
+	@GetMapping(value="/mypage")
+	public String userUpdate(Model model) {
+		try {
+			UserDto userDto = service.getUserById(Etc.getUser());
+			model.addAttribute("userDto", userDto);
+		}catch(Exception e) {
+			
+		}
+		return "/user/mypage";
 	}
 	
 	

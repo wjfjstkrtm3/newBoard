@@ -60,10 +60,27 @@
 		$(".file01-select").on("change", function(event) {
 			// 이벤트가 발생된 객체
 			var fileReader = new FileReader();
+
+			/*
+			files[0]번에 파일 객체가 들어있음
+			{
+				  name: 'zerocho.png', // 파일 이름
+				  size: 74120, // byte 단위 파일 크기
+				  lastModified:  1495791249810, // 올린 시간 timestamp
+				  type: 'image/png'
+			}
+			파일을 읽는 4가지 방법
+			readAsText, readAsDataURL, readAsArrayBuffer, readAsBinaryString
+
+			readAsDataURL : 데이터 URL로 만드는 방법입니다. 
+			                                처음에 base64라는 말이 보이시나요? base64로 인코딩했다는 뜻인데, 
+					        base64로 인코딩한 경우 브라우저가 이 문자열을 인식해서 원래 데이터로 만들어줍니다. 
+					                길긴 해도 이 문자열을 주소창에 치면, 브라우저가 이 파일을 표시합니다. 
+					                즉, 파일 정보를 주소처럼 활용할 수 있다는 것이죠. img 태그의 src로도 사용할 수 있습니다.
+			*/
 			fileReader.readAsDataURL(event.target.files[0]);
 
 			fileReader.onload = function(event) {
-					console.log(event.target);
 					$(".signUp-image-form").empty();
 					$(".signUp-image-form").append("<img src='" + event.target.result  +  "'" +  "class='default-image'>");
 				}

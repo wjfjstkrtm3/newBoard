@@ -1,0 +1,105 @@
+@charset "UTF-8";
+
+.mypage-profile {
+	font-size:40px;
+	margin:20px 0 0 30px;
+}
+
+.mypage-container-form {
+	width:100%;
+	height: 58%;
+	display:flex;
+	justify-content:center;
+	align-items:center;
+}
+
+.mypage-container {
+	width:80%;
+	height:80%;
+	display:grid;
+	grid-template-columns:30% 70%;
+
+}
+
+
+.mypage-category {
+	grid-template-rows:40% 15% 15% 15% 15%;
+	display:grid;
+
+}
+
+.mypage-category > div {
+	background-color:#F9F9F9;
+	border-bottom: 1px solid #E5E5E5;
+	padding:40px;
+}
+
+.mypage-category-profile-form {
+	border-top: 1px solid #E5E5E5;
+}
+
+
+.mypage-actionForm {
+	display:grid;
+	grid-template-rows:40% 15% 15% 15% 15%;
+}
+
+.mypage-actionForm > div {
+	padding:20px;
+}
+
+input[type=text], input[type=password] {
+	width:80%;
+	height:30px;
+}
+
+input[type=text]:focus, input[type=password]:focus {
+	outline:none;
+	box-shadow: 0 0 3pt 2pt yellow;
+}
+
+input[type=text], input[type=password]{
+	padding:5px;
+	margin:10px;
+	border-radius:10px;
+	border:3px solid #F9F9F9;
+	
+}
+
+.mypage-update-form-profile {
+	border-top: 1px solid #E5E5E5;
+}
+
+.mypage-update-form-phoneNumber {
+	border-bottom: 1px solid #E5E5E5;
+}
+
+.mypage-update-form-profile {
+	display:flex;
+	flex-direction:column;
+}
+
+.profile-updateBtn-form {
+	display:flex;
+	margin-top:50px;
+
+}
+
+.profile-updateBtn-form > input[type=button] {
+    margin-left:20px;
+}
+
+
+.profile-image-file {
+    width:120px;
+    height:120px;
+    margin-left:23px;
+}
+
+.profile-image-form {
+	display:flex;
+}
+
+.profile-file01 {
+    margin:auto;
+}

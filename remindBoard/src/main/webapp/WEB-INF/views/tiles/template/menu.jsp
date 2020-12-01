@@ -1,5 +1,16 @@
 <%@ page pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<script type="text/javascript">
+	$(document).ready(function() {
+			$(document).on("click", ".user-image", function() {
+					location.href="/user/mypage";
+				
+				});
+		});
+
+</script>
+
+
 	<div class="main-content-menu-category">
 		<div class="category-image01"><i class="fas fa-gifts fa-3x"></i></div>
 		<div class="category-image02">
