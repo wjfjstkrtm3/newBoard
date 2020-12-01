@@ -6,6 +6,33 @@
 <head>
 <meta charset="UTF-8">
 <title>user 프로필</title>
+<script type="text/javascript">
+	$(document).ready(function() {
+				
+				$(".profile-file01").on("change", function(event) {
+						var fileReader = new FileReader();
+						fileReader.readAsDataURL(event.target.files[0]);
+
+						console.log(event.target.files[0]);
+						fileReader.onload = function(event) {
+
+								$(".image-form").empty();
+								$(".image-form").append("<img src='" + event.target.result + "'"  + "class='profile-image-file'>");
+							}
+					
+					});
+
+				$(".profile-deleteBtn").on("click", function() {
+						$(".image-form").empty();
+						$(".image-form").append("<img src='/img/default.png' class='profile-image-file'>");
+					});
+
+
+		
+		});
+
+
+</script>
 </head>
 <body>
 	<div class="mypage-profile">
@@ -36,33 +63,39 @@
 					
 				</div>
 				
-				<form action="#" method="POST" class="mypage-actionForm">
+				<form action="/user/mypage" method="POST" class="mypage-actionForm" enctype="multipart/form-data">
 						<div class="mypage-update-form-profile">
 							<div class="profile-image-form">
-								<img src="/img/${userDto.image}" class="profile-image-file">
-								<input type="file" name="file01" class="profile-file01">
+								<div class="image-form">
+									<img src="/img/${userDto.image}" class="profile-image-file">
+								</div>
+									<input type="file" name="file01" class="profile-file01">
 							</div>
 							<div class="profile-updateBtn-form">
-								<input type="button" value="사진변경" class="profile-updateBtn blue-btn">
 								<input type="button" value="삭제" class="profile-deleteBtn blue-btn">
 							</div>
 						</div>
 						
 						<div class="mypage-update-form-password">
-							<input type="text" class="mypage-password-text" placeholder="비밀번호">
+							<input type="password" class="mypage-password-text" name="password" placeholder="비밀번호">
 						</div>
 						
 						<div class="mypage-update-form-passwordCheck">
-							<input type="text" class="mypage-password-textCheck" placeholder="비밀번호 확인">
+							<input type="password" class="mypage-password-textCheck" placeholder="비밀번호 확인">
 						</div>
 						
 						<div class="mypage-update-form-email">
-							<input type="text" class="mypage-email" placeholder="이메일">
+							<input type="text" class="mypage-email" value="${userDto.email}" name="email" placeholder="이메일">
 						</div>
 						
 						<div class="mypage-update-form-phoneNumber">
-							<input type="text" class="mypage-phoneNumber" placeholder="핸드폰 번호">
+							<input type="text" class="mypage-phoneNumber" value="${userDto.phoneNumber}" name="phoneNumber" placeholder="핸드폰 번호">
 						</div>
+						
+						<input type="submit" value="수정" class="profile-submitBtn">
+						
+						<input type="hidden" value="${userDto.id}" name="id">
+						<input type="hidden" value="${userDto.gender}" name="gender">
 						
 				</form>
 			

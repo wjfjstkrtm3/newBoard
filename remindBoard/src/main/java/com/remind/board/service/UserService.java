@@ -16,6 +16,8 @@ public interface UserService {
 	// user id 중복체크 
 	public int userIdCheck(String id) throws Exception;
 	
+	// user 마이페이지 수정
+	public void mypageUpdate(UserDto userDto) throws Exception;
 	
 	
 }

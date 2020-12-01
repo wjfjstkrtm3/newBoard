@@ -56,7 +56,8 @@
 				
 				
 			});
-
+		// File API 사용 (회원가입 창에서 파일을 추가하면 바로 해당 파일의 이미지가 append 될 수 있게)
+		// 파일선택시 바로 파일 이미지 변경
 		$(".file01-select").on("change", function(event) {
 			// 이벤트가 발생된 객체
 			var fileReader = new FileReader();

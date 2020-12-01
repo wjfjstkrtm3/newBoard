@@ -7,6 +7,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -101,6 +102,8 @@ public class UserController {
 		return result;
 	}
 	
+	
+	// 마이페이지 View
 	@GetMapping(value="/mypage")
 	public String userUpdate(Model model) {
 		try {
@@ -112,6 +115,53 @@ public class UserController {
 		return "/user/mypage";
 	}
 	
+	// 마이페이지 Back
+	@PostMapping(value="/mypage")
+	public String userUpdate(Model model, MultipartHttpServletRequest request, UserDto userDto) { 
+		
+		MultipartFile multipartFile = null;
+		String originalFileName = null;
+		String originalFileExtension = null;
+		String storedFileName = null;
+		
+		final String filePath = "D:\\바탕 화면\\JavaAll\\file-images\\";
+		
+		// 비밀번호 암호화
+		bCryptPasswordEncoder.encode(userDto.getPassword());
+		
+		try {
+			
+			multipartFile = request.getFile("file01");
+			
+			// 이미지 객체가 비어있지 않다면.. (마이페이지에서 수정할때 이미지 넣었을때)
+			if(multipartFile.isEmpty() == false) {
+				originalFileName = multipartFile.getOriginalFilename();
+				originalFileExtension = originalFileName.substring(originalFileName.indexOf("."));
+				storedFileName = Etc.getRandomString() + originalFileExtension;
+				
+				// filePath에 해당되는 파일의 File 객체를 생성 (껍데기 생성) (디렉터리 생성)
+				File file = new File(filePath + storedFileName);
+				
+				// 업로드한 데이터를 지정한 file에 저장한다
+				multipartFile.transferTo(file);
+				
+				userDto.setImage(storedFileName);
+			
+				service.mypageUpdate(userDto);
+				
+				// 이미지 객체가 비어있다면.. (마이페이지에서 수정할때 이미지 넣었을때)
+			} else {
+				userDto.setImage("default.png");
+				service.mypageUpdate(userDto);
+				
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		return "redirect:/board/listPageSearch";
+	}
 	
 	
 	

@@ -30,6 +30,13 @@ public class UserServiceImpl implements UserService {
 	public int userIdCheck(String id) throws Exception {
 		return dao.userIdCheck(id);
 	}
+
+	// user 마이페이지 수정
+	@Override
+	public void mypageUpdate(UserDto userDto) throws Exception {
+		dao.mypageUpdate(userDto);
+	}
+	
 	
 	
 

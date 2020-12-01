@@ -24,4 +24,14 @@
  		WHERE id = #{id}
  	</select>
  
+ 	<!-- user 마이페이지 수정 -->
+ 	<update id="mypageUpdate" parameterType="com.remind.board.dto.UserDto">
+ 		UPDATE user
+ 		SET password = #{password}, 
+ 		    email = #{email},
+ 		    phoneNumber = #{phoneNumber},
+ 		    image = #{image}
+ 		WHERE id = #{id}
+ 	</update>
+ 
 </mapper>
