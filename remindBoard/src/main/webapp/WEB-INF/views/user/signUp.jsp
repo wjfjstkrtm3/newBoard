@@ -56,7 +56,19 @@
 				
 				
 			});
-		
+
+		$(".file01-select").on("change", function(event) {
+			// 이벤트가 발생된 객체
+			var fileReader = new FileReader();
+			fileReader.readAsDataURL(event.target.files[0]);
+
+			fileReader.onload = function(event) {
+					console.log(event.target);
+					$(".signUp-image-form").empty();
+					$(".signUp-image-form").append("<img src='" + event.target.result  +  "'" +  "class='default-image'>");
+				}
+			
+		});
 		
 
 		
@@ -71,7 +83,7 @@
 		<form action="/user/signUp" method="POST" class="signUp-form" enctype="multipart/form-data">
 				<div class="signUp-image">
 						<div class="signUp-image-form"><img src="${path}/resources/imgs/default.png" class="default-image"></div>
-						<input type="file" name="file01" class="file-select">
+						<input type="file" name="file01" class="file01-select">
 				</div>
 				
 				<div class="signUp-id">
