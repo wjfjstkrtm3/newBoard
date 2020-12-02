@@ -37,15 +37,24 @@ public class UserServiceImpl implements UserService {
 		dao.mypageUpdate(userDto);
 	}
 
-	// 비밀번호 확인
+	// user 마이페이지 비밀번호 확인
 	@Override
 	public UserDto passwordCheck(String id) throws Exception {
 		return dao.passwordCheck(id);
 	}
-	
-	
-	
 
+	// 로그인 페이지 비밀번호 찾기 (id와 email 일치하는지)
+	@Override
+	public int checkIdEmail(UserDto userDto) throws Exception {
+		return dao.checkIdEmail(userDto);
+	}
+
+	// 로그인 페이지 비밀번호 변경
+	@Override
+	public int updatePassword(UserDto userDto) throws Exception {
+		return dao.updatePassword(userDto);
+	}
+	
 	
 	
 }

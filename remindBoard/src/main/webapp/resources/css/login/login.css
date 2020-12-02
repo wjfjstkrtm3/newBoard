@@ -69,7 +69,7 @@ html, body {
 	height:60%;
 	border:20px solid #374760;
 	display:grid;
-	grid-template-rows:45% 40% 15%;
+	grid-template-rows: 35% 45% 20%;
 	background-color: #F5CA00;
 }
 
@@ -78,7 +78,7 @@ input[type=text], input[type=password] {
 	height:30px;
 }
 
-input[type=text]:focus, input[type=password]:focus {
+.login-userIdPwd-form > input[type=text]:focus, .login-userIdPwd-form > input[type=password]:focus {
 	outline:none;
 	box-shadow: 0 0 3pt 2pt yellow;
 }
@@ -139,6 +139,8 @@ input[type=text]:focus, input[type=password]:focus {
 
 .user-signUp {
 	margin-top:2px;
+	color:black;
+	font-weight:bold;
 }
 
 .login-errorMessage {
@@ -154,3 +156,278 @@ input[type=text]:focus, input[type=password]:focus {
 .user-signUp:active {
 	color:yellow;
 }
+
+.character-image {
+	height:290px;
+}
+
+.findPassword-btn {
+	width: 250px;
+    height: 30px;
+    background-color: #374760;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+    margin:10px;
+}
+
+.findPassword-btn:hover {
+    box-shadow: 0 0 3pt 2pt yellow;
+}
+
+.findPassword-btn:focus {
+	outline:none;
+}
+
+.modal-body-size {
+	height:300px;
+}
+
+.checkIdEmail-form > input[type=text],  .checkIdEmail-form > input[type=password]{
+    padding:5px;
+    margin:10px;
+    border-radius:10px;
+    border:2px solid #1C2430;
+}
+
+.checkIdEmail-form > input:focus {
+	outline:none;
+}
+
+.userPwdCheckBtn, .confirmBtn {
+    width: 85px;
+    height: 30px;
+    background-color: #374760;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+}
+
+.userPwdCheckBtn:hover, .confirmBtn:hover {
+	box-shadow: 0 0 3pt 2pt yellow;
+}
+
+.alert-text {
+	width:700px;
+}
+
+.modal-header-size {
+	height:60px;
+}
+
+.@charset "UTF-8";
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+
+a{
+    color: inherit;
+    text-decoration: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+
+html, body {
+	width:100%;
+	height:100%;
+}
+
+.login-container {
+	width:100%;
+	height:100%;
+	display:grid;
+	align-items:center;
+	justify-items:center;
+	background-color: #ED6D5C;
+}
+
+.login-form {
+	width:20%;
+	height:60%;
+	border:20px solid #374760;
+	display:grid;
+	grid-template-rows: 35% 45% 20%;
+	background-color: #F5CA00;
+}
+
+input[type=text], input[type=password] {
+	width:80%;
+	height:30px;
+}
+
+.login-userIdPwd-form > input[type=text]:focus, .login-userIdPwd-form > input[type=password]:focus {
+	outline:none;
+	box-shadow: 0 0 3pt 2pt yellow;
+}
+
+.login-userIdPwd-form {
+	display:flex;
+	flex-direction:column;
+	justify-content:center;
+	align-items:center;
+}
+
+.login-userIdPwd-form > input {
+	padding:5px;
+	margin:10px;
+	border-radius:10px;
+	border:none;
+}
+
+.login-btn-form {
+	display:flex;
+	/* justify-content:center; */
+	align-items: center;
+	flex-direction: column;
+} 
+
+.login-btn {
+	width:250px;
+	height:30px;
+	background-color: #374760;
+	border: none;
+	border-radius: 10px;
+	color:white;
+	cursor:pointer;
+}
+
+.login-btn:hover {
+	box-shadow: 0 0 3pt 2pt yellow;
+}
+
+.login-btn:focus {
+	outline:none;
+}
+
+.login-image-form {
+	display:flex;
+	justify-content:center;
+}
+
+.etc-form {
+	display:flex;
+	width:85%;
+	justify-content:space-around;
+}
+
+.checkbox-form {
+	margin-right:auto;
+}
+
+.user-signUp {
+	margin-top:2px;
+	color:black;
+	font-weight:bold;
+}
+
+.login-errorMessage {
+	color:red;
+	font-size:15px;
+	margin: auto;
+}
+
+.user-signUp:hover {
+	opacity:0.5;
+}
+
+.user-signUp:active {
+	color:yellow;
+}
+
+.character-image {
+	height:290px;
+}
+
+.findPassword-btn {
+	width: 250px;
+    height: 30px;
+    background-color: #374760;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+    margin:10px;
+}
+
+.findPassword-btn:hover {
+    box-shadow: 0 0 3pt 2pt yellow;
+}
+
+.findPassword-btn:focus {
+	outline:none;
+}
+
+.modal-body-size {
+	height:300px;
+}
+
+
+.checkIdEmail-form > input:focus {
+	outline:none;
+}
+
+.userPwdCheckBtn, .confirmBtn {
+    width: 85px;
+    height: 30px;
+    background-color: #374760;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+}
+
+.userPwdCheckBtn:hover, .confirmBtn:hover {
+	box-shadow: 0 0 3pt 2pt yellow;
+}
+
+.alert-text {
+	width:700px;
+}
+
+.confirmBtn {
+	margin-left:4px;
+}
+
+

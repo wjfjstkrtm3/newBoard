@@ -3,11 +3,13 @@ package com.remind.board.controller;
 import java.io.File;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -163,6 +165,8 @@ public class UserController {
 		return "redirect:/board/listPageSearch";
 	}
 	
+	
+	// user 마이페이지 비밀번호 확인
 	@ResponseBody
 	@PostMapping(value="/passwordCheck")
 	public boolean passwordCheck(@RequestParam(value="id") String id, @RequestParam(value="password") String password) {
@@ -181,6 +185,36 @@ public class UserController {
 	}
 	
 	
+	// 로그인 페이지 비밀번호 찾기 (id와 email 일치하는지)
+	@ResponseBody
+	@PostMapping(value="/checkIdEmail")
+	public int checkIdEmail(@RequestBody UserDto userDto) {
+		int result = 0;
+		try {
+			result = service.checkIdEmail(userDto);
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
 	
+	
+	// 로그인 페이지 비밀번호 변경
+	@ResponseBody
+	@PostMapping(value="/updatePassword")
+	public int updatePassword(@RequestBody UserDto userDto) {
+		int result = 0;
+		try {
+			userDto.setPassword(bCryptPasswordEncoder.encode(userDto.getPassword()));
+			result = service.updatePassword(userDto);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	
+	}
 	
 }

@@ -34,12 +34,25 @@
  		WHERE id = #{id}
  	</update>
  	
- 	<!-- 비밀번호 확인 -->
+ 	<!-- user 마이페이지 비밀번호 확인 -->
  	<select id="passwordCheck" parameterType="String" resultType="com.remind.board.dto.UserDto">
  		SELECT id, password
  		FROM user
  		WHERE id = #{id}
  	</select>
  	
+ 	<!-- 로그인 페이지 비밀번호 찾기 (id와 email 일치하는지)-->
+ 	<select id="checkIdEmail" parameterType="com.remind.board.dto.UserDto" resultType="int">
+ 		SELECT count(*)
+ 		FROM user
+ 		WHERE id = #{id} AND email = #{email}
+ 	</select>
+ 	
+ 	<!-- 로그인 페이지 비밀번호 변경 -->
+ 	<update id="updatePassword" parameterType="com.remind.board.dto.UserDto">
+ 		UPDATE USER
+ 		SET password = #{password}
+ 		WHERE id = #{id}
+ 	</update>
  
 </mapper>

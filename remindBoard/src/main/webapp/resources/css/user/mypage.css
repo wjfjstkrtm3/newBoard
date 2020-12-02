@@ -23,9 +23,8 @@
 
 
 .mypage-category {
-	grid-template-rows:40% 15% 15% 15% 15%;
+	grid-template-rows: 40% 20% 20% 20%;
 	display:grid;
-
 }
 
 .mypage-category > div {
@@ -41,7 +40,7 @@
 
 .mypage-actionForm {
 	display:grid;
-	grid-template-rows:40% 15% 15% 15% 15%;
+	grid-template-rows: 40% 20% 20% 20%;
 	position: relative;
 }
 
