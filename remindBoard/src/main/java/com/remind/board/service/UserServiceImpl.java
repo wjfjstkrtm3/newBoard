@@ -36,6 +36,12 @@ public class UserServiceImpl implements UserService {
 	public void mypageUpdate(UserDto userDto) throws Exception {
 		dao.mypageUpdate(userDto);
 	}
+
+	// 비밀번호 확인
+	@Override
+	public UserDto passwordCheck(String id) throws Exception {
+		return dao.passwordCheck(id);
+	}
 	
 	
 	

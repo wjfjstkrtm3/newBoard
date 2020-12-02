@@ -127,7 +127,7 @@ public class UserController {
 		final String filePath = "D:\\바탕 화면\\JavaAll\\file-images\\";
 		
 		// 비밀번호 암호화
-		bCryptPasswordEncoder.encode(userDto.getPassword());
+		userDto.setPassword(bCryptPasswordEncoder.encode(userDto.getPassword()));
 		
 		try {
 			
@@ -162,6 +162,24 @@ public class UserController {
 		
 		return "redirect:/board/listPageSearch";
 	}
+	
+	@ResponseBody
+	@PostMapping(value="/passwordCheck")
+	public boolean passwordCheck(@RequestParam(value="id") String id, @RequestParam(value="password") String password) {
+		UserDto userDto = null;
+		boolean result = false;
+		try {
+			userDto = service.passwordCheck(id);
+			result = bCryptPasswordEncoder.matches(password, userDto.getPassword());
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			
+		}
+		
+		return result;
+	}
+	
 	
 	
 	

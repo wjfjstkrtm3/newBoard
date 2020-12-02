@@ -36,6 +36,12 @@ public class userDaoImpl implements UserDao {
 	public void mypageUpdate(UserDto userDto) throws Exception {
 		sqlsession.update("userMapper.mypageUpdate", userDto);
 	}
+
+	// 비밀번호 확인
+	@Override
+	public UserDto passwordCheck(String id) throws Exception {
+		return sqlsession.selectOne("userMapper.passwordCheck", id);
+	}
 	
 	
 	

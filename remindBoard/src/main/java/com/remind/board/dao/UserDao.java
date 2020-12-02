@@ -15,4 +15,7 @@ public interface UserDao {
 	
 	// user 마이페이지 수정
 	public void mypageUpdate(UserDto userDto) throws Exception;
+	
+	// 비밀번호 확인
+	public UserDto passwordCheck(String id) throws Exception;
 }

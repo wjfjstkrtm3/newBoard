@@ -33,5 +33,13 @@
  		    image = #{image}
  		WHERE id = #{id}
  	</update>
+ 	
+ 	<!-- 비밀번호 확인 -->
+ 	<select id="passwordCheck" parameterType="String" resultType="com.remind.board.dto.UserDto">
+ 		SELECT id, password
+ 		FROM user
+ 		WHERE id = #{id}
+ 	</select>
+ 	
  
 </mapper>
