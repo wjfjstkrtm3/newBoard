@@ -80,8 +80,8 @@ public class userDaoImpl implements UserDao {
 
 	// 북마크한 게시물 조회
 	@Override
-	public List<BoardDto> selectBookMarkList(String id) throws Exception {
-		return sqlsession.selectList("userMapper.selectBookMarkList", id);
+	public List<BoardDto> selectBookMarkList(Map<String, Object> map) throws Exception {
+		return sqlsession.selectList("userMapper.selectBookMarkList", map);
 	}
 	
 	

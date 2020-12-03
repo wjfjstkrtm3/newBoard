@@ -79,8 +79,8 @@ public class UserServiceImpl implements UserService {
 
 	// 북마크한 게시물 조회
 	@Override
-	public List<BoardDto> selectBookMarkList(String id) throws Exception {
-		return dao.selectBookMarkList(id);
+	public List<BoardDto> selectBookMarkList(Map<String, Object> map) throws Exception {
+		return dao.selectBookMarkList(map);
 	}
 	
 	

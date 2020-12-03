@@ -39,6 +39,6 @@ public interface UserDao {
 	public int boardBookMarkStatus(Map<String, Object> map) throws Exception;
 	
 	// 북마크한 게시물 조회
-	public List<BoardDto> selectBookMarkList(String id) throws Exception;
+	public List<BoardDto> selectBookMarkList(Map<String, Object> map) throws Exception;
 	
 }

@@ -2,6 +2,7 @@ package com.remind.board.controller;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -265,13 +266,18 @@ public class UserController {
 	
 	// 북마크 페이지 View
 	@GetMapping(value="/bookMarkPage")
-	public String bookMarkPage(Model model) {
+	public String bookMarkPage(Model model, @RequestParam(value="searchText", defaultValue = "") String searchText) {
 		
-		
+		Map<String, Object> map = new HashMap<String, Object>();
 		try {
 			List<BoardDto> list = new ArrayList<BoardDto>();
-			list = service.selectBookMarkList(Etc.getUser());
+			map.put("id", Etc.getUser());
+			map.put("searchText", searchText);
+			
+			list = service.selectBookMarkList(map);
+			
 			model.addAttribute("bookMarkList", list);
+			model.addAttribute("count", list.size());
 			
 			// user 이미지
 			UserDto userDto = service.getUserById(Etc.getUser());
@@ -282,5 +288,25 @@ public class UserController {
 		return "/user/bookMark";
 	}
 	
+	
+	// 북마크 페이지 검색
+	@ResponseBody
+	@PostMapping(value="/bookMarkSearch")
+	public List<BoardDto> bookMarkSearch(@RequestParam(value="searchText", defaultValue = "") String searchText) {
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		List<BoardDto> list = new ArrayList<BoardDto>();
+		try {
+			map.put("id", Etc.getUser());
+			System.out.println("searchText: " + searchText);
+			map.put("searchText", searchText);
+			
+			list = service.selectBookMarkList(map);
+		}catch(Exception e) { 
+			e.printStackTrace();
+		}
+		
+		return list;
+	}
 	
 }

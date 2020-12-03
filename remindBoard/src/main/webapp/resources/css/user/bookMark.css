@@ -20,7 +20,7 @@
 	display:grid;
 	grid-template-columns:20% 25% 13% 15% 25%;
 	grid-template-rows: 15% 20% 25% 13% 20%;
-
+	overflow: auto;
 } 
 
 [class^=bList_] {
@@ -85,4 +85,9 @@
 }
 
 
-   
+.bookMark-count {
+	position:absolute;
+	top:70px;
+	left:177px;
+	font-weight:bold;
+}    
