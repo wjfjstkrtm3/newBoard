@@ -253,12 +253,23 @@ public class UserController {
 			int result = 0;
 		try {
 			result = service.boardBookMarkStatus(map);
-			System.out.println("북마크 상태 : " + result);
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
 		
 		return result;
+	}
+	
+	// 북마크 페이지 View
+	@GetMapping(value="/bookMarkPage")
+	public String bookMarkPage(Model model) {
+		try {
+			UserDto userDto = service.getUserById(Etc.getUser());
+			model.addAttribute("userDto", userDto);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return "/user/bookMark";
 	}
 	
 	

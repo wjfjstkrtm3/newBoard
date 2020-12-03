@@ -6,6 +6,10 @@
 					location.href="/user/mypage";
 				
 				});
+			$(".category-image03").on("click", function() {
+					location.href="/user/bookMarkPage";
+				});
+			
 		});
 
 </script>
