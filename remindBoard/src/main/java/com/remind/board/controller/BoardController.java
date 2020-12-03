@@ -224,7 +224,9 @@ public class BoardController {
 			selectFileList = service.selectFileList(bno);
 			model.addAttribute("selectFileList", selectFileList);
 			
-			
+			// user 이미지
+			UserDto userDto = userService.getUserById(Etc.getUser());
+			model.addAttribute("userDto", userDto);
 			
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -239,7 +241,15 @@ public class BoardController {
 	
 	// 게시물 생성 (View)
 	@RequestMapping(value="/write", method=RequestMethod.GET)
-	public String boardWrite() {
+	public String boardWrite(Model model) {
+		try {
+			// user 이미지
+			UserDto userDto = userService.getUserById(Etc.getUser());
+			model.addAttribute("userDto", userDto);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
 		return "/board/general/write";
 	}
 	
@@ -250,7 +260,9 @@ public class BoardController {
 			boardDto.setWriter(Etc.getUser());
 			service.boardWrite(boardDto, request);
 			
-			
+			// user 이미지
+			UserDto userDto = userService.getUserById(Etc.getUser());
+			model.addAttribute("userDto", userDto);
 			
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -274,6 +286,10 @@ public class BoardController {
 			
 			// 첨부파일 제한
 			model.addAttribute("fileCount", service.fileCount(bno));
+			
+			// user 이미지
+			UserDto userDto = userService.getUserById(Etc.getUser());
+			model.addAttribute("userDto", userDto);
 		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {
@@ -284,11 +300,16 @@ public class BoardController {
 	
 	// 게시물 수정 (Back)
 	@RequestMapping(value="/update", method=RequestMethod.POST)
-	public String boardUpate(BoardDto boardDto, MultipartHttpServletRequest request, 
+	public String boardUpate(Model model, BoardDto boardDto, MultipartHttpServletRequest request, 
 							@RequestParam(value="filesNo") String filesNo[], 
 							@RequestParam(value="filesName") String filesName[]) {
 		try {
 			 service.boardUpdate(boardDto, request, filesNo, filesName);
+			 
+			// user 이미지
+			UserDto userDto = userService.getUserById(Etc.getUser());
+			model.addAttribute("userDto", userDto);
+			
 		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {
@@ -412,7 +433,6 @@ public class BoardController {
 							 @RequestParam(value="keyword", defaultValue="") String keyword){
 		PageDto page = null;
 		try {
-			System.out.println("num : " + num);
 			page = new PageDto(num, service.searchCount(searchType, keyword));
 			page.setSearchType(searchType);
 			page.setKeyword(keyword);

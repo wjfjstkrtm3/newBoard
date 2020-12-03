@@ -1,9 +1,9 @@
 package com.remind.board.controller;
 
 import java.io.File;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -216,5 +216,50 @@ public class UserController {
 		return result;
 	
 	}
+	
+	
+	// 게시물 bookMark
+	@ResponseBody
+	@PostMapping(value="/boardBookMark")
+	public String boardBookMark(@RequestBody Map<String, Object> map) {
+		int result = 0;
+		String msg = "";
+		try {
+			// 북마크 된 글이면 북마크 해제
+			if(map.get("bmStatus").equals("true")) {
+				
+				result = service.boardBookMarkDelete(map);
+				msg = "delete";
+			// 북마크 된 글이 아니면 북마크 등록
+			} else {
+				
+				result = service.boardBookMarkInsert(map);
+				msg = "insert";
+			}
+			
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return msg;
+	}
+	
+	
+	// 게시물 bookMarkStatus 
+	@ResponseBody
+	@PostMapping(value="/boardBookMarkStatus")
+	public int boardBookMarkStatus(@RequestBody Map<String, Object> map) {
+			int result = 0;
+		try {
+			result = service.boardBookMarkStatus(map);
+			System.out.println("북마크 상태 : " + result);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+	
 	
 }

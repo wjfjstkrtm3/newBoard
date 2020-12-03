@@ -86,9 +86,10 @@ html, body {
 .boardDetail-board-info {
 	display:flex;
 	align-items: center;
+	position: relative;
 }
 
-.boardDetail-board-info > div {
+.boardDetail-board-info > div:nth-child(-n+4) {
 	margin-left:20px;
 }
 
@@ -125,4 +126,42 @@ html, body {
 
 [class^=fileList_] > a {
 	color:#87AEFF;
+}
+
+
+.bookMark-span {
+	position:absolute;
+	right:60px;
+	bottom:50px;
+	cursor: pointer;
+}
+
+.bookMark-span > .bookMark-color {
+	color:#023047;
+
+}
+
+.bookMark-span > .bookMarked-color {
+	color:#023047;
+}
+
+.bookMarkBtn {
+	width:70px;
+	height:30px;
+	background-color: #374760;
+	border: none;
+	border-radius: 10px;
+	color:white;
+	cursor:pointer;
+	position:absolute;
+	right:51px;
+	top:10px;
+}
+
+.bookMarkBtn:hover {
+	box-shadow: 0 0 3pt 2pt yellow;
+}
+
+.bookMarkBtn:focus {
+	outline:none;
 }

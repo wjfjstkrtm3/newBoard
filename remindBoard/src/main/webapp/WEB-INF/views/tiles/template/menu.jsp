@@ -27,8 +27,8 @@
 			<!--  <i class="fas fa-user-circle fa-3x"></i>-->
 	
 		</div>
-		<div class="category-image03"><i class="fas fa-star fa-3x"></i></div>
-		<div class="category-image04"><i class="fas fa-address-book fa-3x"></i></div>
+		<div class="category-image03"><i class="fas fa-star fa-3x start-color"></i></div>
+		<div class="category-image04"><i class="fas fa-address-book fa-3x book-color"></i></div>
 
 		
 	</div>

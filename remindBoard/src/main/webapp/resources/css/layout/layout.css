@@ -183,7 +183,10 @@ html, body {
 }
 
 .main-content-menu-category > div i {
-	color:black;
+	color: #F9F9F9;
+}
+.main-content-menu-category > div i:hover {
+	color: yellow;
 }
 
 /*
@@ -224,6 +227,10 @@ html, body {
 	margin:auto;
 	width: 80%;
 	height: 60px;
+}
+
+.user-image:hover {
+	box-shadow: 0 0 3pt 2pt yellow;
 }
 
 .blue-btn {

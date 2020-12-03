@@ -1,5 +1,7 @@
 package com.remind.board.dao;
 
+import java.util.Map;
+
 import com.remind.board.dto.UserDto;
 
 public interface UserDao {
@@ -24,5 +26,15 @@ public interface UserDao {
 	
 	// 로그인 페이지 비밀번호 변경
 	public int updatePassword(UserDto userDto) throws Exception; 
+	
+	// 게시물 bookMark 등록
+	public int boardBookMarkInsert(Map<String, Object> map) throws Exception;
+	
+	// 게시물 bookMark 해제
+	public int boardBookMarkDelete(Map<String, Object> map) throws Exception;
+	
+	// user에 따른 게시물 bookMark 상태
+	public int boardBookMarkStatus(Map<String, Object> map) throws Exception;
+	
 	
 }

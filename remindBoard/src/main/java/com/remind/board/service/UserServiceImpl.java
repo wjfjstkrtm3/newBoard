@@ -1,5 +1,7 @@
 package com.remind.board.service;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -54,6 +56,25 @@ public class UserServiceImpl implements UserService {
 	public int updatePassword(UserDto userDto) throws Exception {
 		return dao.updatePassword(userDto);
 	}
+	
+	// 게시물 bookMark 등록
+	@Override
+	public int boardBookMarkInsert(Map<String, Object> map) throws Exception {
+		return dao.boardBookMarkInsert(map);
+	}
+
+	// 게시물 bookMark 해제
+	@Override
+	public int boardBookMarkDelete(Map<String, Object> map) throws Exception {
+		return dao.boardBookMarkDelete(map);
+	}
+
+	// user에 따른 게시물 bookMark 상태
+	@Override
+	public int boardBookMarkStatus(Map<String, Object> map) throws Exception {
+		return dao.boardBookMarkStatus(map);
+	}
+	
 	
 	
 	

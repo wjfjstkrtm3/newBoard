@@ -54,5 +54,26 @@
  		SET password = #{password}
  		WHERE id = #{id}
  	</update>
+ 	
+ 	<!-- 게시물 bookMark 등록 -->
+ 	<insert id="boardBookMarkInsert" parameterType="hashMap" >
+ 		INSERT INTO bookMark(id, bno)
+ 		VALUES(#{id}, #{bno})
+ 	</insert>
+ 	
+ 	<!-- 게시물 bookMark 해제 -->
+ 	<delete id="boardBookMarkDelete" parameterType="hashMap">
+ 		DELETE FROM
+ 		bookMark
+ 		where id = #{id} AND bno = #{bno}
+ 	</delete>
+ 	
+ 	<!-- user에 따른 게시물 bookMark 상태 -->
+ 	<select id="boardBookMarkStatus" parameterType="hashMap" resultType="int">
+ 		SELECT COUNT(*)
+ 		FROM bookMark
+ 		WHERE id = #{id} AND bno = #{bno}
+ 	</select>
+ 	
  
 </mapper>

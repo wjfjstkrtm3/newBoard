@@ -1,5 +1,7 @@
 package com.remind.board.dao;
 
+import java.util.Map;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -54,12 +56,26 @@ public class userDaoImpl implements UserDao {
 	public int updatePassword(UserDto userDto) throws Exception {
 		return sqlsession.update("userMapper.updatePassword", userDto);
 	}
-	
-	
-	
-	
-	
-	
 
+	// 게시물 bookMark 등록
+	@Override
+	public int boardBookMarkInsert(Map<String, Object> map) throws Exception {
+		return sqlsession.insert("userMapper.boardBookMarkInsert", map);
+	}
+	
+	
+	// 게시물 bookMark 해제
+	@Override
+	public int boardBookMarkDelete(Map<String, Object> map) throws Exception {
+		return sqlsession.delete("userMapper.boardBookMarkDelete", map);
+	}
+
+	// user에 따른 게시물 bookMark 상태
+	@Override
+	public int boardBookMarkStatus(Map<String, Object> map) throws Exception {
+		return sqlsession.selectOne("userMapper.boardBookMarkStatus", map);
+	}
+	
+	
 	
 }
