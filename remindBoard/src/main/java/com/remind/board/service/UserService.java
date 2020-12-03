@@ -1,9 +1,11 @@
 package com.remind.board.service;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
+import com.remind.board.dto.BoardDto;
 import com.remind.board.dto.UserDto;
 
 @Service
@@ -38,4 +40,7 @@ public interface UserService {
 	
 	// user에 따른 게시물 bookMark 상태
 	public int boardBookMarkStatus(Map<String, Object> map) throws Exception;
+	
+	// 북마크한 게시물 조회
+	public List<BoardDto> selectBookMarkList(String id) throws Exception;
 }

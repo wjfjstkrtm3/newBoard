@@ -75,5 +75,12 @@
  		WHERE id = #{id} AND bno = #{bno}
  	</select>
  	
+ 	<!-- 북마크한 게시물 조회 -->
+ 	<select id="selectBookMarkList" parameterType="String" resultType="com.remind.board.dto.BoardDto">
+ 		SELECT b.bno, b.title, b.writer, b.content, b.regDate, b.viewCnt
+		FROM board b INNER JOIN bookMark k ON b.bno = k.bno
+		WHERE writer = #{id};  
+ 	</select>
+ 	 	
  
 </mapper>

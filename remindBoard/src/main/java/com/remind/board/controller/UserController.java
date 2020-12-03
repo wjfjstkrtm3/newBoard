@@ -1,6 +1,8 @@
 package com.remind.board.controller;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.remind.board.dto.BoardDto;
 import com.remind.board.dto.UserDto;
 import com.remind.board.service.UserService;
 import com.remind.board.utils.Etc;
@@ -263,7 +266,14 @@ public class UserController {
 	// 북마크 페이지 View
 	@GetMapping(value="/bookMarkPage")
 	public String bookMarkPage(Model model) {
+		
+		
 		try {
+			List<BoardDto> list = new ArrayList<BoardDto>();
+			list = service.selectBookMarkList(Etc.getUser());
+			model.addAttribute("bookMarkList", list);
+			
+			// user 이미지
 			UserDto userDto = service.getUserById(Etc.getUser());
 			model.addAttribute("userDto", userDto);
 		}catch(Exception e) {

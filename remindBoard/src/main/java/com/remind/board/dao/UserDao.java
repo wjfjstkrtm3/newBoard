@@ -1,7 +1,9 @@
 package com.remind.board.dao;
 
+import java.util.List;
 import java.util.Map;
 
+import com.remind.board.dto.BoardDto;
 import com.remind.board.dto.UserDto;
 
 public interface UserDao {
@@ -36,5 +38,7 @@ public interface UserDao {
 	// user에 따른 게시물 bookMark 상태
 	public int boardBookMarkStatus(Map<String, Object> map) throws Exception;
 	
+	// 북마크한 게시물 조회
+	public List<BoardDto> selectBookMarkList(String id) throws Exception;
 	
 }
