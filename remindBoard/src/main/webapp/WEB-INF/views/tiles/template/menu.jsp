@@ -1,5 +1,6 @@
 <%@ page pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <script type="text/javascript">
 	$(document).ready(function() {
 			$(document).on("click", ".user-image", function() {
@@ -9,6 +10,12 @@
 			$(".category-image03").on("click", function() {
 					location.href="/user/bookMarkPage";
 				});
+
+			$(".admin-page").on("click", function() {
+					location.href="/admin/makeBoard";	
+				});
+
+
 			
 		});
 
@@ -33,7 +40,9 @@
 		</div>
 		<div class="category-image03"><i class="fas fa-star fa-3x start-color"></i></div>
 		<div class="category-image04"><i class="fas fa-address-book fa-3x book-color"></i></div>
-
+		<sec:authorize access="hasRole('ROLE_ADMIN')">
+			<div class="admin-page"><i class="fas fa-crown fa-3x"></i></div>
+		</sec:authorize>
 		
 	</div>
 	<div class="main-content-menu-items">

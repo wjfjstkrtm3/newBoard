@@ -19,7 +19,7 @@ xsi:scemaLocation 에있는 버전을 4.2버전으로 수정하면됨
 	
 	 -->
 	<security:http auto-config="true" use-expressions="true">
-			<security:intercept-url pattern="/board/*" access="hasRole('ROLE_USER')"/>
+			<security:intercept-url pattern="/board/*" access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')"/>
 			
 			<security:csrf disabled="true"/>
 		<!-- 로그인 설정 -->
