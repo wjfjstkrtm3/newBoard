@@ -67,11 +67,23 @@
 	left:308px;
 }
 
-.boardAddBtn:hover {
+
+.updateBtn {
+	width: 200px;
+	height:36px;
+	background-color: #374760;
+	border: none;
+	color:white;
+	cursor:pointer;
+	position: absolute;
+	top: 350px;
+	left: 184px;
+}
+.boardAddBtn:hover, .updateBtn:hover {
 	box-shadow: 0 0 3pt 2pt yellow;
 }
 
-.boardAddBtn:focus {
+.boardAddBtn:focus, .updateBtn:focus {
 	outline:none;
 }
 
@@ -95,18 +107,19 @@
 	overflow:auto;
 }
 
-.current-board-status > div {
+.current-board-status > div, .delete-board-status > div {
 	border-bottom: 2px solid black;
 }
 
-.addForm, .deleteForm {
+
+[class^=addForm_], .deleteForm {
 	display:flex;
 	justify-content:space-around;
 	align-items:center;
 	position:relative;
 }
 
-.addForm > div > i, .deleteForm > div > i {
+[class^=addForm_] > div > i, .deleteForm > div > i {
 	cursor:pointer;
 	color:#FB8500;
 }

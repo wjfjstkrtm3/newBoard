@@ -8,10 +8,14 @@
 <title>Insert title here</title>
 <script type="text/javascript">
 	$(document).ready(function() {
-
+			var addNum = 0;
+			var removeNum = 0;
+			var dataArray = new Array();
 		// 게시물 '-' 눌렀을때 쓰는 함수  (오른쪽에 나오게)
 		function boardRemove(text) {
-				var deleteBoardHtml = "<div class='deleteForm'><div class='deleteBoard-title_'>" + text + "</div>";
+			dataArray.pop(text);
+			removeNum ++;
+				var deleteBoardHtml = "<div class='deleteForm'><div class='deleteBoard-title_" + removeNum + "'>" + text + "</div>";
 					deleteBoardHtml += "<div class='add-icon'><i class='far fa-plus-square'></i></div></div>";
 				$(".delete-board-status").append(deleteBoardHtml);
 			
@@ -19,7 +23,9 @@
 
 		// 게시물 '+' 눌렀을때 쓰는 함수 (왼쪽에 나오게) or 추가하기 버튼을 눌렀을때 
 		function boardAdd(text) {
-			var currentBoardHtml = "<div class='addForm'><div class='board-title_'>" + text + "</div>";
+			dataArray.push(text);
+			addNum ++;
+			var currentBoardHtml = "<div class='addForm_"+ addNum + "'><div class='board-title_" + addNum + "'>" + text + "</div>";
 				currentBoardHtml += "<div class='delete-icon'><i class='far fa-minus-square fa-1x'></i></div></div>";
 			$(".current-board-status").append(currentBoardHtml);
 			
@@ -44,7 +50,7 @@
 							$(this).parent().remove();
 							
 							// 삭제버튼을 누른 게시판의 이름
-							var text = $(this).siblings(".board-title_").text();
+							var text = $(this).siblings().text();
 							
 							boardRemove(text);
 					});
@@ -54,12 +60,18 @@
 							$(this).parent().remove();
 
 							// 추가버튼을 누른 게시판의 이름
-							var text = $(this).siblings(".deleteBoard-title_").text();
+							var text = $(this).siblings().text();
 							boardAdd(text);
 					});
 				
 
-				
+			// 수정하기 버튼을 눌렀을 경우
+			$(".updateBtn").on("click", function() {
+						console.log(dataArray);
+						location.href="/admin/makeBoard?dataArray=" + dataArray;
+
+					
+				});
 				
 				
 		
@@ -82,6 +94,7 @@
 			<div class="boardAddDeleteBtn">
 					<input type="text" class= "addBoardText" placeholder="추가할 게시판 이름 입력">
 					<input type="button" class="boardAddBtn" value="추가하기">
+					<input type="button" class="updateBtn" value="수정하기">
 			</div>
 			
 			<div class="delete-board-status">

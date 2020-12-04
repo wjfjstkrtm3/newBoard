@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="AdminMapper">
+<mapper namespace="adminMapper">
 
 	<!-- 게시판 만들기 -->
 	<insert id="makeBoard" parameterType="String">
-		INSERT INTO makeboard(type)
+		INSERT INTO board_type(type)
 		VALUES(#{type})
 	</insert>
 
