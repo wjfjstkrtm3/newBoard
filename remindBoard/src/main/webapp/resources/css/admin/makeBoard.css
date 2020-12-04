@@ -99,24 +99,24 @@
 	border-bottom: 2px solid black;
 }
 
-.addForm {
+.addForm, .deleteForm {
 	display:flex;
 	justify-content:space-around;
 	align-items:center;
 	position:relative;
 }
 
-.addForm > div > i {
+.addForm > div > i, .deleteForm > div > i {
 	cursor:pointer;
 	color:#FB8500;
 }
 
-.delete-icon {
+.delete-icon, .add-icon {
 	position:absolute;
 	right:15px;
 }
 
-.board-title_ {
+.board-title_, .deleteBoard-title_ {
 	overflow:hidden;
 	text-overflow:ellipsis;
 	white-space:nowrap;

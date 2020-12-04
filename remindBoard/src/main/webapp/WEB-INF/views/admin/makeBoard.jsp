@@ -9,26 +9,57 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 
+		// 게시물 '-' 눌렀을때 쓰는 함수  (오른쪽에 나오게)
+		function boardRemove(text) {
+				var deleteBoardHtml = "<div class='deleteForm'><div class='deleteBoard-title_'>" + text + "</div>";
+					deleteBoardHtml += "<div class='add-icon'><i class='far fa-plus-square'></i></div></div>";
+				$(".delete-board-status").append(deleteBoardHtml);
+			
+			}
+
+		// 게시물 '+' 눌렀을때 쓰는 함수 (왼쪽에 나오게)
+		function boardAdd(text) {
+			var currentBoardHtml = "<div class='addForm'><div class='board-title_'>" + text + "</div>";
+				currentBoardHtml += "<div class='delete-icon'><i class='far fa-minus-square fa-1x'></i></div></div>";
+			$(".current-board-status").append(currentBoardHtml);
+			
+			}
+
+				// 추가하기 버튼을 눌렀을때
 				$(".boardAddBtn").on("click", function() {
-							var addBoardText = $(".addBoardText").val();
-							var currentBoardHtml = "";
-							if(addBoardText.trim() == "") {
+							var text = $(".addBoardText").val();
+							
+							if(text.trim() == "") {
 								alert("게시판 이름을 입력해주세요 !!");
 								return;
 								} else {
-									currentBoardHtml += "<div class='addForm'><div class='board-title_'>" + addBoardText + "</div>";
-									currentBoardHtml += "<div class='delete-icon'><i class='far fa-minus-square fa-1x'></i></div></div>";
-
-										
-										$(".current-board-status").append(currentBoardHtml);
+									boardAdd(text);
 									}
 					});
 
-
+				// 게시물 '-' 눌렀을때
 				$(document).on("click", ".delete-icon", function(event) {
 							$(this).parent().remove();
+							
+							// 삭제버튼을 누른 게시판의 이름
+							var text = $(this).siblings(".board-title_").text();
+							
+							boardRemove(text);
 					});
 
+				// 게시물 '+' 눌렀을때
+				$(document).on("click", '.add-icon', function(event) {
+							$(this).parent().remove();
+
+							// 추가버튼을 누른 게시판의 이름
+							var text = $(this).siblings(".deleteBoard-title_").text();
+							boardAdd(text);
+					});
+				
+
+
+				
+				
 				
 		
 		});
