@@ -185,7 +185,7 @@
 		<input type="button" value="수정" class="boardDetail-updateBtn btn-primary">
 		<input type="button" value="삭제" class="boardDetail-deleteBtn btn-primary">
 		<input type="hidden" value="${board.bno}" class="boardDetail-bno">
-		<input type="hidden" value="${board.writer}" class="boardDetail-writer">
+		<input type="hidden" value="${userDto.id}" class="boardDetail-writer">
 		<input type="hidden" value="" class="bookMarkStatusText">
 		</div>
 		

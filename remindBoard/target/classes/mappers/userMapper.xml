@@ -79,7 +79,7 @@
  	<select id="selectBookMarkList" parameterType="hashMap" resultType="com.remind.board.dto.BoardDto">
  		SELECT b.bno, b.title, b.writer, b.content, b.regDate, b.viewCnt
 		FROM board b INNER JOIN bookMark k ON b.bno = k.bno
-		WHERE writer = #{id} 
+		WHERE k.id = #{id} 
 		
 		<if test="!searchText.equals('')">
 			AND content like concat('%', #{searchText}, '%')

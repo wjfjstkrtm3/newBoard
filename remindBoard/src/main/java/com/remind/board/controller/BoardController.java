@@ -30,6 +30,8 @@ import com.remind.board.utils.Etc;
 @RequestMapping(value="/board")
 public class BoardController {
 
+	private static final int boardType = 1;  
+	
 	@Autowired
 	private BoardService service;
 	
