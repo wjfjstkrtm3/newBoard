@@ -17,7 +17,7 @@
 			
 			}
 
-		// 게시물 '+' 눌렀을때 쓰는 함수 (왼쪽에 나오게)
+		// 게시물 '+' 눌렀을때 쓰는 함수 (왼쪽에 나오게) or 추가하기 버튼을 눌렀을때 
 		function boardAdd(text) {
 			var currentBoardHtml = "<div class='addForm'><div class='board-title_'>" + text + "</div>";
 				currentBoardHtml += "<div class='delete-icon'><i class='far fa-minus-square fa-1x'></i></div></div>";
@@ -34,6 +34,8 @@
 								return;
 								} else {
 									boardAdd(text);
+									$(".addBoardText").val("");
+									
 									}
 					});
 
@@ -56,7 +58,6 @@
 							boardAdd(text);
 					});
 				
-
 
 				
 				
@@ -81,10 +82,6 @@
 			<div class="boardAddDeleteBtn">
 					<input type="text" class= "addBoardText" placeholder="추가할 게시판 이름 입력">
 					<input type="button" class="boardAddBtn" value="추가하기">
-					<div class="arrow-form">
-						<i class="fas fa-arrow-alt-circle-left fa-3x"></i>
-						<i class="fas fa-arrow-alt-circle-right fa-3x"></i>
-					</div>
 			</div>
 			
 			<div class="delete-board-status">
