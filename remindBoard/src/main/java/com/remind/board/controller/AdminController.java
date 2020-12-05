@@ -25,16 +25,12 @@ import com.remind.board.utils.Etc;
 @RequestMapping(value="/admin")
 public class AdminController {
 
+	@Autowired
 	private UserService userService;
 
 	@Autowired
 	private AdminService service;
 	
-	@Autowired
-	private void setUserService(UserService userService) {
-		this.userService = userService;
-	}
-
 	
 	@GetMapping(value="/makeBoard")
 	public String makeBoard(Model model, HttpSession session) {

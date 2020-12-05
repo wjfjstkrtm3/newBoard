@@ -17,7 +17,7 @@
 
 
 	<!-- 해당 admin계정이 들고있는 게시물 제목 가져오기 -->
-	<select id="getBoardTitleList" parameterType="String" resultType="com.remind.board.dto.BoardType">
+	<select id="getBoardTitleList" resultType="com.remind.board.dto.BoardType">
 		SELECT id, type 
 		FROM board_type
 	</select>

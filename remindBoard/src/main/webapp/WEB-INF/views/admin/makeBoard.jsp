@@ -13,6 +13,7 @@
 			var dataArray = new Array();
 			var deleteArray = new Array();
 			var ajaxHtml = "";
+			var menuHtml = "";
 			$.ajax({
 					url:"/admin/getBoardTitleList",
 					type:"POST",
@@ -24,9 +25,12 @@
 								
 								ajaxHtml += "<div class='addForm_"+ index + "'><div class='board-title_" + index + "'>" + element.type + "</div>";
 								ajaxHtml += "<div class='delete-icon'><i class='far fa-minus-square fa-1x'></i></div></div>";
+								menuHtml += "<div class='board-title'>" + element.type + "</div>";
 								});
 
+								
 								$(".current-board-status").append(ajaxHtml);
+								$(".main-content-menu-items").append(menuHtml);
 						    
 							
 							}
@@ -134,7 +138,8 @@
 					
 				});
 				
-				
+
+			
 		
 		});
 
@@ -156,10 +161,11 @@
 					<input type="text" class= "addBoardText" placeholder="추가할 게시판 이름 입력">
 					<input type="button" class="boardAddBtn" value="추가하기">
 					<input type="button" class="updateBtn" value="수정하기">
+					<input type="hidden" class="title-append" value="${sessionScope.boardTitle}">
 			</div>
 			
 			<div class="delete-board-status">
-			
+				
 			</div>
 		
 		</div>

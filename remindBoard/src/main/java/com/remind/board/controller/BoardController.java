@@ -8,9 +8,11 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,8 +22,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.remind.board.dto.BoardDto;
+import com.remind.board.dto.BoardType;
 import com.remind.board.dto.PageDto;
 import com.remind.board.dto.UserDto;
+import com.remind.board.service.AdminService;
 import com.remind.board.service.BoardService;
 import com.remind.board.service.UserService;
 import com.remind.board.utils.Etc;
@@ -38,6 +42,8 @@ public class BoardController {
 	@Autowired
 	private UserService userService;
 	
+	@Autowired
+	private AdminService adminService;
 	/*
 	// 게시물 목록
 	@RequestMapping(value="/list")
@@ -158,13 +164,23 @@ public class BoardController {
 		@RequestMapping(value="/listPageSearch", method=RequestMethod.GET)
 		public String listPageSearch(Model model, @RequestParam(value="num", defaultValue="1") int num,
 											      @RequestParam(value="searchType", defaultValue="") String searchType,
-											      @RequestParam(value="keyword", defaultValue="") String keyword){
+											      @RequestParam(value="keyword", defaultValue="") String keyword, HttpSession session, Authentication authentication){
 			
 				List<BoardDto> listPageSearch = new ArrayList<BoardDto>();
 				
 				Map<String, Object> map = null;
-				
+				UserDto userDto = new UserDto();
+				List<BoardType> list = new ArrayList<BoardType>();
 			try {
+				
+				// 관리자 계정만 볼 수 있는 게시판 제목들
+				list = adminService.getBoardTitleList();
+				session.setAttribute("boardTitle", list);
+				
+				// 로그인한 사용자 Dto
+				userDto = userService.getUserById(authentication.getName());
+				session.setAttribute("userDto", userDto);
+				
 				// 페이지 클래스 분리
 				// PageDto page = new PageDto(num, service.count());
 				PageDto page = new PageDto(num, service.searchCount(searchType, keyword));
@@ -193,7 +209,7 @@ public class BoardController {
 				// model.addAttribute("keyword", keyword);
 				
 				// user 이미지
-				UserDto userDto = userService.getUserById(Etc.getUser());
+				userDto = userService.getUserById(Etc.getUser());
 				model.addAttribute("userDto", userDto);
 				
 				// 이미지
