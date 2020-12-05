@@ -11,9 +11,51 @@
 			var addNum = 0;
 			var removeNum = 0;
 			var dataArray = new Array();
+			var deleteArray = new Array();
+			var ajaxHtml = "";
+			$.ajax({
+					url:"/admin/getBoardTitleList",
+					type:"POST",
+					success:function(data) {
+						var currentBoardHtml = "";
+						if(data !== null) {
+						
+							$.each(data, function(index, element) {
+								
+								ajaxHtml += "<div class='addForm_"+ index + "'><div class='board-title_" + index + "'>" + element.type + "</div>";
+								ajaxHtml += "<div class='delete-icon'><i class='far fa-minus-square fa-1x'></i></div></div>";
+								});
+
+								$(".current-board-status").append(ajaxHtml);
+						    
+							
+							}
+						
+					},
+					error:function(xhr) {
+						console.log(xhr.status + "/" + xhr.statusText);	
+					}
+					
+				});
+
+
+
+			
 		// 게시물 '-' 눌렀을때 쓰는 함수  (오른쪽에 나오게)
 		function boardRemove(text) {
+			for(var i = 0; i < dataArray.length; i++) {
+					console.log(dataArray[i]);
+				}
+
+			// 중복 게시판 생성안되게
+			
+			
+			// 저장된 게시판 배열에서 해당 게시판 이름을 push
 			dataArray.pop(text);
+
+			// 삭제될 게시판 배열에 push
+			deleteArray.push(text);
+			
 			removeNum ++;
 				var deleteBoardHtml = "<div class='deleteForm'><div class='deleteBoard-title_" + removeNum + "'>" + text + "</div>";
 					deleteBoardHtml += "<div class='add-icon'><i class='far fa-plus-square'></i></div></div>";
@@ -21,10 +63,29 @@
 			
 			}
 
+		function invalidateBoard(text) {
+				if(dataArray[index] == text) {
+					alert("중복된 게시판 제목입니다! 다시입력해주세요");
+					return;
+				}
+			}
+		
 		// 게시물 '+' 눌렀을때 쓰는 함수 (왼쪽에 나오게) or 추가하기 버튼을 눌렀을때 
 		function boardAdd(text) {
-			dataArray.push(text);
-			addNum ++;
+			for(var index in dataArray) {
+				
+				}
+							// 게시판 배열에 해당 게시판 이름을 push
+							dataArray.push(text);
+
+							// 삭제될 게시판에서 해당 게시판 이름을 pop
+							deleteArray.pop(text);
+							addNum ++;
+			
+			
+
+			
+			
 			var currentBoardHtml = "<div class='addForm_"+ addNum + "'><div class='board-title_" + addNum + "'>" + text + "</div>";
 				currentBoardHtml += "<div class='delete-icon'><i class='far fa-minus-square fa-1x'></i></div></div>";
 			$(".current-board-status").append(currentBoardHtml);
@@ -68,7 +129,7 @@
 			// 수정하기 버튼을 눌렀을 경우
 			$(".updateBtn").on("click", function() {
 						console.log(dataArray);
-						location.href="/admin/makeBoard?dataArray=" + dataArray;
+						location.href="/admin/makeBoardWrite?dataArray=" + dataArray + "&deleteArray=" + deleteArray;
 
 					
 				});
@@ -102,7 +163,6 @@
 			</div>
 		
 		</div>
-	
 	
 	</div>
 	

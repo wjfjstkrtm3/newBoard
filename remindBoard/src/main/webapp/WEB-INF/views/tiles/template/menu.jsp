@@ -46,7 +46,11 @@
 		
 	</div>
 	<div class="main-content-menu-items">
-		<div class="test01">여기는 아이템</div>
+		<c:forEach var="title" items="${boardTitle}">
+			<div class="board-title">${title.type}</div>
+		</c:forEach>
+	
+		
 	
 	</div>
 

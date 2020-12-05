@@ -7,5 +7,20 @@
 		INSERT INTO board_type(type)
 		VALUES(#{type})
 	</insert>
+	
+	<!-- 게시판 지우기 -->
+	<delete id="deleteBoard" parameterType="String">
+		DELETE
+		FROM board_type
+		where type = #{type}
+	</delete>
 
+
+	<!-- 해당 admin계정이 들고있는 게시물 제목 가져오기 -->
+	<select id="getBoardTitleList" parameterType="String" resultType="com.remind.board.dto.BoardType">
+		SELECT id, type 
+		FROM board_type
+	</select>
+	
+	
 </mapper>
