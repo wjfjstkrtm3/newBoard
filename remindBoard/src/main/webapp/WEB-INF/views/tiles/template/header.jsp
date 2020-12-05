@@ -6,7 +6,7 @@
 </div>
 
 <div class="header-menu-form">
-		<div class="header-guest">성윤님 환영합니다</div>
+		<div class="header-guest">${sessionScope.userName}님 환영합니다</div>
 		<div class="header-alarm">알림</div>
 		<div class="header-mypage">내정보</div>
 		<div class="header-profile">프로필</div>

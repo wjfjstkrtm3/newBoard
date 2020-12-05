@@ -150,7 +150,7 @@
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
       <Context docBase="remindBoard" path="/" reloadable="true" source="org.eclipse.jst.jee.server:remindBoard"/>
-      <Context docBase="D:\바탕 화면\JavaAll\file-images" path="/img" reloadable="true"></Context>
+      
       </Host>
     </Engine>
   </Service>

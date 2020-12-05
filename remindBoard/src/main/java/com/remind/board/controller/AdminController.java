@@ -2,8 +2,9 @@ package com.remind.board.controller;
 
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -36,10 +37,12 @@ public class AdminController {
 
 	
 	@GetMapping(value="/makeBoard")
-	public String makeBoard(Model model) {
+	public String makeBoard(Model model, HttpSession session) {
 		String type = "";
 		List<BoardType> list = new ArrayList<BoardType>();
 		try {
+			
+			
 			// user 이미지
 			UserDto userDto = userService.getUserById(Etc.getUser());
 			model.addAttribute("userDto", userDto);
