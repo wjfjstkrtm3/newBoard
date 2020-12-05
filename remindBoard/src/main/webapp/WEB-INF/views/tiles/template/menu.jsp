@@ -28,11 +28,11 @@
 		
 	
 		<c:choose>
-			<c:when test="${userDto.image == 'default.png'}">
+			<c:when test="${sessionScope.userDto.image == 'default.png'}">
 				<img src="/img/default.png" class="user-image"/>
 			</c:when>
-			<c:when test="${userDto.image != 'default.png'}">
-				<img src="/img/${userDto.image}" class="user-image"/>
+			<c:when test="${sessionScope.userDto.image != 'default.png'}">
+				<img src="/img/${sessionScope.userDto.image}" class="user-image"/>
 			</c:when>
 		</c:choose>
 			<!--  <i class="fas fa-user-circle fa-3x"></i>-->

@@ -13,6 +13,7 @@ xsi:scemaLocation 에있는 버전을 4.2버전으로 수정하면됨
 --> 
 	
 	<bean id="loginSuccessHandler" class="com.remind.board.handler.LoginSuccessHandler"/>
+	
 	<!-- 
 	auto-config="true"는 기본 로그인페이지 / HTTP 기본인증 / 로그아웃 기능등을 제공
 	use-expressions="ture"는 SpEL을 사용한다 라는 의미

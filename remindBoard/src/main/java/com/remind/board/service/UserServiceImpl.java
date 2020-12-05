@@ -5,12 +5,13 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 
 import com.remind.board.dao.UserDao;
 import com.remind.board.dto.BoardDto;
 import com.remind.board.dto.UserDto;
 
-@Controller
+@Service
 public class UserServiceImpl implements UserService {
 
 	@Autowired

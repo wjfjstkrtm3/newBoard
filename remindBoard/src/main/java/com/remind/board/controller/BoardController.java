@@ -33,6 +33,7 @@ import com.remind.board.utils.Etc;
 @Controller
 @RequestMapping(value="/board")
 public class BoardController {
+	
 
 	private static final int board_Type = 1;  
 	
