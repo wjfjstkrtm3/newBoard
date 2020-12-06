@@ -24,13 +24,13 @@ import com.remind.board.service.UserService;
 @Component
 public class LoginSuccessHandler implements AuthenticationSuccessHandler {
 
-
+/*
 	@Autowired
 	private AdminService adminService;
 	
 	@Autowired
 	private UserService userService;
-	
+*/	
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
 			Authentication authentication) throws IOException, ServletException {
@@ -46,13 +46,14 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
 			session.setAttribute("userName", authentication.getName());
 			
 			
-			// 관리자 계정만 볼 수 있는 게시판 제목들
-			list = adminService.getBoardTitleList();
-			session.setAttribute("boardTitle", list);
-			
-			// 로그인한 사용자 Dto
-			userDto = userService.getUserById(authentication.getName());
-			session.setAttribute("userDto", userDto);
+			/*
+			 // 관리자 계정만 볼 수 있는 게시판 제목들 list = adminService.getBoardTitleList();
+			 session.setAttribute("boardTitle", list);
+			 
+			 // 로그인한 사용자 Dto userDto = userService.getUserById(authentication.getName());
+			 session.setAttribute("userDto", userDto);
+			 
+			*/
 			
 		} catch (Exception e) {
 			e.printStackTrace();
