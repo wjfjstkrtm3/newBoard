@@ -3,8 +3,11 @@ package com.remind.board.dao;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.stereotype.Repository;
+
 import com.remind.board.dto.BoardDto;
 
+@Repository
 public interface BoardDao {
 
 	// 게시물 목록

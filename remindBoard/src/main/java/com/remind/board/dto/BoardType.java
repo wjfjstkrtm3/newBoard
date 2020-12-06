@@ -15,6 +15,7 @@ public class BoardType {
 	public void setType(String type) {
 		this.type = type;
 	}
+	
 	@Override
 	public String toString() {
 		return "BoardType [id=" + id + ", type=" + type + "]";

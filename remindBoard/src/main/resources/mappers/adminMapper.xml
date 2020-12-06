@@ -16,23 +16,11 @@
 	</delete>
 
 
-	<!-- 해당 admin계정이 들고있는 게시물 제목 가져오기 
+	<!-- 해당 admin계정이 들고있는 게시물 제목 가져오기 -->
 	<select id="getBoardTitleList" resultType="com.remind.board.dto.BoardType">
 		SELECT id, type 
 		FROM board_type
 	</select>
-	-->
-	<!-- 게시판 이름 누르면 해당 게시판에 맞는 List 가져오기 -->
-	<!-- <select id="getBoardListById" resultType="com.remind.board.dto.MakeBoardDto">
-		SELECT bno, title, writer, content, regDate, viewCnt, board_type
-		FROM makeboard
-		WHERE board_type = #{board_type}
-	</select>
 	
-	게시물 작성
-	<insert id="boardWrite" parameterType="com.remind.board.dto.MakeBoardDto">
-		INSERT INTO makeboard(title, writer, content, board_type) 
-		VALUES(#{title}, #{writer}, #{content}, #{board_type})
-	</insert> -->
 	
 </mapper>

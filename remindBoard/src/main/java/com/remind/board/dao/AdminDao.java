@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import com.remind.board.dto.BoardType;
-import com.remind.board.dto.MakeBoardDto;
 
 @Repository
 public interface AdminDao {
@@ -19,11 +18,6 @@ public interface AdminDao {
 	// 게시판 지우기 
 	public int boardDelete(String type) throws Exception;
 	
-	// 게시판 이름 누르면 해당 게시판에 맞는 List 가져오기 
-	public List<MakeBoardDto> getBoardListById(int id) throws Exception;
-			
-	// 게시물 작성
-	public int boardWrite(MakeBoardDto makeBoardDto) throws Exception;
 		
 	
 }
