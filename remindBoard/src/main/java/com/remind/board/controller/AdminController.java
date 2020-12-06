@@ -50,7 +50,7 @@ public class AdminController {
 	public String makeBoard(Model model, @RequestParam(value="dataArray", defaultValue = "") String dataArray[],
 										 @RequestParam(value="deleteArray", defaultValue = "") String deleteArray[]) {
 		String type = "";
-		
+		int result = 0;
 		try {
 			
 			// '-'버튼에 있는 게시판 삭제하기

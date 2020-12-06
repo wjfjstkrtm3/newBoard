@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.remind.board.dao.AdminDao;
 import com.remind.board.dto.BoardType;
+import com.remind.board.dto.MakeBoardDto;
 
 @Service
 public class AdminServiceImpl implements AdminService {
@@ -30,6 +31,18 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public int boardDelete(String type) throws Exception {
 		return dao.boardDelete(type);
+	}
+
+	// 게시판 이름 누르면 해당 게시판에 맞는 List 가져오기
+	@Override
+	public List<MakeBoardDto> list(int id) throws Exception {
+		return dao.getBoardListById(id);
+	}
+	
+	// 게시물 작성
+	@Override
+	public void boardWrite(MakeBoardDto makeBoardDto) throws Exception {
+			dao.boardWrite(makeBoardDto);
 	}
 	
 	

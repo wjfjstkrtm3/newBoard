@@ -2,7 +2,7 @@ package com.remind.board.dto;
 
 import java.sql.Timestamp;
 
-public class makeBoardDto {
+public class MakeBoardDto {
 	private int bno;
 	private String title;
 	private String writer;

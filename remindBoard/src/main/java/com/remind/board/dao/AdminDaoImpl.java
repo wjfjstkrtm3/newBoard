@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.remind.board.dto.BoardType;
+import com.remind.board.dto.MakeBoardDto;
 
 @Repository
 public class AdminDaoImpl implements AdminDao{
@@ -32,7 +33,18 @@ public class AdminDaoImpl implements AdminDao{
 		return sqlsession.delete("adminMapper.deleteBoard", type);
 	}
 
-	
+	// 게시판 이름 누르면 해당 게시판에 맞는 List 가져오기
+	@Override
+	public List<MakeBoardDto> getBoardListById(int id) throws Exception {
+		return sqlsession.selectList("adminMapper.getBoardListById");
+	}
+
+	// 게시물 작성 
+	@Override
+	public void boardWrite(MakeBoardDto makeBoardDto) throws Exception {
+		sqlsession.insert("adminMapper.boardWrite", makeBoardDto);
+	}
+
 	
 	
 	
