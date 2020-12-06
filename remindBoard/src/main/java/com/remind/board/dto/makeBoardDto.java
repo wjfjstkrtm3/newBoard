@@ -2,8 +2,7 @@ package com.remind.board.dto;
 
 import java.sql.Timestamp;
 
-public class makeBoardDto {
-	
+public class MakeBoardDto {
 	private int bno;
 	private String title;
 	private String writer;
@@ -55,7 +54,7 @@ public class makeBoardDto {
 	}
 	@Override
 	public String toString() {
-		return "makeBoardDto [bno=" + bno + ", title=" + title + ", writer=" + writer + ", content=" + content
+		return "MakeBoardDto [bno=" + bno + ", title=" + title + ", writer=" + writer + ", content=" + content
 				+ ", regDate=" + regDate + ", viewCnt=" + viewCnt + ", board_type=" + board_type + "]";
 	}
 	

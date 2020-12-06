@@ -209,11 +209,7 @@ public class BoardController {
 				// model.addAttribute("searchType", searchType);
 				// model.addAttribute("keyword", keyword);
 				
-				// user 이미지
-				userDto = userService.getUserById(Etc.getUser());
-				model.addAttribute("userDto", userDto);
 				
-				// 이미지
 				
 				
 			}catch(Exception e) {
@@ -243,9 +239,6 @@ public class BoardController {
 			selectFileList = service.selectFileList(bno);
 			model.addAttribute("selectFileList", selectFileList);
 			
-			// user 이미지
-			UserDto userDto = userService.getUserById(Etc.getUser());
-			model.addAttribute("userDto", userDto);
 			
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -262,9 +255,8 @@ public class BoardController {
 	@RequestMapping(value="/write", method=RequestMethod.GET)
 	public String boardWrite(Model model) {
 		try {
-			// user 이미지
-			UserDto userDto = userService.getUserById(Etc.getUser());
-			model.addAttribute("userDto", userDto);
+			
+			
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -279,9 +271,7 @@ public class BoardController {
 			boardDto.setWriter(Etc.getUser());
 			service.boardWrite(boardDto, request);
 			
-			// user 이미지
-			UserDto userDto = userService.getUserById(Etc.getUser());
-			model.addAttribute("userDto", userDto);
+			
 			
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -306,9 +296,7 @@ public class BoardController {
 			// 첨부파일 제한
 			model.addAttribute("fileCount", service.fileCount(bno));
 			
-			// user 이미지
-			UserDto userDto = userService.getUserById(Etc.getUser());
-			model.addAttribute("userDto", userDto);
+			
 		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {
@@ -325,9 +313,7 @@ public class BoardController {
 		try {
 			 service.boardUpdate(boardDto, request, filesNo, filesName);
 			 
-			// user 이미지
-			UserDto userDto = userService.getUserById(Etc.getUser());
-			model.addAttribute("userDto", userDto);
+			
 			
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -396,8 +382,7 @@ public class BoardController {
 		// user 이미지
 		UserDto userDto;
 		try {
-			userDto = userService.getUserById(Etc.getUser());
-			model.addAttribute("userDto", userDto);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

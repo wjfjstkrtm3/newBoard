@@ -35,8 +35,7 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
 			Authentication authentication) throws IOException, ServletException {
 		
-			UserDto userDto = new UserDto();
-			List<BoardType> list = new ArrayList<BoardType>();
+			
 		try {
 			// 로그인 성공시 부가작업 할것들
 			HttpSession session = request.getSession();
@@ -46,14 +45,7 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
 			session.setAttribute("userName", authentication.getName());
 			
 			
-			/*
-			 // 관리자 계정만 볼 수 있는 게시판 제목들 list = adminService.getBoardTitleList();
-			 session.setAttribute("boardTitle", list);
-			 
-			 // 로그인한 사용자 Dto userDto = userService.getUserById(authentication.getName());
-			 session.setAttribute("userDto", userDto);
-			 
-			*/
+			
 			
 		} catch (Exception e) {
 			e.printStackTrace();

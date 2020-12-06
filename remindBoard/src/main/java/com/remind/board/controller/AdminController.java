@@ -16,17 +16,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.remind.board.dto.BoardType;
-import com.remind.board.dto.UserDto;
+import com.remind.board.dto.MakeBoardDto;
 import com.remind.board.service.AdminService;
-import com.remind.board.service.UserService;
-import com.remind.board.utils.Etc;
 
 @Controller
 @RequestMapping(value="/admin")
 public class AdminController {
-
-	@Autowired
-	private UserService userService;
 
 	@Autowired
 	private AdminService service;
@@ -34,14 +29,9 @@ public class AdminController {
 	
 	@GetMapping(value="/makeBoard")
 	public String makeBoard(Model model, HttpSession session) {
-		String type = "";
 		List<BoardType> list = new ArrayList<BoardType>();
 		try {
 			
-			
-			// user 이미지
-			UserDto userDto = userService.getUserById(Etc.getUser());
-			model.addAttribute("userDto", userDto);
 			
 			// 게시판 이름
 			list = service.getBoardTitleList();
@@ -55,16 +45,13 @@ public class AdminController {
 		
 	}
 	
+	// 게시판 만들기 or 제거
 	@RequestMapping(value="/makeBoardWrite")
 	public String makeBoard(Model model, @RequestParam(value="dataArray", defaultValue = "") String dataArray[],
 										 @RequestParam(value="deleteArray", defaultValue = "") String deleteArray[]) {
 		String type = "";
-		int result = 0;
 		
 		try {
-			UserDto userDto = userService.getUserById(Etc.getUser());
-			model.addAttribute("userDto", userDto);
-		
 			
 			// '-'버튼에 있는 게시판 삭제하기
 			if(deleteArray.length > 0) {
@@ -94,9 +81,7 @@ public class AdminController {
 		
 	}
 	
-	
-	
-	
+	// 게시판 제목 List
 	@ResponseBody
 	@PostMapping(value="/getBoardTitleList")
 	public List<BoardType> getBoardTitleList(Model model) {
@@ -113,6 +98,18 @@ public class AdminController {
 		return list;
 	}
 	
+	@GetMapping(value="/goBoardType")
+	public List<MakeBoardDto> list(Model mode, @RequestParam(value="id") int id) {
+		try {
+			
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+		
+	}
 
 	
 }

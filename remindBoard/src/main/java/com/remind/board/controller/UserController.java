@@ -114,8 +114,7 @@ public class UserController {
 	@GetMapping(value="/mypage")
 	public String userUpdate(Model model) {
 		try {
-			UserDto userDto = service.getUserById(Etc.getUser());
-			model.addAttribute("userDto", userDto);
+			
 		}catch(Exception e) {
 			
 		}
@@ -280,9 +279,7 @@ public class UserController {
 			model.addAttribute("bookMarkList", list);
 			model.addAttribute("count", list.size());
 			
-			// user 이미지
-			UserDto userDto = service.getUserById(Etc.getUser());
-			model.addAttribute("userDto", userDto);
+		
 		}catch(Exception e) {
 			e.printStackTrace();
 		}

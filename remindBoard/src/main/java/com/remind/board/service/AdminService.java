@@ -2,11 +2,10 @@ package com.remind.board.service;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.remind.board.dao.AdminDao;
 import com.remind.board.dto.BoardType;
+import com.remind.board.dto.MakeBoardDto;
 
 @Service
 public interface AdminService {
@@ -19,4 +18,10 @@ public interface AdminService {
 	
 	// 게시판 지우기 
 	public int boardDelete(String type) throws Exception;
+	
+	// 게시판 이름 누르면 해당 게시판에 맞는 List 가져오기 
+	public List<MakeBoardDto> getBoardListById(int id) throws Exception;
+		
+	// 게시물 작성
+	public int boardWrite(MakeBoardDto makeBoardDto) throws Exception;
 }

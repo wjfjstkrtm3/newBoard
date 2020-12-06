@@ -25,7 +25,9 @@
 								
 								ajaxHtml += "<div class='addForm_"+ index + "'><div class='board-title_" + index + "'>" + element.type + "</div>";
 								ajaxHtml += "<div class='delete-icon'><i class='far fa-minus-square fa-1x'></i></div></div>";
-								menuHtml += "<div class='board-title'>" + element.type + "</div>";
+
+								// menu 게시판 제목 등록
+								menuHtml += "<div class='board-title'><a href='/admin/goBoardByType?id=" + element.id + "'>" + element.type + "</a></div>";
 								});
 
 								
