@@ -82,7 +82,7 @@
 		WHERE k.id = #{id} 
 		
 		<if test="!searchText.equals('')">
-			AND title like concat('%', #{searchText}, '%')
+			AND content like concat('%', #{searchText}, '%')
 		</if>
 		
  	</select>

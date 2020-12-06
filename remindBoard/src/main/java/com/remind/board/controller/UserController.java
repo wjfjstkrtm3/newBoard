@@ -32,7 +32,6 @@ public class UserController {
 	@Autowired
 	private UserService service;
 	
-	
 	// 암호화 의존 설정
 	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
