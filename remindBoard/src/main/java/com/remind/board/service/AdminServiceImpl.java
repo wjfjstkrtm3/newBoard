@@ -50,6 +50,12 @@ public class AdminServiceImpl implements AdminService {
 	public BoardType getBoardTitleById(int id) throws Exception {
 		return dao.getBoardTitleById(id);
 	}
+
+	// 게시물 수 조회
+	@Override
+	public int boardCount(int id) throws Exception {
+		return dao.boardCount(id);
+	}
 	
 	
 	

@@ -1,12 +1,14 @@
 package com.remind.board.controller;
 
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -103,11 +105,19 @@ public class AdminController {
 	public String getBoardListById(Model model, @RequestParam(value="id") int id) {
 		List<MakeBoardDto> list = new ArrayList<MakeBoardDto>();
 		BoardType boardType = new BoardType();
+		int count = 0;
 		try {
 			list = service.getBoardListById(id);
 			boardType = service.getBoardTitleById(id);
+			count = service.boardCount(id);
+			// 게시물 List
 			model.addAttribute("list", list);
+			
+			// 게시판 id, type return
 			model.addAttribute("boardType", boardType);
+			
+			// 게시물 수
+			model.addAttribute("count", count);
 			
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -116,6 +126,39 @@ public class AdminController {
 		return "/admin/board/goBoardById";
 	
 	}
+	
+	// 게시판 글쓰기 (View)
+	@GetMapping(value="/write")
+	public String boardWrite(Model model, @RequestParam(value="id") String id) {
+		try {
+			model.addAttribute("id" , id);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return "/admin/board/write";
+	}
+	
+	// 게시판 글쓰기 (Back)
+	@PostMapping(value="/write")
+	public String boardWrite(MakeBoardDto makeBoardDto, Principal principal) {
+		try {
+			// 작성자 set
+			makeBoardDto.setWriter(principal.getName());
+			
+			// 게시물 makeBoardDto set
+			service.boardWrite(makeBoardDto);
+			
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		
+		return "redirect:/admin/goBoardById?id=" + makeBoardDto.getBoard_type() ;
+		
+	}
+	
 
 	
 }

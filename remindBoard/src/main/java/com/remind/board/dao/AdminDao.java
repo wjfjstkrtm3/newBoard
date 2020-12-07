@@ -28,4 +28,6 @@ public interface AdminDao {
 	// 게시판 Id로 게시판 이름 찾기
 	public BoardType getBoardTitleById(int id) throws Exception;
 	
+	// 게시물 수 조회
+	public int boardCount(int id) throws Exception;
 }

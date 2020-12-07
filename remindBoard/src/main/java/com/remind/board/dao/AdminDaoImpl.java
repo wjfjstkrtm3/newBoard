@@ -51,6 +51,13 @@ public class AdminDaoImpl implements AdminDao{
 		return sqlsession.selectOne("adminMapper.getBoardTitleById", id);
 	}
 
+	// 게시물 수 조회
+	@Override
+	public int boardCount(int id) throws Exception {
+		return sqlsession.selectOne("adminMapper.boardCount", id);
+	}
+
+	
 	
 	
 	

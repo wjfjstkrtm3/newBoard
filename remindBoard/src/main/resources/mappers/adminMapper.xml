@@ -28,6 +28,7 @@
 		FROM makeboard b INNER JOIN board_type t
 		ON b.board_type = t.id
 		WHERE b.board_type = #{id}
+		ORDER BY b.bno desc
 	</select>
 	
 	<!-- 게시판 Id로 게시판 이름 찾기 -->
@@ -43,5 +44,11 @@
 		VALUES(#{title}, #{writer}, #{content}, #{board_type})
 	</insert>
 	
+	<!-- 게시물 수 조회 -->
+	<select id="boardCount" parameterType="int" resultType="int">
+		SELECT count(bno)
+		FROM makeboard
+		where board_type = #{id}
+	</select>
 	
 </mapper>

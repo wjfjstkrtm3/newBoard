@@ -29,7 +29,10 @@
 						}
 				});
 		
-			
+			$(".board-write-btn").on("click", function() {
+				var id = $(".boardType-id").val();
+						location.href="/admin/write?id=" + id;
+				});			
 
 		
 		});
@@ -37,6 +40,7 @@
 </script>
 </head>
 <body>
+<input type="hidden" class= "boardType-id" value="${boardType.id}">
 	<div class="board-type title">
 		${boardType.type}	
 	</div>
@@ -46,7 +50,7 @@
 		<div class="top-container">
 			<div class="board-count-form">
 				<span class="board-count">
-					총 <span class="">777건</span>의 게시물
+					총 <span class="">${count}</span>의 게시물
 				</span>
 			</div>
 			<div class="search-form">
