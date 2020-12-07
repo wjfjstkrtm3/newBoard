@@ -3,6 +3,7 @@ package com.remind.board.dto;
 public class BoardType {
 	private int id;
 	private String type;
+	
 	public int getId() {
 		return id;
 	}

@@ -36,13 +36,19 @@ public class AdminDaoImpl implements AdminDao{
 	// 게시판 이름 누르면 해당 게시판에 맞는 List 가져오기
 	@Override
 	public List<MakeBoardDto> getBoardListById(int id) throws Exception {
-		return sqlsession.selectList("adminMapper.getBoardListById");
+		return sqlsession.selectList("adminMapper.getBoardListById", id);
 	}
 
 	// 게시물 작성 
 	@Override
 	public void boardWrite(MakeBoardDto makeBoardDto) throws Exception {
 		sqlsession.insert("adminMapper.boardWrite", makeBoardDto);
+	}
+
+	// 게시판 Id로 게시판 이름 찾기
+	@Override
+	public BoardType getBoardTitleById(int id) throws Exception {
+		return sqlsession.selectOne("adminMapper.getBoardTitleById", id);
 	}
 
 	

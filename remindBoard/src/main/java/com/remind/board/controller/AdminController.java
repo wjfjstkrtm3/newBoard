@@ -41,7 +41,7 @@ public class AdminController {
 			e.printStackTrace();
 		}
 		
-		return "/admin/makeBoard";
+		return "/admin/board/makeBoard";
 		
 	}
 	
@@ -98,17 +98,23 @@ public class AdminController {
 		return list;
 	}
 	
-	@GetMapping(value="/goBoardType")
-	public List<MakeBoardDto> list(Model mode, @RequestParam(value="id") int id) {
+	// 게시판 title을 누르면 id로 해당 게시판 조회
+	@GetMapping(value="/goBoardById")
+	public String getBoardListById(Model model, @RequestParam(value="id") int id) {
+		List<MakeBoardDto> list = new ArrayList<MakeBoardDto>();
+		BoardType boardType = new BoardType();
 		try {
-			
+			list = service.getBoardListById(id);
+			boardType = service.getBoardTitleById(id);
+			model.addAttribute("list", list);
+			model.addAttribute("boardType", boardType);
 			
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
 		
-		return null;
-		
+		return "/admin/board/goBoardById";
+	
 	}
 
 	

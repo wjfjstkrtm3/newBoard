@@ -1,0 +1,141 @@
+@charset "UTF-8";
+
+html, body {
+	height:100%;
+	width:100%;
+}
+
+
+.flex-container {
+    display:grid;
+    width: 90%;
+    height: 70%;
+    grid-template-rows: 10% 80% 10%;
+    margin: 10px 0px 0px 60px;
+}
+
+.top-container {
+    display:flex;
+    margin-top:auto;
+    margin-bottom:10px;
+}
+
+.main-container {
+    display:grid;
+    grid-template-rows: repeat(11, 9%);
+    grid-template-columns: 10% 40% 20% 20% 10%;
+    /* border:2px solid #EFEFEF; */
+}
+
+.bottom-container {
+	display:flex;
+	justify-content:center;
+	position: relative;
+}
+
+.search-form {
+	margin-left:auto;
+	position: relative;
+	/* margin-bottom: 10px; */
+}
+
+.main-container > * {
+    border: 1px solid #EFEFEF;
+}
+
+.main-container >:nth-child(-n+5) {
+	font-weight:bold;
+	text-align:center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.board-bno, .board-writer, .board-viewCnt, .board-regDate, .board-title{
+	display:flex;
+}
+
+.board-bno, .board-writer, .board-viewCnt, .board-regDate, .board-title > span{
+	justify-content:center;
+	align-items:center;
+}
+
+
+
+.board-title-text {
+	margin:10px;
+}
+
+.board-count {
+	font-weight:bold;
+}
+.board-count-text {
+	color:red;
+}
+
+.board-title-text:hover {
+	opacity:0.5;
+}
+
+.currentNum-bold {
+	font-weight:bold;
+}
+
+.page-number {
+	display: grid;
+	grid-template-columns: repeat(12, 34px);
+	margin-top:20px;
+	align-items: center;
+
+}
+
+.page-number * {
+	border:2px solid #EFEFEF;
+	padding:5px;
+	text-align:center;
+}
+
+select.search-title {
+	background-color:#EFEFEF;
+	width:150px;
+	height:28px;
+}
+
+input.text-box {
+	width:150px;
+	height:22px;
+	position:absolute;
+	right:66px;
+	bottom: 1px;
+}
+
+.search-title  {
+	position:absolute;
+	right:223px;
+	bottom: 1px;
+}
+
+.search-btn {
+	width:60px;
+	height:26px;
+	position:absolute;
+	right:3px;
+	bottom: 1px;
+
+}
+.board-write-btn {
+	position:absolute;
+	top:20px;
+	height:30px;
+	right:0px;
+    width:100px;
+    background-color:#fb8500;
+    color:white;
+    border:none;
+    border-radius:5px;
+}
+
+
+.admin-page > .fa-crown{
+	color: #FB8500;
+}

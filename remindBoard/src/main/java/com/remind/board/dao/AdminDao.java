@@ -25,4 +25,7 @@ public interface AdminDao {
 	// 게시물 작성 
 	public void boardWrite(MakeBoardDto makeBoardDto) throws Exception;
 	
+	// 게시판 Id로 게시판 이름 찾기
+	public BoardType getBoardTitleById(int id) throws Exception;
+	
 }

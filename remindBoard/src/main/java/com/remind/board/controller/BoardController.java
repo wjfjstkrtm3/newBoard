@@ -239,7 +239,6 @@ public class BoardController {
 			selectFileList = service.selectFileList(bno);
 			model.addAttribute("selectFileList", selectFileList);
 			
-			
 		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {
@@ -379,8 +378,6 @@ public class BoardController {
 	@RequestMapping(value="/ajaxList", method=RequestMethod.GET)
 	public String ajaxList(Model model) {
 		
-		// user 이미지
-		UserDto userDto;
 		try {
 			
 		} catch (Exception e) {

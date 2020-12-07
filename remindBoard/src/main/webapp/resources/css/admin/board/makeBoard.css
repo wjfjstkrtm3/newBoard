@@ -135,3 +135,7 @@
 	white-space:nowrap;
     width:100px;
 }
+
+.admin-page > .fa-crown{
+	color: #FB8500;
+}

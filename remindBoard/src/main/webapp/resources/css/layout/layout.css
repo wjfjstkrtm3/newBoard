@@ -167,11 +167,11 @@ html, body {
 
 .main-content-menu-items {
     display:grid;
-    grid-template-rows:repeat(10, 10%);
-    grid-auto-rows:10%;
+    grid-template-rows: repeat(10, 7%);
+    grid-auto-rows: 7%;
     align-items: center;
     justify-items:center;
-    background-color: #023047;
+    /* background-color: #023047; */
 }
 
 .main-content-menu-category >:nth-child(n+1) {
@@ -249,4 +249,13 @@ html, body {
 
 .blue-btn:focus {
 	outline:none;
+}
+
+.title {
+	font-size: 40px;
+    margin: 20px 0 0 30px;	
+}
+
+.board-title > a:hover{
+	opacity:0.5;
 }

@@ -20,9 +20,12 @@ public interface AdminService {
 	public int boardDelete(String type) throws Exception;
 	
 	// 게시판 이름 누르면 해당 게시판에 맞는 List 가져오기
-	public List<MakeBoardDto> list(int id) throws Exception;
+	public List<MakeBoardDto> getBoardListById(int id) throws Exception;
 		
 	// 게시물 작성 
 	public void boardWrite(MakeBoardDto makeBoardDto) throws Exception;
+	
+	// 게시판 Id로 게시판 이름 찾기
+	public BoardType getBoardTitleById(int id) throws Exception;
 
 }

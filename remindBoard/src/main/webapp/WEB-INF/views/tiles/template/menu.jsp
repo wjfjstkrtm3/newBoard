@@ -12,7 +12,7 @@
 				});
 
 			$(".admin-page").on("click", function() {
-					location.href="/admin/makeBoard";	
+					location.href="/admin/makeBoard";
 				});
 
 

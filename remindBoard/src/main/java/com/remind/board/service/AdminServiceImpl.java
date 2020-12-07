@@ -35,7 +35,7 @@ public class AdminServiceImpl implements AdminService {
 
 	// 게시판 이름 누르면 해당 게시판에 맞는 List 가져오기
 	@Override
-	public List<MakeBoardDto> list(int id) throws Exception {
+	public List<MakeBoardDto> getBoardListById(int id) throws Exception {
 		return dao.getBoardListById(id);
 	}
 	
@@ -44,6 +44,13 @@ public class AdminServiceImpl implements AdminService {
 	public void boardWrite(MakeBoardDto makeBoardDto) throws Exception {
 			dao.boardWrite(makeBoardDto);
 	}
+
+	// 게시판 Id로 게시판 이름 찾기
+	@Override
+	public BoardType getBoardTitleById(int id) throws Exception {
+		return dao.getBoardTitleById(id);
+	}
+	
 	
 	
 	
