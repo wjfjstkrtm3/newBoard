@@ -7,14 +7,20 @@
 					location.href="/user/mypage";
 				
 				});
+
+			// 북마크 페이지
 			$(".category-image03").on("click", function() {
 					location.href="/user/bookMarkPage";
 				});
 
+			// 관리자 페이지
 			$(".admin-page").on("click", function() {
 					location.href="/admin/makeBoard";
 				});
 
+			$(".category-image04").on("click", function() {
+					location.href="/admin/memberManage";
+				});
 
 			
 		});
@@ -23,7 +29,7 @@
 
 
 	<div class="main-content-menu-category">
-		<div class="category-image01"><i class="fas fa-gifts fa-3x"></i></div>
+		<!--  <div class="category-image01"><i class="fas fa-gifts fa-3x"></i></div>-->
 		<div class="category-image02">
 		
 	
@@ -39,8 +45,9 @@
 	
 		</div>
 		<div class="category-image03"><i class="fas fa-star fa-3x start-color"></i></div>
-		<div class="category-image04"><i class="fas fa-address-book fa-3x book-color"></i></div>
+		
 		<sec:authorize access="hasRole('ROLE_ADMIN')">
+			<div class="category-image04"><i class="fas fa-address-book fa-3x book-color"></i></div>
 			<div class="admin-page"><i class="fas fa-crown fa-3x"></i></div>
 		</sec:authorize>
 		

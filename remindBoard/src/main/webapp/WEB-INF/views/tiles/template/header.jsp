@@ -2,16 +2,16 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <div class="header-menu-title">
-		띵동
+
 </div>
 
 <div class="header-menu-form">
-		<div class="header-guest">${sessionScope.userName}님 환영합니다</div>
+		<!--  <div class="header-guest">${sessionScope.userName}님 환영합니다</div>
 		<div class="header-alarm">알림</div>
 		<div class="header-mypage">내정보</div>
 		<div class="header-profile">프로필</div>
 		
-		
+		-->
 </div>
 		<sec:authorize access="isAuthenticated()">
 		<form action="/logout" method="POST" class="header-mypage-btnForm">

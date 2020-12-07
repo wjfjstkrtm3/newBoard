@@ -8,7 +8,6 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.remind.board.dto.BoardType;
 import com.remind.board.dto.MakeBoardDto;
+import com.remind.board.dto.UserDto;
 import com.remind.board.service.AdminService;
 
 @Controller
@@ -157,6 +157,24 @@ public class AdminController {
 		
 		return "redirect:/admin/goBoardById?id=" + makeBoardDto.getBoard_type() ;
 		
+	}
+	
+	// Member 관리 페이지 (View)
+	@GetMapping(value="/memberManage")
+	public String memberManange(Model model) {
+		List<UserDto> list = new ArrayList<UserDto>();
+		try {
+			list = service.selectUsers();
+			model.addAttribute("list", list);
+			System.out.println("list : " + list.toString());
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		
+		return "/admin/memberManage";
 	}
 	
 

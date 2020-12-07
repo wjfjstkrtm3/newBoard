@@ -48,7 +48,14 @@
 	<select id="boardCount" parameterType="int" resultType="int">
 		SELECT count(bno)
 		FROM makeboard
-		where board_type = #{id}
+		WHERE board_type = #{id}
+	</select>
+	
+	<!-- user 조회 -->
+	<select id="selectMembers" resultType="com.remind.board.dto.UserDto">
+	SELECT id, password, email, phoneNumber, gender, image, enabled, authority 
+	FROM user
+	WHERE authority NOT IN ('ROLE_ADMIN')
 	</select>
 	
 </mapper>

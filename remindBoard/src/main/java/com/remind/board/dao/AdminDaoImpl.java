@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.remind.board.dto.BoardType;
 import com.remind.board.dto.MakeBoardDto;
+import com.remind.board.dto.UserDto;
 
 @Repository
 public class AdminDaoImpl implements AdminDao{
@@ -55,6 +56,12 @@ public class AdminDaoImpl implements AdminDao{
 	@Override
 	public int boardCount(int id) throws Exception {
 		return sqlsession.selectOne("adminMapper.boardCount", id);
+	}
+
+	// user 조회
+	@Override
+	public List<UserDto> selectUsers() throws Exception {
+		return sqlsession.selectList("adminMapper.selectMembers");
 	}
 
 	

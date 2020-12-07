@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.remind.board.dto.BoardType;
 import com.remind.board.dto.MakeBoardDto;
+import com.remind.board.dto.UserDto;
 
 @Service
 public interface AdminService {
@@ -30,4 +31,7 @@ public interface AdminService {
 
 	// 게시물 수 조회
 	public int boardCount(int id) throws Exception;
+	
+	// user 조회
+	public List<UserDto> selectUsers() throws Exception;
 }
