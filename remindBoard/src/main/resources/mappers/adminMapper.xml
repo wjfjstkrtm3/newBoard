@@ -58,4 +58,10 @@
 	WHERE authority NOT IN ('ROLE_ADMIN')
 	</select>
 	
+	<!-- user 수 -->
+	<select id="userCount" resultType="int">
+		SELECT count(id)
+		FROM user
+	</select>
+	
 </mapper>
