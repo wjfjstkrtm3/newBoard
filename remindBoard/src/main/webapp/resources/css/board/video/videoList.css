@@ -32,6 +32,7 @@
     width: 80%;
     height: 30px;
     border:none;
+    font-size: 20px;
 }
 
 .video-search-text:hover, .video-searchBtn:hover {
@@ -55,19 +56,21 @@
 	height:30px;
 	margin: 10px;
 	border-radius: 10px;
+	font-size: 20px;
 }
 
 .video-searchBtn {
 	position:absolute;
 	right:5px;
 	bottom:5px;
-	width:275px;
+	width: 275px;
 	height:30px;
 	background-color: #374760;
 	border: none;
 	border-radius: 10px;
 	color:white;
 	cursor:pointer;
+	font-size: 20px;
 }
 
 .video-container-form > div {

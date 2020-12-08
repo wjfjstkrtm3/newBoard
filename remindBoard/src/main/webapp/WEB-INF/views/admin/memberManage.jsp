@@ -6,6 +6,34 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		var checkboxParent = $(".checkBoxAll");
+			checkboxParent.on("change", function(event) {
+						$("input[class='member-checkbox']:checkbox").each(function(event) {
+							if(checkboxParent.is(":checked") == true) {
+									$(this).prop("checked", true);
+								}else {
+									$(this).prop("checked", false);
+									}
+						});
+				/* if(checkboxParent.is(":checked") == true) {
+							$("input:checkbox[class='member-checkbox']").prop("checked", true);			
+					}else {
+							$("input:checkbox[class='member-checkbox']").prop("checked", false);			
+						} */
+				});
+			
+			$(".memberManageBtn").on("click", function() {
+					$("#memberManageModal").modal();
+				
+				});
+			
+		});
+
+
+</script>
 </head>
 <body>
 	<div class="memberManage title">
@@ -83,6 +111,50 @@
 	
 	
 	</div>
+
+
+<div class="modal fade" id="memberManageModal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<div class="modal-header-container">
+					<span class="memberManage-text">멤버 관리</span>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">X</button>
+				</div>
+			</div>
+			<div class="modal-body">
+				<div class="modal-body-container">
+					<div class="selectMember-text">선택된 멤버</div>
+					<div class="selectMember-form">
+						<div class="member-count-form">총 1명을 선택하셨습니다.</div>
+						<div class="authority-form">정회원         (1)</div>
+					</div>
+					
+					<div class="updateAuthority-text">동작</div>
+					<div class="Authority-selectForm">
+						<select class="authority-select">
+							<option value="authorityAbled">활성화</option>
+							<option value="authorityDisabled">비활성화</option>
+						</select>
+					</div>				
+				</div>
+			</div>
+			<div class="modal-bottom">
+				<div class="modal-bottom-container">
+				
+				
+				</div>
+			</div>
+		
+		
+		</div>
+	
+	</div>
+
+
+</div>
+
+
 
 </body>
 </html>

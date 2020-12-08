@@ -81,8 +81,7 @@ input[type=text], input[type=password]{
 
 .profile-updateBtn-form {
 	display:flex;
-	margin-top:50px;
-
+	margin-top: 18px;
 }
 
 .profile-updateBtn-form > input[type=button] {

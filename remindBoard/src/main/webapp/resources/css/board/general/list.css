@@ -102,10 +102,10 @@ select.search-title {
 }
 
 input.text-box {
-	width:150px;
-	height:22px;
+	width: 150px;
+	height: 28px;
 	position:absolute;
-	right:66px;
+	right: 74px;
 	bottom: 1px;
 }
 
@@ -117,11 +117,10 @@ input.text-box {
 
 .search-btn {
 	width:60px;
-	height:26px;
+	height: 28px;
 	position:absolute;
-	right:3px;
+	right: 3px;
 	bottom: 1px;
-
 }
 .board-write-btn {
 	position:absolute;
