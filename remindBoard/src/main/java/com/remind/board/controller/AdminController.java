@@ -3,6 +3,7 @@ package com.remind.board.controller;
 
 import java.security.Principal;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -175,19 +176,26 @@ public class AdminController {
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
-		
-		
-		
 		return "/admin/memberManage";
 	}
 	
+	
+	@ResponseBody
 	@PostMapping(value="/selectMemberUpdate")
-	public void selectMemberUpdate() {
+	public int selectMemberUpdate(@RequestParam(value="userIdArr") String[] userIdArr,
+								   @RequestParam(value="selectVal") String selectVal) {
+		int result = 0;
 		try {
+			for(int i = 0; i < userIdArr.length; i++) {
+				if(selectVal.equals("deleteMember")) {
+					result = service.selectMemberUpdate(userIdArr[i]);
+				}
+			}
 			
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
+		return result;
 	}
 
 	

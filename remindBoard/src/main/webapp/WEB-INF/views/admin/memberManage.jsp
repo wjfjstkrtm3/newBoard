@@ -58,7 +58,8 @@
 						
 						// user id push
 						checkUsergetIdArr.push($(element).parent().siblings(".member-info").children(".member-idEmail-form").children(idEmailForm).text());
-
+						$(".userIdArray").val(checkUsergetIdArr);
+						
 						// user 권한 form
 						var authorityText = $(element).parent().siblings(".member-authority-form").children(authorityFrom).text().trim();
 
@@ -128,6 +129,48 @@
 					$("#memberManageModal").modal();
 				
 				});
+
+
+			
+			$(".memberManageUpdateBtn").on("click", function() {
+				var userIdArr = $(".userIdArray").val();
+				var selectVal = $(".authority-select option:selected").val();
+					if(selectVal == "" || selectVal == "authority-default") {
+						alert("적용할 동작을 선택해주세요!");
+						return;
+						}
+						
+					if(userIdArr.length ==0) {
+						alert("수정할 멤버를 선택해주시고 눌러주세요");
+						return;
+						} else {
+								$.ajax({
+										url:"/admin/selectMemberUpdate",
+										type:"POST",
+										data:{"userIdArr":userIdArr, "selectVal":selectVal},
+										success:function(data) {
+											console.log(data);
+											
+											},
+										error:function(xhr) {
+											console.log(xhr.status + "/" + xhr.statusText);
+											}
+								
+
+
+									});
+					
+
+							}
+					
+
+				
+				
+				});
+
+
+
+
 			
 		});
 
@@ -184,7 +227,15 @@
 					</div>
 					
 					<div class="member-gender-form">
-						<div class="member-gender">${user.gender}</div>
+						<div class="member-gender">
+						<c:if test="${user.gender == 'woman'}">
+								여자
+						</c:if>
+						<c:if test="${user.gender == 'men'}">
+								남자						
+						</c:if>
+						
+						</div>
 					</div>
 					
 					<div class="member-authority-form">
@@ -256,7 +307,7 @@
 					<div class="Authority-selectForm">
 						<select class="authority-select">
 							<option value="authority-default">적용할 동작을 선택해주세요</option>
-							<option value="authorityAbled">활성화</option>
+							<option value="deleteMember">삭제</option>
 							<option value="authorityDisabled">비활성화</option>
 						</select>
 					</div>				
@@ -274,6 +325,7 @@
 	
 	</div>
 
+	<input type="hidden" class="userIdArray">
 
 </div>
 

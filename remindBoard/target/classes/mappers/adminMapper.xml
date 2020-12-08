@@ -67,10 +67,9 @@
 	
 	<!-- 멤버관리 (활성화/비활성화)Update -->
 	<update id="selectMemberUpdate" parameterType="String">
-		UPDATE user
-		SET enabled = 0
-		WHERE id = #{id}
+		DELETE
+		FROM USER
+		where id = #{id}
 	</update>
-	
 	
 </mapper>
