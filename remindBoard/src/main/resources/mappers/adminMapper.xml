@@ -62,6 +62,15 @@
 	<select id="userCount" resultType="int">
 		SELECT count(id)
 		FROM user
+		WHERE authority NOT IN ('ROLE_ADMIN')
 	</select>
+	
+	<!-- 멤버관리 (활성화/비활성화)Update -->
+	<update id="selectMemberUpdate" parameterType="String">
+		UPDATE user
+		SET enabled = 0
+		WHERE id = #{id}
+	</update>
+	
 	
 </mapper>

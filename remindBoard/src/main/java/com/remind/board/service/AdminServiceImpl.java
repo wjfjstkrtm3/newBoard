@@ -63,6 +63,21 @@ public class AdminServiceImpl implements AdminService {
 	public List<UserDto> selectUsers() throws Exception {
 		return dao.selectUsers();
 	}
+
+	// user 수
+	@Override
+	public int userCount() throws Exception {
+		return dao.userCount();
+	}
+
+	// 멤버관리 (활성화/비활성화)Update
+	@Override
+	public int selectMemberUpdate(String id) throws Exception {
+		return dao.selectMemberUpdate(id);
+	}
+	
+	
+	
 	
 	
 	

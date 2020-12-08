@@ -64,6 +64,19 @@ public class AdminDaoImpl implements AdminDao{
 		return sqlsession.selectList("adminMapper.selectMembers");
 	}
 
+	// user 수
+	@Override
+	public int userCount() throws Exception {
+		return sqlsession.selectOne("adminMapper.userCount");
+	}
+
+	// 멤버관리 (활성화/비활성화)Update
+	@Override
+	public int selectMemberUpdate(String id) throws Exception {
+		return sqlsession.update("adminMapper.selectMemberUpdate", id);
+	}
+
+	
 	
 	
 	

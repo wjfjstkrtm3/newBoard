@@ -1,8 +1,9 @@
 package com.remind.board.dto;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
-public class BoardDto {
+public class BoardDto implements Serializable {
 
 	private int bno;
 	private String title;

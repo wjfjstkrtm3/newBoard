@@ -163,10 +163,14 @@ public class AdminController {
 	@GetMapping(value="/memberManage")
 	public String memberManange(Model model) {
 		List<UserDto> list = new ArrayList<UserDto>();
+		int count = 0;
 		try {
 			list = service.selectUsers();
 			model.addAttribute("list", list);
-			System.out.println("list : " + list.toString());
+			
+			count = service.userCount();
+			model.addAttribute("userCount", count);
+				
 			
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -177,6 +181,14 @@ public class AdminController {
 		return "/admin/memberManage";
 	}
 	
+	@PostMapping(value="/selectMemberUpdate")
+	public void selectMemberUpdate() {
+		try {
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
 
 	
 }

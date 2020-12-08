@@ -34,4 +34,10 @@ public interface AdminDao {
 	
 	// user 조회
 	public List<UserDto> selectUsers() throws Exception;
+	
+	// user 수
+	public int userCount() throws Exception;
+	
+	// 멤버관리 (활성화/비활성화)Update
+	public int selectMemberUpdate(String id) throws Exception; 
 }
