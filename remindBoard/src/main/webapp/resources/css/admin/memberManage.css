@@ -95,3 +95,103 @@
 .category-image04 > .fa-address-book {
 	color:#FB8500;
 }
+
+.modal-body-container {
+	display:grid;
+	/* width: 100%; */
+	height: 100%;
+	grid-template-columns: 30% 70%;
+	grid-template-rows:50% 50%;
+	justify-items: center;
+	align-items: center;
+	font-size: 16px;
+}
+
+
+
+.memberManage-body {
+	height: 350px;
+}
+
+.authority-form {
+	width: 300px;
+	height:30px;
+	background-color:#F0F5FC;
+	display:flex;
+	align-items:center;
+	position:relative;
+}
+
+.authority-select {
+	width:300px;
+	height:30px;
+}
+
+.authority-text {
+	color:#0073B8;
+	margin-left: 10px;
+}
+
+.authority-number {
+	border-radius:20px;
+	background-color:#ADC1D2;
+	width:35px;
+	text-align:center;
+	position:absolute;
+	right:15px;
+
+}
+
+.modal-header-container {
+	display:flex;
+}
+
+.memberManage-text {
+	font-size: 20px;
+	margin:auto;
+}
+
+.selectMember-text, .updateAuthority-text, .memberManage-text {
+    color:#576D7D;
+    font-weight:bold;	
+}
+
+.memberManage-bottom {
+    border-top: 1px solid #E5E5E5;
+
+    position:relative;
+
+}
+
+.modal-bottom-container {
+	padding:30px;
+}
+
+.memberManageUpdateBtn {
+	position:absolute;
+	right:20px;
+	top:20px;
+}
+
+
+.memberManageUpdateBtn {
+	width: 120px;
+	height:30px;
+	background-color: #374760;
+	border: none;
+	border-radius: 10px;
+	color:white;
+	cursor:pointer;
+}
+
+.memberManageUpdateBtn:hover {
+	box-shadow: 0 0 3pt 2pt yellow;
+}
+
+.memberManageUpdateBtn:focus {
+	outline:none;
+}
+
+.member-count-form {
+	margin-bottom:10px;
+}

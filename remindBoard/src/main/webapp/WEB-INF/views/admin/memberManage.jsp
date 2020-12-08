@@ -122,26 +122,34 @@
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">X</button>
 				</div>
 			</div>
-			<div class="modal-body">
+			<div class="modal-body memberManage-body">
 				<div class="modal-body-container">
 					<div class="selectMember-text">선택된 멤버</div>
 					<div class="selectMember-form">
-						<div class="member-count-form">총 1명을 선택하셨습니다.</div>
-						<div class="authority-form">정회원         (1)</div>
+						<div class="member-count-form"><i class="fas fa-check fa-1x"></i>&nbsp;총 1명을 선택하셨습니다.</div>
+						<div class="authority-form">
+							<div class="authority-text">
+								정회원
+							</div>
+							<div class="authority-number">
+								1
+							</div>
+						</div>
 					</div>
 					
 					<div class="updateAuthority-text">동작</div>
 					<div class="Authority-selectForm">
 						<select class="authority-select">
+							<option value="authority-default">적용할 동작을 선택해주세요</option>
 							<option value="authorityAbled">활성화</option>
 							<option value="authorityDisabled">비활성화</option>
 						</select>
 					</div>				
 				</div>
 			</div>
-			<div class="modal-bottom">
+			<div class="modal-bottom memberManage-bottom">
 				<div class="modal-bottom-container">
-				
+					<button type="button" class="memberManageUpdateBtn">수정하기</button>
 				
 				</div>
 			</div>
