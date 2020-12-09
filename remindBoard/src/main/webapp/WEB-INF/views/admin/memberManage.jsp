@@ -159,11 +159,13 @@
 				var selectVal = $(".authority-select option:selected").val();
 					if(selectVal == "" || selectVal == "authority-default") {
 						alert("적용할 동작을 선택해주세요!");
+						$("#memberManageModal").modal("hide");
 						return;
 						}
 						
 					if(userIdArr.length ==0) {
 						alert("수정할 멤버를 선택해주시고 눌러주세요");
+						$("#memberManageModal").modal("hide");
 						return;
 						} else {
 								$.ajax({
@@ -210,11 +212,10 @@
 											if(element.authority == "ROLE_USER") {
 												 	authority = "정회원";
 												}
-
-											if(element.enabled == "0") {
-												 enabled = "비활성화";
+											if(element.enabled == 1) {
+												 enabled = "활성화";
 												}else {
-												 enabeld = "활성화";
+												 enabled = "비활성화";
 												}
 											
 											html += "<div class='checkBoxForm'><input type='checkbox' class='member-checkbox'></div>";
