@@ -1,6 +1,7 @@
 package com.remind.board.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Repository;
 
@@ -40,4 +41,7 @@ public interface AdminDao {
 	
 	// 멤버관리 (활성화/비활성화)Update
 	public int selectMemberUpdate(String id) throws Exception; 
+	
+	// 멤버관리 비동기 검색
+	public List<UserDto> selectMemberSearch(Map<String, Object> map) throws Exception;
 }

@@ -1,6 +1,7 @@
 package com.remind.board.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -76,11 +77,11 @@ public class AdminDaoImpl implements AdminDao{
 		return sqlsession.update("adminMapper.selectMemberUpdate", id);
 	}
 
-	
-	
-	
-	
-	
-	
+	// 멤버관리 비동기 검색
+	@Override
+	public List<UserDto> selectMemberSearch(Map<String, Object> map) throws Exception {
+		return sqlsession.selectList("adminMapper.selectMemberSearch", map);
+	}
+
 	
 }

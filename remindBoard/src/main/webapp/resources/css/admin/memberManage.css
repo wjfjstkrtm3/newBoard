@@ -20,7 +20,7 @@
 
 .member-count {
     border-bottom: 2px solid black;
-    padding:10px;
+    /* padding:10px; */
 }
 
 .member-content-form {
@@ -34,6 +34,7 @@
 .memberManageSearchForm {
      padding:10px;
      position: relative;
+     /* margin-top: 10px; */
 }
 
 .memberManageBtn {
@@ -72,6 +73,7 @@
 .user-image-form {
 	width:70px;
 	height:70px;
+	position: absolute;
 }
 
 .member-content-form >:nth-child(-n+6) {
@@ -80,6 +82,7 @@
 
 .member-info {
 	/* display:flex; */
+	position: relative;
 }
 
 .member-id-form {
@@ -208,4 +211,28 @@
 	padding:3px;
 	color:#CB9F5E;
 	font-weight:bold;
+}
+
+.member-idEmail-form {
+	position:absolute;
+	left:110px;
+}
+
+.member-searchBtn {
+	width: 120px;
+	height:28px;
+	background-color: #374760;
+	border: none;
+	color:white;
+	cursor:pointer;
+	position:absolute;
+	right:-81px;
+}
+
+.member-searchBtn:hover {
+	box-shadow: 0 0 3pt 2pt yellow;
+}
+
+.member-searchBtn:focus {
+	outline:none;
 }

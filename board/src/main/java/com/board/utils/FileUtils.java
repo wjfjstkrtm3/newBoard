@@ -80,7 +80,6 @@ public class FileUtils {
 			if(multipartFile.isEmpty() == false) {
 				originalFileName = multipartFile.getOriginalFilename();  // abc.txt
 				originalFileExtension = originalFileName.substring(originalFileName.lastIndexOf("."));
-				System.out.println("originalFileExtension : " + originalFileExtension);
 				storedFileName = CommonUtils.getRandomString() + originalFileExtension;
 				
 				multipartFile.transferTo(new File(filePath + storedFileName));

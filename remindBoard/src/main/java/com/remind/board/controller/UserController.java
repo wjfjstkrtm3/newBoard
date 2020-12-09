@@ -295,7 +295,6 @@ public class UserController {
 		List<BoardDto> list = new ArrayList<BoardDto>();
 		try {
 			map.put("id", Etc.getUser());
-			System.out.println("searchText: " + searchText);
 			map.put("searchText", searchText);
 			
 			list = service.selectBookMarkList(map);

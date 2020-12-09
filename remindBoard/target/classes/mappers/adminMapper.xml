@@ -52,10 +52,11 @@
 	</select>
 	
 	<!-- user 조회 -->
-	<select id="selectMembers" resultType="com.remind.board.dto.UserDto">
+	<select id="selectMembers" parameterType = "hashMap" resultType="com.remind.board.dto.UserDto">
 	SELECT id, password, email, phoneNumber, gender, image, enabled, authority 
 	FROM user
 	WHERE authority NOT IN ('ROLE_ADMIN')
+	
 	</select>
 	
 	<!-- user 수 -->
@@ -71,5 +72,25 @@
 		FROM USER
 		where id = #{id}
 	</update>
+	
+	<!-- 멤버관리 비동기 검색 -->
+	<select id="selectMemberSearch" parameterType="hashMap" resultType="com.remind.board.dto.UserDto">
+		SELECT id, password, email, phoneNumber, gender, image, enabled, authority
+		FROM user
+		WHERE authority NOT IN ('ROLE_ADMIN')
+		<choose>
+			<when test="searchType eq 'member-name'.toString()">
+				AND id like concat('%', #{searchText}, '%')
+			</when>
+			
+			<when test="searchType eq 'member-phoneNumber'.toString()">
+				AND phoneNumber like concat('%', #{searchText}, '%')
+			</when>
+			
+			<when test="searchType eq 'member-email'.toString()">
+				AND email like concat('%', #{searchText}, '%')
+			</when>
+		</choose>
+	</select>
 	
 </mapper>

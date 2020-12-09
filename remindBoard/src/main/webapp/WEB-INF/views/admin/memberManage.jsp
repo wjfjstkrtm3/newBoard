@@ -11,23 +11,37 @@
 	$(document).ready(function() {
 
 
-		var checkUserCount = 0;
 		var checkboxParent = $(".checkBoxAll");
+			$(document).on("change", ".checkBoxAll", function(event) {
+
+				
+				$("input[class='member-checkbox']:checkbox").each(function() {
+						
+					if($(event.target).is(":checked") == true) {
+						console.log("checked");
+							$(this).prop("checked", true);
+							
+						}else {
+							console.log("unchecked");
+							$(this).prop("checked", false);
+							
+							}
+					
+				});
+				
+		/* if(checkboxParent.is(":checked") == true) {
+					$("input:checkbox[class='member-checkbox']").prop("checked", true);			
+			}else {
+					$("input:checkbox[class='member-checkbox']").prop("checked", false);			
+				} */
+				
+				});
 			checkboxParent.on("change", function(event) {
-						$("input[class='member-checkbox']:checkbox").each(function(event) {
-							if(checkboxParent.is(":checked") == true) {
-									$(this).prop("checked", true);
-								}else {
-									$(this).prop("checked", false);
-									}
-						});
-				/* if(checkboxParent.is(":checked") == true) {
-							$("input:checkbox[class='member-checkbox']").prop("checked", true);			
-					}else {
-							$("input:checkbox[class='member-checkbox']").prop("checked", false);			
-						} */
+					
 				});
 
+
+			// 체크한 user의 여러가지 정보를 가져오는 함수
 			function getCheckedList() {
 
 
@@ -85,7 +99,10 @@
 				// 권한에 따른 user 수
 				for(var index in authorityCountArr) {
 						if(authorityCountArr[index] == "정회원") {
+
+							// 정회원이면 memberCount++
 							memberCount++;
+								// 준회원이면 noMemberCount++
 							} else if(authorityCountArr[index] == "준회원") {
 								noMemberCount++;
 								}
@@ -95,9 +112,11 @@
 				var countSelector = 0;
 				// 정회원 // 몇명 표시
 				for(var index in checkUserGetAuthorityArr) {
-					
+
+					// 정회원이면 memberCount를 사용
 					if(checkUserGetAuthorityArr[index] == "정회원") {
 							countSelector = memberCount;
+							// 준회원이면 noMemberCount를 사용
 						} else if(checkUserGetAuthorityArr[index] == "준회원") {
 							countSelector = noMemberCount;
 							}
@@ -116,9 +135,12 @@
 				
 			}
 
+			// 체크박스 선택한 user 수
 			function getCheckboxCount() {
 				return $("input[class='member-checkbox']:checkbox:checked").length;
 				}
+
+			// 멤버관리 버튼을 눌렀을 경우
 			$(".memberManageBtn").on("click", function() {
 					$(".checkboxUserCount").empty();
 					$(".authority-container-form").empty();
@@ -131,7 +153,7 @@
 				});
 
 
-			
+			// modal창에서 수정하기 버튼을 클릭했을 경우
 			$(".memberManageUpdateBtn").on("click", function() {
 				var userIdArr = $(".userIdArray").val();
 				var selectVal = $(".authority-select option:selected").val();
@@ -150,25 +172,74 @@
 										data:{"userIdArr":userIdArr, "selectVal":selectVal},
 										success:function(data) {
 											console.log(data);
-											
+											alert("수정이 완료되었습니다.");
+											location.href="/admin/memberManage";
 											},
 										error:function(xhr) {
 											console.log(xhr.status + "/" + xhr.statusText);
 											}
-								
-
-
 									});
-					
-
 							}
-					
-
-				
 				
 				});
 
+		$(".member-searchBtn").on("click", function() {
+				var searchText = $(".memeber-search-text").val();
+				var searchType = $(".member-selectBox option:selected").val();
+				var searchData = {"searchText":searchText, "searchType":searchType};
+					if(searchType !== "member-selectBox-default" && searchText.trim() != "") {
+							$.ajax({
+									url:"/admin/selectMemberSearch",
+									type:"POST",
+									dataType:"JSON",
+									data:searchData,
+									success:function(data) {
+										$(".member-content-form").empty();
+										var html = "<div class='checkBoxAllForm'><input type='checkbox' class='checkBoxAll'></div>";
+										html += "<div>멤버</div><div>핸드폰 번호</div><div>성별</div><div>권한</div><div>활성화 여부</div>";
+										
+										$.each(data, function(index, element) {
+											var gender = "";
+											var authority = "";
+											var enabled = "";
+											if(element.gender == "woman") {
+													gender = "여자";
+												}else {
+													gender = "남자";
+													}
+											if(element.authority == "ROLE_USER") {
+												 	authority = "정회원";
+												}
 
+											if(element.enabled == "0") {
+												 enabled = "비활성화";
+												}else {
+												 enabeld = "활성화";
+												}
+											
+											html += "<div class='checkBoxForm'><input type='checkbox' class='member-checkbox'></div>";
+											html +=	"<div class='member-info'><div class='member-image-form'><img src='/img/" + element.image + "'" + "class='user-image-form'></div>";										
+											html += "<div class='member-idEmail-form'><div class='member-id-form_" + index + "'>" + element.id + "</div>";
+											html += "<div class='member-email-form'>" + element.email + "</div></div></div>"; 
+											html += "<div class='member-phoneNumber-form'><div class='member-phoneNumber'>" + element.phoneNumber + "</div></div>";
+											html += "<div class='member-gender-form'><div class='member-gender'>" + gender +"</div></div>";
+											html += "<div class='member-authority-form'><div class='member-authority_" + index + "'>" + authority  + "</div></div>";
+											html += "<div class='member-enabled-form'>" + enabled + "</div></div>";
+											});
+										$(".member-content-form").append(html);
+									},
+									error:function(xhr) {
+										console.log(xhr.status + "/" + xhr.statusText);
+									}
+									
+								
+								});
+						}else {
+								alert("")
+							}
+				
+									
+			});
 
 
 			
@@ -192,11 +263,13 @@
 				<div class="memberManageSearchForm">
 					<input type="button" class="memberManageBtn" value="멤버 관리">
 					<select class="member-selectBox">
+						<option value="member-selectBox-default">== 선택해주세요 ==</option>
 						<option value="member-name">멤버 이름</option>
 						<option value="member-phoneNumber">핸드폰 번호</option>
 						<option value="member-email">이메일</option>
 					</select>
 					<input type="text" class="memeber-search-text" placeholder="검색어를 입력하세요">
+					<input type="button" class="member-searchBtn" value="검색하기">
 				</div>
 				
 				<div class="member-content-form">
@@ -208,7 +281,7 @@
 					<div>성별</div>
 					<div>권한</div>
 					<div>활성화 여부</div>
-				
+					
 					<c:forEach var="user" items="${list}" varStatus="status">
 					<div class="checkBoxForm">
 						<input type="checkbox" class="member-checkbox">

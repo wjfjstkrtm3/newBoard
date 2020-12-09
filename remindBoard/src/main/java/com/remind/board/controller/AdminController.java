@@ -3,8 +3,9 @@ package com.remind.board.controller;
 
 import java.security.Principal;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -196,6 +197,23 @@ public class AdminController {
 			e.printStackTrace();
 		}
 		return result;
+	}
+	
+	@ResponseBody
+	@PostMapping(value="/selectMemberSearch")
+	public List<UserDto> selectMemberSearch(@RequestParam(value="searchText") String searchText,
+											@RequestParam(value="searchType") String searchType) {
+		List<UserDto> list = new ArrayList<UserDto>();
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		try {
+			map.put("searchText", searchText);
+			map.put("searchType",  searchType);
+			list = service.selectMemberSearch(map);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return list;
 	}
 
 	

@@ -1,6 +1,7 @@
 package com.remind.board.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -75,6 +76,13 @@ public class AdminServiceImpl implements AdminService {
 	public int selectMemberUpdate(String id) throws Exception {
 		return dao.selectMemberUpdate(id);
 	}
+
+	// 멤버관리 비동기 검색
+	@Override
+	public List<UserDto> selectMemberSearch(Map<String, Object> map) throws Exception {
+		return dao.selectMemberSearch(map);
+	}
+	
 	
 	
 	
