@@ -305,4 +305,15 @@ public class UserController {
 		return list;
 	}
 	
+	
+	@GetMapping(value="/chatting")
+	public String chatting() {
+		try {
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return "/user/chatting";
+	}
+	
 }

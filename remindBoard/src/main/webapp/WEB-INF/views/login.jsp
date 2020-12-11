@@ -113,9 +113,9 @@
 	
 		<div class="login-userIdPwd-form">	
 			<!-- 기본 name = username -->
-			<input type="text" name="userId" class="login-userId" placeholder="아이디">
+			<input type="text" name="userId" class="login-userId" placeholder="아이디" autofocus required>
 			<!-- 기본 name = password -->
-			<input type="password" name="userPwd" class="login-userPwd" placeholder="비밀번호">
+			<input type="password" name="userPwd" class="login-userPwd" placeholder="비밀번호" required>
 			<div class="etc-form">
 				<div class="checkbox-form">
 					

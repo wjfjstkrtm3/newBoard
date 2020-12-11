@@ -22,6 +22,9 @@
 					location.href="/admin/memberManage";
 				});
 
+			$(".category-image05").on("click", function() {
+					location.href="/user/chatting";
+				});
 			
 		});
 
@@ -51,7 +54,10 @@
 			<div class="admin-page"><i class="fas fa-crown fa-3x"></i></div>
 		</sec:authorize>
 		
+		<div class="category-image05"><i class="fas fa-comments fa-3x"></i></div>
+	
 	</div>
+	
 	<div class="main-content-menu-items">
 	
 	

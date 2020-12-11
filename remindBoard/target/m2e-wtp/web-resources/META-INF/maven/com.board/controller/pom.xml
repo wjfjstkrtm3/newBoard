@@ -279,6 +279,16 @@
 			<version>2.9.1</version>
 		</dependency>
 
+		<!-- webSocket Start -->
+		<dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-websocket</artifactId>
+            <version>${org.springframework-version}</version>
+		</dependency>
+		<!-- webSocket Start END -->
+
+
+
 	</dependencies>
     <build>
         <plugins>
