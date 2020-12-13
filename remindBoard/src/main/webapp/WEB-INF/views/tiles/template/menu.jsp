@@ -23,7 +23,7 @@
 				});
 
 			$(".category-image05").on("click", function() {
-					location.href="/user/chatting";
+					location.href="/chat/chatting";
 				});
 			
 		});

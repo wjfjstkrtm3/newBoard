@@ -22,6 +22,8 @@ public class WebSocketConfig implements WebSocketConfigurer {
 	@Autowired
 	private WebSocketHandler webSocketHandler;
 	
+	
+	// 클라이언트가 url 로 "/chat/" 으로 각각 접근할때의 각각의 핸들러들과 맵핑 시켜주는 역할을 한다
 	@Override
 	public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
 		registry.addHandler(webSocketHandler, "/chat");

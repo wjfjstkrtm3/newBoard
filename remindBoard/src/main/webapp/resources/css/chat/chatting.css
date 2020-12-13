@@ -1,0 +1,28 @@
+@charset "UTF-8";
+
+.chatRoom-container-form {
+    width:100%;
+    height:100%;
+    display:grid;
+    justify-items: center;
+    align-items:center;
+}
+
+.chatRoom-container {
+    width:80%;
+    height:80%;
+}
+
+
+.createBtn {
+    position:absolute;
+    right:0;
+    bottom:0;
+}
+
+.chatRoom-container {
+    display:grid;
+    grid-template-rows:repeat(10, 10%);
+    grid-template-columns: 30% 30% 30%;
+    position:relative;
+}
