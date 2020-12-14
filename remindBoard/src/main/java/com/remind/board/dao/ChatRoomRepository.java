@@ -15,8 +15,13 @@ public class ChatRoomRepository {
 	private Map<String, ChatRoom> chatRoomMap = new LinkedHashMap<String, ChatRoom>();
 	
 	public List<ChatRoom> findAllRoom() {
+		
+		// Map에있는 value값 ChatRoom을 ArrayList에 담아줌
 		List<ChatRoom> chatRooms = new ArrayList<ChatRoom>(chatRoomMap.values());
+		
+		// ArrayList를 내림차순으로 정렬 (최신 채팅방을 맨위에 있게 하기위해서)
 		Collections.reverse(chatRooms);
+		
 		return chatRooms;
 	}
 	
@@ -27,7 +32,6 @@ public class ChatRoomRepository {
 	public ChatRoom createChatRoom(String name) {
 		ChatRoom chatRoom = ChatRoom.create(name);
 		chatRoomMap.put(chatRoom.getRoomId(), chatRoom);
-		System.out.println("createRoom " + chatRoomMap.toString());
 		return chatRoom;
 	}
 	

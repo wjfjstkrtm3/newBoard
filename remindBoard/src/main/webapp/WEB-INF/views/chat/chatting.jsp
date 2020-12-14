@@ -22,23 +22,23 @@
 					alert("채팅방 제목을 입력해주세요!");
 					return;
 				}else {
+					$(".titleActionForm").submit();
+					
+				/*
 					$.ajax({
-							url:"/chat/room/new",
-							type:"GET",
-							data:titleActionForm,
-							success:function(data) {
-								console.log(data);
-								alert("채팅방이 생성되었습니다");
-								$("#createChatModal").modal("hide");
-
-								
-								},
-							error:function(xhr) {
-								console.log(xhr.status + "/" + xhr.statusText);
-								}
-						});
-						
-						
+						url:"/chat/room/new",
+						type:"GET",
+						data:titleActionForm,
+						success:function(data) {
+							alert("채팅방이 생성되었습니다");
+							$("#createChatModal").modal("hide");
+							},
+						error:function(xhr) {
+							console.log(xhr.status + "/" + xhr.statusText);
+							}
+					});
+				*/
+					
 				}
 				
 				});
@@ -55,25 +55,24 @@
 			<div class="">방 이름</div>
 			<div class="">입장 버튼</div>
 			
-			<c:forEach var="rooms" items="${rooms}">
-				<div class="">${rooms.roomId}</div>
-				<div class="">${rooms.name}</div>
-				<div class=""><input type="button" value="입장"></div>
+			  
+			<c:forEach var="room" items="${rooms}">
+				<div class="">${room.roomId}</div>
+				<div class="">${room.name}</div>
+				<div class=""><a class = "btn btn-primary" href="/chat/rooms/${room.roomId}"></a></div>
 				
 			
 			</c:forEach>
 		
-		<div class="chatRoom-create-form">
-			<input type="button" value="새로 만들기" class="createBtn">
-		</div>
 	
-	
-		
 	
 	
 	
 	</div>
 
+		<div class="chatRoom-create-form">
+			<input type="button" value="새로 만들기" class="createBtn">
+		</div>
 	
 </div>
 <div class="modal fade" id="createChatModal" data-backdrop="static">
@@ -88,7 +87,7 @@
 			</div>
 			<div class="modal-body">
 				<div class="modal-body-form">
-					<form action="#" method="GET" class="titleActionForm" name="form">
+					<form action="/chat/room/new" method="GET" class="titleActionForm" name="form">
 					<input type="text" class="chatTitle" name="name" placeholder="채팅방 제목을 입력해주세요!" autofocus required>
 					<input type="button" class="createChatBtn" value="생성하기">
 					</form>		
