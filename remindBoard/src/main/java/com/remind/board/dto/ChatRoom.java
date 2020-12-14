@@ -8,6 +8,7 @@ import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.remind.board.utils.Etc;
 
 public class ChatRoom {
 
@@ -23,7 +24,6 @@ public class ChatRoom {
 	}
 	
 	public void handelMessage(WebSocketSession session, ChatMessage chatMessage, ObjectMapper objectMapper) throws Exception {
-		MessageType type = MessageType.ENTER;
 		if(chatMessage.getType() == MessageType.ENTER) {
 			sessions.add(session);
 			chatMessage.setMessage(chatMessage.getWriter() + "님이 입장하셨습니다.");

@@ -7,6 +7,7 @@ public class ChatMessage {
 	private String writer;
 	private String message;
 	private MessageType type;
+	
 	public String getChatRoomId() {
 		return chatRoomId;
 	}

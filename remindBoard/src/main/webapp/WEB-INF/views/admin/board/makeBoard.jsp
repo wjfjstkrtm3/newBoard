@@ -118,7 +118,7 @@
 							
 							// 삭제버튼을 누른 게시판의 이름
 							var text = $(this).siblings().text();
-							
+				ㄹ			
 							boardRemove(text);
 					});
 

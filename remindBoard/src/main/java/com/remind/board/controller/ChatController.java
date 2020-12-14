@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.remind.board.dao.ChatRoomRepository;
 import com.remind.board.dto.ChatRoom;
 import com.remind.board.dto.ChatRoomForm;
+import com.remind.board.utils.Etc;
 
 @Controller
 @RequestMapping(value="/chat")
@@ -45,6 +46,7 @@ public class ChatController {
 	public String room(@PathVariable String id, Model model) {
 		ChatRoom room = chatRoomRepository.findRoomById(id);
 		model.addAttribute("room", room);
+		model.addAttribute("user", Etc.getUser());
 		return "/chat/room";
 	}
 	

@@ -15,22 +15,29 @@
 		var nickname;
 		var webSocket;
 		var roomId = $(".roomId").val();
+		var user = $(".userName").val();
+		connect();
+		/*
 		$(".nicknameBtn").on("click", function() {
 				nickname = $(".nickname-text-form").val();
-				connect();
 				
 				
 			});
-
+		*/
 		$(".inputMessageBtn").on("click", function() {
 				var messageText = $(".input-message-text-form").val();
-				webSocket.send(JSON.stringify({chatRoomId: roomId, type:"CHAT", writer:nickname, message:messageText}));
+				webSocket.send(JSON.stringify({chatRoomId: roomId, type:"CHAT", writer:user, message:messageText}));
 				$(".input-message-text-form").val("");
 			});
 
 		$(".exitBtn").on("click", function() {
-				onClose();
-				webSocket.close();
+				if(confirm("정말 나가시겠습니까?") == true) {
+					webSocket.send(JSON.stringify({chatRoomId:roomId, type:"LEAVE", writer:user}));
+					webSocket.close();
+					location.href="/chat/chatting";
+					}else {
+						return;
+						}
 				
 			});
 		
@@ -61,11 +68,11 @@
 			}
 
 			function onOpen() {
-				webSocket.send(JSON.stringify({chatRoomId:roomId, type:"ENTER", writer:nickname}));
+				webSocket.send(JSON.stringify({chatRoomId:roomId, type:"ENTER", writer:user}));
 				}
 
 			function onClose() {
-				webSocket.send(JSON.stringify({chatRoomId:roomId, type:"LEAVE", writer:nickname}));
+				webSocket.send(JSON.stringify({chatRoomId:roomId, type:"LEAVE", writer:user}));
 				}
 
 			function onMessage(msg) {
@@ -77,7 +84,10 @@
 				
 				}
 
-			
+			window.onbeforeunload = function() {
+				webSocket.send(JSON.stringify({chatRoomId:roomId, type:"LEAVE", writer:user}));
+				webSocket.close();
+				}
 		});
 
 
@@ -90,10 +100,12 @@
 <body>
    <div class="chatting-container">
    	<div class="chatting-container-form">
+   		<!--
    		<div class="nickname-form">
    			<input type="text" class="nickname-text-form" placeholder="닉네임을 입력해주세요" autofocus required>
    			<input type="button" class="nicknameBtn" value="확인"> 
    		</div>
+   		-->
    		<div class="message-form">
    			
    		
@@ -113,6 +125,7 @@
    </div>
 
 <input type="hidden" value="${room.roomId}" class="roomId">
+<input type="hidden" value="${user}" class="userName">
 
 
 </body>

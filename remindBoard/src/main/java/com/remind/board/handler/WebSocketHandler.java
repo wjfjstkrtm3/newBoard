@@ -11,6 +11,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.remind.board.dao.ChatRoomRepository;
 import com.remind.board.dto.ChatMessage;
 import com.remind.board.dto.ChatRoom;
+import com.remind.board.utils.Etc;
 
 @Component
 public class WebSocketHandler extends TextWebSocketHandler {
@@ -20,7 +21,7 @@ public class WebSocketHandler extends TextWebSocketHandler {
 	@Autowired
 	private ChatRoomRepository chatRoomRepository;
 	
-	private ObjectMapper objectMapper = new ObjectMapper();
+	private ObjectMapper objectMapper;
 	
 
 	/*
@@ -34,12 +35,13 @@ public class WebSocketHandler extends TextWebSocketHandler {
 	// 메시지를 전송했을때
 	@Override
 	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
+		objectMapper = new ObjectMapper();
 		String msg = message.getPayload();
 		// objectMapper를 사용하여 해당 msg를 ChatMessage타입으로 변환
 		ChatMessage chatMessage = objectMapper.readValue(msg, ChatMessage.class);
 		ChatRoom chatRoom = chatRoomRepository.findRoomById(chatMessage.getChatRoomId());
 		chatRoom.handelMessage(session, chatMessage, objectMapper);
-		
+		 
 		
 		/*
 		for(WebSocketSession sess : sessions) {
