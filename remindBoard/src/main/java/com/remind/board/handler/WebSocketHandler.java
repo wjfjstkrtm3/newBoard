@@ -37,6 +37,9 @@ public class WebSocketHandler extends TextWebSocketHandler {
 	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
 		objectMapper = new ObjectMapper();
 		String msg = message.getPayload();
+		
+		// readValue
+		// JSON 문자열을  JAVA객체로 변환
 		// objectMapper를 사용하여 해당 msg를 ChatMessage타입으로 변환
 		ChatMessage chatMessage = objectMapper.readValue(msg, ChatMessage.class);
 		ChatRoom chatRoom = chatRoomRepository.findRoomById(chatMessage.getChatRoomId());

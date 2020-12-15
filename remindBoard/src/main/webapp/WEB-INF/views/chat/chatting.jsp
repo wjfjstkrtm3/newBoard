@@ -50,31 +50,48 @@
 <body>
 <div class="chatRoom-container-form">
 	<div class="chatRoom-container">
-	
-			<div class="">번호</div>
-			<div class="">방 이름</div>
-			<div class="">입장 버튼</div>
+		<c:forEach var="room" items="${rooms}">
+			<div class="chatRoom-count-form">
+				<div class="chatRoom-count">0</div>
+			</div>
 			
-			  
+		
+			<div class="chatRoom-user-form">
+				<div class="chatRoom-user-image"><img src="/img/${userDto.image}" class="userImage"></div>
+				<div class="chatRoom-user-name">${userDto.id}</div>
+			</div>
+			
+			<div class="chatRoom-info-form">
+					<div class="chatRoom-info-title">${room.name}</div>
+					<div class="chatRoom-info-date">2020-12-15</div>
+					<a href="/chat/rooms/${room.roomId}" class="chatRoom-info-enter btn btn-info">입장</a>
+			</div>
+			
+		</c:forEach>
+			<!--  
 			<c:forEach var="room" items="${rooms}">
 				<div class="">${room.roomId}</div>
 				<div class="">${room.name}</div>
 				<div class=""><a class = "btn btn-primary" href="/chat/rooms/${room.roomId}"></a></div>
-				
-			
 			</c:forEach>
-		
-	
-	
-	
-	
-	</div>
-
+			-->
+			
 		<div class="chatRoom-create-form">
 			<input type="button" value="새로 만들기" class="createBtn">
-		</div>
+		</div>	
+	</div>
 	
+		
 </div>
+
+
+
+
+
+
+
+
+
 <div class="modal fade" id="createChatModal" data-backdrop="static">
 	<div class="modal-dialog">
 		<div class="modal-content">

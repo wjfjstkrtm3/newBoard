@@ -38,7 +38,12 @@ public class ChatRoom {
 	
 	
 	private void send(ChatMessage chatMessage, ObjectMapper objectMapper) throws Exception{
+		// writeValueAsString
+		// Java 객체로 부터 JSON을 만들고, 이를 문자열 혹은 byte배열로 반환한다
 		TextMessage textMessage = new TextMessage(objectMapper.writeValueAsString(chatMessage.getMessage()));
+		
+		
+		// 해당 방에있는 클라이언트 session에게 Message전달 
 		for(WebSocketSession sess : sessions) {
 			sess.sendMessage(textMessage);
 		}

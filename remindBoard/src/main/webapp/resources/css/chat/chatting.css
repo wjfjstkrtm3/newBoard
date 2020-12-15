@@ -9,20 +9,67 @@
 }
 
 .chatRoom-container {
-    width:80%;
+    width:50%;
     height:80%;
+    display:grid;
+    grid-template-rows: repeat(5, 20%);
+    grid-template-columns: 10% 30% 60%;
+    grid-auto-rows: 20%;
+    border: 2px solid black;
+    position:relative;
 }
-
 
 .createBtn {
     position:absolute;
     right:0;
-    bottom:0;
+    bottom:0px;
 }
 
-.chatRoom-container {
-    display:grid;
-    grid-template-rows:repeat(10, 10%);
-    grid-template-columns: 30% 30% 30%;
-    position:relative;
+.userImage {
+    width:100px;
+    height:100px;
+}
+
+.chatRoom-user-form {
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+}
+
+.chatRoom-info-form >:nth-child(-n+2) {
+    padding:15px;
+}
+
+
+.chatRoom-info-form {
+    position:relative; 
+}
+.chatRoom-count {
+    border-radius:20px;
+    border: 2px solid #023047;
+    padding:5px;
+    width:30px;
+    text-align:center;
+    font-weight:bold;
+}
+
+.chatRoom-info-enter {
+    position:absolute;
+    right:30px;
+    top: 50px;
+}
+
+.chatRoom-count-form {
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.chatRoom-container >:nth-child(-n+3) {
+    border-bottom:1px solid black;
+}
+
+.chatRoom-user-name {
+    font-weight:bold;
 }
