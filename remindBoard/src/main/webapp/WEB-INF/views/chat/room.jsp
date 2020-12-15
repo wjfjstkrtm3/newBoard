@@ -12,6 +12,8 @@
 
 	$(document).ready(function() {
 
+		
+		
 		var nickname;
 		var webSocket;
 		var roomId = $(".roomId").val();
@@ -76,8 +78,21 @@
 				}
 
 			function onMessage(msg) {
-				var data = msg.data;
-				$(".message-form").append(data + "<br>");
+				var data = JSON.parse(msg.data);
+				var html = "";
+				var image = "${userDto.image}";		
+				html += "<div class='myMessage-form'>";
+				html += "<div class='Mymessage-text-form'>";
+				html += "<div class='MyMessage-text-imageForm'>";
+				html += "<img src='/img/" + image + "'" + "class='MyMessage-image'>";
+				html += "<span class='MyMessage-id'>" + "${userDto.id}" + "</span></div>";
+				html += "<div class='MyMessage-message-form'>";
+				html += "<div class='Mymessage-text'>" + data + "</div>"
+				html += "<div class='Mymessage-date'>" + "오후 4:18" + "</div></div></div></div>";
+				$(".message-form").append(html);
+				// 스크롤 포커싱 하기
+				const ele = document.getElementById("scroll-message");
+				ele.scrollTop = ele.scrollHeight;
 				}
 
 			function onError() {
@@ -88,9 +103,19 @@
 				webSocket.send(JSON.stringify({chatRoomId:roomId, type:"LEAVE", writer:user}));
 				webSocket.close();
 				}
+
+			
+			
 		});
 
+	
 
+
+
+
+
+
+	
 
 </script>
 
@@ -106,7 +131,7 @@
    			<input type="button" class="nicknameBtn" value="확인"> 
    		</div>
    		-->
-   		<div class="message-form">
+   		<div class="message-form" id="scroll-message">
    			
    		
    		</div>

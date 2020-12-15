@@ -19,9 +19,15 @@
 }
 
 .message-form {
-    background-color:gray;
-    width:600px;
-    height:600px;
+    border: 2px solid #023047;
+    border-radius: 10px;
+    width:1000px;
+    height: 700px;
+    display: grid;
+    background-color: #9BBAD8;
+    grid-template-rows: repeat(6, 15%);
+    grid-auto-rows: 15%;
+    overflow: auto;
 }
 
 .inputMessageBtn {
@@ -39,4 +45,50 @@
 
 .inputMessageBtn:focus {
 	outline:none;
+}
+
+.MyMessage-image {
+	width:60px;
+	height:60px;
+	/* background-color: red; */
+	border-radius: 15px;
+}
+
+.MyMessage-text-imageForm {
+	display:flex;
+	flex-direction:column;
+	justify-content: center;
+	align-items: center;
+}
+
+.Mymessage-text-form {
+	display:grid;
+	grid-template-columns: 20% 80%;
+	margin: 10px;
+}
+
+.Mymessage-text {
+	width:300px;
+	padding:10px;
+	min-height: 42px;
+	border:1px solid #023047;
+	border-radius:10px;
+	background-color:white;
+}
+
+.Mymessage-message-form {
+	display:flex;
+	flex-direction:column;
+	justify-content:center;
+	align-items:center;
+}
+
+.Mymessage-date {
+	/* margin-left:auto; */
+	margin-left: 300px;
+}
+
+.MyMessage-message-form {
+	display:flex;
+	flex-direction:column;
 }

@@ -75,10 +75,9 @@
 				<div class=""><a class = "btn btn-primary" href="/chat/rooms/${room.roomId}"></a></div>
 			</c:forEach>
 			-->
-			
-		<div class="chatRoom-create-form">
+			<span class="createBtn-form">
 			<input type="button" value="새로 만들기" class="createBtn">
-		</div>	
+			</span>
 	</div>
 	
 		

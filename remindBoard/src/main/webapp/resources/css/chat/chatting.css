@@ -19,11 +19,30 @@
     position:relative;
 }
 
-.createBtn {
+.createBtn-form {
     position:absolute;
-    right:0;
-    bottom:0px;
+    bottom:670px;
+    left:200px;
 }
+
+.createBtn {
+    width:500px;
+    height:30px;
+    border-radius:10px;
+    background-color: #374760;
+	border: none;
+	color:white;
+}
+
+.createBtn:hover {
+	box-shadow: 0 0 3pt 2pt yellow;
+}
+
+.createBtn:focus {
+	outline:none;
+}
+
+
 
 .userImage {
     width:100px;

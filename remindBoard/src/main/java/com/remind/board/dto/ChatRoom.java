@@ -31,7 +31,7 @@ public class ChatRoom {
 			sessions.remove(session);
 			chatMessage.setMessage(chatMessage.getWriter() + "님이 퇴장하셨습니다");
 		}else {
-			chatMessage.setMessage(chatMessage.getWriter() + " : " + chatMessage.getMessage());
+			chatMessage.setMessage(chatMessage.getMessage());
 		}
 		send(chatMessage, objectMapper);
 	}
@@ -41,7 +41,6 @@ public class ChatRoom {
 		// writeValueAsString
 		// Java 객체로 부터 JSON을 만들고, 이를 문자열 혹은 byte배열로 반환한다
 		TextMessage textMessage = new TextMessage(objectMapper.writeValueAsString(chatMessage.getMessage()));
-		
 		
 		// 해당 방에있는 클라이언트 session에게 Message전달 
 		for(WebSocketSession sess : sessions) {
