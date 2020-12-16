@@ -7,12 +7,14 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
 <script type="text/javascript">
 
-
 	$(document).ready(function() {
+			
 			$(".createBtn").on("click", function() {
 				$("#createChatModal").modal("show");
+				
 			});
 
 			$(".createChatBtn").on("click", function() {
