@@ -32,42 +32,55 @@
 
 .inputMessageBtn {
 	width: 100px;
-	height:36px;
+	height:40px;
 	background-color: #374760;
 	border: none;
 	color:white;
-	cursor:pointer;
-
+	position: absolute;
+	left:997px;
+	top:10px;
 }
-.inputMessageBtn:hover {
+
+.inputMessageBtn:hover, .exitBtn:hover {
 	box-shadow: 0 0 3pt 2pt yellow;
 }
 
-.inputMessageBtn:focus {
+.inputMessageBtn:focus, .exitBtn:focus {
 	outline:none;
 }
 
-.MyMessage-image {
+.exitBtn {
+	width: 100px;
+	height:40px;
+	background-color: red;
+	border: none;
+	color:white;
+	position: absolute;
+	left:1097px;
+	top:10px;
+}
+
+.senderMessage-image {
 	width: 45px;
 	height: 45px;
 	/* background-color: red; */
 	border-radius: 15px;
 }
 
-.MyMessage-text-imageForm {
+.senderMessage-text-imageForm {
 	display:flex;
 	flex-direction:column;
 	justify-content: center;
 	align-items: center;
 }
 
-.Mymessage-text-form {
+.senderMessage-text-form {
 	display:grid;
 	grid-template-columns: 10% 90%;
 	margin: 10px;
 }
 
-.Mymessage-text {
+.senderMessage-text {
 	width:300px;
 	padding:10px;
 	min-height: 42px;
@@ -76,19 +89,13 @@
 	background-color:white;
 }
 
-.Mymessage-message-form {
-	display:flex;
-	flex-direction:column;
-	justify-content:center;
-	align-items:center;
-}
 
-.Mymessage-date {
+.senderMessage-date {
 	/* margin-left:auto; */
 	margin-left: 300px;
 }
 
-.MyMessage-message-form {
+.senderMessage-message-form {
 	display:flex;
 	flex-direction:column;
 }
@@ -97,4 +104,38 @@
 	background-color: #7a9abc;
 	height:25%;
 	text-align:center;
+}
+
+.myMessage-form {
+	display:flex;
+	margin-left:auto;
+	justify-content: center;
+	align-items: center;
+}
+
+.myMessage-text {
+	width:300px;
+	background-color:yellow;
+	height:50px;
+	border-radius:10px;
+	display:flex;
+}
+
+.myMessage-span-text {
+	margin:auto;
+}
+
+.myMessage-date {
+	margin-top:70px;
+}
+
+.input-message-form {
+	position:relative;
+}
+
+.input-message-text-form {
+	width:1250px;
+	height:40px;
+	padding:10px;
+	margin-top:10px;
 }

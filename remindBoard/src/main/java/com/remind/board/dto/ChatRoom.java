@@ -1,6 +1,7 @@
 package com.remind.board.dto;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
@@ -8,13 +9,18 @@ import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.remind.board.utils.Etc;
 
 public class ChatRoom {
 
 	private String roomId;
 	private String name;
 	private Set<WebSocketSession> sessions = new HashSet<WebSocketSession>();
+	private Set<String> sessionList = new HashSet<String>();
+	
+	
+	public void addSession(String session) {
+		sessionList.add(session);
+	}
 	
 	public static ChatRoom create(String name) {
 		ChatRoom chatRoom = new ChatRoom();
@@ -72,9 +78,19 @@ public class ChatRoom {
 		this.sessions = sessions;
 	}
 
+	public Set<String> getSessionList() {
+		return sessionList;
+	}
+
+	public void setSessionList(Set<String> sessionList) {
+		this.sessionList = sessionList;
+	}
+
 	@Override
 	public String toString() {
-		return "ChatRoom [roomId=" + roomId + ", name=" + name + ", sessions=" + sessions + "]";
+		return "ChatRoom [roomId=" + roomId + ", name=" + name + ", sessions=" + sessions + ", sessionList="
+				+ sessionList + "]";
 	}
+
 	
 }
