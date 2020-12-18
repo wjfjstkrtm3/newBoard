@@ -12,8 +12,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class ChatRoom {
 
-	private String roomId;
-	private String name;
+	private String roomId; // UUID.UUIDRandom.toString()으로 생성한 roomId
+	private String title; // 채팅방 제목
+	private String limit; // 채팅방 인원 제한
+	private String name; // 채팅방 만든 사람
+	private String image; // 채팅방 만든 사람 이미지
 	private Set<WebSocketSession> sessions = new HashSet<WebSocketSession>();
 	private Set<String> sessionList = new HashSet<String>();
 	
@@ -22,10 +25,13 @@ public class ChatRoom {
 		sessionList.add(session);
 	}
 	
-	public static ChatRoom create(String name) {
+	public static ChatRoom create(String title, String limit, String name, String image) {
 		ChatRoom chatRoom = new ChatRoom();
 		chatRoom.roomId = UUID.randomUUID().toString();
+		chatRoom.title = title;
+		chatRoom.limit = limit;
 		chatRoom.name = name;
+		chatRoom.image = image;
 		return chatRoom;
 	}
 	
@@ -86,10 +92,36 @@ public class ChatRoom {
 		this.sessionList = sessionList;
 	}
 
+	
+	public String getLimit() {
+		return limit;
+	}
+
+	public void setLimit(String limit) {
+		this.limit = limit;
+	}
+	
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
 	@Override
 	public String toString() {
-		return "ChatRoom [roomId=" + roomId + ", name=" + name + ", sessions=" + sessions + ", sessionList="
-				+ sessionList + "]";
+		return "ChatRoom [roomId=" + roomId + ", title=" + title + ", limit=" + limit + ", name=" + name + ", image="
+				+ image + ", sessions=" + sessions + ", sessionList=" + sessionList + "]";
 	}
 
 	

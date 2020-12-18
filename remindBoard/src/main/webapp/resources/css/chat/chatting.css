@@ -13,9 +13,9 @@
     height:80%;
     display:grid;
     grid-template-rows: repeat(5, 20%);
-    grid-template-columns: 10% 30% 60%;
+    grid-template-columns: 15% 30% 55%;
     grid-auto-rows: 20%;
-    border: 2px solid black;
+    /* border: 1px solid black; */
     position:relative;
 }
 
@@ -65,10 +65,10 @@
     position:relative; 
 }
 .chatRoom-count {
-    border-radius:20px;
+    border-radius: 7px;
     border: 2px solid #023047;
-    padding:5px;
-    width:30px;
+    padding: 7px;
+    width: 65px;
     text-align:center;
     font-weight:bold;
 }
@@ -83,6 +83,7 @@
     display:flex;
     justify-content:center;
     align-items:center;
+    flex-direction: column;
 }
 
 .chatRoom-container >:nth-child(-n+3) {
@@ -91,4 +92,31 @@
 
 .chatRoom-user-name {
     font-weight:bold;
+
+}
+
+.chatting-body {
+	height:400px;
+}
+
+.chatTitle, .chatLimit {
+	width:300px;
+	padding:5px;
+	margin:5px;
+}
+
+.chatRoom-info-title {
+	font-size:25px;
+	font-weight:bold;
+}
+
+.createChatBtn  {
+	width:250px;
+	position:absolute;
+	right:10px;
+	bottom:10px;
+}
+
+.chatRoom-numberOfPerson {
+	padding:3px;
 }

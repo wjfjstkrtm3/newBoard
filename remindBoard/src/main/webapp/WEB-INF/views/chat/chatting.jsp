@@ -12,7 +12,7 @@
 <script type="text/javascript">
 
 	$(document).ready(function() {
-			console.log("${rooms}");
+			
 			
 			$(".createBtn").on("click", function() {
 				$("#createChatModal").modal("show");
@@ -46,6 +46,18 @@
 				}
 				
 				});
+
+			$(".chatRoom-info-enter").on("click", function(event) {
+					var limitB = $(".limitBoolean").val();
+					if(limitB == "true") {
+							event.preventDefault();
+							alert("인원이 꽉찼습니다! 다른방을 선택해주세요!");
+							
+						}
+				});
+			
+
+			
 	});
 
 
@@ -56,17 +68,21 @@
 	<div class="chatRoom-container">
 		<c:forEach var="room" items="${rooms}">
 			<div class="chatRoom-count-form">
-				<div class="chatRoom-count">${fn:length(room.sessionList)}</div>
+				<div class="chatRoom-count">${fn:length(room.sessionList)}&nbsp;/&nbsp;${room.limit}</div>
+				<span class="chatRoom-numberOfPerson">인원 수</span>
+				<c:if test="${fn:length(room.sessionList) == room.limit}">
+					<input type="hidden" value="true" class="limitBoolean"> 
+				</c:if>
 			</div>
 			
 		
 			<div class="chatRoom-user-form">
-				<div class="chatRoom-user-image"><img src="/img/${userDto.image}" class="userImage"></div>
-				<div class="chatRoom-user-name">${userDto.id}</div>
+				<div class="chatRoom-user-image"><img src="/img/${room.image}" class="userImage"></div>
+				<div class="chatRoom-user-name">${room.name}</div>
 			</div>
 			
 			<div class="chatRoom-info-form">
-					<div class="chatRoom-info-title">${room.name}</div>
+					<div class="chatRoom-info-title">${room.title}</div>
 					<div class="chatRoom-info-date">2020-12-15</div>
 					<a href="/chat/rooms/${room.roomId}" class="chatRoom-info-enter btn btn-info">입장</a>
 			</div>
@@ -88,13 +104,6 @@
 </div>
 
 
-
-
-
-
-
-
-
 <div class="modal fade" id="createChatModal" data-backdrop="static">
 	<div class="modal-dialog">
 		<div class="modal-content">
@@ -105,11 +114,16 @@
 				</div>
 			
 			</div>
-			<div class="modal-body">
+			<div class="modal-body chatting-body">
 				<div class="modal-body-form">
 					<form action="/chat/room/new" method="GET" class="titleActionForm" name="form">
-					<input type="text" class="chatTitle" name="name" placeholder="채팅방 제목을 입력해주세요!" autofocus required>
-					<input type="button" class="createChatBtn" value="생성하기">
+					<div>
+						<input type="text" class="chatTitle" name="title" placeholder="채팅방 제목을 입력해주세요!" autofocus>
+					</div>
+					<div>
+						<input type="text" class="chatLimit" name="limit" placeholder="제한할 인원수를 입력해주세요!">
+						<input type="button" class="createChatBtn btn btn-info" value="생성하기">
+					</div>
 					</form>		
 				</div>
 			</div>

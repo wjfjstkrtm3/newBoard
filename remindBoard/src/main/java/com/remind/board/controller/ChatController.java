@@ -60,10 +60,14 @@ public class ChatController {
 	
 	// 새로운 채팅방 만드는 함수
 	@GetMapping("/room/new")
-	public String make(@RequestParam(value="name") String name) {
+	public String make(@RequestParam(value="title") String title, 
+			           @RequestParam(value="limit") String limit) {
 		// List<ChatRoom> chatRoomList = new ArrayList<ChatRoom>();
 		try {
-			chatRoomRepository.createChatRoom(name);
+			String name = Etc.getUser();
+			UserDto userDto = userService.getUserById(name);
+			chatRoomRepository.createChatRoom(title, limit, name, userDto.getImage());
+			
 			
 			// chatRoom을 찾아서 chatRoom에 저장되어있는 session들의 수를 구해서 보내주면됨
 		}catch(Exception e) {
