@@ -1,9 +1,7 @@
 package com.remind.board.controller;
 
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.DestinationVariable;
@@ -13,8 +11,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.remind.board.dao.ChatRoomRepository;
 import com.remind.board.dto.ChatMessage;
@@ -34,7 +34,7 @@ public class ChatController {
 	private UserService userService;
 	
 	
-	// 채팅방 만드는 곳
+	// 채팅방 모두 불러올때
 	@GetMapping(value="/chatting")
 	public String createChatRoom(Model model) {
 		try {
@@ -101,13 +101,20 @@ public class ChatController {
 		
 		try {
 			ChatRoom chatRoom = chatRoomRepository.findRoomById(roomId);
+			
+			
 			chatRoom.addSession(message.getSessionId());
+			// 만약 채팅방 인원 수 제한과 채팅방에 들어간 session의 수와 같다면
+			if(Integer.parseInt(chatRoom.getLimit()) == chatRoom.getSessionList().size()) {
+				chatRoom.setChatOpen(true);
+			} else {
+				chatRoom.setChatOpen(false);
+			}
 			
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
 		
-		// 여기서는 들어왔을때 해당 채팅방에 session 을 추가해주면됨
 		message.setMessage(message.getWriter() + "님 환영합니다");
 		return message;
 	}
@@ -128,6 +135,10 @@ public class ChatController {
 		return message;
 	}
 
-	
+	@ResponseBody
+	@PostMapping(value="/enterJudgment")
+	public ChatRoom enterJudgment(@RequestParam(value="roomId") String roomId) {
+		return chatRoomRepository.findRoomById(roomId);
+	}
 	
 }

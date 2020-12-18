@@ -51,7 +51,7 @@
 					var limitB = $(".limitBoolean").val();
 					if(limitB == "true") {
 							event.preventDefault();
-							alert("인원이 꽉찼습니다! 다른방을 선택해주세요!");
+							alert("채팅방에 인원이 꽉찼습니다. 다른 채팅방을 이용해주십시오!!");
 							
 						}
 				});
@@ -71,7 +71,7 @@
 				<div class="chatRoom-count">${fn:length(room.sessionList)}&nbsp;/&nbsp;${room.limit}</div>
 				<span class="chatRoom-numberOfPerson">인원 수</span>
 				<c:if test="${fn:length(room.sessionList) == room.limit}">
-					<input type="hidden" value="true" class="limitBoolean"> 
+					<input type="hidden" value="${room.chatOpen}" class="limitBoolean"> 
 				</c:if>
 			</div>
 			

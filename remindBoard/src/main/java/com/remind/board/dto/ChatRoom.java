@@ -17,6 +17,7 @@ public class ChatRoom {
 	private String limit; // 채팅방 인원 제한
 	private String name; // 채팅방 만든 사람
 	private String image; // 채팅방 만든 사람 이미지
+	private boolean chatOpen; // 채팅방 인원 제한의 수 와 채팅방에 들어간 session의 수가 같으면 true를 리턴해서 채팅방을 못들어가게
 	private Set<WebSocketSession> sessions = new HashSet<WebSocketSession>();
 	private Set<String> sessionList = new HashSet<String>();
 	
@@ -118,11 +119,20 @@ public class ChatRoom {
 		this.image = image;
 	}
 
+	public boolean isChatOpen() {
+		return chatOpen;
+	}
+
+	public void setChatOpen(boolean chatOpen) {
+		this.chatOpen = chatOpen;
+	}
+
 	@Override
 	public String toString() {
 		return "ChatRoom [roomId=" + roomId + ", title=" + title + ", limit=" + limit + ", name=" + name + ", image="
-				+ image + ", sessions=" + sessions + ", sessionList=" + sessionList + "]";
+				+ image + ", chatOpen=" + chatOpen + ", sessions=" + sessions + ", sessionList=" + sessionList + "]";
 	}
+
 
 	
 }

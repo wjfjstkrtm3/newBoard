@@ -86,7 +86,7 @@
     flex-direction: column;
 }
 
-.chatRoom-container >:nth-child(-n+3) {
+.chatRoom-count-form, .chatRoom-user-form, .chatRoom-info-form {
     border-bottom:1px solid black;
 }
 

@@ -12,6 +12,10 @@
 <script type="text/javascript">
 
 	$(document).ready(function() {
+
+		
+
+		
 		
 		var nickname;
 		var roomId = $(".roomId").val();
@@ -19,7 +23,36 @@
 		var socket = null;
 		var sessionId;
 		
+		// 비동기로 해당 방의 room 객체를 가져와서 작업
+		$.ajax({
+				url:"/chat/enterJudgment",
+				type:"POST",
+				data:{"roomId":roomId},
+				success:function(data) {
+					console.log(data);
+					// 순서상 해당 방의 정보를 불러오면 첫번째로 들어온 sessionList는 없고
+					// 두번째는 sessionList 하나
+					// 그래서 만약에 인원제한을 2명을 걸고 , 3명째가 들어왔을때 즉 3명째면 sessionList가 2개가 딱 담겼을때
+					// 못들어가게 해주는거임 
+					if(data.limit == data.sessionList.length) {
+						alert("채팅방에 인원이 꽉찼습니다. 다른 채팅방을 이용해주십시오!!");
+						location.href="/chat/chatting";
+						}
+					
+				},
+				error:function(xhr) {
+					console.log(xhr.status + "/" + xhr.statusText());
+					}
+			});
+
+
+		
 		connect();
+
+		
+			
+
+		
 		function connect() {
 			socket = new SockJS("/chat");
 			stompClient = Stomp.over(socket);  // SockJS를 Stomp에 연결
