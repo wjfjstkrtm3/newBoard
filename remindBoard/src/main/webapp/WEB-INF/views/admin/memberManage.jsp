@@ -263,7 +263,7 @@
 										if(data !== 0) {
 																						
 											stompClient = Stomp.over(socket);
-											stompClient.send("/app/message/" + receiver, {}, JSON.stringify({receiver:receiver, content:content}));
+											stompClient.send("/app/message/" + receiver, {}, JSON.stringify({receiver:receiver, content:content, sender:"${userDto.id}"}));
 												alert("메시지가 전송되었습니다");
 												location.href="/admin/memberManage";																							
 											}

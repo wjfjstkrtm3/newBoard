@@ -30,9 +30,10 @@
 												closeButton: true,
 												progressBar: true,
 												showMethod: "slideDown",
+												positionClass:"toast-bottom-right",
 												timeOut: 4000
 											};
-									toastr.success("제목", "내용");
+									toastr.info(sender + " : " + content, "메시지가 도착했습니다!");
 							});
 					
 					});
