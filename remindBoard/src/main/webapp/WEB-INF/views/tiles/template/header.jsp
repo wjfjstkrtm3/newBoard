@@ -1,6 +1,48 @@
 <%@ page pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<!-- Socket js  -->
+<script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+
+<!-- toast js -->
+<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
+ 
+<script type="text/javascript">
+
+		// 전역변수 선언
+			var socket = null;
+			
+	$(document).ready(function() {
+			connect();
+			function connect() {
+				socket = new SockJS("/chat");
+				stompClient = Stomp.over(socket); // SockJS를 Stomp에 연결
+
+				stompClient.connect({}, function(frame) {
+						stompClient.subscribe("/topic/message/${userDto.id}", function(message) {
+									var data = JSON.parse(message.body);
+									var sender = data.sender;
+									var content = data.content;					
+									
+									toastr.options = {
+												closeButton: true,
+												progressBar: true,
+												showMethod: "slideDown",
+												timeOut: 4000
+											};
+									toastr.success("제목", "내용");
+							});
+					
+					});
+
+				
+			}
+		});
+
+
+</script>
 <div class="header-menu-title">
 
 </div>

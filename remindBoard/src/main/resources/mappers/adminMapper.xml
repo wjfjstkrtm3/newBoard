@@ -93,4 +93,13 @@
 		</choose>
 	</select>
 	
+	<!-- 멤버관리에서 메시지 보내기  -->
+	<insert id="messageSend" parameterType="com.remind.board.dto.MessageDto">
+		INSERT INTO message(sender, receiver, content) 
+		VALUES(#{sender}, #{receiver}, #{content})
+	</insert>
+	
+	
+	
+	
 </mapper>

@@ -236,3 +236,27 @@
 .member-searchBtn:focus {
 	outline:none;
 }
+
+.member-image-form > img {
+	cursor:pointer;
+}
+
+.messageActionForm {
+	display:flex;
+	flex-direction:column;
+	height:500px;
+}
+
+.message-text-form {
+	height:370px;
+	padding:5px;
+	margin-top:10px;
+}
+
+.receiver-text {
+	font-weight:bold;
+}
+
+.message-text-form:hover {
+	outline:none;
+}

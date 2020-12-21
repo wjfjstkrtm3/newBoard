@@ -7,20 +7,13 @@
 <title>Insert title here</title>
 </head>
 <body>
-<script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 <script type="text/javascript">
-
+			
 	$(document).ready(function() {
-
-		
-
-		
-		
 		var nickname;
 		var roomId = $(".roomId").val();
 		var user = $(".userName").val();
-		var socket = null;
+		// var socket = null;
 		var sessionId;
 		
 		// 비동기로 해당 방의 room 객체를 가져와서 작업
@@ -29,7 +22,6 @@
 				type:"POST",
 				data:{"roomId":roomId},
 				success:function(data) {
-					console.log(data);
 					// 순서상 해당 방의 정보를 불러오면 첫번째로 들어온 sessionList는 없고
 					// 두번째는 sessionList 하나
 					// 그래서 만약에 인원제한을 2명을 걸고 , 3명째가 들어왔을때 즉 3명째면 sessionList가 2개가 딱 담겼을때
@@ -54,13 +46,12 @@
 
 		
 		function connect() {
-			socket = new SockJS("/chat");
+			// socket = new SockJS("/chat");
 			stompClient = Stomp.over(socket);  // SockJS를 Stomp에 연결
 
 			stompClient.connect({}, function(frame) {
 				var splitSessionId = socket._transport.url.split("/");
 				sessionId = splitSessionId[5];
-				console.log(sessionId);
 
 				// sessionID는 SockJS 내부에서 아래와 같은 방식으로 생성
 				// var connid = utils.random_string(8);

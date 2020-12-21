@@ -9,7 +9,8 @@
 
 <script type="text/javascript">
 	$(document).ready(function() {
-
+		
+		var receiver; // 메시지 받는사람
 
 		var checkboxParent = $(".checkBoxAll");
 			$(document).on("change", ".checkBoxAll", function(event) {
@@ -241,8 +242,38 @@
 				
 									
 			});
+					// 사용자 이미지를 눌렀을때 메시지를 보낼수있게
+					$(".member-image-form").on("click", function(event) {
+							$("#messageModal").modal("show");
+							receiver = $(this).siblings(".member-idEmail-form").children().first().text();
+							$(".receiver-text").text("받는 사람 : " + receiver);
+							$(".receiver-hidden").val(receiver);
+							
+						});
 
-
+					// 메시지 전송 버튼을 눌렀을때
+					$(".messageBtn").on("click", function(event) {
+						event.preventDefault();
+						var content = $(".message-text-form").val();
+							$.ajax({
+									url:"/admin/messageSend",
+									type:"POST",
+									data:$(".messageActionForm").serialize(),
+									success:function(data) {
+										if(data !== 0) {
+																						
+											stompClient = Stomp.over(socket);
+											stompClient.send("/app/message/" + receiver, {}, JSON.stringify({receiver:receiver, content:content}));
+												alert("메시지가 전송되었습니다");
+												location.href="/admin/memberManage";																							
+											}
+									},
+									error:function(xhr) {
+										console.log(xhr.status + "/" + xhr.statusText);	
+									}
+								});
+						});
+		
 			
 		});
 
@@ -341,6 +372,10 @@
 			
 		</div>
 	
+			
+	
+	
+	
 	
 	
 	</div>
@@ -403,7 +438,31 @@
 
 </div>
 
+<div class="modal fade" id="messageModal" data-backdrop="static">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<span class="modal-message-title">새로운 메시지</span>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+			</div>	
+			<div class="modal-body modal-message-body">
+				<form action="#" method="POST" class="messageActionForm">
+					<span class="receiver-text"></span>
+					<textarea class="message-text-form" name="content" placeholder="메시지를 입력하세요" autofocus></textarea>
+					<input type="button" class="messageBtn" value="전송">
+					<input type="hidden" name="receiver" class="receiver-hidden">
+					<input type="hidden" name="sender" value="${userDto.id}">
+				</form>
+			</div>
+			<div class="modal-bottom">
+					
+			</div>
+		
+		</div>
+	
+	</div>
 
+</div>
 
 </body>
 </html>

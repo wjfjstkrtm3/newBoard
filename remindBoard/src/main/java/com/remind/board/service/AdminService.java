@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.remind.board.dto.BoardType;
 import com.remind.board.dto.MakeBoardDto;
+import com.remind.board.dto.MessageDto;
 import com.remind.board.dto.UserDto;
 
 @Service
@@ -44,4 +45,7 @@ public interface AdminService {
 	
 	// 멤버관리 비동기 검색
 	public List<UserDto> selectMemberSearch(Map<String, Object> map) throws Exception;
+	
+	// 멤버관리에서 메시지 보내기 
+	public int MessageSend(MessageDto message) throws Exception;
 }

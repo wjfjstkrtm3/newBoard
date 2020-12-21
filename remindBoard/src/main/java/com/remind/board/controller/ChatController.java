@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.remind.board.dao.ChatRoomRepository;
 import com.remind.board.dto.ChatMessage;
 import com.remind.board.dto.ChatRoom;
+import com.remind.board.dto.MessageDto;
 import com.remind.board.dto.UserDto;
 import com.remind.board.service.UserService;
 import com.remind.board.utils.Etc;
@@ -135,10 +136,23 @@ public class ChatController {
 		return message;
 	}
 
+	// 방에들어왔을때 현재 방의 chatRoom을 return
 	@ResponseBody
 	@PostMapping(value="/enterJudgment")
 	public ChatRoom enterJudgment(@RequestParam(value="roomId") String roomId) {
 		return chatRoomRepository.findRoomById(roomId);
+	}
+	
+	// 관리자가 멤버관리에서 메시지를 보냈을때
+	@MessageMapping("/message/{receiver}")
+	@SendTo("/topic/message/{receiver}")
+	public MessageDto messageAlram(MessageDto messageDto) {
+		try {
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return messageDto;
 	}
 	
 }

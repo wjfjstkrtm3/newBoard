@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.remind.board.dao.AdminDao;
 import com.remind.board.dto.BoardType;
 import com.remind.board.dto.MakeBoardDto;
+import com.remind.board.dto.MessageDto;
 import com.remind.board.dto.UserDto;
 
 @Service
@@ -82,6 +83,13 @@ public class AdminServiceImpl implements AdminService {
 	public List<UserDto> selectMemberSearch(Map<String, Object> map) throws Exception {
 		return dao.selectMemberSearch(map);
 	}
+
+	// 멤버관리에서 메시지 보내기 
+	@Override
+	public int MessageSend(MessageDto message) throws Exception {
+		return dao.MessageSend(message);
+	}
+	
 	
 	
 	

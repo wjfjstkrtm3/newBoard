@@ -14,12 +14,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.remind.board.dto.BoardType;
 import com.remind.board.dto.MakeBoardDto;
+import com.remind.board.dto.MessageDto;
 import com.remind.board.dto.UserDto;
 import com.remind.board.service.AdminService;
 
@@ -30,13 +32,11 @@ public class AdminController {
 	@Autowired
 	private AdminService service;
 	
-	
+	// 게시판 만들기 View
 	@GetMapping(value="/makeBoard")
 	public String makeBoard(Model model, HttpSession session) {
 		List<BoardType> list = new ArrayList<BoardType>();
 		try {
-			
-			
 			// 게시판 이름
 			list = service.getBoardTitleList();
 			model.addAttribute("boardTitle", list);
@@ -216,5 +216,18 @@ public class AdminController {
 		return list;
 	}
 
+	@ResponseBody
+	@PostMapping(value="/messageSend")
+	public int messageSend(MessageDto message) {
+		int result = 0;
+		try {
+			result = service.MessageSend(message);
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
 	
 }

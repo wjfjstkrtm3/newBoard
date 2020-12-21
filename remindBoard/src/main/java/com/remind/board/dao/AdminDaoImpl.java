@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.remind.board.dto.BoardType;
 import com.remind.board.dto.MakeBoardDto;
+import com.remind.board.dto.MessageDto;
 import com.remind.board.dto.UserDto;
 
 @Repository
@@ -81,6 +82,12 @@ public class AdminDaoImpl implements AdminDao{
 	@Override
 	public List<UserDto> selectMemberSearch(Map<String, Object> map) throws Exception {
 		return sqlsession.selectList("adminMapper.selectMemberSearch", map);
+	}
+
+	// 멤버관리에서 메시지 보내기 
+	@Override
+	public int MessageSend(MessageDto message) throws Exception {
+		return sqlsession.insert("adminMapper.messageSend", message);
 	}
 
 	
