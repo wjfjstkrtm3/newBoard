@@ -31,9 +31,9 @@
 												progressBar: true,
 												showMethod: "slideDown",
 												positionClass:"toast-bottom-right",
-												timeOut: 4000
+												timeOut: 6000
 											};
-									toastr.info(sender + " : " + content, "메시지가 도착했습니다!");
+									toastr.info(sender + " : " + content + "<a href='/board/listPageSearch'>[알람 목록]</a>", "메시지가 도착했습니다!");
 							});
 					
 					});
