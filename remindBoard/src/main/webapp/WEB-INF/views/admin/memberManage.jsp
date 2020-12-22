@@ -438,18 +438,18 @@
 
 </div>
 
-<div class="modal fade" id="messageModal" data-backdrop="static">
+<div class="modal fade" id="messageModal">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
 				<span class="modal-message-title">새로운 메시지</span>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">X</button>
 			</div>	
 			<div class="modal-body modal-message-body">
 				<form action="#" method="POST" class="messageActionForm">
 					<span class="receiver-text"></span>
 					<textarea class="message-text-form" name="content" placeholder="메시지를 입력하세요" autofocus></textarea>
-					<input type="button" class="messageBtn" value="전송">
+					<input type="button" class="messageBtn btn btn-info" value="전송">
 					<input type="hidden" name="receiver" class="receiver-hidden">
 					<input type="hidden" name="sender" value="${userDto.id}">
 				</form>

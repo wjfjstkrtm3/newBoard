@@ -73,6 +73,17 @@
 					var data = JSON.parse(msg.body);
 					var enterText = data.message;
 					$(".message-form").append("<div class='enterChatRoom'>" + enterText +"</div>");
+
+					if(data.sessionId != sessionId) {
+						toastr.options = {
+								closeButton: true,
+								progressBar: true,
+								showMethod: "slideDown",
+								positionClass:"toast-bottom-right",
+								timeOut: 3000
+							};
+					toastr.info(data.writer + "님이 입장하셨습니다", "채팅방 입장");
+					}
 					
 				});
 		};

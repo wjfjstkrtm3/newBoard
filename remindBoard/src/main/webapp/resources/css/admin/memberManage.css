@@ -244,7 +244,7 @@
 .messageActionForm {
 	display:flex;
 	flex-direction:column;
-	height:500px;
+	height:450px;
 }
 
 .message-text-form {
@@ -255,8 +255,15 @@
 
 .receiver-text {
 	font-weight:bold;
+	font-size:20px;
 }
 
 .message-text-form:hover {
 	outline:none;
+}
+
+.messageBtn  {
+	width:100px;
+	margin-top:10px;
+	margin-left:auto;
 }
