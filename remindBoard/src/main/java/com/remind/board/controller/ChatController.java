@@ -103,7 +103,6 @@ public class ChatController {
 		try {
 			ChatRoom chatRoom = chatRoomRepository.findRoomById(roomId);
 			
-			
 			chatRoom.addSession(message.getSessionId());
 			// 만약 채팅방 인원 수 제한과 채팅방에 들어간 session의 수와 같다면
 			if(Integer.parseInt(chatRoom.getLimit()) == chatRoom.getSessionList().size()) {

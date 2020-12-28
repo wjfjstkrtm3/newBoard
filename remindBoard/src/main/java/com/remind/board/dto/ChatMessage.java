@@ -7,6 +7,8 @@ public class ChatMessage {
 	private String writer;
 	private String message;
 	private String sessionId;
+	private String fileName;
+	private String fileSize;
 	private MessageType type;
 	
 	public String getChatRoomId() {
@@ -39,10 +41,24 @@ public class ChatMessage {
 	public void setSessionId(String sessionId) {
 		this.sessionId = sessionId;
 	}
+	
+	public String getFileName() {
+		return fileName;
+	}
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
+	public String getFileSize() {
+		return fileSize;
+	}
+	public void setFileSize(String fileSize) {
+		this.fileSize = fileSize;
+	}
 	@Override
 	public String toString() {
 		return "ChatMessage [chatRoomId=" + chatRoomId + ", writer=" + writer + ", message=" + message + ", sessionId="
-				+ sessionId + ", type=" + type + "]";
+				+ sessionId + ", fileName=" + fileName + ", fileSize=" + fileSize + ", type=" + type + "]";
 	}
+	
 	
 }

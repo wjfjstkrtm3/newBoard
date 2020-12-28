@@ -243,14 +243,13 @@
 									
 			});
 					// 사용자 이미지를 눌렀을때 메시지를 보낼수있게
-					$(".member-image-form").on("click", function(event) {
-							$("#messageModal").modal("show");
-							receiver = $(this).siblings(".member-idEmail-form").children().first().text();
-							$(".receiver-text").text("받는 사람 : " + receiver);
-							$(".receiver-hidden").val(receiver);
-							
+					$(document).on("click", ".member-image-form", function(event) {
+						$("#messageModal").modal("show");
+						receiver = $(this).siblings(".member-idEmail-form").children().first().text();
+						$(".receiver-text").text("받는 사람 : " + receiver);
+						$(".receiver-hidden").val(receiver);
 						});
-
+				
 					// 메시지 전송 버튼을 눌렀을때
 					$(".messageBtn").on("click", function(event) {
 						event.preventDefault();
