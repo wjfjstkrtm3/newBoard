@@ -7,28 +7,27 @@ import java.util.StringTokenizer;
 public class Main {
 
 	public static void main(String[] args) throws IOException {
-		// 소인수 분해
+		// 택시 기하학
+		
+		// 택시 기하학의 원은 정사각형이 나오는데
+		// 정사각형 넓이 공식 = 한 변의 길이 * 한 변의 길이
+		// 여기서는 한 변의 길이를 알 수 없으므로 주어진 반지름을 통해 해결해야한다
+		// 지름 = 대각선의 길이
+		// 정사각형의 대각선의 길이 = 루트2 * 한 변의 길이
+		// a를 한변의 길이라고 생각하면
+		// 2r = 루트2 * a
+		// 4r제곱 = 2 * a제곱
+		// 2r제곱 = a제곱          --> a제곱이 결국  = 한 변의 길이 * 한 변의 길이
+		
+		// 2r제곱이 결국 넓이가 되겠다
+		
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringBuilder sb = new StringBuilder();
-		int N = Integer.parseInt(br.readLine());
-	
-		// 소인수 분해
 		
-		// ex) 72	--> 2 2 2 3 3
+		double N = Double.parseDouble(br.readLine());
 		
-		for(int i = 2; i <= Math.sqrt(N); i++) {
-			
-			while(N % i == 0) {
-				N = N / i;
-				sb.append(i).append("\n");
-			}
-			
-		}
-		
-		if(N != 1) {
-			sb.append(N);
-		}
-		System.out.println(sb);
+		System.out.println(String.format("%.6f", Math.PI*N*N));
+		System.out.println(String.format("%.6f", 2*N*N));
 	}
 
 }
