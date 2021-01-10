@@ -7,27 +7,61 @@ import java.util.StringTokenizer;
 public class Main {
 
 	public static void main(String[] args) throws IOException {
-		// 택시 기하학
-		
-		// 택시 기하학의 원은 정사각형이 나오는데
-		// 정사각형 넓이 공식 = 한 변의 길이 * 한 변의 길이
-		// 여기서는 한 변의 길이를 알 수 없으므로 주어진 반지름을 통해 해결해야한다
-		// 지름 = 대각선의 길이
-		// 정사각형의 대각선의 길이 = 루트2 * 한 변의 길이
-		// a를 한변의 길이라고 생각하면
-		// 2r = 루트2 * a
-		// 4r제곱 = 2 * a제곱
-		// 2r제곱 = a제곱          --> a제곱이 결국  = 한 변의 길이 * 한 변의 길이
-		
-		// 2r제곱이 결국 넓이가 되겠다
 		
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringBuilder sb = new StringBuilder();
 		
-		double N = Double.parseDouble(br.readLine());
+		int T = Integer.parseInt(br.readLine());
 		
-		System.out.println(String.format("%.6f", Math.PI*N*N));
-		System.out.println(String.format("%.6f", 2*N*N));
+		while(T-- > 0) {
+			StringTokenizer st = new StringTokenizer(br.readLine(), " ");
+			int x1 = Integer.parseInt(st.nextToken());
+			int y1 = Integer.parseInt(st.nextToken());
+			int r1 = Integer.parseInt(st.nextToken());
+			
+			int x2 = Integer.parseInt(st.nextToken());
+			int y2 = Integer.parseInt(st.nextToken());
+			int r2 = Integer.parseInt(st.nextToken());
+			
+			// 두 점 사이의 거리
+			// 피타고라스 정리 : 루트(x2-x1)제곱 + (y2-y1)제곱
+			
+			int distance = (int)(Math.pow(x2-x1, 2) + Math.pow(y2-y1, 2));
+			
+			// 1. 중점이 같으면서 반지름도 같은 경우 (완전히 포개지는 경우)
+			if(x1 == x2 && y1 == y2 && r1 == r2) {
+				sb.append(-1).append("\n");;
+			}     
+			
+			// 2-1. 두 원의 반지름 합보다 중점간 거리가 더 길때
+			else if(distance > Math.pow(r1+r2, 2)) {
+				sb.append(0).append("\n");;
+			}
+			
+			// 2-2. 원 안에 있으나 내접하지 않을때
+			else if(distance < Math.pow(r2-r1, 2)) {
+				sb.append(0).append("\n");;
+			}
+			
+			// 3-1. 내접할 때
+			else if(distance == Math.pow(r2-r1, 2)) {
+				sb.append(1).append("\n");;
+			}
+			
+			// 3-2. 외접할 때
+			else if(distance == Math.pow(r1+r2, 2)) {
+				sb.append(1).append("\n");;
+			}
+			
+			else {
+				sb.append(2).append("\n");
+			}
+		}
+		
+		System.out.println(sb);
+		br.close();
+		
+		
 	}
 
 }
